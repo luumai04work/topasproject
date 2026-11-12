@@ -1,0 +1,231 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}
+body{margin:0;font:13px/1.42 "Segoe UI",Arial,sans-serif;color:#1f2937;background:#f3f4f6;width:1280px;height:800px;overflow:hidden}
+.app{display:flex;height:800px}
+.side{width:176px;background:#1e293b;color:#cbd5e1;padding:14px 0;flex:none}
+.side .logo{color:#fff;font-weight:700;font-size:16px;padding:0 16px 12px;letter-spacing:.5px}
+.side .grp{padding:10px 16px 4px;font-size:10.5px;text-transform:uppercase;color:#64748b;letter-spacing:.4px}
+.side a{display:block;padding:5px 16px;color:#cbd5e1;font-size:12.5px}
+.side a.on{background:#334155;color:#fff;border-left:3px solid #60a5fa;padding-left:13px}
+.main{flex:1;display:flex;flex-direction:column;min-width:0;position:relative}
+.top{height:42px;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 18px;justify-content:space-between;flex:none}
+.crumb{color:#6b7280}.crumb b{color:#111827}
+.user{display:flex;gap:8px;align-items:center;color:#374151}
+.avatar{width:26px;height:26px;border-radius:50%;background:#dbeafe;color:#1d4ed8;display:grid;place-items:center;font-weight:700;font-size:11px}
+.page{padding:12px 18px;overflow:hidden;flex:1}
+.hdr{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:10px 16px 0}
+.r1{display:flex;align-items:center;gap:8px}
+.code{font-size:18px;font-weight:700;margin-right:4px}
+.meta{display:flex;gap:6px 20px;margin-top:6px;color:#6b7280;flex-wrap:wrap;font-size:12.5px}
+.meta b{color:#111827;font-weight:600}
+.lnk{color:#2563eb!important;text-decoration:underline}
+.actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:6px;border:1px solid #d1d5db;background:#fff;color:#111827;font-weight:500;white-space:nowrap;font-size:12.5px}
+.btn.p{background:#2563eb;border-color:#2563eb;color:#fff}
+.btn.g{background:#16a34a;border-color:#16a34a;color:#fff}
+.btn.d{border-color:#fca5a5;color:#b91c1c}
+.btn.dp{background:#dc2626;color:#fff;border-color:#dc2626}
+.btn.dis{background:#f3f4f6;color:#9ca3af;border-color:#e5e7eb}
+.btn.sm{height:24px;padding:0 8px;font-size:12px}
+.btn.lk{border:none;background:none;color:#2563eb;padding:0;height:auto}
+.btn.busy{background:#93c5fd;border-color:#93c5fd;color:#fff}
+.tabs{display:flex;gap:2px;margin-top:8px}
+.tab{padding:7px 11px;color:#4b5563;border-bottom:2px solid transparent;display:flex;gap:6px;align-items:center;font-size:12.5px;white-space:nowrap}
+.tab.on{color:#1d4ed8;border-color:#2563eb;font-weight:600}
+.tab.lock{color:#9ca3af}
+.cnt{background:#e5e7eb;color:#374151;border-radius:9px;padding:0 6px;font-size:11px;font-weight:600}
+.cnt.w{background:#fef3c7;color:#92400e}.cnt.r{background:#fee2e2;color:#991b1b}.cnt.g{background:#dcfce7;color:#166534}
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11.5px;font-weight:600;white-space:nowrap;line-height:18px}
+.b-gray{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb}
+.b-blue{background:#dbeafe;color:#1e40af}.b-green{background:#dcfce7;color:#166534}
+.b-amber{background:#fef3c7;color:#92400e}.b-red{background:#fee2e2;color:#991b1b}
+.b-violet{background:#ede9fe;color:#5b21b6}.b-cyan{background:#cffafe;color:#155e75}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px}
+.card h3{margin:0 0 8px;font-size:13px;display:flex;align-items:center;gap:8px}
+.grid{display:grid;gap:12px}
+table{width:100%;border-collapse:collapse;background:#fff}
+th{font-size:11.5px;color:#6b7280;text-align:left;font-weight:600;padding:6px 8px;border-bottom:1px solid #e5e7eb;background:#f9fafb;white-space:nowrap}
+td{padding:6px 8px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+tr.sel td{background:#eff6ff}
+tr.hot td{background:#fffbeb}
+tr.bad td{background:#fef2f2}
+tr.grp td{background:#f8fafc;font-weight:600;color:#334155;font-size:12px;padding:5px 8px}
+tr.dim td{color:#9ca3af}
+.tbl{border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;background:#fff}
+.muted{color:#6b7280}.small{font-size:11.5px}.b{font-weight:600}
+.toolbar{display:flex;gap:8px;align-items:center;margin:10px 0}
+.input{height:30px;border:1px solid #d1d5db;border-radius:6px;padding:0 10px;display:flex;align-items:center;background:#fff;color:#111827;min-width:0;white-space:nowrap;overflow:hidden}
+.input.ph{color:#9ca3af}
+.input.sel::after{content:"▾";margin-left:auto;color:#6b7280;padding-left:8px}
+.input.area{height:auto;min-height:54px;align-items:flex-start;padding:6px 10px;white-space:normal}
+.input.bad{border-color:#dc2626;background:#fff7f7}
+.input.ro{background:#f9fafb;color:#374151;border-style:dashed}
+.input.focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+.chip{border:1px solid #d1d5db;border-radius:14px;padding:3px 10px;background:#fff;color:#374151;font-size:12px;white-space:nowrap;display:inline-flex;gap:5px;align-items:center}
+.chip.on{background:#1e40af;color:#fff;border-color:#1e40af}
+.chip.on .cnt{background:#3b82f6;color:#fff}
+.cb{width:14px;height:14px;border:1.5px solid #9ca3af;border-radius:3px;display:inline-block;vertical-align:middle;background:#fff;position:relative;flex:none}
+.cb.on{background:#2563eb;border-color:#2563eb}
+.cb.on::after{content:"";position:absolute;left:3.5px;top:0.5px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.cb.part{background:#2563eb;border-color:#2563eb}.cb.part::after{content:"";position:absolute;left:2px;top:5px;width:7px;height:2px;background:#fff}
+.rd{width:14px;height:14px;border:1.5px solid #9ca3af;border-radius:50%;display:inline-block;vertical-align:middle;background:#fff;flex:none}
+.rd.on{border:4px solid #2563eb}
+.banner{border-radius:8px;padding:8px 12px;display:flex;gap:10px;align-items:center}
+.banner.w{background:#fffbeb;border:1px solid #fcd34d;color:#78350f}
+.banner.e{background:#fef2f2;border:1px solid #fca5a5;color:#7f1d1d}
+.banner.i{background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a}
+.banner.s{background:#f0fdf4;border:1px solid #86efac;color:#14532d}
+.overlay{position:absolute;inset:0;background:rgba(15,23,42,.40)}
+.drawer{position:absolute;top:0;right:0;bottom:0;width:600px;background:#fff;box-shadow:-6px 0 24px rgba(0,0,0,.18);display:flex;flex-direction:column}
+.drawer.wide{width:760px}
+.dh{padding:12px 18px;border-bottom:1px solid #e5e7eb}
+.dh .t{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.dh .x{margin-left:auto;color:#6b7280;font-weight:400;font-size:18px}
+.db{padding:12px 18px;flex:1;overflow:hidden}
+.df{padding:10px 18px;border-top:1px solid #e5e7eb;display:flex;gap:8px;justify-content:flex-end;align-items:center}
+.modal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:540px;background:#fff;border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,.28)}
+.mh{padding:14px 18px 10px;font-size:15px;font-weight:700}
+.mb{padding:4px 18px 14px}
+.mf{padding:12px 18px;border-top:1px solid #e5e7eb;display:flex;justify-content:flex-end;gap:8px;align-items:center}
+.field{margin-bottom:9px}
+.field>label{display:block;font-size:12px;color:#374151;margin-bottom:3px;font-weight:600}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.f3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 12px}
+.req{color:#dc2626}
+.auto{font-size:10.5px;background:#ecfeff;color:#0e7490;border-radius:4px;padding:0 5px;margin-left:6px;font-weight:600}
+.err{color:#b91c1c;font-size:11.5px;margin-top:3px}
+.hint{color:#6b7280;font-size:11.5px;margin-top:3px}
+.toast{position:absolute;right:20px;bottom:20px;background:#111827;color:#fff;padding:10px 14px;border-radius:8px;display:flex;gap:14px;align-items:center;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.toast a{color:#93c5fd;font-weight:600}
+.bulk{background:#1e3a8a;color:#fff;border-radius:8px;padding:7px 12px;display:flex;align-items:center;gap:10px;margin:8px 0}
+.bulk .btn{background:#fff;border-color:#fff}
+.bulk .btn.p{background:#3b82f6;border-color:#93c5fd;color:#fff}
+.email{border:1px solid #e5e7eb;border-radius:8px;background:#fff}
+.email .row{display:flex;border-bottom:1px solid #f1f5f9;padding:5px 10px;gap:8px;align-items:center}
+.email .row>span:first-child{width:64px;color:#6b7280;flex:none}
+.email .body{padding:8px 10px;font-size:12.3px;line-height:1.5;white-space:pre-line}
+.hl{background:#fef9c3;border-radius:2px;padding:0 2px}
+.prog{height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;flex:1}
+.prog i{display:block;height:100%;background:#2563eb}
+.prog.g i{background:#16a34a}.prog.a i{background:#f59e0b}
+.kpi{font-size:19px;font-weight:700}
+.tl{border-left:2px solid #e5e7eb;margin-left:6px;padding-left:16px}
+.tl .it{position:relative;margin-bottom:11px}
+.tl .it::before{content:"";position:absolute;left:-22px;top:4px;width:10px;height:10px;border-radius:50%;background:#94a3b8;border:2px solid #fff}
+.tl .it.inc::before{background:#dc2626}.tl .it.ok::before{background:#16a34a}.tl .it.bl::before{background:#2563eb}
+.flex{display:flex;gap:8px;align-items:center}
+.col{display:flex;flex-direction:column;gap:8px}
+.ml{margin-left:auto}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sep{height:1px;background:#e5e7eb;margin:10px 0}
+.sec{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#6b7280;font-weight:700;margin:10px 0 6px}
+.list .li{display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid #f1f5f9}
+.ico{width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;font-size:11px;font-weight:700;flex:none}
+.ico.ok{background:#dcfce7;color:#166534}.ico.w{background:#fef3c7;color:#92400e}.ico.e{background:#fee2e2;color:#991b1b}.ico.i{background:#dbeafe;color:#1e40af}
+.pill{border:1px dashed #cbd5e1;border-radius:6px;padding:4px 8px;font-size:12px;background:#f8fafc}
+.room{border:1px solid #e5e7eb;border-radius:8px;padding:8px;background:#fff}
+.room.bad{border-color:#f87171;background:#fef2f2}
+.room h4{margin:0 0 6px;font-size:12.5px;display:flex;gap:6px;align-items:center}
+.pax{background:#f1f5f9;border-radius:4px;padding:3px 6px;font-size:12px;margin-bottom:4px;display:flex;gap:6px;align-items:center}
+.drag{outline:2px dashed #2563eb;background:#eff6ff}
+.ntab{display:flex;gap:0;border-bottom:1px solid #e5e7eb;margin-bottom:10px}
+.ntab div{padding:6px 12px;font-size:12.5px;color:#4b5563;border-bottom:2px solid transparent}
+.ntab div.on{color:#1d4ed8;border-color:#2563eb;font-weight:600}
+.cal{display:grid;grid-template-columns:210px repeat(8,1fr);border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;background:#fff}
+.cal>div{border-bottom:1px solid #f1f5f9;border-right:1px solid #f1f5f9;padding:6px 8px;font-size:12px;min-height:34px}
+.cal .h{background:#f9fafb;color:#6b7280;font-weight:600;font-size:11.5px}
+.bar{border-radius:4px;padding:2px 6px;font-size:11.5px;color:#fff;background:#2563eb;white-space:nowrap;overflow:hidden}
+.bar.g{background:#0d9488}.bar.v{background:#7c3aed}.bar.r{background:#dc2626}
+.file{border:1px solid #e5e7eb;border-radius:6px;padding:6px 10px;display:flex;gap:8px;align-items:center;font-size:12px;margin-bottom:6px}
+.file.bad{border-color:#fca5a5;background:#fef2f2}
+.drop{border:1.5px dashed #cbd5e1;border-radius:8px;padding:10px;text-align:center;color:#6b7280;font-size:12px}
+.isel{display:inline-flex;align-items:center;gap:6px;border:1px solid #e5e7eb;border-radius:5px;padding:1px 7px;background:#fff;white-space:nowrap}
+.isel::after{content:"▾";color:#9ca3af;font-size:11px}
+.isel.ph{color:#9ca3af;border-style:dashed}
+.dd::after{content:" ▾";font-weight:400}
+.skel{background:#e5e7eb;border-radius:4px;height:12px}
+.ttl{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ttl h1{font-size:18px;margin:0}
+.isel.red{border-color:#f87171;color:#b91c1c;background:#fff7f7}
+.isel.open{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+.menu{position:absolute;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:6px 0;z-index:5}
+.menu .mi{padding:6px 12px;display:flex;gap:8px;align-items:center;font-size:12.5px}
+.menu .mi.on{background:#eff6ff}
+.menu .mh2{padding:4px 12px;font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.3px}
+.bell{position:relative;font-size:15px;margin-right:6px}
+.bell i{position:absolute;top:-6px;right:-8px;background:#dc2626;color:#fff;border-radius:8px;font-size:10px;font-style:normal;padding:0 4px;font-weight:700}
+.ind{display:inline-block;font-size:11px;font-weight:600;border-radius:4px;padding:0 5px;margin-left:4px;line-height:17px;white-space:nowrap}
+.ind.r{background:#fee2e2;color:#991b1b}.ind.a{background:#fef3c7;color:#92400e}.ind.g{background:#dcfce7;color:#166534}.ind.b{background:#dbeafe;color:#1e40af}.ind.v{background:#ede9fe;color:#5b21b6}
+.strip{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:8px 12px;margin-bottom:10px}
+tr.new td{background:#f0fdf4}
+.empty{padding:60px 20px;text-align:center;color:#6b7280}
+.empty .big{font-size:15px;color:#111827;font-weight:600;margin-bottom:6px}
+
+.tg{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;white-space:nowrap}
+.tg i{width:30px;height:17px;border-radius:9px;background:#cbd5e1;position:relative;display:inline-block;flex:none}
+.tg i::after{content:"";position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff}
+.tg.on i{background:#16a34a}.tg.on i::after{left:15px}
+.tg.ro i{opacity:.55}
+.sheet{border:1px solid #cbd5e1;border-radius:6px;overflow:hidden;background:#fff}
+.sheet table td,.sheet table th{border-right:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;padding:4px 6px;font-size:12px}
+.sheet th{background:#f1f5f9;color:#334155;text-align:center;white-space:normal;line-height:1.25}
+.sheet td.n{text-align:right;font-variant-numeric:tabular-nums}
+.sheet td.miss{background:repeating-linear-gradient(45deg,#fffbeb,#fffbeb 4px,#fef3c7 4px,#fef3c7 8px);color:#b45309;text-align:center}
+.sheet td.bad{background:#fef2f2;outline:1.5px solid #dc2626;outline-offset:-2px;color:#991b1b}
+.sheet td.cur{outline:2px solid #2563eb;outline-offset:-2px}
+.sheet td.csel{background:#dbeafe}
+.sheet td.imp{background:#ecfdf5}
+.sheet th.csel{background:#bfdbfe}
+.sheet td.rh{background:#f8fafc;color:#94a3b8;text-align:center;width:24px}
+.calbar{display:flex;height:22px;border-radius:4px;overflow:hidden;border:1px solid #cbd5e1}
+.calbar span{display:block;height:100%}
+.calm{display:flex;font-size:10.5px;color:#64748b;margin-top:2px}
+.calm span{flex:1;text-align:left}
+.s1{background:#3b82f6}.s2{background:#22c55e}.s3{background:#f59e0b}.s4{background:#a855f7}.s0{background:repeating-linear-gradient(45deg,#fff,#fff 3px,#fde68a 3px,#fde68a 6px)}.sx{background:#dc2626}
+.dot{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:middle;margin-right:4px}
+.tag{display:inline-flex;align-items:center;gap:4px;background:#eef2ff;color:#3730a3;border-radius:12px;padding:1px 8px;font-size:12px;margin:2px 3px 2px 0;white-space:nowrap}
+.tag.x{background:#fff1f2;color:#9f1239}
+.tag.sg{background:#fff;border:1px dashed #a5b4fc;color:#4f46e5}
+.tags{border:1px solid #d1d5db;border-radius:6px;padding:4px 6px;min-height:34px;background:#fff;display:flex;flex-wrap:wrap;align-items:center}
+.secnav{display:flex;gap:4px;padding:6px 18px;border-bottom:1px solid #e5e7eb;background:#f8fafc}
+.secnav span{font-size:12px;padding:2px 9px;border-radius:12px;color:#475569}
+.secnav span.on{background:#1e40af;color:#fff}
+.secnav span.w{color:#b91c1c}
+.secnav span.on.w{color:#fff;background:#b91c1c}
+.sect{border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.sect h4{margin:0 0 8px;font-size:13px;display:flex;align-items:center;gap:8px}
+.sect.ro{background:#fafafa}
+.lockn{font-size:11.5px;color:#6b7280;font-weight:400}
+.todo{display:flex;align-items:center;gap:8px;padding:5px 0;border-top:1px dashed #e5e7eb;font-size:12.5px;flex-wrap:wrap}
+.drawer.xl{width:1060px}
+.drawer.md{width:880px}
+</style></head><body><div class="app"><div class="side"><div class="logo">TOPAS</div>
+<div class="grp">Kinh doanh</div><a>Khách hàng</a><a>Yêu cầu Tour</a><a>Booking</a>
+<div class="grp">Điều hành</div><a class="">Hồ sơ Tour</a><a class="on">Nhà cung cấp</a><a class="">Dịch vụ & bảng giá</a><a class="">Nhân sự</a><a class="">Mẫu checklist</a>
+<div class="grp">Kế toán</div><a>Công nợ & thu chi</a>
+<div class="grp">Quản trị</div><a>Mẫu tài liệu</a><a>Báo cáo</a></div>
+<div class="main"><div class="top"><div class="crumb">Điều hành / Nhà cung cấp / <b>Khách sạn Lotus Hanoi</b></div>
+<div class="user"><span class="bell">🔔</span><span class="muted small">Điều hành</span><div class="avatar">TA</div>Trần Minh Anh</div></div>
+<div class="page"><div class="hdr"><div class="r1"><span class="code">Khách sạn Lotus Hanoi</span><span class="badge b-cyan">Khách sạn · Nhà hàng</span><span class="tg  "><i></i>Ngừng sử dụng</span><span class="small muted">từ 11/11/2026 10:52 · Trần Minh Anh</span>
+<div class="actions"><span class="btn ">Xem công nợ</span></div></div>
+<div class="meta"><span>Mã <b>NCC-0118</b></span><span>Hà Nội</span>
+<span>Hợp đồng hiện hành <b>LH-2025/HĐ-07</b> · đến <b>30/11/2026</b> <span class="ind a">Sắp hết hạn</span></span>
+<span><b>6</b> dịch vụ · 5 đang dùng</span><span>Đầu mối <b>Nguyễn Thu Trang</b> · 0912 345 678</span></div>
+
+<div class="tabs"><div class="tab on ">Thông tin chung & thanh toán</div><div class="tab  ">Hợp đồng & chính sách <span class="cnt w">1</span></div><div class="tab  ">Dịch vụ & bảng giá <span class="cnt w">2</span></div></div></div><div style="margin-top:10px"><div class="sect "><h4>Thông tin chung <span class="lockn">· Điều hành</span></h4>
+<div class="f3"><div class="field"><label>Tên nhà cung cấp <span class="req">*</span></label><div class="input ">Khách sạn Lotus Hanoi</div></div>
+<div class="field"><label>Loại dịch vụ cung cấp <span class="req">*</span></label><div class="input sel "><div style="display:flex;gap:2px"><span class="tag">Khách sạn</span><span class="tag">Nhà hàng</span></div></div></div>
+<div class="field"><label>Địa điểm</label><div class="input sel ">Hà Nội</div></div></div>
+
+<div class="f2"><div class="field"><label>Địa chỉ</label><div class="input ">Số 16 Lý Thường Kiệt, P. Cửa Nam, Hà Nội</div></div>
+<div class="field"><label>Ngôn ngữ giao dịch</label><div class="input sel ">Tiếng Việt</div><div class="hint">Bản ngôn ngữ của email đặt dịch vụ ở DH08 (mẫu QT04)</div></div></div>
+<div class="f2"><div class="field"><label>Email đặt dịch vụ</label><div class="input ">reservation@lotushanoi.vn</div><div class="hint">Dùng làm người nhận khi đặt dịch vụ ở DH08.3</div></div>
+<div class="field"><label>CC khi đặt dịch vụ</label><div class="input ">sales@lotushanoi.vn</div></div></div>
+<label style="font-size:12px;font-weight:600">Đầu mối liên hệ</label>
+<table style="margin:4px 0 6px;border:1px solid #e5e7eb"><tr><th>Họ tên</th><th>Chức vụ</th><th>Điện thoại</th><th>Email</th><th>Đầu mối chính</th></tr>
+<tr><td>Nguyễn Thu Trang</td><td>Trưởng phòng kinh doanh</td><td>0912 345 678</td><td>trang.nguyen@lotushanoi.vn</td><td><span class="rd on"></span></td></tr>
+<tr><td>Lê Văn Đức</td><td>Trưởng lễ tân</td><td>0903 222 111</td><td>fo@lotushanoi.vn</td><td><span class="rd"></span></td></tr></table>
+<span class="lnk small">+ Thêm đầu mối</span>
+<div class="field"><label>Ghi chú</label><div class="input area ">Ưu tiên đoàn Đức, Pháp; nhận đoàn tối đa 40 phòng.</div></div></div><div class="sect ro"><h4>Thông tin nhận thanh toán <span class="lockn">· Chỉ đọc · Kế toán cập nhật</span></h4>
+<div class="f3"><div class="field"><label>Tên thụ hưởng</label><div class="input ro">Công ty TNHH Khách sạn Lotus Hà Nội</div></div><div class="field"><label>Ngân hàng · chi nhánh</label><div class="input sel ro">Vietcombank · CN Hoàn Kiếm</div></div><div class="field"><label>Số tài khoản</label><div class="input ro">0011 0042 1188</div></div></div>
+<div class="f3"><div class="field"><label>Tên đơn vị xuất hóa đơn</label><div class="input ro">Công ty TNHH Khách sạn Lotus Hà Nội</div></div><div class="field"><label>Mã số thuế</label><div class="input ro">0101234567</div></div><div class="field"><label>Email nhận hóa đơn</label><div class="input ro">ketoan@lotushanoi.vn</div></div></div></div></div><div class="toast">Đã ngừng sử dụng Khách sạn Lotus Hanoi. Đã báo Điều hành phụ trách 3 hồ sơ Tour.<a>Hoàn tác</a></div></div></div></div></body></html>

@@ -1,0 +1,23 @@
+// Nguồn duy nhất cho tên và mục đích của từng wireframe. [Vị trí (màn/tab), Tên màn, Màn này dùng để làm gì]
+module.exports = {
+  W01: ['DH01 · Điều hành', 'Danh sách mẫu checklist', 'Xem mẫu của từng loại Tour, số công việc, phiên bản hiện hành và số hồ sơ đã dùng; thấy loại Tour nào đang rơi về Mẫu mặc định; bật hoặc tắt Đang dùng ngay trên dòng.'],
+  W02: ['DH01 · Điều hành', 'Không có mẫu khớp tìm kiếm', 'Phân biệt không khớp bộ lọc với chưa có dữ liệu; chỉ ra mẫu khớp đang nằm ở chip khác.'],
+  W03: ['DH01 · Bảng trượt Tạo mẫu', 'Tạo mẫu: chọn loại Tour và mẫu để sao chép', 'Loại Tour chưa có mẫu được gợi ý sẵn; chọn mẫu có sẵn để sao chép công việc thay vì nhập từ đầu.'],
+  W04: ['DH01 · Bảng trượt Tạo mẫu', 'Công việc đã sao chép từ mẫu có sẵn', 'Toàn bộ công việc, hạn và thuộc tính được điền sẵn (nền xanh nhạt) để sửa tại chỗ.'],
+  W05: ['DH01 · Bảng trượt Sửa mẫu', 'Sửa danh sách công việc của mẫu', 'Sửa tên, loại dịch vụ, hạn, tự hoàn tất và giao người phụ trách ngay trên lưới; kéo để đổi thứ tự; thấy hậu quả khi lưu phiên bản mới.'],
+  W06: ['DH01 · Bảng trượt Tạo mẫu', 'Bỏ việc không cần và thêm việc theo dịch vụ', 'Bỏ một dòng có Hoàn tác; thêm dòng mới và chọn loại dịch vụ từ danh mục đang dùng.'],
+  W07: ['DH01 · Bảng trượt Tạo mẫu', 'Lỗi kiểm tra khi lưu mẫu', 'Không lưu khi thiếu tên hoặc trùng tên trong cùng phạm vi; lỗi nằm ngay trên dòng, dữ liệu đã nhập được giữ.'],
+  W08: ['DH01 · Điều hành', 'Danh sách sau khi tạo mẫu', 'Mẫu mới tô sáng ở đúng vị trí; số trên chip và phạm vi của Mẫu mặc định cập nhật.'],
+  W08a: ['DH01 · Điều hành', 'Danh sách sau khi lưu phiên bản mới', 'Dòng mẫu hiện phiên bản mới; thông báo nêu rõ hồ sơ đã tạo giữ nguyên checklist.'],
+  W09: ['DH01 · Bảng trượt Sửa mẫu · Xem trước', 'Xem trước checklist trên hồ sơ mẫu', 'Kiểm tra mẫu đang sửa sẽ sinh những công việc nào, hạn ngày nào, gắn với hạng mục nào trên một hồ sơ thật, trước khi lưu.'],
+  W10: ['DH01 · Hộp thoại', 'Đóng bảng trượt khi còn thay đổi chưa lưu', 'Liệt kê thay đổi sẽ mất để người dùng chọn tiếp tục sửa hoặc bỏ.'],
+  W11: ['DH01 · Bảng trượt Sửa mẫu', 'Mẫu vừa được lưu ở phiên khác', 'Không ghi đè phiên bản của người khác; nêu thay đổi của mình để làm lại sau khi tải bản mới.'],
+  W12: ['DH01 · Hộp thoại', 'Xác nhận ngừng dùng mẫu', 'Nêu hậu quả trước khi tắt: loại Tour chuyển sang Mẫu mặc định, hồ sơ đã tạo giữ nguyên, Booking tạo hồ sơ lỗi (nhóm Tạo lỗi) bị ảnh hưởng.'],
+  W13: ['DH01 · Điều hành', 'Danh sách sau khi ngừng dùng', 'Mẫu rời chip Đang dùng; Mẫu mặc định hiện thêm loại Tour mới rơi về; Hoàn tác trong thông báo.'],
+  W13a: ['DH01 · Điều hành · chip Ngừng dùng', 'Danh sách sau khi dùng lại mẫu', 'Bật lại Đang dùng không cần hộp thoại; mẫu rời chip Ngừng dùng, loại Tour thôi dùng Mẫu mặc định; Hoàn tác trong thông báo.'],
+  W14: ['DH01 · Hộp thoại', 'Xác nhận xóa mẫu chưa dùng', 'Chỉ mẫu chưa dùng cho hồ sơ nào mới xóa được; nêu hậu quả và không khôi phục được.'],
+  W14a: ['DH01 · Điều hành', 'Danh sách sau khi xóa mẫu', 'Mẫu đã xóa biến khỏi danh sách; Mẫu mặc định hiện thêm loại Tour vừa mất mẫu riêng.'],
+  W15: ['DH01 · Bảng trượt Sửa mẫu · Lịch sử', 'Lịch sử phiên bản của mẫu', 'Xem ai đã đổi gì ở từng phiên bản và số hồ sơ đã tạo checklist theo từng phiên bản.'],
+  W16: ['DH01 · Điều hành (chỉ xem)', 'Xem mẫu khi không có quyền sửa', 'Người chỉ có quyền xem thấy đủ nội dung mẫu nhưng không có ô sửa, công tắc hay nút Lưu.'],
+  W17: ['DH01 · Điều hành', 'Lỗi tải danh sách mẫu', 'Giữ bộ lọc và cho thử lại khi không tải được dữ liệu.'],
+};

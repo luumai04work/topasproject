@@ -1,0 +1,192 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}
+body{margin:0;font:13px/1.42 "Segoe UI",Arial,sans-serif;color:#1f2937;background:#f3f4f6;width:1280px;height:800px;overflow:hidden}
+.app{display:flex;height:800px}
+.side{width:176px;background:#1e293b;color:#cbd5e1;padding:14px 0;flex:none}
+.side .logo{color:#fff;font-weight:700;font-size:16px;padding:0 16px 12px;letter-spacing:.5px}
+.side .grp{padding:10px 16px 4px;font-size:10.5px;text-transform:uppercase;color:#64748b;letter-spacing:.4px}
+.side a{display:block;padding:5px 16px;color:#cbd5e1;font-size:12.5px}
+.side a.on{background:#334155;color:#fff;border-left:3px solid #60a5fa;padding-left:13px}
+.main{flex:1;display:flex;flex-direction:column;min-width:0;position:relative}
+.top{height:42px;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;padding:0 18px;justify-content:space-between;flex:none}
+.crumb{color:#6b7280}.crumb b{color:#111827}
+.user{display:flex;gap:8px;align-items:center;color:#374151}
+.avatar{width:26px;height:26px;border-radius:50%;background:#dbeafe;color:#1d4ed8;display:grid;place-items:center;font-weight:700;font-size:11px}
+.page{padding:12px 18px;overflow:hidden;flex:1}
+.hdr{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:10px 16px 0}
+.r1{display:flex;align-items:center;gap:8px}
+.code{font-size:18px;font-weight:700;margin-right:4px}
+.meta{display:flex;gap:6px 20px;margin-top:6px;color:#6b7280;flex-wrap:wrap;font-size:12.5px}
+.meta b{color:#111827;font-weight:600}
+.lnk{color:#2563eb!important;text-decoration:underline}
+.actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:6px;border:1px solid #d1d5db;background:#fff;color:#111827;font-weight:500;white-space:nowrap;font-size:12.5px}
+.btn.p{background:#2563eb;border-color:#2563eb;color:#fff}
+.btn.g{background:#16a34a;border-color:#16a34a;color:#fff}
+.btn.d{border-color:#fca5a5;color:#b91c1c}
+.btn.dp{background:#dc2626;color:#fff;border-color:#dc2626}
+.btn.dis{background:#f3f4f6;color:#9ca3af;border-color:#e5e7eb}
+.btn.sm{height:24px;padding:0 8px;font-size:12px}
+.btn.lk{border:none;background:none;color:#2563eb;padding:0;height:auto}
+.btn.busy{background:#93c5fd;border-color:#93c5fd;color:#fff}
+.tabs{display:flex;gap:2px;margin-top:8px}
+.tab{padding:7px 11px;color:#4b5563;border-bottom:2px solid transparent;display:flex;gap:6px;align-items:center;font-size:12.5px;white-space:nowrap}
+.tab.on{color:#1d4ed8;border-color:#2563eb;font-weight:600}
+.tab.lock{color:#9ca3af}
+.cnt{background:#e5e7eb;color:#374151;border-radius:9px;padding:0 6px;font-size:11px;font-weight:600}
+.cnt.w{background:#fef3c7;color:#92400e}.cnt.r{background:#fee2e2;color:#991b1b}.cnt.g{background:#dcfce7;color:#166534}
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11.5px;font-weight:600;white-space:nowrap;line-height:18px}
+.b-gray{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb}
+.b-blue{background:#dbeafe;color:#1e40af}.b-green{background:#dcfce7;color:#166534}
+.b-amber{background:#fef3c7;color:#92400e}.b-red{background:#fee2e2;color:#991b1b}
+.b-violet{background:#ede9fe;color:#5b21b6}.b-cyan{background:#cffafe;color:#155e75}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px}
+.card h3{margin:0 0 8px;font-size:13px;display:flex;align-items:center;gap:8px}
+.grid{display:grid;gap:12px}
+table{width:100%;border-collapse:collapse;background:#fff}
+th{font-size:11.5px;color:#6b7280;text-align:left;font-weight:600;padding:6px 8px;border-bottom:1px solid #e5e7eb;background:#f9fafb;white-space:nowrap}
+td{padding:6px 8px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+tr.sel td{background:#eff6ff}
+tr.hot td{background:#fffbeb}
+tr.bad td{background:#fef2f2}
+tr.grp td{background:#f8fafc;font-weight:600;color:#334155;font-size:12px;padding:5px 8px}
+tr.dim td{color:#9ca3af}
+.tbl{border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;background:#fff}
+.muted{color:#6b7280}.small{font-size:11.5px}.b{font-weight:600}
+.toolbar{display:flex;gap:8px;align-items:center;margin:10px 0}
+.input{height:30px;border:1px solid #d1d5db;border-radius:6px;padding:0 10px;display:flex;align-items:center;background:#fff;color:#111827;min-width:0;white-space:nowrap;overflow:hidden}
+.input.ph{color:#9ca3af}
+.input.sel::after{content:"▾";margin-left:auto;color:#6b7280;padding-left:8px}
+.input.area{height:auto;min-height:54px;align-items:flex-start;padding:6px 10px;white-space:normal}
+.input.bad{border-color:#dc2626;background:#fff7f7}
+.input.ro{background:#f9fafb;color:#374151;border-style:dashed}
+.input.focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+.chip{border:1px solid #d1d5db;border-radius:14px;padding:3px 10px;background:#fff;color:#374151;font-size:12px;white-space:nowrap;display:inline-flex;gap:5px;align-items:center}
+.chip.on{background:#1e40af;color:#fff;border-color:#1e40af}
+.chip.on .cnt{background:#3b82f6;color:#fff}
+.cb{width:14px;height:14px;border:1.5px solid #9ca3af;border-radius:3px;display:inline-block;vertical-align:middle;background:#fff;position:relative;flex:none}
+.cb.on{background:#2563eb;border-color:#2563eb}
+.cb.on::after{content:"";position:absolute;left:3.5px;top:0.5px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.cb.part{background:#2563eb;border-color:#2563eb}.cb.part::after{content:"";position:absolute;left:2px;top:5px;width:7px;height:2px;background:#fff}
+.rd{width:14px;height:14px;border:1.5px solid #9ca3af;border-radius:50%;display:inline-block;vertical-align:middle;background:#fff;flex:none}
+.rd.on{border:4px solid #2563eb}
+.banner{border-radius:8px;padding:8px 12px;display:flex;gap:10px;align-items:center}
+.banner.w{background:#fffbeb;border:1px solid #fcd34d;color:#78350f}
+.banner.e{background:#fef2f2;border:1px solid #fca5a5;color:#7f1d1d}
+.banner.i{background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a}
+.banner.s{background:#f0fdf4;border:1px solid #86efac;color:#14532d}
+.overlay{position:absolute;inset:0;background:rgba(15,23,42,.40)}
+.drawer{position:absolute;top:0;right:0;bottom:0;width:600px;background:#fff;box-shadow:-6px 0 24px rgba(0,0,0,.18);display:flex;flex-direction:column}
+.drawer.wide{width:760px}
+.dh{padding:12px 18px;border-bottom:1px solid #e5e7eb}
+.dh .t{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.dh .x{margin-left:auto;color:#6b7280;font-weight:400;font-size:18px}
+.db{padding:12px 18px;flex:1;overflow:hidden}
+.df{padding:10px 18px;border-top:1px solid #e5e7eb;display:flex;gap:8px;justify-content:flex-end;align-items:center}
+.modal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:540px;background:#fff;border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,.28)}
+.mh{padding:14px 18px 10px;font-size:15px;font-weight:700}
+.mb{padding:4px 18px 14px}
+.mf{padding:12px 18px;border-top:1px solid #e5e7eb;display:flex;justify-content:flex-end;gap:8px;align-items:center}
+.field{margin-bottom:9px}
+.field>label{display:block;font-size:12px;color:#374151;margin-bottom:3px;font-weight:600}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.f3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 12px}
+.req{color:#dc2626}
+.auto{font-size:10.5px;background:#ecfeff;color:#0e7490;border-radius:4px;padding:0 5px;margin-left:6px;font-weight:600}
+.err{color:#b91c1c;font-size:11.5px;margin-top:3px}
+.hint{color:#6b7280;font-size:11.5px;margin-top:3px}
+.toast{position:absolute;right:20px;bottom:20px;background:#111827;color:#fff;padding:10px 14px;border-radius:8px;display:flex;gap:14px;align-items:center;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.toast a{color:#93c5fd;font-weight:600}
+.bulk{background:#1e3a8a;color:#fff;border-radius:8px;padding:7px 12px;display:flex;align-items:center;gap:10px;margin:8px 0}
+.bulk .btn{background:#fff;border-color:#fff}
+.bulk .btn.p{background:#3b82f6;border-color:#93c5fd;color:#fff}
+.email{border:1px solid #e5e7eb;border-radius:8px;background:#fff}
+.email .row{display:flex;border-bottom:1px solid #f1f5f9;padding:5px 10px;gap:8px;align-items:center}
+.email .row>span:first-child{width:64px;color:#6b7280;flex:none}
+.email .body{padding:8px 10px;font-size:12.3px;line-height:1.5;white-space:pre-line}
+.hl{background:#fef9c3;border-radius:2px;padding:0 2px}
+.prog{height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;flex:1}
+.prog i{display:block;height:100%;background:#2563eb}
+.prog.g i{background:#16a34a}.prog.a i{background:#f59e0b}
+.kpi{font-size:19px;font-weight:700}
+.tl{border-left:2px solid #e5e7eb;margin-left:6px;padding-left:16px}
+.tl .it{position:relative;margin-bottom:11px}
+.tl .it::before{content:"";position:absolute;left:-22px;top:4px;width:10px;height:10px;border-radius:50%;background:#94a3b8;border:2px solid #fff}
+.tl .it.inc::before{background:#dc2626}.tl .it.ok::before{background:#16a34a}.tl .it.bl::before{background:#2563eb}
+.flex{display:flex;gap:8px;align-items:center}
+.col{display:flex;flex-direction:column;gap:8px}
+.ml{margin-left:auto}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sep{height:1px;background:#e5e7eb;margin:10px 0}
+.sec{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#6b7280;font-weight:700;margin:10px 0 6px}
+.list .li{display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid #f1f5f9}
+.ico{width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;font-size:11px;font-weight:700;flex:none}
+.ico.ok{background:#dcfce7;color:#166534}.ico.w{background:#fef3c7;color:#92400e}.ico.e{background:#fee2e2;color:#991b1b}.ico.i{background:#dbeafe;color:#1e40af}
+.pill{border:1px dashed #cbd5e1;border-radius:6px;padding:4px 8px;font-size:12px;background:#f8fafc}
+.room{border:1px solid #e5e7eb;border-radius:8px;padding:8px;background:#fff}
+.room.bad{border-color:#f87171;background:#fef2f2}
+.room h4{margin:0 0 6px;font-size:12.5px;display:flex;gap:6px;align-items:center}
+.pax{background:#f1f5f9;border-radius:4px;padding:3px 6px;font-size:12px;margin-bottom:4px;display:flex;gap:6px;align-items:center}
+.drag{outline:2px dashed #2563eb;background:#eff6ff}
+.ntab{display:flex;gap:0;border-bottom:1px solid #e5e7eb;margin-bottom:10px}
+.ntab div{padding:6px 12px;font-size:12.5px;color:#4b5563;border-bottom:2px solid transparent}
+.ntab div.on{color:#1d4ed8;border-color:#2563eb;font-weight:600}
+.cal{display:grid;grid-template-columns:210px repeat(8,1fr);border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;background:#fff}
+.cal>div{border-bottom:1px solid #f1f5f9;border-right:1px solid #f1f5f9;padding:6px 8px;font-size:12px;min-height:34px}
+.cal .h{background:#f9fafb;color:#6b7280;font-weight:600;font-size:11.5px}
+.bar{border-radius:4px;padding:2px 6px;font-size:11.5px;color:#fff;background:#2563eb;white-space:nowrap;overflow:hidden}
+.bar.g{background:#0d9488}.bar.v{background:#7c3aed}.bar.r{background:#dc2626}
+.file{border:1px solid #e5e7eb;border-radius:6px;padding:6px 10px;display:flex;gap:8px;align-items:center;font-size:12px;margin-bottom:6px}
+.file.bad{border-color:#fca5a5;background:#fef2f2}
+.drop{border:1.5px dashed #cbd5e1;border-radius:8px;padding:10px;text-align:center;color:#6b7280;font-size:12px}
+.isel{display:inline-flex;align-items:center;gap:6px;border:1px solid #e5e7eb;border-radius:5px;padding:1px 7px;background:#fff;white-space:nowrap}
+.isel::after{content:"▾";color:#9ca3af;font-size:11px}
+.isel.ph{color:#9ca3af;border-style:dashed}
+.dd::after{content:" ▾";font-weight:400}
+.skel{background:#e5e7eb;border-radius:4px;height:12px}
+.seg{display:inline-flex;border:1px solid #d1d5db;border-radius:6px;overflow:hidden;flex:none;background:#fff}
+.seg span{padding:4px 9px;font-size:12px;color:#374151;white-space:nowrap}
+.seg span+span{border-left:1px solid #d1d5db}
+.seg span.on{background:#e0e7ff;color:#1e3a8a;font-weight:600}
+tr.ncc td{background:#f1f5f9;border-top:1px solid #e2e8f0;padding:5px 8px}
+</style></head><body><div class="app"><div class="side"><div class="logo">TOPAS</div>
+<div class="grp">Kinh doanh</div><a>Khách hàng</a><a>Yêu cầu Tour</a><a>Booking</a>
+<div class="grp">Điều hành</div><a class="on">Hồ sơ Tour</a><a class="">Nhà cung cấp</a><a class="">Dịch vụ & bảng giá</a><a class="">Nhân sự</a><a class="">Mẫu checklist</a>
+<div class="grp">Kế toán</div><a>Công nợ & thu chi</a>
+<div class="grp">Quản trị</div><a>Mẫu tài liệu</a><a>Báo cáo</a></div>
+<div class="main"><div class="top"><div class="crumb">Điều hành / Hồ sơ Tour / <b>TP-2611-0042</b></div>
+<div class="user"><span class="muted small">Điều hành</span><div class="avatar">TA</div>Trần Minh Anh</div></div>
+<div class="page"><div class="hdr"><div class="r1"><span class="code">TP-2611-0042</span><span class="badge b-gray">Mới tạo</span>
+<div class="actions"><span class="btn p">Bắt đầu Tour</span></div></div>
+<div class="meta"><span>Booking <b class="lnk">BK-2610-0137</b></span><span>Khách <b>Müller Reisen GmbH</b> · 18 khách</span><span>Thời gian <b>18/11 – 25/11/2026</b> · 8N7Đ</span><span>Ngôn ngữ phục vụ <b>Tiếng Đức</b></span><span>Phụ trách <b>Trần Minh Anh</b></span><span>Phải thu còn <b>26.894 EUR</b></span><span>Phải trả còn <b>81.100.000 ₫</b></span></div>
+<div class="tabs"><div class="tab  ">Tổng quan</div><div class="tab  ">Dịch vụ & checklist <span class="cnt">12/18</span></div><div class="tab on ">Đặt dịch vụ <span class="cnt w">7</span></div><div class="tab  ">Khách đoàn <span class="cnt w">2</span></div><div class="tab  ">Nhân sự</div><div class="tab  ">Nhật ký & sự cố</div><div class="tab  ">Chi phí phát sinh</div><div class="tab  lock">Quyết toán <span class="small">🔒</span></div></div></div><div class="toolbar" style="gap:5px"><span class="seg"><span class="">Theo dịch vụ</span><span class="on">Theo NCC</span></span><div class="input ph" style="width:118px;font-size:12px">🔍 Tìm kiếm</div><span class="chip on" style="padding:3px 6px;gap:4px">Tất cả <span class="cnt ">11</span></span><span class="chip " style="padding:3px 6px;gap:4px">Cần đặt <span class="cnt ">4</span></span><span class="chip " style="padding:3px 6px;gap:4px">Chờ kết quả <span class="cnt ">2</span></span><span class="chip " style="padding:3px 6px;gap:4px">Cần đặt lại <span class="cnt ">0</span></span><span class="chip " style="padding:3px 6px;gap:4px">Chờ Kinh doanh <span class="cnt ">0</span></span><span class="chip " style="padding:3px 6px;gap:4px">Cần điều chỉnh / hủy <span class="cnt ">3</span></span><span class="chip " style="padding:3px 6px;gap:4px">Đã xác nhận <span class="cnt ">1</span></span><span class="chip " style="padding:3px 6px;gap:4px">Đã hủy <span class="cnt ">1</span></span></div><div class="tbl"><table><tr><th style="width:28px"><span class="cb"></span></th><th style="width:76px">Ngày dùng</th><th>Dịch vụ</th><th style="width:76px">SL</th><th style="width:116px">Trạng thái</th><th style="width:260px">Lần đặt gần nhất</th><th style="width:120px">Thao tác</th></tr>
+<tr class="ncc"><td colspan="7"><div class="flex"><b style="font-size:13px">Vận tải Hoàng Long</b><span class="muted small">dieuxe@hoanglong.vn</span><span class="small"><span style="color:#92400e;font-weight:600">1 cần điều chỉnh</span><span class="muted"> · </span><span style="color:#b91c1c;font-weight:600">1 cần hủy</span></span><span class="ml flex"><span class="btn lk small">Email với NCC (1)</span><span class="btn sm p">Soạn email cho NCC (2 email)</span></span></div></td></tr>
+<tr class=" "><td><span class="cb"></span></td><td>18/11</td><td class="b">Đón sân bay Nội Bài · xe 29 chỗ <span class="badge b-amber">Giờ bay thay đổi</span></td><td>1 xe</td><td><span class="badge b-amber">Cần điều chỉnh</span></td><td class="muted small">Mã HL-55821 · <span class="lnk">email chung 2 dịch vụ</span></td><td><span class="btn sm">Gửi điều chỉnh</span></td></tr>
+<tr class=" "><td><span class="cb"></span></td><td>25/11</td><td class="b">Tiễn sân bay Đà Nẵng · xe 29 chỗ <span class="badge b-cyan">Theo thay đổi v4</span></td><td>1 xe</td><td><span class="badge b-red">Cần hủy</span></td><td class="muted small">Mã HL-55822 · <span class="lnk">email chung 2 dịch vụ</span></td><td><span class="btn sm d">Gửi yêu cầu hủy</span></td></tr>
+<tr class="ncc"><td colspan="7"><div class="flex"><b style="font-size:13px">Lotus Hanoi</b><span class="muted small">reservation@lotushanoi.vn</span><span class="small"><span style="color:#92400e;font-weight:600">1 cần điều chỉnh</span></span><span class="ml flex"><span class="btn lk small">Email với NCC (1)</span><span class="btn sm p">Soạn email cho NCC (1 email)</span></span></div></td></tr>
+<tr class=" "><td><span class="cb"></span></td><td>18–20/11</td><td class="b">Khách sạn Hà Nội 4★ <span class="badge b-cyan">Theo thay đổi v4</span></td><td>10 phòng</td><td><span class="badge b-amber">Cần điều chỉnh</span></td><td class="muted small">Mã LH-90311 · email điều chỉnh đã soạn sẵn</td><td><span class="btn sm">Gửi điều chỉnh</span></td></tr>
+<tr class="ncc"><td colspan="7"><div class="flex"><b style="font-size:13px">NH Phố Hội</b><span class="muted small">reservation@phohoi.vn</span><span class="small"><span style="color:#92400e;font-weight:600">1 cần đặt</span></span><span class="ml flex"><span class="btn sm p">Soạn email cho NCC (1 email)</span></span></div></td></tr>
+<tr class=" "><td><span class="cb"></span></td><td>25/11</td><td class="b">Ăn trưa trước khi ra sân bay</td><td>18 suất</td><td><span class="badge b-amber">Cần đặt</span></td><td class="muted small">—</td><td><span class="btn sm">Đặt dịch vụ</span></td></tr>
+<tr class="dim "><td><span class="cb"></span></td><td>24/11</td><td class="b">Ăn tối phố cổ <span class="badge b-cyan">Theo thay đổi v4</span></td><td>18 suất</td><td><span class="badge b-gray">Đã hủy</span></td><td class="muted small">Bỏ theo thay đổi v4</td><td></td></tr>
+<tr class="ncc"><td colspan="7"><div class="flex"><b style="font-size:13px">NH Sen Tây Hồ</b><span class="muted small">datban@sentayho.vn</span><span class="small"><span style="color:#92400e;font-weight:600">1 cần đặt</span></span><span class="ml flex"><span class="btn sm p">Soạn email cho NCC (1 email)</span></span></div></td></tr>
+<tr class=" "><td><span class="cb"></span></td><td>19/11</td><td class="b">Ăn trưa set menu Việt</td><td>18 suất</td><td><span class="badge b-amber">Cần đặt</span></td><td class="muted small">—</td><td><span class="btn sm">Đặt dịch vụ</span></td></tr>
+<tr class="ncc"><td colspan="7"><div class="flex"><b style="font-size:13px">Moonlight Huế</b><span class="muted small">booking@moonlighthue.vn</span><span class="small"><span style="color:#92400e;font-weight:600">1 cần đặt</span></span><span class="ml flex"><span class="btn sm p">Soạn email cho NCC (1 email)</span></span></div></td></tr>
+<tr class=" "><td><span class="cb"></span></td><td>21–23/11</td><td class="b">KS Moonlight Huế 3★ · Deluxe <span class="badge b-cyan">Theo thay đổi v4</span></td><td>10 phòng</td><td><span class="badge b-amber">Cần đặt</span></td><td class="muted small">2 lần đặt cũ (NCC khác) trong lịch sử</td><td><span class="btn sm">Đặt dịch vụ</span></td></tr>
+<tr class="ncc"><td colspan="7"><div class="flex"><b style="font-size:13px">Chưa gắn NCC</b><span class="small"><span style="color:#92400e;font-weight:600">1 cần đặt</span></span><span class="ml flex"><span class="muted small">Chọn NCC trên dòng</span></span></div></td></tr>
+<tr class=" "><td><span class="cb"></span></td><td>22/11</td><td class="b">Thuyền rồng sông Hương <span class="badge b-cyan">Theo thay đổi v4</span></td><td>18 khách</td><td><span class="badge b-amber">Cần đặt</span></td><td class="muted small">—</td><td><span class="btn sm">Đặt dịch vụ</span></td></tr>
+<tr><td colspan="7" class="small muted" style="background:#f8fafc">▸ 3 NCC không có việc chờ gửi (thu gọn): Du thuyền Ngọc Trai · Riverside Bloom Hội An · Đại lý vé Sao Việt <span class="btn lk small" style="margin-left:6px">Mở tất cả</span></td></tr>
+</table></div></div><div class="overlay"></div><div class="drawer wide"><div class="dh"><div class="t">Soạn email cho NCC · Vận tải Hoàng Long<span class="x">✕</span></div><div class="muted small" style="margin-top:2px">Gồm mọi việc chờ gửi của NCC: đặt, đặt lại, đặt phần còn thiếu, điều chỉnh, hủy.</div></div><div class="db"><div style="display:grid;grid-template-columns:220px 1fr;gap:12px;height:100%">
+    <div class="col">
+      <div class="card" style="padding:8px 10px;border-color:#2563eb;background:#eff6ff"><div class="flex"><span class="cb on"></span><b>Email điều chỉnh</b></div><div class="small muted" style="margin-top:3px">Đón sân bay Nội Bài · 18/11<br>mã HL-55821 · giờ bay thay đổi</div><div class="small" style="color:#166534">✓ Sẵn sàng gửi</div></div>
+      <div class="card" style="padding:8px 10px"><div class="flex"><span class="cb on"></span><b>Email hủy</b></div><div class="small muted" style="margin-top:3px">Tiễn sân bay Đà Nẵng · 25/11<br>mã HL-55822 · theo thay đổi v4</div><div class="small" style="color:#166534">✓ Sẵn sàng gửi</div></div>
+      <div class="small muted">Mỗi loại việc một email. Dịch vụ cùng NCC, cùng loại việc gộp chung một email (R04). Hai dịch vụ này từng đặt chung một email ngày 05/11; nay khác việc nên tách.</div>
+    </div>
+    <div>
+      <div class="tbl" style="margin-bottom:8px"><table><tr><th>Đón sân bay Nội Bài</th><th>Đã gửi NCC</th><th>Hiện tại</th></tr><tr><td>Chuyến bay</td><td>VN36 · 18/11 06:40</td><td class="b">VN38 · 18/11 09:15</td></tr></table></div>
+      <div class="email"><div class="row"><span>Đến</span>dieuxe@hoanglong.vn <span class="auto">DH03</span></div><div class="row"><span>CC</span>minhanh.tran@topas-travel.vn</div><div class="row"><span>Tiêu đề</span><b>[TP-2611-0042] Điều chỉnh giờ đón 18/11 · mã HL-55821</b></div>
+      <div class="body">Kính gửi Vận tải Hoàng Long,
+Đoàn TP-2611-0042 đổi chuyến bay: <span class="hl">VN38, hạ cánh 18/11/2026 09:15</span> (trước đây VN36 06:40).
+Vui lòng điều chỉnh giờ đón xe 29 chỗ tại Nội Bài và xác nhận lại. Mã đặt: HL-55821.
+Trân trọng, Trần Minh Anh</div></div>
+      <div class="hint">Bấm từng email bên trái để xem, sửa. Bỏ chọn email nào thì email đó chưa gửi; dịch vụ giữ nguyên trạng thái.</div>
+    </div></div></div><div class="df"><span class="muted small" style="margin-right:auto">Đã chọn 2 email · 2 dịch vụ</span><span class="btn ">Hủy</span><span class="btn p">Gửi 2 email</span></div></div></div></div></body></html>

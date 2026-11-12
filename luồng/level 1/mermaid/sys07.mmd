@@ -1,0 +1,17 @@
+flowchart TD
+    subgraph KD["Kinh doanh"]
+        preTourStart(["[SYS07.01] Mở hồ sơ khách của Tour"])
+        preTourCustomer["[SYS07.02] Nhập hoặc cập nhật danh sách khách và yêu cầu riêng"]
+
+        preTourStart --> preTourCustomer
+    end
+
+    subgraph DH["Điều hành"]
+        preTourSetup["[SYS07.03] Thiết lập phân phòng và phân công nhân sự Tour"]
+        preTourExport["[SYS07.04] Tự động tổng hợp và xuất Pax list, Rooming list"]
+        preTourNext["[SYS07.05] SYS08. Theo dõi Tour"]
+
+        preTourSetup --> preTourExport --> preTourNext
+    end
+
+    preTourCustomer --> preTourSetup

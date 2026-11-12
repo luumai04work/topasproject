@@ -1,0 +1,22 @@
+// Nguồn duy nhất cho tên và mục đích của từng wireframe. [Vị trí (màn/tab), Tên màn, Màn này dùng để làm gì]
+module.exports = {
+  W01: ['KD05 · Kinh doanh', 'Yêu cầu Tour đang xử lý của tôi', 'Màn mặc định: yêu cầu mình phụ trách còn Đang xử lý, sắp theo thời gian đi gần nhất; mỗi dòng có khách, thời gian đi, số khách và báo giá mới nhất kèm kết quả.'],
+  W02: ['KD05 · Kinh doanh', 'Tìm yêu cầu theo khách trong toàn công ty', 'Tìm theo tên khách ở Phụ trách Tất cả, chip Tất cả: hiện thêm cột Booking, Phụ trách, Trạng thái và lý do hủy; Booking ngoài phạm vi có khóa.'],
+  W03: ['KD05 · Kinh doanh', 'Chọn thời gian đi', 'Bộ chọn có các khoảng chọn nhanh áp dụng ngay và khoảng ngày khởi hành tùy chọn; yêu cầu chưa chốt ngày tính theo tháng dự kiến.'],
+  W04: ['KD05 · Kinh doanh', 'Lọc theo thời gian đi và kết quả báo giá', 'Gom yêu cầu khởi hành trong 3 tháng tới mà báo giá mới nhất chưa có kết quả, để liên hệ khách; số trên chip tính theo bộ lọc.'],
+  W05: ['KD05 · Kinh doanh', 'Không có yêu cầu khớp bộ lọc', 'Phân biệt không khớp bộ lọc với chưa có dữ liệu; gợi ý bỏ bớt bộ lọc hoặc tạo yêu cầu.'],
+  W06: ['KD05 · Kinh doanh', 'Lỗi tải danh sách', 'Giữ bộ lọc và cho thử lại khi không tải được dữ liệu; số trên chip hiện “–”.'],
+  W07: ['KD05 · Kinh doanh mới', 'Chưa phụ trách yêu cầu nào', 'Trạng thái rỗng của người dùng chưa phụ trách yêu cầu nào; chỉ cách xem yêu cầu của công ty hoặc tạo yêu cầu.'],
+  W08: ['KD06.1 · Đích của Tạo yêu cầu', 'Hồ sơ yêu cầu mới, trống', 'Tạo yêu cầu ở KD05 mở KD06 ở chế độ tạo mới, tab Thông tin yêu cầu; người phụ trách là người tạo. Nội dung đặc tả ở RSD KD06.'],
+  W09: ['KD06.3 · Đích khi bấm dòng', 'Hồ sơ yêu cầu mở đúng tab', 'Bấm dòng ở KD05 mở KD06 ở tab theo tiến độ của yêu cầu; yêu cầu đã có báo giá mở tab Báo giá. Nội dung đặc tả ở RSD KD06.'],
+  W10: ['KD05 · Kinh doanh', 'Quay lại sau khi hủy yêu cầu', 'Bộ lọc và vị trí giữ nguyên; yêu cầu vừa hủy ở KD06 mờ tại chỗ vì không còn khớp chip, thông báo có liên kết xem lại.'],
+  W11: ['KD05 · Kinh doanh', 'Chọn yêu cầu để chuyển phụ trách', 'Người phụ trách chọn nhiều yêu cầu Đang xử lý của mình, chọn người nhận ngay trên thanh hàng loạt; danh sách người nhận có số yêu cầu đang xử lý của từng người.'],
+  W12: ['KD05 · Kinh doanh', 'Sau khi chuyển phụ trách', 'Banner nêu số yêu cầu đã chuyển và người nhận; dòng đã chuyển mờ tại chỗ đến khi tải lại; số trên chip giảm theo.'],
+  W13: ['KD05 · Quản trị hệ thống', 'Chuyển yêu cầu của người đã nghỉ', 'Quản trị lọc theo người phụ trách đã ngừng hoạt động, chọn mọi yêu cầu Đang xử lý rồi chuyển một lần.'],
+  W14: ['KD05 · Quản trị hệ thống', 'Kết quả chuyển hàng loạt có dòng bỏ qua', 'Banner nêu số đã chuyển và số bỏ qua; dòng bỏ qua ghi lý do (vừa có Booking); dòng đã chuyển mờ tại chỗ.'],
+  W15: ['KD05 · Kinh doanh', 'Xuất Excel theo bộ lọc', 'Tệp gồm mọi yêu cầu khớp bộ lọc và chip đang chọn, không chỉ trang đang xem; thông báo nêu số dòng và tên tệp.'],
+  W16: ['KD05 · Kinh doanh · dạng Kanban', 'Kanban yêu cầu của tôi', 'Ba cột theo trạng thái yêu cầu thay cho hàng chip; mỗi thẻ có khách, thời gian đi, số khách và báo giá mới nhất. Cột Đã có Booking, Đã hủy lấy yêu cầu cập nhật trong 90 ngày, đổi được ngay ở đầu cột. Không kéo thả; bấm thẻ mở KD06.'],
+  W17: ['KD05 · Kinh doanh · dạng Lịch', 'Lịch tháng theo thời gian đi', 'Mỗi yêu cầu là một thanh từ ngày đi đến ngày về, màu theo trạng thái; yêu cầu chưa chốt ngày nằm ở khay bên phải theo tháng dự kiến. Hàng chip và bộ lọc vẫn áp dụng.'],
+  W18: ['KD05 · Kinh doanh · dạng Lịch', 'Ngày có nhiều yêu cầu', 'Ô ngày hiện tối đa 3 thanh, phần còn lại gộp “+n”; bấm “+n” mở danh sách mọi yêu cầu đi trong ngày kèm người phụ trách.'],
+  W19: ['KD05 · Kinh doanh · dạng Kanban', 'Cột rỗng và cột lỗi tải', 'Mỗi cột tải riêng: cột lỗi hiện Thử lại mà không chặn cột khác; cột không có thẻ nói rõ không khớp bộ lọc.'],
+};

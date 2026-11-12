@@ -1,0 +1,17 @@
+flowchart TD
+    subgraph KD["Kinh doanh"]
+        productStart(["[SYS01.01] Mở quản lý Tour mẫu"])
+        productMode{"[SYS01.02] Tạo mới hay cập nhật?"}
+        productCreate["[SYS01.03] Tạo template và nhập thông tin Tour"]
+        productEdit["[SYS01.04] Chọn template và cập nhật thông tin Tour"]
+        productSetup["[SYS01.05] Thiết lập lịch trình theo ngày và dịch vụ từng ngày"]
+        productSave["[SYS01.06] Lưu template và thiết lập cho phép sử dụng"]
+        productNext["[SYS01.07] SYS03. Sử dụng template để thiết kế Tour"]
+
+        productStart --> productMode
+        productMode -->|"Tạo mới"| productCreate
+        productMode -->|"Cập nhật"| productEdit
+        productCreate --> productSetup
+        productEdit --> productSetup
+        productSetup --> productSave --> productNext
+    end

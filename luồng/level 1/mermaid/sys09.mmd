@@ -1,0 +1,24 @@
+flowchart TD
+    subgraph DH["Điều hành"]
+        settlementStart(["[SYS09.01] Mở hồ sơ Tour đã kết thúc"])
+        settlementData["[SYS09.02] Nhập chi phí dịch vụ thực tế và đính kèm chứng từ"]
+        settlementClose["[SYS09.03] Đóng Tour và khóa hồ sơ điều hành"]
+        settlementNext["[SYS09.04] SYS10. Chăm sóc khách hàng"]
+
+        settlementStart --> settlementData
+        settlementClose --> settlementNext
+    end
+
+    subgraph KT["Kế toán"]
+        settlementReconcile["[SYS09.05] Nhập số liệu đối chiếu công nợ khách hàng và nhà cung cấp"]
+        settlementAdjust["[SYS09.06] Cập nhật doanh thu, chi phí và khoản điều chỉnh"]
+        settlementSave["[SYS09.07] Tự động tính P&L thực tế và lưu quyết toán theo Tour Code"]
+        settlementDebt(["[SYS09.08] Mở công nợ của Tour"])
+        settlementPayment["[SYS09.09] Ghi nhận thu chi và tự động cập nhật số dư công nợ"]
+
+        settlementReconcile --> settlementAdjust --> settlementSave
+        settlementDebt --> settlementPayment
+    end
+
+    settlementData --> settlementReconcile
+    settlementSave --> settlementClose

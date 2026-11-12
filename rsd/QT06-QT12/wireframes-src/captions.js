@@ -1,0 +1,23 @@
+// Nguồn duy nhất cho tên và mục đích của từng wireframe: [vị trí, tên màn, màn này dùng để làm gì]
+module.exports = {
+  W01: ['QT06 · Kinh doanh', 'Thống kê Survey và chiến dịch email', 'Số đã gửi, gửi lỗi, hủy nhận và kết quả trong kỳ của từng chiến dịch, nhóm theo Survey và Remarketing.'],
+  W02: ['QT06 · Bảng trượt', 'Kết quả chiến dịch Survey', 'Tỷ lệ phản hồi, phân bố điểm tổng thể, điểm từng câu chọn mức và ý kiến của khách trong kỳ.'],
+  W03: ['QT06 · Bảng trượt', 'Kết quả chiến dịch Remarketing', 'Số gửi theo bước và danh sách khách có yêu cầu Tour mới sau lần gửi đầu tiên.'],
+  W05: ['QT07 · Kế toán', 'Báo cáo doanh thu', 'Mỗi Booking có ngày kết thúc Tour trong kỳ: giá trị Booking, tiền đã thu theo loại tiền gốc và doanh thu theo quyết toán bằng VND.'],
+  W06: ['QT07 · Kế toán', 'Doanh thu nhóm theo người phụ trách', 'Dòng tổng theo từng người phụ trách Booking, tách theo loại tiền.'],
+  W08: ['QT08 · Kinh doanh', 'Chuyển đổi yêu cầu theo người phụ trách', 'Phễu yêu cầu → có báo giá → chốt Booking, bảng theo người phụ trách và lý do hủy; đếm theo yêu cầu.'],
+  W09: ['QT08 · Kinh doanh', 'Chuyển đổi theo cách tạo hành trình', 'So tỷ lệ chốt giữa hành trình tạo bằng AI, từ Tour mẫu và thủ công.'],
+  W10: ['QT08 · Kinh doanh', 'Danh sách yêu cầu theo số đã chọn', 'Bấm một số ở bảng tổng hợp mở danh sách yêu cầu tương ứng; bấm dòng mở KD06.'],
+  W11: ['QT09 · Kế toán', 'Báo cáo P&L theo Tour', 'Doanh thu, chi phí, điều chỉnh, P&L thực tế và biên của từng Tour đóng trong kỳ, so với P&L dự tính của báo giá Chốt.'],
+  W13: ['QT10 · Kế toán', 'Công nợ phải thu theo tuổi nợ', 'Số còn phải thu của từng khách theo loại tiền gốc, chia Còn hạn, Đến hạn và các nhóm quá hạn; cột Cần hoàn.'],
+  W14: ['QT10 · Kế toán', 'Công nợ phải trả theo tuổi nợ', 'Số còn phải trả từng NCC theo nhóm tuổi nợ; dịch vụ chờ ghi phải trả được nhắc riêng, không cộng vào.'],
+  W15: ['QT10 · Kế toán', 'Lọc nợ quá hạn trên 60 ngày', 'Chỉ còn các đối tượng có đợt quá hạn trên 60 ngày; thẻ tổng tính theo bộ lọc.'],
+  W16: ['QT11 · Điều hành', 'Báo cáo hiệu suất nhà cung cấp', 'Số lần đặt, tỷ lệ xác nhận, không đáp ứng, hủy, phí hủy và chênh lệch giá xác nhận so với giá tham chiếu theo NCC.'],
+  W17: ['QT11 · Bảng trượt', 'Các lần đặt của một NCC', 'Từng lần đặt trong kỳ với kết quả, số lượng, giá tham chiếu và giá xác nhận; mở hồ sơ NCC hoặc tab Đặt dịch vụ của Tour.'],
+  W18: ['QT12 · Điều hành', 'Báo cáo sự cố và chi phí phát sinh', 'Số sự cố và tổng chi phí phát sinh theo Tour, phần gợi ý thu lại khách và khoản chưa ghi công nợ.'],
+  W19: ['QT12 · Kế toán', 'Tour có khoản chưa ghi công nợ', 'Kế toán bật lọc để thấy Tour còn chi phí phát sinh chưa ghi công nợ.'],
+  W20: ['Dùng chung · QT07', 'Chọn kỳ', 'Các kỳ chọn nhanh áp dụng ngay và khoảng tùy chọn; bảng chọn ghi mốc ngày mà báo cáo dùng để lọc.'],
+  W21: ['Dùng chung · QT07', 'Sau khi xuất Excel', 'Tệp gồm mọi dòng khớp bộ lọc; thông báo ngắn ghi tên tệp và số dòng.'],
+  W22: ['Dùng chung · QT12', 'Không có dòng khớp bộ lọc', 'Thẻ chỉ số về 0, bảng ghi lý do và cách mở rộng bộ lọc; Xuất Excel khóa kèm lý do.'],
+  W23: ['Dùng chung · QT09', 'Lỗi tải số liệu', 'Thẻ chỉ số hiện “–”, bộ lọc giữ nguyên, nút Thử lại; Xuất Excel khóa.'],
+};

@@ -1,0 +1,23 @@
+// Nguồn duy nhất cho tên và mục đích của từng wireframe. [Vị trí (màn/tab), Tên màn, Màn này dùng để làm gì]
+module.exports = {
+  W01: ['KD08 · tạo mới từ KD06.3', 'Booking mới từ phiên bản Chốt', 'Kế thừa khách, thời gian, số khách, hành trình, giá trị của đúng phiên bản Chốt, chỉ đọc; Booking chỉ có khi bấm Lưu Booking.'],
+  W02: ['KD08.2 · sau khi lưu Booking', 'Lịch thanh toán điền sẵn', 'Lưu Booking xong hồ sơ Tour đã tạo (phần đầu có Tour Code), tab lịch thanh toán mở với điều khoản và các đợt điền sẵn từ mẫu mặc định, chưa lưu; tổng so với giá trị Booking.'],
+  W03: ['KD08.2 · Kinh doanh', 'Tổng các đợt khác giá trị Booking', 'Lệch tổng chỉ cảnh báo: hộp thoại nêu số chênh và bắt buộc lý do trước khi lưu.'],
+  W04: ['KD08.2 · Kinh doanh', 'Lịch thanh toán đã lưu', 'Lịch chỉ xem với số đã thu, còn phải thu và tình trạng từng đợt từ KT01, chỉ để tham khảo.'],
+  W05: ['KD08.1 · Kinh doanh', 'Thông tin Booking đã có hồ sơ Tour', 'Hành trình bản chụp, nguồn Booking kèm chính sách hoàn hủy đã chụp, hồ sơ Tour (Tour Code, trạng thái, Điều hành, khách đoàn) và lịch sử thay đổi chương trình; Chuyển sang Điều hành khóa kèm lý do khi Booking chưa có phiên bản điều chỉnh.'],
+  W06: ['KD08.1 · Kinh doanh', 'Hồ sơ Tour chưa tạo được', 'Hệ thống tạo hồ sơ lỗi khi lưu Booking: khối Hồ sơ Tour ghi Điều hành đang xử lý; Kinh doanh không có nút tạo hay thử lại.'],
+  W07: ['KD08.2 · Kinh doanh', 'Sửa lịch khi đã có khoản thu', 'Đợt đã có thu không xóa và không giảm dưới số đã thu (lỗi tại ô); đợt chưa thu sửa tự do.'],
+  W08: ['KD08.1 · Kinh doanh', 'Hủy Booking', 'Hộp thoại lý do hủy nêu tác động: yêu cầu Tour tự chuyển Đã hủy, hồ sơ Tour, công nợ theo chính sách hoàn hủy; hệ thống không tự hủy dịch vụ, không gửi email.'],
+  W09: ['KD08.1 · Kinh doanh', 'Booking đã hủy', 'Booking chỉ xem, banner ghi thời điểm, người hủy, lý do, yêu cầu đã chuyển Đã hủy và người đã được báo; có lối về yêu cầu Tour để Mở lại khi khách đặt lại.'],
+  W10: ['KD08.1 · Kinh doanh', 'Hủy khi Tour đang diễn ra', 'Hộp thoại cảnh báo đoàn đang đi, bắt buộc ghi chú và xác nhận đã thống nhất với Điều hành.'],
+  W11: ['KD08.1 · Kinh doanh', 'Hồ sơ Tour đã kết thúc: không hủy, không điều chỉnh', 'Điều chỉnh chương trình, Chuyển sang Điều hành, Hủy Booking khóa kèm lý do khi hồ sơ Tour Đã kết thúc hoặc Đã đóng.'],
+  W12: ['KD06 · đích của Điều chỉnh chương trình', 'Hồ sơ yêu cầu ở chế độ điều chỉnh', 'KD06 mở hành trình để sửa từ bản của phiên bản Booking; giá tự tính lại thành phiên bản mới, không ghi kết quả ở chế độ này; khách đồng ý thì quay lại Booking bấm Chuyển sang Điều hành. Nội dung đặc tả ở RSD KD06.'],
+  W13: ['KD08.1 · Kinh doanh', 'Phiên bản mới chưa chuyển Điều hành', 'v4 là phiên bản điều chỉnh của Booking. Banner nêu thay đổi chính của v4 và nhắc trao đổi với khách trước; Chuyển sang Điều hành bấm được; Booking vẫn theo v3 tới khi bấm.'],
+  W15: ['KD08.1 · Kinh doanh', 'Sau khi chuyển sang Điều hành', 'Bấm Chuyển sang Điều hành (không hộp thoại): v4 Chốt, v3 Đã thay thế, Booking theo v4; banner lịch thanh toán thiếu so với giá trị mới; lịch sử chương trình ghi Chờ áp dụng ở hồ sơ Tour.'],
+  W16: ['KD08 · Kinh doanh', 'Chuyển người phụ trách Booking', 'Chọn người nhận Kinh doanh đang hoạt động; yêu cầu Tour chuyển theo; Điều hành phụ trách hồ sơ Tour không đổi.'],
+  W17: ['KD08.2 · Kế toán', 'Kế toán xem lịch thanh toán', 'Chỉ xem; đợt quá hạn được tô; ghi khoản thu qua nút Xem công nợ.'],
+  W18: ['KD08.2 · Kinh doanh', 'Chưa lấy được số liệu công nợ', 'Đã thu, còn phải thu ghi Chưa có dữ liệu, không phải 0; vẫn sửa được lịch, chỉ không giảm số tiền, không xóa các đợt chưa biết số đã thu.'],
+  W19: ['KD08 · Kinh doanh', 'Lịch sử thay đổi', 'Bảng trượt ghi tạo Booking, lưu và sửa lịch, chuyển sang Điều hành, tạo hồ sơ Tour khi lưu Booking, hủy, chuyển phụ trách.'],
+  W20: ['KD08 · tạo mới', 'Tạo Booking bị từ chối', 'Lưu bị từ chối khi yêu cầu vừa có Booking Hiệu lực ở phiên khác; có lối mở Booking đó.'],
+  W21: ['KD08.1 · Kinh doanh', 'Yêu cầu đổi lịch trình từ Điều hành', 'Lối vào từ thông báo: banner nêu hạng mục, đề xuất và hạn phản hồi; Kinh doanh trao đổi với khách rồi Điều chỉnh chương trình và Chuyển sang Điều hành.'],
+};

@@ -1,0 +1,31 @@
+flowchart TD
+    subgraph KD["Kinh doanh"]
+        quoteStart(["[SYS03.01] Mở yêu cầu Tour"])
+        quoteMethod{"[SYS03.02] Chọn cách tạo hành trình"}
+        quoteTemplate["[SYS03.03] Tạo hành trình từ Tour mẫu"]
+        quoteNew["[SYS03.04] Khởi tạo hành trình thủ công"]
+        quoteManualMode{"[SYS03.05] Nhập mới hay ghép module?"}
+        quoteModules["[SYS03.06] Chọn ngày từ các Tour mẫu và gán vào ngày đích"]
+        quoteGenerate["[SYS03.07] Tạo hành trình bằng AI"]
+        quoteSetup["[SYS03.08] Chỉnh sửa và lưu lịch trình, dịch vụ theo ngày"]
+        quotePricing["[SYS03.09] Nhập giá vốn và Markup để tự động tính giá bán"]
+        quoteExport["[SYS03.10] Lưu phiên bản và xuất báo giá PDF hoặc Link"]
+        quoteFeedback["[SYS03.11] Ghi nhận kết quả báo giá"]
+        quoteAction{"[SYS03.12] Chọn xử lý theo kết quả đã ghi nhận"}
+        quoteNext["[SYS03.13] SYS04. Tạo Booking từ báo giá đã chốt"]
+        quoteCancel["[SYS03.14] Hủy yêu cầu và ghi nhận lý do"]
+
+        quoteStart --> quoteMethod
+        quoteMethod -->|"Dùng mẫu"| quoteTemplate --> quoteSetup
+        quoteMethod -->|"Thủ công"| quoteNew --> quoteManualMode
+        quoteManualMode -->|"Nhập mới"| quoteSetup
+        quoteManualMode -->|"Ghép module"| quoteModules --> quoteSetup
+        quoteMethod -->|"Bằng AI"| quoteGenerate --> quoteSetup
+        quoteSetup -->|"Ghép thêm ngày hoặc thay ngày bằng module"| quoteModules
+        quoteSetup --> quotePricing --> quoteExport
+        quoteExport -->|"Chọn cập nhật kết quả"| quoteFeedback --> quoteAction
+        quoteAction -->|"Sửa hành trình"| quoteSetup
+        quoteAction -->|"Sửa giá"| quotePricing
+        quoteAction -->|"Chốt đặt Tour"| quoteNext
+        quoteAction -->|"Hủy yêu cầu"| quoteCancel
+    end

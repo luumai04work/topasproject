@@ -1,0 +1,32 @@
+flowchart TD
+    subgraph DH["Điều hành"]
+        reserveList(["[SYS06.01] Mở danh sách đặt dịch vụ"])
+        reserveAction{"[SYS06.02] Chọn thao tác"}
+        reserveRequest["[SYS06.03] Chọn NCC; hệ thống soạn sẵn email để chỉnh sửa và gửi"]
+        reserveUpdate["[SYS06.04] Cập nhật kết quả đặt dịch vụ và mã xác nhận"]
+        reserveResult{"[SYS06.05] Kết quả đặt dịch vụ?"}
+        reserveCancel["[SYS06.06] Ghi nhận hủy và cập nhật kết quả hủy dịch vụ"]
+    end
+
+    subgraph KT["Kế toán"]
+        reserveFinance["[SYS06.07] Ghi nhận khoản phải trả, điều chỉnh và lịch thanh toán NCC"]
+        reserveTrack(["[SYS06.08] Theo dõi thanh toán và công nợ NCC"])
+        reservePayment["[SYS06.09] Ghi nhận chi trả hoặc nhận hoàn; tự động cập nhật công nợ"]
+    end
+
+    subgraph DHNEXT["Điều hành"]
+        reserveNext["[SYS06.10] SYS07. Quản lý hồ sơ trước Tour"]
+    end
+
+    reserveList --> reserveAction
+    reserveAction -->|"Đặt mới hoặc đặt lại"| reserveRequest
+    reserveAction -->|"Cập nhật kết quả"| reserveUpdate
+    reserveAction -->|"Hủy dịch vụ"| reserveCancel
+    reserveRequest -->|"Chọn cập nhật kết quả"| reserveUpdate
+    reserveUpdate --> reserveResult
+    reserveResult -->|"Không đáp ứng, đặt lại"| reserveRequest
+    reserveResult -->|"Đã xác nhận"| reserveNext
+    reserveResult -->|"Đã xác nhận, ghi nhận tài chính"| reserveFinance
+    reserveCancel -->|"Có phát sinh tài chính"| reserveFinance
+    reserveFinance --> reserveTrack
+    reserveTrack -->|"Ghi nhận giao dịch"| reservePayment --> reserveTrack

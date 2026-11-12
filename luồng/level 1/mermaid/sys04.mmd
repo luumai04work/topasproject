@@ -1,0 +1,25 @@
+flowchart TD
+    subgraph KD["Kinh doanh"]
+        bookingStart(["[SYS04.01] Mở yêu cầu và báo giá đã chốt"])
+        bookingCreate["[SYS04.02] Chuyển yêu cầu và báo giá thành Booking"]
+        bookingSchedule["[SYS04.03] Thiết lập điều khoản và lịch thanh toán"]
+        bookingNext["[SYS04.04] SYS05. Tạo hồ sơ điều hành Tour"]
+        bookingExisting(["[SYS04.05] Mở Booking hiện có"])
+        bookingCancel["[SYS04.06] Hủy Booking và ghi nhận lý do"]
+
+        bookingStart --> bookingCreate --> bookingSchedule
+        bookingSchedule --> bookingNext
+        bookingExisting -->|"Chọn hủy Booking"| bookingCancel
+    end
+
+    subgraph KT["Kế toán"]
+        bookingOpen(["[SYS04.07] Mở thanh toán của Booking"])
+        bookingPayment["[SYS04.08] Ghi nhận khoản thu theo Booking"]
+        bookingBalance["[SYS04.09] Tự động cập nhật số đã thu và số còn phải thu"]
+        bookingRefund["[SYS04.10] Ghi nhận khoản phải thu hoặc hoàn tiền theo điều khoản hủy"]
+
+        bookingOpen --> bookingPayment --> bookingBalance
+        bookingRefund --> bookingBalance
+    end
+
+    bookingCancel --> bookingRefund

@@ -1,0 +1,21 @@
+// Nguồn duy nhất cho tên và mục đích của từng wireframe. [Vị trí (màn/tab), Tên màn, Màn này dùng để làm gì]
+module.exports = {
+  W01: ['DH02 · Điều hành', 'Danh sách nhà cung cấp đang dùng', 'Xem mọi NCC đang được phép sử dụng với hợp đồng hiện hành, ngày hết hạn, số dịch vụ và thông tin thanh toán; bật/tắt cho phép sử dụng ngay trên dòng.'],
+  W02: ['DH02 · Điều hành', 'Nhà cung cấp cần xử lý', 'Gom NCC đang dùng có hợp đồng hết hạn, sắp hết hạn, chưa có hợp đồng hoặc thiếu thông tin thanh toán, sắp theo mức cần xử lý.'],
+  W03: ['DH02 · Trung tâm thông báo', 'Nhắc hợp đồng sắp hết hạn', 'Điều hành nhận tin khi hợp đồng của NCC đang dùng bước vào ngưỡng sắp hết hạn hoặc đã hết hạn; bấm để mở thẳng tab hợp đồng của NCC.'],
+  W04: ['DH02 · Điều hành', 'Lọc theo loại dịch vụ', 'Áp dụng bộ lọc ngay; số trên chip tính theo bộ lọc; hiện Xóa bộ lọc.'],
+  W05: ['DH02 · Điều hành', 'Không có nhà cung cấp khớp bộ lọc', 'Phân biệt không khớp bộ lọc với chưa có dữ liệu; gợi ý tạo mới hoặc nhập Excel.'],
+  W06: ['DH02 · Điều hành', 'Lỗi tải danh sách', 'Giữ bộ lọc và cho thử lại khi không tải được dữ liệu.'],
+  W07: ['DH02 · Hộp thoại ngừng sử dụng', 'Xác nhận ngừng sử dụng NCC đang được dùng', 'Thấy NCC đang được dùng ở đâu và điều gì xảy ra sau khi ngừng, trước khi xác nhận.'],
+  W08: ['DH02 · Điều hành', 'Sau khi ngừng sử dụng một NCC', 'Dòng mờ đi và giữ tại chỗ đến khi tải lại; số đếm cập nhật; thông báo có Hoàn tác.'],
+  W09: ['DH02 · Điều hành', 'Cho phép sử dụng lại NCC', 'Ở chip Ngừng sử dụng, bật công tắc là lưu ngay; dòng tô sáng; thông báo có Hoàn tác.'],
+  W10: ['DH02 · Điều hành', 'Chọn nhiều nhà cung cấp', 'Thanh hàng loạt thay cho công tắc trên dòng; chọn Cho phép sử dụng hoặc Ngừng sử dụng một lần.'],
+  W11: ['DH02 · Hộp thoại ngừng sử dụng', 'Xác nhận ngừng sử dụng hàng loạt', 'Liệt kê NCC trong nhóm đã chọn đang được dùng ở đâu trước khi ngừng cả nhóm.'],
+  W12: ['DH02 · Điều hành', 'Kết quả hàng loạt một phần', 'Báo số NCC đã đổi và NCC bị bỏ qua kèm lý do; một nút Hoàn tác cho phần đã đổi.'],
+  W13: ['DH02 · Hộp thoại nhập Excel', 'Nhập NCC từ Excel: chọn tệp', 'Tải tệp mẫu, chọn tệp; hệ thống kiểm tra đúng mẫu trước khi cho xem trước.'],
+  W13a: ['DH02 · Hộp thoại nhập Excel', 'Tệp nhập không đúng mẫu', 'Báo cột còn thiếu; khóa Xem trước có lý do; chọn tệp khác.'],
+  W14: ['DH02 · Hộp thoại nhập Excel', 'Xem trước dữ liệu nhập', 'Thấy số dòng sẽ nhập, bị bỏ qua và cảnh báo, kèm lý do từng dòng, trước khi nhập.'],
+  W15: ['DH02 · Điều hành', 'Danh sách sau khi nhập Excel', 'Lọc đúng các NCC vừa nhập; banner kết quả và tệp các dòng bị bỏ qua.'],
+  W16: ['DH02 · Kế toán', 'Kế toán lọc NCC thiếu thông tin thanh toán', 'Chỉ xem; lọc NCC thiếu thông tin nhận thanh toán, bấm dòng mở thẳng phần thanh toán của hồ sơ NCC.'],
+  W17: ['DH02 · Điều hành', 'Quay lại sau khi tạo NCC mới', 'NCC vừa tạo hiện đúng vị trí theo tên, tô sáng, có nhãn Mới; bộ lọc giữ nguyên.'],
+};

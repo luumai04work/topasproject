@@ -1,0 +1,24 @@
+flowchart TD
+    subgraph DH["Điều hành"]
+        trackingStart(["[SYS08.01] Mở hồ sơ Tour"])
+        trackingAction{"[SYS08.02] Chọn thao tác"}
+        trackingStatus["[SYS08.03] Cập nhật trạng thái Tour"]
+        trackingLog["[SYS08.04] Ghi nhật ký điều hành"]
+        trackingIncident["[SYS08.05] Ghi nhận sự cố, cách xử lý và kết quả xử lý"]
+        trackingCost["[SYS08.06] Nhập chi phí phát sinh và đính kèm chứng từ"]
+        trackingFinished{"[SYS08.07] Trạng thái đã ghi nhận là kết thúc Tour?"}
+        trackingNext["[SYS08.08] SYS09. Quyết toán Tour"]
+
+        trackingStart --> trackingAction
+        trackingAction -->|"Trạng thái Tour"| trackingStatus --> trackingFinished
+        trackingAction -->|"Nhật ký"| trackingLog
+        trackingAction -->|"Sự cố"| trackingIncident
+        trackingAction -->|"Chi phí phát sinh"| trackingCost
+        trackingFinished -->|"Có"| trackingNext
+    end
+
+    subgraph KT["Kế toán"]
+        trackingAccounting["[SYS08.09] Ghi nhận công nợ và thu chi phát sinh theo Tour Code"]
+    end
+
+    trackingCost --> trackingAccounting

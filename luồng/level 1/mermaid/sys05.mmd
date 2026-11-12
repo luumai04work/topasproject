@@ -1,0 +1,14 @@
+flowchart TD
+    subgraph DH["Điều hành"]
+        operationList(["[SYS05.01] Mở quản lý danh sách hồ sơ điều hành"])
+        operationMode{"[SYS05.02] Tạo mới hay mở hồ sơ?"}
+        operationCreate["[SYS05.03] Chọn Booking và tạo hồ sơ; hệ thống tự sinh mã Tour, dịch vụ và checklist"]
+        operationOpen["[SYS05.04] Mở hồ sơ và phân công nhân viên phụ trách"]
+        operationManage["[SYS05.05] Phân công công việc và cập nhật checklist, dịch vụ khi cần"]
+        operationNext["[SYS05.06] SYS06. Quản lý đặt dịch vụ"]
+
+        operationList --> operationMode
+        operationMode -->|"Tạo mới"| operationCreate --> operationOpen
+        operationMode -->|"Chọn hồ sơ hiện có"| operationOpen
+        operationOpen --> operationManage --> operationNext
+    end

@@ -1,0 +1,20 @@
+// Nguồn duy nhất cho tên và mục đích của từng wireframe. [Vị trí (màn/tab), Tên màn, Màn này dùng để làm gì]
+module.exports = {
+  W01: ['KD07 · Kinh doanh', 'Booking hiệu lực chưa kết thúc của tôi', 'Màn mặc định của Kinh doanh: Booking mình phụ trách còn Hiệu lực và chưa kết thúc, sắp theo ngày khởi hành; mỗi dòng có giá trị, hồ sơ Tour và số còn phải thu kèm đợt tiếp theo.'],
+  W02: ['KD07 · Kinh doanh', 'Tìm Booking theo khách', 'Tìm theo tên khách với Khởi hành Tất cả, chip Tất cả: thấy cả Booking đã đi, hồ sơ Tour đã đóng và cột Trạng thái.'],
+  W03: ['KD07 · Kinh doanh', 'Chọn bộ lọc Thanh toán', 'Bộ lọc theo số liệu công nợ đọc từ KT01: còn phải thu, cần thu trong 7 ngày, quá hạn, đã thu đủ, chưa có lịch thanh toán, chưa có dữ liệu công nợ.'],
+  W04: ['KD07 · Kinh doanh', 'Booking cần thu trong 7 ngày', 'Gom Booking có đợt quá hạn hoặc đến hạn trong 7 ngày để nhắc khách; số trên chip tính theo bộ lọc.'],
+  W05: ['KD07 · Kinh doanh', 'Không có Booking khớp bộ lọc', 'Phân biệt không khớp bộ lọc với chưa có dữ liệu; nhắc người dùng chỉ thấy Booking mình phụ trách.'],
+  W06: ['KD07 · Kinh doanh', 'Lỗi tải danh sách', 'Giữ bộ lọc và cho thử lại khi không tải được danh sách; số trên chip hiện “–”.'],
+  W07: ['KD07 · Kinh doanh mới', 'Chưa phụ trách Booking nào', 'Trạng thái rỗng: nói rõ Booking được tạo từ báo giá Chốt ở hồ sơ yêu cầu Tour, có lối sang danh sách yêu cầu.'],
+  W08: ['KD07 · Kinh doanh', 'Chưa lấy được số liệu công nợ', 'Danh sách vẫn dùng được khi KT01 không trả số liệu: cột Còn phải thu ghi Chưa có dữ liệu công nợ (không coi là 0), bộ lọc Thanh toán tạm khóa, có Thử lại.'],
+  W09: ['KD08.1 · Đích khi Kinh doanh bấm dòng', 'Hồ sơ Booking, tab Thông tin', 'Bấm dòng ở KD07 mở KD08 ở tab Thông tin và hủy Booking với Kinh doanh. Nội dung đặc tả ở RSD KD08.'],
+  W10: ['KD07 · Kinh doanh', 'Quay lại sau khi hủy Booking', 'Bộ lọc và vị trí giữ nguyên; Booking vừa hủy ở KD08 mờ tại chỗ vì không còn khớp chip, thông báo có liên kết xem lại.'],
+  W11: ['KD07 · Kế toán', 'Booking theo hạn thu của Kế toán', 'Màn mặc định của Kế toán: mọi Booking, có cột Phụ trách, sắp theo hạn của đợt chưa thu sớm nhất; chỉ xem.'],
+  W12: ['KD07 · Kinh doanh · dạng Lịch', 'Lịch theo ngày khởi hành', 'Mỗi Booking là một thanh từ ngày khởi hành đến ngày kết thúc, màu theo hồ sơ Tour (đã có, tạo lỗi); hàng chip và bộ lọc vẫn áp dụng.'],
+  W13: ['KD07 · Kế toán · dạng Lịch', 'Lịch theo hạn thanh toán', 'Mỗi đợt thanh toán là một thẻ ở ngày hạn, màu theo quá hạn, đến hạn, còn hạn, đã thu đủ; khay bên phải liệt kê Booking chưa có lịch thanh toán.'],
+  W14: ['KD07 · Kế toán · dạng Lịch', 'Ngày có nhiều đợt thanh toán', 'Ô ngày hiện tối đa 3 thẻ, phần còn lại gộp “+n”; bấm “+n” mở danh sách mọi đợt có hạn trong ngày kèm người phụ trách.'],
+  W15: ['KD07 · Kế toán · dạng Lịch', 'Chip Đã hủy ở lịch hạn thanh toán', 'Đợt của Booking Đã hủy không hiện ở mốc Hạn thanh toán; lịch nói rõ lý do và mở thẳng Bảng hoặc mốc Ngày khởi hành.'],
+  W16: ['KD08.2 · Đích khi Kế toán bấm dòng hoặc thẻ đợt', 'Lịch thanh toán của Booking, đợt được tô', 'Kế toán bấm dòng hoặc thẻ đợt mở KD08 ở tab Điều khoản và lịch thanh toán, đợt vừa bấm được tô; ghi khoản thu qua nút Xem công nợ. Nội dung đặc tả ở RSD KD08.'],
+  W17: ['KD07 · Kinh doanh', 'Booking đã hủy', 'Chip Đã hủy: cột Trạng thái có ngày và lý do hủy; cột Còn phải thu cho biết Kế toán đã điều chỉnh nghĩa vụ hay chưa (đọc từ KT01).'],
+};

@@ -1,0 +1,20 @@
+flowchart TD
+    subgraph KD["Kinh doanh"]
+        crmStart(["[SYS10.01] Mở hồ sơ khách hàng sau Tour"])
+        crmHistory["[SYS10.02] Cập nhật lịch sử sử dụng dịch vụ và hạng khách hàng"]
+        crmAction{"[SYS10.03] Chọn thao tác"}
+        crmSurvey["[SYS10.04] Thiết lập và tự động gửi Survey"]
+        crmFeedback["[SYS10.05] Ghi nhận phản hồi và kết quả chăm sóc khách hàng"]
+        crmMarketing["[SYS10.06] Phân nhóm khách hàng và cấu hình luồng email remarketing"]
+        crmSend["[SYS10.07] Tự động gửi email theo cấu hình"]
+        crmResult["[SYS10.08] Xem thống kê Survey và chiến dịch email"]
+        crmNew["[SYS10.09] Tạo yêu cầu Tour mới từ hồ sơ khách hàng"]
+        crmNext["[SYS10.10] SYS02. Quản lý yêu cầu khách hàng"]
+
+        crmStart --> crmHistory --> crmAction
+        crmAction -->|"Gửi Survey"| crmSurvey
+        crmAction -->|"Ghi nhận phản hồi"| crmFeedback
+        crmAction -->|"Remarketing"| crmMarketing --> crmSend
+        crmAction -->|"Xem thống kê"| crmResult
+        crmAction -->|"Tạo yêu cầu mới"| crmNew --> crmNext
+    end

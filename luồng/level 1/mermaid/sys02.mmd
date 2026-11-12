@@ -1,0 +1,27 @@
+flowchart TD
+    subgraph KD["Kinh doanh"]
+        inquiryStart(["[SYS02.01] Mở quản lý yêu cầu khách hàng"])
+        inquiryMode{"[SYS02.02] Tạo mới hay xử lý yêu cầu hiện có?"}
+        inquiryExists{"[SYS02.03] Đã có hồ sơ khách hàng?"}
+        inquirySelect["[SYS02.04] Chọn hồ sơ khách hàng hiện có"]
+        inquiryCustomer["[SYS02.05] Tạo hồ sơ khách hàng với thông tin cá nhân và liên hệ"]
+        inquiryCreate["[SYS02.06] Tạo yêu cầu Tour gắn với khách hàng"]
+        inquiryOpen["[SYS02.07] Chọn yêu cầu Tour hiện có"]
+        inquiryAction{"[SYS02.08] Chọn thao tác"}
+        inquiryRecord["[SYS02.09] Nhập và lưu nhu cầu Tour: mong muốn, thời gian, số khách, hạng phòng"]
+        inquiryCancel["[SYS02.10] Hủy yêu cầu và ghi nhận lý do"]
+        inquiryNext["[SYS02.11] SYS03. Thiết kế hành trình và báo giá"]
+
+        inquiryStart --> inquiryMode
+        inquiryMode -->|"Tạo mới"| inquiryExists
+        inquiryExists -->|"Có"| inquirySelect
+        inquiryExists -->|"Chưa"| inquiryCustomer
+        inquirySelect --> inquiryCreate
+        inquiryCustomer --> inquiryCreate
+        inquiryCreate --> inquiryRecord
+        inquiryMode -->|"Yêu cầu hiện có"| inquiryOpen --> inquiryAction
+        inquiryAction -->|"Cập nhật"| inquiryRecord
+        inquiryAction -->|"Hủy"| inquiryCancel
+        inquiryAction -->|"Lập báo giá"| inquiryNext
+        inquiryRecord -->|"Chọn lập báo giá"| inquiryNext
+    end
