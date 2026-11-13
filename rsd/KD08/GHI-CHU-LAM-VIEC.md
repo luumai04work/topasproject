@@ -1,4 +1,27 @@
-# Ghi chú làm việc · RSD KD08 v1.5
+# Ghi chú làm việc · RSD KD08 v1.6
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md` (bản sửa 12/11/2026). Tệp đổi tên `RSD-KD08-Ho-so-Booking-v1.6.md` bằng `git mv`. Không đổi luồng, trạng thái Booking, tiền ngoài các quyết định dưới đây.
+
+**Đã sửa:**
+- **Q1 phân quyền.** 1.4 thành “Quyền mặc định theo vai trò” (phần × thao tác; cột Kinh doanh, Kế toán, Điều hành, Quản trị), cấu hình ở QT02. Bỏ cột “Kinh doanh · người khác”, trang “Bạn không phụ trách Booking này”, mọi điều kiện “người phụ trách” ở L1.1, L1.3–L1.5, L1.8, L2.1, L2.3, R01, R09, R10, R11, E1.1, E1.4, AC31. Chuyển phụ trách theo quyền (mặc định Kinh doanh và Quản trị); người cũ chỉ ra khỏi chip Của tôi (L1.4, AC28). Liên kết sang KD06 theo quyền xem KD06.
+- **Q5.** Bỏ trạng thái Tạo lỗi của hồ sơ Tour: hồ sơ Tour, nghĩa vụ KT01, thông báo ghi trong cùng giao dịch với Booking (1.1, 1.3, 2.2, 2.3, L1.1, R08, R09, R10, 5.1). Bỏ bước W06 (giữ PNG, bỏ nhúng); AC15 viết lại thành kiểm thử “giao dịch lỗi thì không ghi gì”. Điều kiện hủy, điều chỉnh bỏ “hồ sơ Tour chưa tạo được”.
+- **Q2.** “Báo Kế toán” khi lưu lịch thanh toán = thông báo in-app (L2.1, L2.3, R05–R07); bỏ email nội bộ (1.2, R13, 5.3).
+- **Q3.** Bỏ nhãn “suy ra, chờ xác nhận” ở E1.6, E2.6, R13. Các mục “Tự quyết, cần xác nhận” trong tệp này coi là đã chấp nhận mặc định (Q3).
+- **Q7.** R02: giao dịch lỗi thì bỏ số, cho phép thủng số; YYMM theo giờ Asia/Ho_Chi_Minh.
+- **Q9.** 2.4, R05, R12: số tiền đợt làm tròn half-up theo đơn vị nhỏ nhất của loại tiền, không áp bội số làm tròn giá bán.
+- **C2.** Mẫu lịch thanh toán mặc định ở tệp cấu hình hoặc dữ liệu khởi tạo (trước ghi “Quản trị cấu hình”) (R05, R12). Ngưỡng Đến hạn ghi chủ sở hữu QT05.
+- **Q6.** 2.3: tình trạng đợt tính lúc đọc.
+
+**Tự đơn giản hóa giao diện (U6):**
+- Trường kế thừa ở W01 hiện dạng chữ thay vì ô viền nét đứt có 🔒 (U5).
+- Người chỉ có quyền xem không thấy nhãn “… · chỉ xem”; chỉ ẩn nút ghi (U5).
+- Giữ nút Thử lại trên banner “Chưa lấy được số liệu công nợ” và banner lỗi tải yêu cầu đổi lịch trình: đây là tải lại dữ liệu đọc, không phải Thử lại tạo hồ sơ đã bỏ theo Q5.
+
+**Hình chưa cập nhật (không dựng lại, có dòng ghi chú dưới hình):** W01 (ô viền nét đứt), W09 (chip “Đã hủy theo Booking” màu đỏ), W16 (câu “Bạn không còn thấy Booking ở danh sách”), W17 (nhãn “Kế toán · chỉ xem”, ô viền nét đứt), W21 (dòng “Cách tạo · Tự động khi thu đủ đến đợt 1” còn từ trước v1.3). Thanh bên mọi hình còn mục “Chăm sóc khách hàng” (C3) — ghi một lần ở “Dữ liệu trên hình”. W06 không còn nhúng.
+
+**Còn mở:** R01 — người tạo Booking thành người phụ trách Booking và người phụ trách yêu cầu luôn là người phụ trách Booking; khi người tạo khác người phụ trách yêu cầu (nay được phép theo Q1), suy ra người phụ trách yêu cầu đổi sang người tạo trong cùng giao dịch. Chưa ghi rõ vào RSD, chờ người dùng.
 
 ## Cập nhật v1.3 (12/11/2026) · Không có luồng duyệt, Kế toán không làm chốt chặn
 
@@ -17,8 +40,8 @@
 - E2.6, Booking đã biết có thu hoặc chưa tải lần nào: khi KT01 không trả số liệu, mọi đợt đang có coi là đợt chưa biết số đã thu (không giảm, không xóa); đợt thêm mới trong lần sửa đó sửa tự do. Tăng số tiền được coi là an toàn với R07.
 - E2.6, Booking đã biết chưa có thu: nếu lúc lưu máy chủ vẫn không lấy được số đã thu từ KT01 thì chưa rõ xử lý (đề xuất: từ chối lưu các thay đổi giảm hoặc xóa đợt, giữ dữ liệu đang nhập); chưa ghi vào RSD.
 - Ô số tiền khi bị chặn giảm ghi “Không giảm khi chưa có số liệu công nợ” (cách hiện trên giao diện).
-- Tạo lỗi: Kinh doanh không có nút tạo hay thử lại; Điều hành xử lý ở DH07 (theo DH07 L2.3 hiện có). Hủy Booking khi hồ sơ Tạo lỗi vẫn được; Booking đã hủy không được tạo hồ sơ nữa.
-- Chuyển sang Điều hành khi hồ sơ Tạo lỗi: vẫn cập nhật Booking, hồ sơ tạo sau theo phiên bản hiện hành (giữ cách cũ của trường hợp “chưa có hồ sơ”).
+- ~~Tạo lỗi: Kinh doanh không có nút tạo hay thử lại; Điều hành xử lý ở DH07 (theo DH07 L2.3 hiện có). Hủy Booking khi hồ sơ Tạo lỗi vẫn được; Booking đã hủy không được tạo hồ sơ nữa.~~ (bỏ từ v1.6, Q5)
+- ~~Chuyển sang Điều hành khi hồ sơ Tạo lỗi: vẫn cập nhật Booking, hồ sơ tạo sau theo phiên bản hiện hành (giữ cách cũ của trường hợp “chưa có hồ sơ”).~~ (bỏ từ v1.6, Q5)
 
 **Dữ liệu hình:** BK-2611-0158 có hồ sơ TP-2703-0001 ngay khi lưu (khớp KD07 v1.2 đang sửa: khởi hành 03/2027). W06 dùng BK-2611-0150 Hoffmann Reisen (11 khách, khởi hành 09/12/2026, khớp dòng Tạo lỗi ở DH07 W08); giá trị 18.700 EUR, yêu cầu YC-2610-0044 (mã chưa dùng), người liên hệ Petra Hoffmann là minh họa. W19: hồ sơ TP-2611-0042 tạo 14/10/2026 16:18 khi lưu Booking (thay “Đạt điều kiện … 21/10/2026”); sửa luôn thứ tự hai dòng ngày 12/11 cho đúng “mới nhất trước”. W18: Sửa lịch thanh toán bấm được.
 
@@ -73,7 +96,7 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 
 | Mã | Câu hỏi | Trả lời | Tác động |
 |---|---|---|---|
-| Q0 | Màn cần viết, hướng làm | KD08 · Hồ sơ Booking; chưa có RSD nên viết mới ở `rsd/KD08/`; MD + PNG trong ZIP theo quy ước dự án | Toàn bộ |
+| Q0 | Màn cần viết, hướng làm | KD08 · Hồ sơ Booking; chưa có RSD nên viết mới ở `docs/rsd/KD08/`; MD + PNG trong ZIP theo quy ước dự án | Toàn bộ |
 | Q1 | Thay đổi chương trình sau Booking, chênh lệch giá | Tính giá lại ở KD06 (không sửa hành trình, giá ở KD08) | L1.5, L1.6, R09 |
 | Q1b | Phiên bản mới vào Booking thế nào (mâu thuẫn KD06 R17, R20) | v1.2: Điều chỉnh (phiên bản mới, Chưa có kết quả) → trao đổi với khách → Chuyển sang Điều hành tự ghi Chốt cho phiên bản mới nhất, không hộp thoại (thay cách v1.1 “phải Chốt trước”); giữ mã Booking; phiên bản cũ Đã thay thế; hồ sơ Tour nhận thay đổi (DH08 L1.5) | R09, W12–W15, AC21–AC27 |
 | Q2 | Lịch thanh toán: tổng so với giá trị; sửa sau khi có thu | Cảnh báo, cho lưu kèm lý do; đợt đã có thu không xóa, không giảm dưới số đã thu; đợt chưa thu sửa tự do | R06, R07, W03, W07 |
@@ -126,7 +149,8 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - `sync-md.js` đã đồng bộ tên hình.
 - Đã xem trực quan: W02, W05, W07, W11, W14, W15. Đã sửa trước khi chụp lại: banner W20 (câu thừa), thời điểm trong lịch sử W19 (không sau hôm nay). Chưa mở: W01, W03, W04, W06, W08–W10, W12, W13, W16–W20 (cùng thành phần với ảnh đã xem).
 - Không có ảnh riêng: Tạo lỗi hồ sơ, lỗi dữ liệu đợt (E2.1), xung đột khi lưu (E2.5), trang không có quyền (E1.4), cập nhật thất bại (E1.11).
-- Số liệu: BK-2611-0158 50.750 = 15.225 + 35.525 EUR (KD07 đợt 1 hạn 25/11 khớp). BK-2610-0137 38.420 = 11.526 + 26.894 EUR; v4 42.680 EUR (+4.260; 20 khách). Dupont BK-2611-0140 hủy 12/11, đã thu 0, khớp KD07 W17. Nordic TP-2611-0038 Đang diễn ra 08–15/11, Điều hành Phạm Thu Hà (DH07). Wagner TP-2611-0031 Đã kết thúc 08/11 (DH07).
+- Số liệu: BK-2611-0158 50.750 = 15.225 + 35.525 EUR (KD07 đợt 1 hạn 25/11 khớp; số cũ, tính lại 13/11/2026 thành 51.710 = 15.513 + 36.197 EUR, xem mục Tính lại ví dụ giá).
+ BK-2610-0137 38.420 = 11.526 + 26.894 EUR; v4 42.680 EUR (+4.260; 20 khách). Dupont BK-2611-0140 hủy 12/11, đã thu 0, khớp KD07 W17. Nordic TP-2611-0038 Đang diễn ra 08–15/11, Điều hành Phạm Thu Hà (DH07). Wagner TP-2611-0031 Đã kết thúc 08/11 (DH07).
 
 ## Cập nhật v1.4 (12/11/2026, rà soát lần hai)
 
@@ -149,3 +173,16 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - **E1.7.** Booking mới tạo ở KD08 (Tạo Booking ở KD06.3 chỉ mở KD08, L1.1), không phải “tạo Booking ở KD06”.
 - **R11.** “Ngừng hoạt động” theo thuật ngữ ở `BOI-CANH-DU-AN.md`: tài khoản bị khóa hoặc không còn vai trò Kinh doanh.
 - Cập nhật phiên bản RSD nguồn: KD05 v1.4, KD06 v1.5, DH07 v1.7, DH08 v2.8, KD07 v1.3, KT01 v1.5, QT05 v1.2.
+
+## Sửa sau rà chéo 12/11/2026
+
+- **Mục 1.2 · nơi mở khi bấm thông báo**, thống nhất theo RSD CH02 R07 và Phụ lục A: thông báo về Booking gửi Kinh doanh (được giao, chuyển cho người khác, đã hủy bởi người khác, thay đổi chương trình đã áp dụng, không áp dụng, không áp dụng được vì chạm ngày đã qua, yêu cầu đổi lịch trình đã rút) mở KD08.1; thông báo hồ sơ Tour đã tạo mở DH08 (RSD DH07 R09); thông báo lịch thanh toán thay đổi gửi Kế toán, mở KT01.1 (RSD KT01 mục 1.2). Dòng cũ “hồ sơ Tour đã tạo, lịch thanh toán thay đổi → KD08” mâu thuẫn DH07 R09 và KT01 1.2 nên đã thay. Không đổi luồng.
+- **Kiểm tra.** `check-rsd.py`: 19 ảnh, 19 mã W, không lỗi.
+
+## Tính lại ví dụ giá 13/11/2026
+
+- Sửa tại chỗ `RSD-KD08-Ho-so-Booking-v1.6.md`, dòng “Thay đổi ở v1.6 (bổ sung 13/11/2026 · tính lại ví dụ giá)”. Giá trị Booking BK-2611-0158 lấy từ ví dụ A của `docs/rsd/BO-TINH-GIA/VI-DU-TINH-GIA-v1.0.md`: 51.710 EUR (trước 50.750 EUR).
+- AC06 tính theo R05: Đợt 1 = 30 % × 51.710 = 15.513 EUR (half-up 0,01 EUR, không áp bội số), hạn 11/11/2026 + 14 ngày = 25/11/2026; Đợt 2 = phần còn lại 36.197 EUR, hạn 15/03/2027 − 30 ngày = 13/02/2027. Số này cũng in ở mục 3 của tài liệu ví dụ.
+- AC08: tổng các đợt giữ 50.000 EUR, nên thiếu 1.710 EUR (trước 750 EUR).
+- Hình W01–W04 còn số cũ (50.750; 15.225, 35.525; thiếu 750 EUR); không dựng lại.
+- Ngoài phạm vi: RSD KD07 AC17 còn ghi đợt 1 15.225 EUR; wireframe KD07, KT01 còn 50.750 và 15.225 EUR.

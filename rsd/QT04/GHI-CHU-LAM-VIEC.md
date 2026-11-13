@@ -1,6 +1,6 @@
 # Ghi chú làm việc · RSD QT04 · Mẫu tài liệu và email
 
-Không thuộc bản phát hành. Ngày 12/11/2026. Bản hiện hành: v1.3.
+Không thuộc bản phát hành. Ngày 12/11/2026. Bản hiện hành: v1.4.
 
 ## 12/11/2026 · rà soát mâu thuẫn lần ba (v1.3)
 
@@ -74,3 +74,37 @@ Không thuộc bản phát hành. Ngày 12/11/2026. Bản hiện hành: v1.3.
 - KD06 v1.3: dựng lại và xem W32.
 
 - **Kiểm tra chéo cuối đợt rà soát lần ba (12/11/2026).** R13 trường {Yêu cầu riêng}: bỏ “theo nhãn”, theo hai ô Ăn uống, Phòng nhập tự do của RSD DH08 v2.8 R06.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-QT04-Mau-tai-lieu-va-email-v1.4.md` (`git mv` từ v1.3). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, BOI-CANH bản 12/11/2026. Các mục cũ bên dưới (Q1–Q5, thiết kế tự quyết, việc ở màn khác) là lịch sử; phần nói về QT04.1, KD09, KD10 không còn áp dụng.
+
+- **C3.** Bỏ trọn QT04.1: mẫu Survey, email chăm sóc, quyền Quản lý mẫu Kinh doanh, khối cố định Survey và hủy nhận, trường {Danh xưng}, {Tên khách}, {Thời gian Tour}, {Tuyến Tour}, {Tour gần nhất}, {Người phụ trách}, mã gợi ý SV, RM, mọi chỗ chiến dịch giữ bản đã dùng, Đã dùng theo chiến dịch, lối vào từ KD09, KD10. Mục 3.4, 3.5, L6.1, R09 giữ tiêu đề kèm “(Bỏ theo C3)”; AC31–AC39 ghi “Bỏ theo C3”. AC02, AC07 viết lại cho QT04.2.
+- **Q1, Q25, U5.** Mục 1.4 viết lại thành quyền mặc định theo vai trò: hai thao tác Xem QT04.2 và Quản lý mẫu Điều hành; mặc định Điều hành sửa; Kinh doanh, Quản trị xem; Kế toán không có. Người chỉ xem thấy chữ thay cho công tắc, bảng trượt hiện dạng chữ (L1.3, AC05).
+- **Q17.** Pax list gửi NCC có tập cột là hợp các cột của mọi loại dịch vụ có trong email hoặc tài liệu (L3.1, R08, AC25).
+- **Q8.** Xung đột khi lưu: nút Tải lại, không có nút ghi đè (E2.3, R14, AC21).
+- **Q5, G2, C2.** Gửi thử qua hàng đợi gửi email, người gửi là hộp thư chung; tải PDF thử qua hàng đợi; xem trước email ghi CC người thao tác; hộp thư chung, logo, tên công ty ở tệp cấu hình hoặc dữ liệu khởi tạo (L2.1, R08, R13, R15, 5.3, AC15).
+- **Q3.** E8.5 bỏ nhãn “suy ra, chờ xác nhận”.
+- **U3, K5, Q22.** Bộ lọc nhớ theo người dùng; bảng trượt 1100 px; proposal theo W33 của KD06.
+
+**Tự đơn giản hóa giao diện (U6).**
+- Chỉ còn một nhóm mẫu nên bỏ thanh tab; số mẫu Đang dùng đưa lên tiêu đề (2.1, L1.1). Kinh doanh mở thẳng danh sách của Điều hành ở chế độ chỉ xem (L1.3).
+- Bảng cột ở 2.2 gộp còn một cột nội dung; cột “Đã dùng / Dùng ở” còn “Đã dùng”.
+
+**Hình chưa cập nhật** (không dựng lại).
+- Mọi hình: thanh tab còn tab “Kinh doanh · Survey và email chăm sóc”; bảng trượt 1060 px.
+- W04: công tắc vẽ mờ (nay hiện chữ). W09: chưa có CC người thao tác. W14: nút “Tải v7 (bỏ thay đổi của tôi)” (nay Tải lại). W32: trường viền nét đứt (nay dạng chữ).
+- Bỏ nhúng W02, W21–W27 (chỉ minh họa QT04.1); tệp PNG và nguồn trong `wireframes-src/` giữ nguyên.
+
+**Câu hỏi cho người dùng.**
+- Hộp thoại W28 khi tắt mẫu email đặt dịch vụ (L6.2, 2.5, 2.6, R12): tắt là hoàn tác được, theo U2 lẽ ra làm ngay kèm Hoàn tác; hộp thoại có giá trị vì báo loại dịch vụ nào chuyển sang mẫu dự phòng hoặc không còn mẫu. Giữ nguyên.
+
+**Kiểm tra.** `python3 .claude/skills/sme-erp-rsd-skill/scripts/check-rsd.py --final`: 26 ảnh, 26 mã W, không lỗi.
+
+## Dịch vụ đi kèm 12/11/2026
+
+Sửa tại chỗ `RSD-QT04-Mau-tai-lieu-va-email-v1.4.md`, dòng “Thay đổi ở v1.4 (bổ sung 12/11/2026 · dịch vụ đi kèm)”. R04: trường `{ds_dich_vu}` liệt kê đi kèm của từng hạng mục ngay dưới dòng hạng mục (“kèm: tên, số lượng và đơn vị, ngày”; English “with: …”); không thêm trường mới, mẫu đang dùng không phải sửa. R08: cột Ghi chú của Rooming list lấy ghi chú phòng của DH08.4, gồm “Giường phụ” (English “Extra bed”); mẫu không chọn cột Ghi chú thì không có ghi chú. Thêm AC57.
+
+**Tự quyết:** mở rộng `{ds_dich_vu}` thay vì thêm trường `{dich_vu_di_kem}`, để email gộp nhiều hạng mục vẫn đặt đi kèm đúng dưới hạng mục của nó. Tên đi kèm trong bản English là tên tiếng Việt vì DH03 không có tên tiếng Anh của dịch vụ (như tên dịch vụ chính hiện nay).
+
+**Kiểm tra.** `check-rsd.py`: 26 ảnh, 26 mã W, không lỗi.

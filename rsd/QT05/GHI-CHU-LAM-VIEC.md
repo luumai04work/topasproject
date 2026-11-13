@@ -1,6 +1,6 @@
 # Ghi chú làm việc · RSD QT05 Danh mục dùng chung
 
-Không thuộc bản phát hành. Viết mới ngày 12/11/2026 từ danh sách màn (`luồng/danh-sach-man-hinh-level1.md`, dòng QT05) và các yêu cầu QT05 đã ghi trong 14 RSD khác.
+Không thuộc bản phát hành. Viết mới ngày 12/11/2026 từ danh sách màn (`docs/flows/danh-sach-man-hinh-level1.md`, dòng QT05) và các yêu cầu QT05 đã ghi trong 14 RSD khác.
 
 ## Quyết định đã chốt
 
@@ -74,3 +74,43 @@ Tệp mới `RSD-QT05-Danh-muc-dung-chung-v1.2.md` (đã xóa v1.1).
 - **Phương thức thanh toán (việc của KT01).** Đã xem R06, R05, R20: nhóm không có giá trị hệ thống, không phải nhóm bắt buộc, giá trị minh họa không tự tạo. Chọn sửa phía KT01 (v1.5 R15, R16, 5.2: danh mục trống thì giao dịch lưu không có phương thức); QT05 không đổi.
 - Dẫn phiên bản dòng nguồn theo bảng phiên bản mới (DH01 v1.4, DH02 v1.3, DH03 v1.4, DH04 v1.3, DH06 v1.3, DH07 v1.7, DH08 v2.8, KD01-KD02 v1.2, KD03-KD04 v1.4, KD05 v1.4, KD06 v1.5, KD07 v1.3, KD08 v1.5, KD10 v1.2, KT01 v1.5, QT04 v1.3); thêm QT06-QT12 v1.2 vì R17 dẫn tới.
 - `check-rsd.js --final`: 34 ảnh, 34 mã W, đạt.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-QT05-Danh-muc-dung-chung-v1.3.md` (`git mv` từ v1.2). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, BOI-CANH bản 12/11/2026. Các mục cũ bên trên là lịch sử; phần nói về kết quả chăm sóc, KD10, “chờ xác nhận” không còn áp dụng (C3, Q3).
+
+- **Q1, Q25, U5.** Mục 1.5 viết lại thành “Quyền mặc định theo vai trò”: mỗi nhóm một thao tác Sửa ở QT02, thêm hai thao tác theo trường (Sửa Markup mặc định, Sửa bội số làm tròn giá bán). Mặc định giữ nguyên phân chia theo phòng như BOI-CANH mục Quản trị. Lịch sử thay đổi trong menu ⋯ theo quyền xem QT03 (mặc định Quản trị). Trường chỉ đọc hiện dạng chữ. Sửa 1.3, 1.5, 2.4, R01, R10, R15, R21, AC29.
+- **C3.** Bỏ nhóm Kết quả chăm sóc và giá trị hệ thống Có nhu cầu Tour mới; bỏ tham số Cần chăm sóc sau Tour, Hạn link Survey, Giờ gửi mặc định của chiến dịch (R17 còn 11 tham số); bỏ KD10 khỏi Màn dùng, Đang dùng ở (R03), R08, L4.4, 1.4; bỏ “kênh chăm sóc”, “địa chỉ gửi email chăm sóc” ở 1.2.
+- **Q23.** Thêm nhóm Ngày nghỉ lễ ở mục Giá & chính sách, mặc định chỉ Quản trị sửa: mục 3.8 mới (L8.1, E8.1–E8.4), R22 mới, 5.1, 5.2, AC53–AC56. Số nhóm vẫn 21 (bỏ Kết quả chăm sóc, thêm Ngày nghỉ lễ). R17 ghi 48 giờ chờ NCC theo giờ lịch, Hạn phản hồi của Kinh doanh theo ngày làm việc (R22).
+- **Q7, Q9, Q10.** Tiền tố Tour Code mặc định TP (đã có, thêm dẫn Q7); R10 thêm bội số chỉ áp cho giá bán mỗi khách, không áp cho đợt thanh toán và phí giữ lại, làm tròn half-up; R13 ngày lấy tỷ giá khi báo giá là ngày bấm Tính giá.
+- **Q8.** Xung đột khi lưu chỉ có nút Tải lại (E2.2, E5.2, R19, AC14).
+- **C2, Q3.** Mục “Không thuộc QT05” ghi các cấu hình kỹ thuật nằm ở tệp cấu hình hoặc dữ liệu khởi tạo; bỏ nhãn “suy ra, chờ xác nhận” ở 1.2 và R17 (chấp nhận mặc định).
+- **U3, K5.** Nhóm và chip nhớ theo người dùng; bảng trượt chính sách 880 px.
+
+**Tự đơn giản hóa giao diện (U6).**
+- Nhóm Ngày nghỉ lễ đặt ở mục Giá & chính sách (mục của Quản trị) thay vì thêm mục thứ sáu ở cột trái; tên mục giữ nguyên.
+- Ngày nghỉ lễ dùng bảng theo ngày như Tỷ giá: bộ chọn năm, sắp theo ngày, không có công tắc Đang dùng, không có kéo đổi thứ tự, không có cột Đang dùng ở; xóa làm ngay kèm Hoàn tác (U2), không hộp thoại.
+- Thêm nhiều ngày nghỉ bằng dán “dd/mm/yyyy | Tên ngày lễ”.
+
+**Hình chưa cập nhật** (không dựng lại, ghi ở mục Wireframe và dưới hình).
+- Mọi hình: cột trái còn Kết quả chăm sóc, chưa có Ngày nghỉ lễ, Tham số chung còn đếm 14; trường chỉ đọc viền nét đứt; bảng trượt chính sách 760 px (W30–W33).
+- W11: nút “Tải bản mới” (nay Tải lại).
+- W12: hộp thoại còn “chiến dịch”; W12, W13, W14, W20, W21: dòng “Dùng ở” còn KD10.
+- W34: còn 14 tham số, gồm ba tham số đã bỏ.
+- Nhóm Ngày nghỉ lễ chưa có hình (L8.1 dẫn bố cục W24, W05, W07, W14).
+
+**Câu hỏi cho người dùng.**
+- Hộp thoại W12 khi tắt giá trị đang dùng (L3.1, 2.2, R05, E6.4): tắt là hoàn tác được, theo U2 lẽ ra làm ngay kèm Hoàn tác; nhưng BOI-CANH vẫn giữ “cảnh báo nơi đang dùng rồi cho ngừng” cho NCC (DH02). Giữ nguyên hộp thoại.
+- Nhóm quốc gia không còn màn dùng nào ngoài QT05 sau C3 (trước chỉ KD10 dùng). BOI-CANH vẫn liệt kê nhóm này; giữ nguyên.
+
+**Kiểm tra.** `python3 .claude/skills/sme-erp-rsd-skill/scripts/check-rsd.py --final`: 34 ảnh, 34 mã W, không lỗi.
+
+## Sửa sau rà chéo 12/11/2026
+
+- **T8.** R17: Giờ chạy nhắc hằng ngày là một giờ chung cho mọi loại nhắc định kỳ của RSD CH02 (DH02 hợp đồng, DH07 hồ sơ chưa giao, DH08 quá hạn phản hồi và thay đổi chương trình không áp dụng được). Cột Dùng ở thêm CH02 R09, R12; DH07 R09, R12; DH08 E1.9, E3.11, R17. Bỏ câu “nhắc hồ sơ chưa giao của DH07 chưa gắn vào tham số này”. Vẫn 11 tham số; W34 không dựng lại (cột Dùng ở trên hình chỉ minh họa).
+- Ghi nhận, chưa sửa: RSD DH08 R04, R17 vẫn ghi Ngưỡng chờ phản hồi NCC ở tệp cấu hình, còn R17 của QT05 ghi là tham số chung (câu hỏi cho người dùng).
+- **Kiểm tra.** `check-rsd.py`: 34 ảnh, 34 mã W, không lỗi.
+
+## Dịch vụ đi kèm 12/11/2026
+
+Không sửa RSD QT05. Lý do: loại dịch vụ không cần cờ “được làm đi kèm”. Dịch vụ đi kèm là thuộc tính của dịch vụ ở DH03 (ô Đi kèm dịch vụ, RSD DH03 R23); giường phụ nhận biết bằng dấu Giường phụ trên đi kèm, chỉ có khi dịch vụ chính thuộc loại lưu trú (cờ loại lưu trú đã có). Markup của khoản đi kèm ở KD06 theo hạng mục của loại dịch vụ của chính đi kèm, dùng nguyên gán loại dịch vụ vào hạng mục hiện có. Đơn vị tính cho giường phụ (ví dụ Giường/đêm, cờ theo đêm) là dữ liệu Điều hành thêm vào nhóm Đơn vị tính, không cần đổi đặc tả.

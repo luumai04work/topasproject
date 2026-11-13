@@ -1,4 +1,4 @@
-# Ghi chú làm việc · RSD DH06 v1.2
+# Ghi chú làm việc · RSD DH06 v1.4
 
 Tài liệu này không thuộc bản RSD. Nó ghi các quyết định đã chốt, các thiết kế do người viết tự quyết (cần người dùng xác nhận) và các thay đổi cần làm ở màn khác.
 
@@ -13,7 +13,7 @@ Từ v1.1, file RSD trong thư mục là bản nguồn và được sửa trực
 | Q2 | Tắt Nhận phân công khi người đó đang được giao việc | Cảnh báo, liệt kê nơi đang giao, rồi cho tắt; phân công đã có giữ nguyên; người đó chỉ bị ẩn khi chọn mới; gắn chỉ báo để giao lại | L4.2, R05; W12, W13; AC20–AC25 |
 | Q3 | Nghiệp vụ bổ sung | Chỉ thêm Xem lịch phân công (tab chỉ xem). Không làm: thẻ HDV và hạn thẻ, lịch bận và nghỉ phép, nhập Excel | L1.2, R04; W10; AC05, AC06 |
 
-## Thiết kế do người viết tự quyết, cần xác nhận
+## Thiết kế do người viết tự quyết, cần xác nhận (đã chấp nhận theo Q3, 12/11/2026; riêng mục 6 thay theo Q5)
 
 1. **Ai được chọn ở đâu (R03).**
    - Phụ trách hồ sơ: nhóm Điều hành, Nội bộ, có tài khoản đang hoạt động (giữ như RSD DH07 R08).
@@ -24,7 +24,7 @@ Từ v1.1, file RSD trong thư mục là bản nguồn và được sửa trực
 3. **Ngôn ngữ phục vụ bắt buộc với nhóm Hướng dẫn viên**, lấy cùng danh mục với ngôn ngữ phục vụ của Booking.
 4. **Thêm trường Khu vực phục vụ**, chọn nhiều, mặc định Toàn quốc, dùng danh mục địa điểm (điểm đến) chung với NCC. DH08.5 hiện khu vực trong danh sách chọn.
 5. **Điện thoại bắt buộc và không được trùng (chặn)**; trùng họ tên hoặc email chỉ cảnh báo. Mã nhân sự `NS-NNN`.
-6. **Thông báo và chỉ báo sau khi tắt chỉ phát sinh khi hết 10 giây Hoàn tác**, để tránh báo nhầm khi người dùng hoàn tác.
+6. **Thông báo và chỉ báo sau khi tắt chỉ phát sinh khi hết 10 giây Hoàn tác**, để tránh báo nhầm khi người dùng hoàn tác. *(Thay ở v1.4 theo Q5: ghi ngay trong cùng giao dịch; Hoàn tác gỡ thông báo vừa tạo.)*
 7. **Thông báo khi tắt.** Gửi cho nhóm Điều hành (về hồ sơ người đó phụ trách) và cho Điều hành phụ trách từng hồ sơ có công việc hoặc lịch phục vụ của người đó; gộp theo người nhận.
 8. **Bỏ nhóm công việc hoặc đổi Nội bộ sang Cộng tác viên khi đang được giao việc:** cảnh báo rồi cho lưu (cùng tinh thần Q2), không gắn chỉ báo. Đổi sang Cộng tác viên khi đã liên kết tài khoản thì chặn.
 9. **Có xóa nhân sự**, nhưng chỉ khi chưa từng được dùng và chưa liên kết tài khoản. Đã dùng thì chỉ tắt (theo nguyên tắc danh mục của dự án).
@@ -87,3 +87,42 @@ Tệp mới `RSD-DH06-Danh-muc-nhan-su-v1.2.md`, đã xóa bản v1.1. Chỉ đ�
 - **Kiểm tra.** `node wireframes-src/check-rsd.js RSD-DH06-Danh-muc-nhan-su-v1.3.md --final`: 16 tham chiếu ảnh, 16 mã W, không lỗi.
 
 - **Kiểm tra chéo cuối đợt rà soát lần ba (12/11/2026).** E2.7: câu báo hướng thêm nhóm công việc ở QT05 (Điều hành sửa nhóm này), bỏ “liên hệ Quản trị”.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-DH06-Danh-muc-nhan-su-v1.4.md` (đổi tên bằng `git mv`). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md`. Không đổi số hiệu L, E, R, W, AC; không thêm mã mới.
+
+**Thay đổi**
+
+- **K6.** Công tắc Nhận phân công có hai giá trị Đang dùng / Ngừng dùng, thay “Đang nhận phân công”, “Không nhận phân công”. Chip thành Đang dùng, Ngừng dùng, Tất cả; vòng đời 2.4, trạng thái 2.3, R03 (điều kiện “Nhận phân công Đang dùng”), R05, R07, 5.2, L4.1–L4.3, AC01, AC24, AC26, AC34 sửa theo.
+- **Q1, Q25.** Mục 1.4 thành bảng quyền mặc định theo vai trò (phần × thao tác), thêm cột Quản trị (xem DH06), cấu hình ở QT02. R05, R10, 5.2 nói theo quyền. R09: lịch sử ở QT03 theo quyền QT02.
+- **Q2, Q5, Q6.** Tác động khi tắt nhận phân công ghi ngay trong cùng giao dịch, không chờ 10 giây: chỉ báo “Không nhận phân công” ở DH07, DH08 tính lúc đọc; thông báo in-app tạo cùng giao dịch; Hoàn tác gỡ thông báo vừa tạo trong giao dịch Hoàn tác (L4.2 bước 3–4, R05, 2.4, AC21, AC24). 5.3 đổi “thông báo nội bộ” thành in-app.
+- **Q8.** E3.1, R09, AC18: lưu bị từ chối vì phiên khác chỉ có nút Tải lại, không ghi đè.
+- **U5.** Trường chỉ đọc hiện dạng chữ (2.5, L1.2); công tắc hiện chữ với người không có quyền.
+- **Q7.** Mã `NS-NNN` cho phép thủng số (R07).
+
+**Tự đơn giản hóa giao diện (U6):** chỉ báo cạnh tên người ở DH07, DH08 giữ chữ “Không nhận phân công” (không đổi thành “Ngừng dùng”), vì đặt cạnh tên người thì “Ngừng dùng” khó hiểu, và RSD DH07, DH08 đang dùng chữ này. Chip ghi kèm “(theo Nhận phân công)” ở mô tả để rõ nghĩa.
+
+**Giữ nguyên, đã rà:** “Thử lại” ở E1.1, E1.5, E2.6, E4.2, E4.4, E5.3, AC31 là thử lại khi lỗi mạng hoặc lỗi tải, không phải trạng thái Tạo lỗi (Q5). Hộp thoại W12 (tắt khi đang được giao việc) giữ theo BOI-CANH; W15 (xóa) không hoàn tác được nên vẫn hỏi (U2).
+
+**Hình chưa cập nhật** (ghi chú ngay dưới hình): W01, W13, W14 (chip “Đang nhận phân công”, “Không nhận phân công”); W05 (công tắc ghi “Có”, ô viền nét đứt); W08 (ô viền nét đứt); W11 (nút Xem bản mới). Các hình danh sách và bảng trượt khác (W02–W04, W06, W07, W09, W10, W12, W15, W15a) cũng còn chip cũ hoặc ô viền nét đứt, không ghi chú riêng.
+
+**Câu hỏi cho người dùng**
+
+1. **Hoàn tác sau khi đã tạo thông báo (R05, L4.2 bước 4, AC24).** Trước đây thông báo chỉ gửi khi hết 10 giây Hoàn tác. Q5 bắt ghi tác động trong cùng giao dịch, nên thông báo tạo ngay. Đã viết: Hoàn tác gỡ thông báo vừa tạo (người nhận không còn thấy). Cần xác nhận cách này, hay giữ thông báo và gửi thêm thông báo “đã hoàn tác”.
+2. **Chữ trên DH07, DH08.** RSD DH08 v2.9 còn ghi “Đang nhận phân công” ở điều kiện chọn người (dòng 590, 978, 984, 992); nên sửa thành “Nhận phân công Đang dùng” cho khớp DH06 v1.4 (ngoài phạm vi được giao).
+
+## Bổ sung 12/11/2026 · vai trò HDV (RSD HD01 v1.0, ADR 0007)
+
+**Quyết định của người dùng (12/11/2026):** Cộng tác viên được liên kết tài khoản, nhưng tài khoản đó chỉ có vai trò thuộc phòng HDV; Nội bộ liên kết với tài khoản có mọi vai trò. Thay Q1 (11/11/2026) “chỉ Nội bộ được liên kết tài khoản”.
+
+**Đã sửa (giữ v1.4, dòng “Thay đổi ở v1.4 (bổ sung 12/11/2026 · vai trò HDV)”):** R01; R06 (dòng đổi Loại, thêm dòng Cộng tác viên sang Nội bộ); 1.2 (QT01 ↔ DH06); 2.1, 2.3 (Tài khoản của Cộng tác viên); L1.2 (trường Tài khoản đăng nhập); L2.1 bước 2; E3.2 (chỉ chặn khi tài khoản có vai trò ngoài phòng HDV); E3.9 mới; 5.1; AC17 viết lại; AC35–AC38 mới; ghi chú dưới W01, W05.
+
+**Tự quyết (U6):**
+- R03 không đổi: Cộng tác viên có tài khoản vẫn chỉ được chọn ở phục vụ Tour (DH08.5); không làm người thực hiện checklist hay người phụ trách hồ sơ.
+- Đổi Cộng tác viên sang Nội bộ khi đã liên kết: cho lưu, không cảnh báo (E3.9). Đổi Nội bộ sang Cộng tác viên: chỉ chặn khi tài khoản có vai trò ngoài phòng HDV (E3.2).
+- Ràng buộc vai trò do QT01 kiểm tra khi liên kết và khi đổi vai trò (thay đổi cần làm ở QT01, ghi ở `docs/rsd/HD01/GHI-CHU-LAM-VIEC.md`).
+- Không dựng lại hình W01, W05, W08.
+
+**Kiểm tra.** `check-rsd.py`: 16 ảnh, 16 mã W, không lỗi.
+

@@ -1,4 +1,4 @@
-# Ghi chú làm việc · RSD DH02 v1.3
+# Ghi chú làm việc · RSD DH02 v1.4
 
 Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã chốt và các thiết kế do người viết tự quyết, cần người dùng xác nhận.
 
@@ -11,7 +11,7 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 | Q2 | Ngưỡng hợp đồng sắp hết hạn | 30 ngày, Quản trị cấu hình | R01, R08, R10, AC05–AC07 |
 | Q3 | Nghiệp vụ bổ sung | Nhập NCC từ Excel; bật/tắt hàng loạt; nhắc hợp đồng sắp hết hạn. Không làm xuất Excel | L2.4, L3.1, L4.1, R06–R08 |
 
-## Thiết kế do người viết tự quyết, cần xác nhận
+## Thiết kế do người viết tự quyết, cần xác nhận (đã chấp nhận theo Q3, 12/11/2026; riêng mục 12 sửa theo U2)
 
 1. **Hợp đồng kế tiếp xóa cảnh báo.** Hợp đồng sắp hết hạn mà đã có hợp đồng nối tiếp (bắt đầu không muộn hơn ngày kết thúc + 1) thì là Còn hiệu lực, không vào Cần xử lý, không bị nhắc (R01).
 2. **Cần xử lý gồm cả Hết hạn.** Nguồn chỉ ghi “sắp hết hạn, chưa có hợp đồng”; bản này hiểu “chưa có hợp đồng còn hiệu lực” (theo mô tả phần đầu DH03), nên gồm cả Hết hạn. Chỉ NCC Đang dùng mới vào Cần xử lý.
@@ -24,7 +24,7 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 9. **Không có thao tác xóa NCC**; NCC không còn hợp tác thì Ngừng sử dụng.
 10. **Nơi đang dùng** gồm hồ sơ Tour chưa đóng có hạng mục chưa hủy từ hôm nay trở đi, yêu cầu Tour đang xử lý chưa có Booking, Tour mẫu đang cho phép (R05). Booking đã có hồ sơ được tính qua hồ sơ Tour.
 11. **Hạng mục chưa gửi của NCC ngừng sử dụng** được gắn chỉ báo “NCC ngừng sử dụng”, Điều hành phụ trách nhận thông báo; lần đặt đã gửi không bị đổi.
-12. **Hoàn tác trong 10 giây** cho bật, tắt tại chỗ và hàng loạt. Bật lại không hỏi; ngừng hàng loạt luôn hỏi.
+12. **Hoàn tác trong 10 giây** cho bật, tắt tại chỗ và hàng loạt. Bật lại không hỏi; ngừng hàng loạt luôn hỏi. *(Sửa ở v1.4 theo U2: ngừng hàng loạt chỉ hỏi khi có NCC đang được dùng.)*
 13. **Dòng vừa đổi giữ tại chỗ** (mờ đi) cho tới khi đổi bộ lọc, trang hoặc tải lại, để Hoàn tác và tránh nhảy dòng.
 14. **Nhập Excel chỉ tạo NCC mới**, khóa trùng là tên chuẩn hóa (bỏ dấu, chữ thường, gộp khoảng trắng); không cập nhật NCC đã có; không nhập hợp đồng, dịch vụ, bảng giá, thanh toán. Thiếu email chỉ cảnh báo; trùng email chỉ cảnh báo. Giới hạn `.xlsx`, 5 MB, 1.000 dòng; một giao dịch; lưu tệp 12 tháng.
 15. **NCC có thể có nhiều loại dịch vụ** (cột Excel cách nhau bằng `;`, cột trên bảng hiện tối đa hai loại và “+n”). Cần DH03.1 xác nhận.
@@ -46,13 +46,13 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - `wireframes-src/check-rsd.js --final` (bản Node; máy chưa có Python nên chưa chạy `check-rsd.py`): 36 tham chiếu ảnh, 18 mã W, không cảnh báo. Mọi bước ở mục 3 có mã W; mọi mục con có ngoại lệ.
 - Đã xem trực quan W01, W03, W07, W08, W09, W10, W11, W12, W13a, W14, W15, W16. Chưa mở lại W02, W04, W05, W06, W13, W17 sau lần chụp cuối (cùng khung với các ảnh đã xem).
 - Đã sửa: nút Bỏ chọn mất chữ trên thanh hàng loạt (W10, W11); chữ xuống dòng trong bảng (thêm nowrap); bảng xem trước nhập Excel bị bóp cột (W14 mở rộng 1.000 px); bỏ nhãn Ngừng sử dụng lặp với cột Cho phép trong chế độ chỉ xem (W16).
-- ZIP `rsd/DH02-RSD-v1.0.zip` (RSD và thư mục `wireframes/`, 18 PNG và `index.html`, đường dẫn dùng `/`) đã được giải nén thử và chạy lại `check-rsd`: mọi ảnh mở được.
-- `rsd/BOI-CANH-DU-AN.md` đã thêm thuật ngữ, chủ sở hữu dữ liệu NCC và hai nguyên tắc đã chốt; bản cũ sao lưu ở `BOI-CANH-DU-AN.md.bak-20261111-dh02`.
+- ZIP `docs/rsd/DH02-RSD-v1.0.zip` (RSD và thư mục `wireframes/`, 18 PNG và `index.html`, đường dẫn dùng `/`) đã được giải nén thử và chạy lại `check-rsd`: mọi ảnh mở được.
+- `docs/rsd/BOI-CANH-DU-AN.md` đã thêm thuật ngữ, chủ sở hữu dữ liệu NCC và hai nguyên tắc đã chốt; bản cũ sao lưu ở `BOI-CANH-DU-AN.md.bak-20261111-dh02`.
 - Số liệu đã đối chiếu: Đang dùng 42 + Ngừng 6 = Tất cả 48; Cần xử lý 7 = 3 Sắp hết hạn + 2 Chưa có hợp đồng + 1 Hết hạn + 1 chỉ thiếu thanh toán (Cơm Niêu vừa chưa có hợp đồng vừa thiếu thanh toán); sau ngừng Bhaya 41/7/48, Cần xử lý 6; bật lại Ninh Bình 43/5/48, Cần xử lý 7; hàng loạt 39/9/48, Cần xử lý 4; nhập Excel 24 = 21 + 3, cảnh báo 3, “… 15 dòng Sẽ nhập khác” = 21 − 6; số ngày còn lại tính từ 11/11/2026.
 
 ## Thống nhất 4 RSD DH01–DH04 (11/11/2026)
 
-Sau khi rà chồng chéo giữa bốn RSD, các điểm dưới đã được sửa thẳng trong RSD (không đổi số phiên bản). Bản trước khi sửa và ZIP cũ ở `rsd/_backup-20261111-truoc-thong-nhat-DH01-DH04/`.
+Sau khi rà chồng chéo giữa bốn RSD, các điểm dưới đã được sửa thẳng trong RSD (không đổi số phiên bản). Bản trước khi sửa và ZIP cũ ở `docs/rsd/_backup-20261111-truoc-thong-nhat-DH01-DH04/`.
 
 | # | Điểm | Chốt | Nơi sửa |
 |---|---|---|---|
@@ -106,3 +106,31 @@ Tệp mới `RSD-DH02-Danh-sach-nha-cung-cap-v1.3.md`, đã xóa bản v1.2 (đ�
 - **Kiểm tra.** `node wireframes-src/check-rsd.js RSD-DH02-Danh-sach-nha-cung-cap-v1.3.md --final`: 18 tham chiếu ảnh, 18 mã W, không lỗi.
 
 - **Kiểm tra chéo cuối đợt rà soát lần ba (12/11/2026).** 1.4, E3.6: người nhận nhắc hợp đồng có vai trò Điều hành (RSD DH06 v1.3 R03).
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-DH02-Danh-sach-nha-cung-cap-v1.4.md` (đổi tên bằng `git mv`). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md`. Không đổi số hiệu L, E, R, W, AC; không thêm mã mới.
+
+**Thay đổi**
+
+- **K6.** “Cho phép sử dụng”, “Ngừng sử dụng”, cột “Cho phép” đổi thành công tắc **Đang dùng / Ngừng dùng**, chip Ngừng dùng, cột Đang dùng trong thân RSD; nút trên thanh hàng loạt là Đang dùng, Ngừng dùng; cột tệp mẫu nhập Excel đổi tên thành “Đang dùng” (R07, 5.2, AC37). Nhãn Ngừng dùng cạnh tên đổi từ đỏ sang xám (2.4). Tên L2.3 thành “Dùng lại NCC”.
+- **Q1, Q25.** Mục 1.4 thành bảng quyền mặc định theo vai trò (phần × thao tác), thêm cột Quản trị (xem được DH02), cấu hình ở QT02; người nhận nhắc hợp đồng tách khỏi bảng quyền vì là luật người nhận (RSD DH06 R03). 2.1, 2.2, R04, 5.2, L1.1, E1.2, E1.7 nói theo quyền. R09 (tab đích) nói theo quyền Thêm, sửa hợp đồng và Sửa thông tin nhận thanh toán của DH03, xét theo thứ tự.
+- **Q1 (người phụ trách).** R04 bỏ “cho tới khi người phụ trách yêu cầu đổi dịch vụ”, thay “cho tới khi dịch vụ được đổi”.
+- **Q2, Q5.** Nhắc hợp đồng và thông báo khi ngừng dùng NCC là thông báo in-app; chỉ báo trên hạng mục và thông báo ghi cùng giao dịch với thao tác tắt (1.3, L3.1, R04, 5.3).
+- **C2.** Giờ chạy nhắc hằng ngày cấu hình ở tệp hoặc dữ liệu khởi tạo (R10); ngưỡng sắp hết hạn ghi là tham số chung QT05.
+- **U2.** Ngừng dùng hàng loạt khi không NCC nào đang được dùng: làm ngay, banner có Hoàn tác, không mở hộp thoại (2.6, L2.4 bước 2, R06, bảng số bước). Ngừng dùng NCC đang được dùng vẫn hỏi (BOI-CANH).
+- **U5.** Trạng thái hiện dạng chữ với người không có quyền (1.4, E1.7).
+- **DH06 K6.** Điều kiện người nhận ghi “Nhận phân công Đang dùng” thay “Đang nhận phân công” (1.4, E3.6).
+
+**Tự đơn giản hóa giao diện (U6):** R09 viết lại theo quyền thay cho theo vai trò, giữ nguyên đích mặc định của từng vai trò; không đổi bố cục.
+
+**Giữ nguyên, đã rà:** “Thử lại” ở E1.1, E2.2, E2.10, E4.10, R06 (Thử lại phần lỗi), AC38 là thử lại khi lỗi mạng hoặc lỗi tải của chính thao tác; mỗi dòng NCC vẫn ghi trọn trong một giao dịch nên không có trạng thái Tạo lỗi (Q5). Nhãn đỏ “Đang diễn ra” ở E2.4 là cảnh báo trong hộp thoại, giữ.
+
+**Hình chưa cập nhật** (ghi chú ngay dưới hình): W01, W08, W09, W10, W16 (chip “Ngừng sử dụng”, cột “Cho phép”; W08 nhãn đỏ; W10 nút hàng loạt); W07, W11 (tiêu đề, nút “Ngừng sử dụng”); W13 (cột tệp mẫu “Cho phép sử dụng”). Các hình danh sách khác (W02–W06, W12, W14, W15, W17) cũng còn chip và cột cũ, không ghi chú riêng. Chú thích ảnh W07, W08, W11 (“ngừng dùng”) và W09 (“Dùng lại NCC”) trong RSD đã đổi chữ; `wireframes-src/captions.js` chưa sửa, nên `sync-md.js` sẽ đưa lại chữ cũ khi chạy.
+
+**Câu hỏi cho người dùng:** không có.
+
+## Sửa sau rà chéo 12/11/2026
+
+- **T8.** Giờ chạy nhắc hằng ngày là tham số chung ở QT05 (RSD QT05 R17), một giờ cho mọi loại nhắc định kỳ của RSD CH02 R09; không còn ở tệp cấu hình. Sửa R08 (câu “chạy lúc 08:00”), R10; dòng “Thay đổi ở v1.4 (bổ sung 12/11/2026)” ở đầu RSD. Mốc nhắc, người nhận, gộp trên 5 NCC không đổi.
+- **Kiểm tra.** `check-rsd.py`: 18 ảnh, 18 mã W, không lỗi.

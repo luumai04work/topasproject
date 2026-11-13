@@ -1,6 +1,26 @@
-# Ghi chú làm việc · RSD KD01, KD02 v1.2
+# Ghi chú làm việc · RSD KD01, KD02 v1.3
 
-Tài liệu này không thuộc bản RSD. Nó ghi các quyết định đã chốt, các thiết kế do người viết tự quyết (cần người dùng xác nhận) và các thay đổi cần làm ở màn khác.
+Tài liệu này không thuộc bản RSD. Nó ghi các quyết định đã chốt, các thiết kế do người viết tự quyết và các thay đổi cần làm ở màn khác. Theo Q3 (12/11/2026), các mục “tự quyết, cần xác nhận” bên dưới coi là đã chốt (chấp nhận mặc định, Q3), trừ chỗ quyết định phase coding đã thay. Mã Q0–Q3 ở bảng cũ là mã câu hỏi của RSD này, không phải mã quyết định phase coding.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-KD01-KD02-Tour-mau-v1.3.md` (`git mv` từ v1.2). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md`, RSD DH03 v1.5 R15 (phụ thu, đã sửa theo Q14, Q15).
+
+**Thay đổi chính**
+
+- **K6.** Công tắc “Cho phép sử dụng / Không cho phép” thành **Đang dùng / Ngừng dùng** ở mọi chỗ (chip, cột, công tắc, R02, R10, 2.4, L6.1–L6.3, AC). “Ngừng sử dụng” của NCC, dịch vụ thành “ngừng dùng”. Tiêu đề 3.6, L6.3 và tên ba hình W05, W06, W07 trong RSD đổi chữ cho khớp; mã không đổi.
+- **Q1, Q25, U5.** 1.4 viết lại thành quyền mặc định theo vai trò (thao tác × vai trò), thêm cột Quản trị hệ thống (xem). Bỏ dòng “Phạm vi bản ghi”. R01 ghi rõ là giá trị mặc định ở QT02. Trường chỉ đọc hiện dạng chữ, không còn viền nét đứt (2.6, L1.2).
+- **Q8.** E3.1, E4.3: nút “Xem bản mới” thành Tải lại, không có nút ghi đè.
+- **Q11, Q15.** Giá vốn tham khảo dùng bộ tính giá chung và có tính phụ thu (1.3, R07). R07 bước 4 trước ghi “phụ thu Cộng dồn không cộng vào”; nay Thay thế dùng thay giá mùa (lấy mức cao nhất), rồi cộng mọi Cộng dồn, theo RSD DH03 R15. Thêm AC38.
+- **Q9.** Bỏ làm tròn 1.000 ₫ khi chia theo khách (là bội số, chỉ áp cho giá bán mỗi khách); làm tròn half-up theo đơn vị nhỏ nhất của loại tiền (2.6, R07).
+- **Q7.** R03: mã `TM-NNN` không dùng lại, cho phép thủng số.
+- Các nút “Thử lại” còn lại (E1.1, E2.4, E4.9, E4.11, E5.2, E6.2, AC37) là gửi lại khi lỗi mạng, không phải trạng thái “Tạo lỗi”; giữ nguyên. 🔒 ở 2.3, 2.6 là biểu tượng tab khóa ở chế độ tạo, không phải dòng “Chỉ xem · do … phụ trách”; giữ nguyên.
+
+**Tự đơn giản hóa giao diện (U6):** không có.
+
+**Hình chưa cập nhật:** nhiều hình còn chữ “Cho phép sử dụng”, “Không cho phép”, “ngừng sử dụng” (ghi một lần ở đầu RSD); W13 (nút Xem bản mới), W24 (ô viền nét đứt). Chú thích trong `wireframes-src/captions.js` còn tên cũ của W05, W06, W07; không sửa theo yêu cầu, nên chạy `sync-md.js` sẽ đưa tên cũ trở lại.
+
+**Số liệu cần tính lại khi viết test bộ tính giá (đã làm 13/11/2026, xem mục Tính lại ví dụ giá):** giá mỗi khách trước đây làm tròn 1.000 ₫ (ví dụ Ngày 4 của TM-008: 14.500.000 ÷ 12 ≈ 1.208.000 ₫, nay 1.208.333 ₫), nên tổng mỗi khách ở AC19, AC29 và W14, W19 (9.865.000 ₫, 8.315.000 ₫) có thể lệch vài trăm đồng. Chưa đối chiếu dữ liệu minh họa của DH03, DH04 xem ngày tham chiếu ở AC28–AC30 có phụ thu lễ Tết không; nếu có thì đơn giá ở các AC đó đổi theo R07 bước 4.
 
 Từ v1.1, file RSD trong thư mục là bản nguồn và được sửa trực tiếp. Bộ sinh cũ (`rsd-src.md`, `expand-md.js`) đã xóa vì dựng ra khung 8 mục. Tên ảnh đồng bộ bằng `node wireframes-src/sync-md.js <RSD>.md`.
 
@@ -13,7 +33,7 @@ Từ v1.1, file RSD trong thư mục là bản nguồn và được sửa trực
 | Q2 | Điều kiện bật Cho phép sử dụng | Mới tạo mặc định Không cho phép. Chỉ bật khi có ít nhất 1 ngày và mọi ngày có nội dung lịch trình. Dịch vụ, NCC ngừng sử dụng chỉ cảnh báo, không chặn | 2.4, R02; L6.1, L6.2, E4.1; W05, W06, W20; AC22, AC23, AC32, AC33 |
 | Q3 | Nghiệp vụ bổ sung | Chỉ thêm Giá vốn tham khảo ở KD02.2. Không làm: nhân bản Tour mẫu, xóa Tour mẫu, số lần dùng | L5.1, R07; W14; AC28–AC31. Không có nút Xóa, Nhân bản Tour mẫu |
 
-## Thiết kế do người viết tự quyết, cần xác nhận
+## Thiết kế do người viết tự quyết, cần xác nhận (chấp nhận mặc định, Q3; số 8 đã sửa ở v1.3: bỏ làm tròn 1.000 ₫, có tính phụ thu)
 
 1. **Mã Tour mẫu `TM-NNN`**, chặn trùng tên sau khi chuẩn hóa (R03). Tên là thứ Kinh doanh nhìn khi chọn mẫu ở KD06.2 nên không để trùng.
 2. **Trường thông tin chung:** Tên, Loại Tour (QT05), Điểm đến (chọn nhiều, danh mục địa điểm chung với NCC), Mô tả (hiện khi chọn mẫu ở KD06.2), Ghi chú nội bộ. Số ngày chỉ nhập khi tạo; sau đó là số ngày của lịch trình.
@@ -46,11 +66,12 @@ Từ v1.1, file RSD trong thư mục là bản nguồn và được sửa trực
 - Chưa mở xem riêng W02, W03, W04, W07, W08, W11, W13, W23. Các ảnh này dựng từ cùng thành phần với ảnh đã xem.
 - Số liệu đã đối chiếu:
   - chip: W01 9 + 3 = 12; W02 3 + 1 = 4; W06 10 + 2 = 12; W07 8 + 4 = 12;
-  - TM-008 (08/12/2026, 12 khách): số dịch vụ theo ngày 2 + 2 + 3 + 3 + 5 + 3 + 2 + 1 = 21; Ngày 5: 2.600.000 + 1.300.000 + 4.200.000 + 16.800.000 = 24.900.000 ₫ ÷ 12 = 2.075.000 ₫; Ngày 6: 1.200.000 + 4.200.000 + 14.400.000 = 19.800.000 ₫ ÷ 12 = 1.650.000 ₫; Ngày 7 bị xóa: 14.400.000 + 4.200.000 = 18.600.000 ₫ ÷ 12 = 1.550.000 ₫, nên tổng 9.865.000 → 8.315.000 ₫ mỗi khách (W19); Ngày 4: 14.500.000 ÷ 12 ≈ 1.208.000 ₫;
+  - TM-008 (08/12/2026, 12 khách): số dịch vụ theo ngày 2 + 2 + 3 + 3 + 5 + 3 + 2 + 1 = 21; Ngày 5: 2.600.000 + 1.300.000 + 4.200.000 + 16.800.000 = 24.900.000 ₫ ÷ 12 = 2.075.000 ₫; Ngày 6: 1.200.000 + 4.200.000 + 14.400.000 = 19.800.000 ₫ ÷ 12 = 1.650.000 ₫; Ngày 7 bị xóa: 14.400.000 + 4.200.000 = 18.600.000 ₫ ÷ 12 = 1.550.000 ₫, nên tổng 9.865.000 → 8.315.000 ₫ mỗi khách (W19); Ngày 4: 14.500.000 ÷ 12 ≈ 1.208.000 ₫ (số tổng ở dòng này là số cũ, đã thay ở mục Tính lại ví dụ giá 13/11/2026);
+
   - TM-012 (11/12/2026, 10 khách): Ngày 1 = 3.500.000 + 14.000.000 = 17.500.000 ₫ ÷ 10 = 1.750.000 ₫; Ngày 2 (12/12) cùng giá; cả Tour 3.500.000 ₫ mỗi khách; 4 dịch vụ, Ngày 3, 4 trống (W05, W17);
   - 12/12/2026 là thứ Bảy; 08/12/2026 thứ Ba; 11/12/2026 thứ Sáu; 13/12 Chủ nhật; 15/12 thứ Ba.
-- ZIP `rsd/KD01-KD02-RSD-v1.0.zip` (RSD, `wireframes/` gồm 24 PNG và `index.html`) đóng bằng `wireframes-src/zip.ps1` (đường dẫn dùng `/`). Đã giải nén thử và chạy lại `check-rsd --final`: mọi ảnh mở được.
-- `BOI-CANH-DU-AN.md` đã bổ sung thuật ngữ Tour mẫu, Giá vốn tham khảo, nguồn dữ liệu và 3 nguyên tắc đã chốt; bản cũ ở `rsd/_backup-20261111-truoc-KD01-KD02/`.
+- ZIP `docs/rsd/KD01-KD02-RSD-v1.0.zip` (RSD, `wireframes/` gồm 24 PNG và `index.html`) đóng bằng `wireframes-src/zip.ps1` (đường dẫn dùng `/`). Đã giải nén thử và chạy lại `check-rsd --final`: mọi ảnh mở được.
+- `BOI-CANH-DU-AN.md` đã bổ sung thuật ngữ Tour mẫu, Giá vốn tham khảo, nguồn dữ liệu và 3 nguyên tắc đã chốt; bản cũ ở `docs/rsd/_backup-20261111-truoc-KD01-KD02/`.
 - Giá và NCC lấy theo dữ liệu minh họa của RSD DH04: Deluxe Garden View 2.800.000 ₫ (Cao điểm, cuối tuần) và 2.400.000 ₫ (ngày thường); HDV tiếng Đức 1.300.000 ₫ (1–15 khách); Set menu Mỹ Sơn 350.000 ₫ (10–20 khách); Golden Lotus hết hợp đồng 30/09/2026; Đón tiễn Hải Vân 950.000 ₫ (HVT-2027, 10–14 khách); Xe 45 chỗ Hải Vân ngừng sử dụng; Ánh Dương Hotel NCC ngừng sử dụng. Hương Giang Hotel, Sơn Trà Limousine và xe Hội An – Mỹ Sơn của Hue Travel Car là dữ liệu minh họa mới.
 
 ## Cập nhật v1.2 (12/11/2026) · rà soát mâu thuẫn lần ba
@@ -62,3 +83,18 @@ Tệp mới `RSD-KD01-KD02-Tour-mau-v1.2.md`, đã xóa bản v1.1 (đổi tên 
 - **R07.** Đã kiểm tra với quyết định người dùng 12/11/2026 về Thứ tự dòng giá: Tour mẫu không chọn hạng phòng, nên dẫn RSD DH04 R04 vẫn đúng (cùng hạng phòng lấy Thứ tự nhỏ nhất; khác hạng phòng lấy mức thấp nhất như DH04 khi chưa lọc). Ghi rõ vào bước 3 của R07.
 - **Nguồn nghiệp vụ.** Dẫn DH02 v1.3, DH03 v1.4, DH04 v1.3 (thay v1.0), QT05 v1.2.
 - **Kiểm tra.** `node wireframes-src/check-rsd.js RSD-KD01-KD02-Tour-mau-v1.2.md --final`: 24 tham chiếu ảnh, 24 mã W, không lỗi.
+
+## Dịch vụ đi kèm 12/11/2026
+
+Sửa tại chỗ `RSD-KD01-KD02-Tour-mau-v1.3.md`, dòng “Thay đổi ở v1.3 (bổ sung 12/11/2026 · dịch vụ đi kèm)”. Theo chỉ đạo giữ đơn giản: Tour mẫu không có dịch vụ đi kèm; bảng trượt chọn dịch vụ không liệt kê đi kèm (R05); giá vốn tham khảo vẫn không tính giường phụ, không có khoản đi kèm (R07, giữ nguyên câu “Không tính … giường phụ”); sao chép sang KD06.2 không có đi kèm, Kinh doanh thêm ở KD06.2 (R10). Thêm AC39. Không dựng lại hình.
+
+**Kiểm tra.** `check-rsd.py`: 24 ảnh, 24 mã W, không lỗi.
+
+## Tính lại ví dụ giá 13/11/2026
+
+Sửa tại chỗ `RSD-KD01-KD02-Tour-mau-v1.3.md`, dòng “Thay đổi ở v1.3 (bổ sung 13/11/2026 · tính lại ví dụ giá)”. Dữ liệu TM-008 dựng đủ và tính bằng script ở `docs/rsd/BO-TINH-GIA/VI-DU-TINH-GIA-v1.0.md` (ví dụ B).
+
+- **Dữ liệu.** Giữ các số đã có trong RSD và wireframe: Ngày 4 (14.500.000 ₫), Ngày 5 (24.900.000 ₫; Phòng Deluxe Garden View 2.800.000 ₫ Cao điểm cuối tuần × 6; Set menu Huế không có hợp đồng cho 12/12), Ngày 6 (19.800.000 ₫), Ngày 7 (18.600.000 ₫), Ngày 8 (Xe 45 chỗ ngừng dùng), HDV tiếng Đức 1–15 khách, Set menu Mỹ Sơn 10–20 khách, 305 USD mỗi khách (du thuyền Bhaya 610 USD/cabin × 6). Ngày 1–3 dựng mới: Hanoi Boutique Hotel 2.200.000 ₫ + phụ thu Cộng dồn 250.000 ₫ (08–10/12/2026), xe Hoàng Long, Set menu Hà Nội. Tạm tính Ngày 1–3 chia hết cho 12 để cách cộng mỗi khách từng ngày và cách chia tổng một lần cho cùng số.
+- **Kết quả.** 12 khách: 9.903.333 ₫ + 305 USD mỗi khách (AC29); xóa Ngày 7: 8.353.333 ₫ + 305 USD (AC19, L4.2 bước 3); 16 khách: 9.407.500 ₫ + 305 USD, chưa gồm 4 dịch vụ (AC30). AC28 giữ số.
+- **Mâu thuẫn đã chốt (13/11/2026).** Người dùng chốt: giá vốn tham khảo ở KD02 áp phòng đơn tự xếp như KD06 R04 khi số khách lẻ. Đã sửa R05, R07 (bước 5, 6; dòng Không tính), thêm AC40 (11 khách: 11.079.091 ₫ + 360,45 USD mỗi khách, chưa gồm 2 dịch vụ; ví dụ B4). Số 12 và 16 khách không đổi.
+- **Hình chưa cập nhật:** W14, W18, W21–W24 (9.865.000 ₫), W19 (8.315.000 ₫), W20 (Ngày 4 1.208.000 ₫/khách); không dựng lại.

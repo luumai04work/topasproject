@@ -1,4 +1,4 @@
-# Ghi chú làm việc · RSD DH04 v1.3
+# Ghi chú làm việc · RSD DH04 v1.4
 
 Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã chốt và các thiết kế do người viết tự quyết, cần người dùng xác nhận.
 
@@ -11,12 +11,12 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 | Q2 | Hiển thị giá khác loại tiền | Giữ loại tiền gốc, không quy đổi | R07, AC15 |
 | Q3 | Xem thêm dịch vụ bị ẩn | Mọi vai trò bật được công tắc | L1.3, R01, AC06, W10 |
 
-## Thiết kế do người viết tự quyết, cần xác nhận
+## Thiết kế do người viết tự quyết, cần xác nhận (đã chấp nhận theo Q3, 12/11/2026; riêng mục 4 thay bằng Q11)
 
 1. **Hợp đồng “còn hiệu lực” cho bộ lọc mặc định** = có ngày kết thúc từ hôm nay trở đi, gồm cả hợp đồng kỳ sau chưa bắt đầu (R01). Xét theo hôm nay, không theo ngày sử dụng, để dịch vụ thiếu hợp đồng cho ngày đi vẫn hiện kèm chỉ báo.
 2. **Dịch vụ tính theo đêm** khi căn cứ tính có đơn vị đêm; còn lại tính theo ngày, tính cả hai đầu khoảng (R03). Chỉ dịch vụ tính theo đêm có tổng tiền.
 3. **Dòng giá chính** trong ô Giá áp dụng là dòng có căn cứ trùng đơn vị tính, thứ tự nhỏ nhất; thêm giường, trẻ em, phụ thu không vào ô (R04). Nhiều hạng phòng khi chưa lọc: hiện mức thấp nhất kèm “+ n hạng khác”.
-4. **Phụ thu cộng thêm** hiện thành dòng riêng, không cộng vào giá và tổng (R06). Phụ thu thay thế thì thay giá của ngày đó.
+4. **Phụ thu cộng thêm** hiện thành dòng riêng, không cộng vào giá và tổng (R06). Phụ thu thay thế thì thay giá của ngày đó. *(Thay ở v1.4: Q11 cho DH04 tính phụ thu; Cộng dồn nay cộng vào giá và tổng, dòng tím chỉ để giải thích.)*
 5. **Không hiện tổng** khi có phần thiếu; vẫn hiện phần có giá (R08).
 6. **Khoảng tối đa 31 ngày**; số khách 1–999 (E2.1).
 7. **Bảng trượt mở mặc định ở tab Bảng giá và phụ thu** (không phải tab Thông tin như thứ tự DH05), vì đây là màn tra giá.
@@ -46,13 +46,13 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - Đã xem trực quan 13/15 ảnh (W02–W13, W15). W01 và W14 chưa mở riêng; W01 cùng bố cục và dữ liệu với W12 (trừ thanh nhập), W14 là khung lỗi đơn giản giống DH07.
 - Đã sửa sau khi xem: khung giá từng đêm ở W03 che ô giá và tràn mép phải; danh sách hợp đồng ở W07 đè lên ô chọn.
 - Số liệu đã đối chiếu: chip W01 128 = 46 + 22 + 25 + 18 + 7 + 10; W10 141 = 51 + 24 + 28 + 19 + 8 + 11 (13 dịch vụ ẩn); W11 4 = 3 + 1; W04 3. Deluxe Garden View 2.800.000 × 2 + 2.400.000 + 3.500.000 = 11.500.000 ₫ (W02, W03, W05, W15); Superior 2.300.000 × 2 + 2.000.000 + 3.000.000 = 9.600.000 ₫. 18/12/2026 là thứ Sáu; 18/12 – 22/12 là 4 đêm, 5 ngày. Vị trí 6 / 128 khớp thứ tự dòng ở W02, W09.
-- ZIP `rsd/DH04-RSD-v1.0.zip` (RSD, `wireframes/` gồm 15 PNG và `index.html`) đã được giải nén thử và chạy lại `check-rsd --final`: mọi ảnh mở được.
+- ZIP `docs/rsd/DH04-RSD-v1.0.zip` (RSD, `wireframes/` gồm 15 PNG và `index.html`) đã được giải nén thử và chạy lại `check-rsd --final`: mọi ảnh mở được.
 - Đã đối chiếu với RSD DH02: định nghĩa Hợp đồng hiện hành (R01), ngưỡng 30 ngày, trường Địa điểm, nhãn Ngừng sử dụng.
 - v1.1 (12/11/2026, chuyển sang khung 6 mục, không đổi nghiệp vụ): `indent-images.js`, `sync-md.js`, `check-rsd.js --final` bản mới của skill; 15 ảnh, 15 mã W, mỗi ảnh nhúng một lần, không cảnh báo. Tập ảnh và tập mã L, E, R, AC giống hệt v1.0. Mục 2.1–2.5 giữ số cũ, nên các dẫn chiếu “mục 2.5” từ RSD DH03 vẫn đúng.
 
 ## Thống nhất 4 RSD DH01–DH04 (11/11/2026)
 
-Sau khi rà chồng chéo giữa bốn RSD, các điểm dưới đã được sửa thẳng trong RSD (không đổi số phiên bản). Bản trước khi sửa và ZIP cũ ở `rsd/_backup-20261111-truoc-thong-nhat-DH01-DH04/`.
+Sau khi rà chồng chéo giữa bốn RSD, các điểm dưới đã được sửa thẳng trong RSD (không đổi số phiên bản). Bản trước khi sửa và ZIP cũ ở `docs/rsd/_backup-20261111-truoc-thong-nhat-DH01-DH04/`.
 
 | # | Điểm | Chốt | Nơi sửa |
 |---|---|---|---|
@@ -97,3 +97,41 @@ Tệp mới `RSD-DH04-Tra-cuu-dich-vu-va-bang-gia-v1.3.md`, đã xóa bản v1.2
 - **R11.** Chủ sở hữu Loại dịch vụ, Địa điểm, Hạng phòng là Điều hành (RSD QT05 mục 1.5).
 - **Nguồn nghiệp vụ.** Dẫn DH02 v1.3, DH03 v1.4, QT05 v1.2.
 - **Kiểm tra.** `node wireframes-src/check-rsd.js RSD-DH04-Tra-cuu-dich-vu-va-bang-gia-v1.3.md --final`: 15 tham chiếu ảnh, 15 mã W, không lỗi.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-DH04-Tra-cuu-dich-vu-va-bang-gia-v1.4.md` (đổi tên bằng `git mv`). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md`. Không đổi số hiệu L, E, R, W, AC; không thêm mã mới.
+
+**Thay đổi**
+
+- **Q11, Q15.** DH04 dùng bộ tính giá dùng chung với KD02, KD06, có tính phụ thu (1.3, R06). Phụ thu Cộng dồn nay cộng vào giá của các ngày áp dụng (khoảng giá, tổng, khung ⓘ); dòng tím giữ lại để giải thích. Nhiều phụ thu cùng áp: Thay thế lấy mức cao nhất, rồi cộng mọi Cộng dồn. L2.1 bước 2 và AC10 sửa theo (Bay Pearl: 210 USD /khách cho 18/12 – 19/12, 240 USD /khách cho 20/12 – 22/12, hiện “210 – 240 USD /khách”).
+- **Q12, Q14.** R04, R06: đầu vào DH04 vẫn chỉ là khoảng ngày và số khách người lớn (quyết định 11/11/2026), nên ô Giá áp dụng không tính trẻ em, phòng đơn; bảng trượt hiện giá trẻ em theo nhóm tuổi của hợp đồng của chính dòng giá và phụ thu phòng đơn đã khai; ghi công thức phòng đơn.
+- **Q1, Q25.** Mục 1.4 thành bảng quyền mặc định theo vai trò (phần × thao tác), thêm cột Quản trị (xem được DH04), cấu hình ở QT02. R10 sửa theo. L3.4: điều khoản thanh toán ở DH03.2 chỉ hiện với người có quyền Xem thông tin thanh toán NCC (RSD DH03 v1.5 R04). E5.1 nói theo quyền thay vì “Kinh doanh (xem)”.
+- **U5.** Trường chỉ đọc hiện dạng chữ (2.5, 2.6, L3.1 bước 2).
+- **K6.** “ngừng sử dụng”, “cho phép sử dụng” đổi thành Ngừng dùng, Đang dùng trong thân RSD; tên công tắc lọc thành “Gồm cả ngừng dùng, hết hạn”.
+- **Q6.** R01 ghi chỉ báo hợp đồng tính lúc đọc.
+
+**Tự đơn giản hóa giao diện (U6):** không có.
+
+**Giữ nguyên, đã rà:** “Thử lại” ở E1.1, E2.9, E3.5, AC23 là thử lại khi lỗi tải hoặc lỗi tính giá của chính màn, không phải tác động chéo module (Q5). “Kênh nội bộ” ở E5.2 là liên lạc ngoài hệ thống, không phải email nội bộ. E3.1 (banner dữ liệu cũ, nút Tải lại) đã khớp Q8. Màn không có hộp thoại nên không chạm U2.
+
+**Hình chưa cập nhật** (ghi chú ngay dưới hình): W01, W10 (công tắc “Gồm cả ngừng sử dụng, hết hạn”; W10 còn chỉ báo “ngừng sử dụng”); W02 (Bay Pearl chưa tính phụ thu); W06 (viền nét đứt, ô “Cho phép sử dụng”); W08 (công tắc “Cho phép sử dụng” ở phần đầu DH03). Thanh lọc ở các hình danh sách khác (W02–W04, W09, W11–W14, nền của W05, W07, W15) cũng còn chữ “ngừng sử dụng”, không ghi chú riêng. Chú thích ảnh W10 trong RSD đã đổi sang “ngừng dùng” nhưng `wireframes-src/captions.js` chưa sửa.
+
+**Câu hỏi cho người dùng**
+
+1. **Phụ thu khác căn cứ với giá (R06, AC10).** Q11 cho DH04 tính phụ thu, nhưng DH04 hiện giá đơn vị (mỗi phòng mỗi đêm, mỗi khách) và không có số phòng. Đã viết: phụ thu Cộng dồn cộng vào giá của ngày đó. Khi phụ thu theo khách mà giá theo phòng (hoặc ngược lại) thì không cộng thẳng được vào giá đơn vị nếu không biết số phòng. Cần chốt: DH04 cộng phụ thu chỉ khi cùng căn cứ (khác căn cứ thì chỉ hiện dòng tím), hay thêm ô số phòng.
+2. **Đầu vào trẻ em, phòng đơn ở DH04 (R04).** Quyết định 11/11/2026 chỉ cho nhập số khách người lớn; Q11, Q12, Q14 nói bộ tính giá dùng chung cho DH04. Đã giữ đầu vào cũ, chỉ hiện giá trẻ em và phụ thu phòng đơn trong bảng trượt. Nếu muốn DH04 tính cả trẻ em (nhập tuổi từng trẻ) và phòng đơn thì là thay đổi luồng, cần thêm ô nhập.
+3. **Số trong AC10.** 210 → 240 USD /khách là suy từ R05 (giá theo ngày khác nhau thì hiện khoảng thấp – cao). Cần xác nhận cách hiển thị này với dịch vụ “khách/chuyến”.
+
+
+## Dịch vụ đi kèm 12/11/2026
+
+Sửa tại chỗ `RSD-DH04-Tra-cuu-dich-vu-va-bang-gia-v1.4.md`, dòng “Thay đổi ở v1.4 (bổ sung 12/11/2026 · dịch vụ đi kèm)”. Thêm E1.8, E3.8 (E3.7 không dùng lại), R12, AC26–AC29.
+
+**Lựa chọn hiển thị (tự quyết):** dịch vụ đi kèm **không đứng riêng** trong danh sách (không dòng, không tính chip, số dòng, sắp xếp); dòng dịch vụ chính ghi “+ n dịch vụ đi kèm” (một đi kèm thì ghi tên); tìm theo tên đi kèm thì hiện dòng dịch vụ chính. Không chọn cách hiện dòng riêng có nhãn “Đi kèm <dịch vụ chính>” vì đi kèm không chọn riêng ở KD06, DH08 và người dùng tra giá theo dịch vụ chính.
+
+**Bảng trượt:** khối Dịch vụ đi kèm cuối tab Bảng giá, giá theo mùa của hợp đồng đang chọn; khi đã nhập ngày có Giá áp dụng của đi kèm (cùng hợp đồng áp dụng của dịch vụ chính, theo đêm nếu đơn vị theo đêm). Ô Giá áp dụng trên danh sách không cộng giá đi kèm vì số lượng đi kèm do KD06 chọn. Đường dẫn mang ID đi kèm mở bảng trượt của dịch vụ chính (E3.8).
+
+**Hình chưa cập nhật:** W05 (khối Dịch vụ đi kèm).
+
+**Kiểm tra.** `check-rsd.py`: 15 ảnh, 15 mã W, không lỗi.

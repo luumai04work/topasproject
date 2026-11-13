@@ -1,10 +1,33 @@
-# Ghi chú làm việc · RSD KD06 v1.5
+# Ghi chú làm việc · RSD KD06 v1.6
 
-Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã chốt và các thiết kế do người viết tự quyết, cần người dùng xác nhận.
+Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã chốt và các thiết kế do người viết tự quyết. Theo Q3 (12/11/2026), mọi mục “cần xác nhận”, “suy ra, chờ xác nhận” ở các phần dưới coi là đã chốt (chấp nhận mặc định, Q3), trừ chỗ đã bị quyết định phase coding thay.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-KD06-Ho-so-yeu-cau-Tour-v1.6.md` (`git mv` từ v1.5). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md`, `docs/adr/`.
+
+**Thay đổi chính**
+
+- **Q1 phân quyền.** 1.4 viết lại thành bảng quyền mặc định theo vai trò (thao tác × vai trò, cột Điều kiện trạng thái), cấu hình ở QT02. Bỏ chế độ chỉ đọc cho Kinh doanh không phụ trách và dòng “Chỉ xem · do … phụ trách”; chỉ đọc chỉ còn cho người không có quyền (mặc định Quản trị) và theo trạng thái. Điều kiện “người phụ trách” ở L2.2, L3.1, L3.4, L3.9, L4.1, L5.1, L5.2, L6.1, L6.2, L6.5, L7.1–L7.3, E5.8, E5.9, R01, R17–R19, R21–R23, R27 đổi thành “có quyền …”. E2.5 bỏ nhánh “vừa được chuyển cho người khác”; E6.10 bỏ nhánh chuyển người phụ trách Booking. AC16, AC60, AC61 viết lại; thêm AC88 (Quản trị chỉ đọc).
+- **Mở lại (R22, L7.2).** Theo BOI-CANH (“có thể chọn người phụ trách mới”): mọi người có quyền Mở lại thấy ô Người phụ trách, điền sẵn người hiện tại nếu còn hoạt động. Trước đây chỉ Quản trị có ô này.
+- **C3.** Bỏ lối vào từ ghi nhận chăm sóc “Có nhu cầu Tour mới” (1.2, L1.3) và giá trị điền sẵn Mong muốn từ phản hồi của khách (5.2). Giữ SYS10.09, SYS10.10 ở truy vết vì vẫn là Tạo yêu cầu Tour từ KD04.
+- **Q2.** “Thông báo nội bộ” → thông báo in-app (1.2, R23); thông báo ghi cùng giao dịch (Q5).
+- **Q3.** Bỏ nhãn “suy ra, chờ xác nhận” ở 2.5, L3.1, R10, R18, R25, R27, AC27. Ngôn ngữ của dịch vụ HDV: chấp nhận mặc định là không thêm trường vào DH03, nên cảnh báo Khác ngôn ngữ phục vụ không hiện.
+- **Q7, Q8, Q6.** R03 cho phép thủng số, YYMM theo giờ Asia/Ho_Chi_Minh. E2.1, E3.8, R24, AC15: chỉ Tải lại, bỏ “Lưu bản của tôi đè lên”. Hết hạn của link tính lúc đọc (2.5, R18, 5.1).
+- **Tính giá (Q9–Q15).** 1.3, R13: bộ tính giá dùng chung KD02, DH04, KD06, cả ba tính phụ thu. R14: tỷ giá theo ngày bấm Tính giá, chụp vào phiên bản; mọi số tiền làm tròn half-up theo đơn vị nhỏ nhất, bội số chỉ cho giá bán mỗi khách. R13: trẻ em theo nhóm tuổi của hợp đồng từng dòng, trẻ nhỏ nhất miễn trước, giá % trên giá người lớn cùng dòng; phụ thu Thay thế lấy cao nhất rồi cộng Cộng dồn; phòng đơn = giá phòng + phụ thu đã khai, phần vượt nửa phòng đôi chỉ hiển thị. R04: người lớn lẻ tự xếp phòng đơn. R15: phòng 3 người, giường phụ dùng Nhập tay. Thêm AC89–AC91.
+- **Proposal (Q21, Q22).** Bỏ “mẫu proposal riêng của công ty, hệ thống dựng sẵn; hình chỉ minh họa”: proposal dùng chính W33, W36, W37; PDF dựng từ trang HTML qua hàng đợi (L5.1, R18, R25, 5.1, 5.3, AC72). Mục mặc định bao gồm, không bao gồm ở tệp cấu hình hoặc dữ liệu khởi tạo (C2).
+- **A1, Q5.** AI qua gateway cấu hình ở tệp, không còn “Quản trị cấu hình”; lời gọi đi qua hàng đợi (L3.5, R09, R25, 5.3). Các nút “Thử lại” còn lại (E1.5, E2.2, E3.1, E4.10, E5.4, E6.3, AC30, AC62) là gửi lại một yêu cầu bị lỗi mạng, máy chủ hoặc AI, không phải trạng thái “Tạo lỗi” của tác động chéo; giữ nguyên.
+- **U2, K6.** L3.6 Tạo lại hành trình không còn hộp thoại xác nhận (hành trình chỉ thay khi lưu), thay bằng thông báo kèm Hoàn tác; AC31 sửa theo. Thu hồi link vẫn hỏi xác nhận vì không hoàn tác được và tác động ra ngoài. “Cho phép sử dụng”, “ngừng sử dụng” → Đang dùng, Ngừng dùng.
+
+**Tự đơn giản hóa giao diện (U6):** không có thêm ngoài việc bỏ hộp thoại W22 theo U2.
+
+**Hình chưa cập nhật** (đã ghi dòng “Hình chưa cập nhật” dưới hình): mọi hình còn mục Chăm sóc khách hàng ở thanh bên và ví dụ Müller 2 phòng đơn (ghi một lần ở đầu RSD); W10 (nút ghi đè), W11 (dòng Chỉ xem, người xem là Kinh doanh), W14, W24 (chữ cho phép sử dụng, ngừng sử dụng), W15 (nhãn Khác ngôn ngữ phục vụ), W22 (hộp thoại xác nhận), W28 (số liệu trước Q13', Q14), W32 (ô Mẫu proposal), W45 (chưa có ô Người phụ trách), W46 (câu “Người nhận sẽ được sửa…”). Chú thích W14, W32, W33 trong `wireframes-src/captions.js` còn chữ cũ (cho phép sử dụng, mẫu proposal của công ty, QT04.1); không sửa theo yêu cầu.
+
+**Còn mở, đã báo người dùng:** số liệu ví dụ v3 của Müller (R14, AC36, AC65, AC69, AC73, W28) tính trước Q13', Q14, cần tính lại khi viết test bộ tính giá; hướng làm tròn theo bội số (giữ “làm tròn lên”); người phụ trách yêu cầu khi Kinh doanh khác người phụ trách tạo Booking; cách dùng Nhập tay cho phòng 3 người, giường phụ khi khoản đã có giá; trẻ “thêm giường” có tính là giường phụ không; thời điểm dựng PDF.
 
 ## Cập nhật v1.2 (12/11/2026) · Rà soát mâu thuẫn giữa các RSD
 
-Nguồn: 6 quyết định người dùng chốt sau rà soát 16 RSD, đã ghi ở `rsd/BOI-CANH-DU-AN.md`. Tệp mới `RSD-KD06-Ho-so-yeu-cau-Tour-v1.2.md`; tệp v1.1 đã xóa.
+Nguồn: 6 quyết định người dùng chốt sau rà soát 16 RSD, đã ghi ở `docs/rsd/BOI-CANH-DU-AN.md`. Tệp mới `RSD-KD06-Ho-so-yeu-cau-Tour-v1.2.md`; tệp v1.1 đã xóa.
 
 | Mã | Quyết định | Sửa ở KD06 |
 |---|---|---|
@@ -15,7 +38,7 @@ Nguồn: 6 quyết định người dùng chốt sau rà soát 16 RSD, đã ghi 
 
 Sửa không cần hỏi (đồng bộ với RSD khác): R13 tuổi trẻ em tính tại ngày sử dụng đầu tiên của dịch vụ (DH03 R09), dòng giá chọn theo số khách người lớn (DH03 R14, DH04 R04, KD01-KD02 R07), AC82; Tiêu đề ngày không bắt buộc (5.2, E5.1); bỏ Tạo yêu cầu ở KD04.3 (1.2); L1.3 dẫn KD03-KD04 L8.2; L4.2 dẫn L4.1 bước 3–5; “tên chương trình” trên proposal → “tên hành trình” (L5.1, R18, 5.3); 5.1 thêm Thời điểm tạo; thông báo “Bạn được giao yêu cầu” mở KD06 ở tab đích (1.2, R23).
 
-**Thiết kế người viết tự quyết ở v1.2, cần xác nhận:**
+**Thiết kế người viết tự quyết ở v1.2, cần xác nhận (chấp nhận mặc định, Q3; điểm 4 đã thay ở v1.4):**
 
 1. **KD06 mở bình thường khi có Booking Hiệu lực vẫn chỉ xem**; chỉ vào chế độ điều chỉnh từ nút Điều chỉnh chương trình ở KD08 (một chỗ bấm). Phần đầu ở chế độ điều chỉnh có nút chính Về Booking BK-…, không có Hủy yêu cầu.
 2. **“Giá tự tính lại”**: chân Hành trình ở chế độ điều chỉnh chỉ có Lưu và tính giá; hệ thống lưu, tự tính với điều kiện của phiên bản mới nhất (số khách, phòng, ngày theo yêu cầu nếu đã sửa) rồi mở bảng trượt kết quả; người dùng vẫn bấm Lưu phiên bản (để xem giá và xử lý khoản thiếu giá trước khi lưu). Loại tiền khóa theo Booking.
@@ -34,7 +57,7 @@ Sửa không cần hỏi (đồng bộ với RSD khác): R13 tuổi trẻ em tí
 
 | Mã | Câu hỏi | Trả lời | Tác động |
 |---|---|---|---|
-| Q0 | Màn cần viết, hướng làm | KD06 · Hồ sơ yêu cầu Tour gồm KD06.1, KD06.2, KD06.3; chưa có RSD nên viết mới ở `rsd/KD06/`; bàn giao MD + PNG trong ZIP theo quy ước dự án | Toàn bộ |
+| Q0 | Màn cần viết, hướng làm | KD06 · Hồ sơ yêu cầu Tour gồm KD06.1, KD06.2, KD06.3; chưa có RSD nên viết mới ở `docs/rsd/KD06/`; bàn giao MD + PNG trong ZIP theo quy ước dự án | Toàn bộ |
 | Q1 | Điều kiện hủy và mở lại | Chặn hủy khi có Booking Hiệu lực (Booking đã hủy không chặn); người phụ trách mở lại yêu cầu đã hủy kèm lý do, giữ dữ liệu cũ | R02, R21, R22, L7.1, L7.2, W42–W45, AC57–AC60 |
 | Q2 | Nguồn Markup, tỷ giá | Markup % mặc định theo loại Tour (QT05); tỷ giá từ bảng tỷ giá hệ thống theo ngày tính giá; cả hai sửa được cho từng phiên bản, lưu bản chụp | R14, W27, W28, AC35, AC36 |
 | Q3 | Gửi báo giá | Proposal do hệ thống tự tạo, publish thành link; hỗ trợ tiếng Anh, tiếng Việt; tải PDF ngay trên proposal. Không gửi email từ hệ thống | R18, L5.1–L5.3, W32–W37 |
@@ -42,12 +65,12 @@ Sửa không cần hỏi (đồng bộ với RSD khác): R13 tuổi trẻ em tí
 | Q5 | Link khi có phiên bản mới, hạn | Mỗi phiên bản publish một link riêng, nội dung cố định; bản mới hơn thì link cũ hiện dải báo; hạn mặc định 30 ngày, sửa được; thu hồi được; hủy yêu cầu thì link ngừng | R18, W34, W36, W37 |
 | Q7 | Bố cục W13 (phản hồi 12/11/2026) | Tạo bằng AI là điểm nổi bật: thẻ đặt bên trái, nút xanh; Từ Tour mẫu, Thủ công dồn sang phải. Nhãn “Nhanh nhất” và viền xanh của thẻ là người viết thêm | W13, L3.1, 1.1 |
 | Q8 | Ngân sách của yêu cầu (phản hồi 12/11/2026) | Ngân sách rất quan trọng, phải có thông tin. Người viết thiết kế: trường riêng ở KD06.1 (từ – đến, loại tiền, Mỗi khách hoặc Cả đoàn), hiện ở phần đầu, gửi cho AI, so với giá bán bình quân ở mỗi lần tính giá và mỗi phiên bản; vượt chỉ cảnh báo, không chặn; không hiện trên proposal | R26, R04, R09, 2.1, L1.1, L4.1, W05–W10, W19, W26, W28, W29, W31, W38, AC63–AC68 |
-| Q9 | Markup cho từng hạng mục (phản hồi 12/11/2026, làm rõ cùng ngày) | Hạng mục là nhóm dịch vụ: Lưu trú, Di chuyển, HDV, Tham quan… Hai cấp: Markup theo hạng mục (W27, mặc định QT05) → Markup chung theo loại Tour. Không đặt Markup cho từng khoản. Người viết thêm hạng mục Vé máy bay, Ăn uống, Khác. Ví dụ v3: Vé máy bay 5 %, Hướng dẫn viên 20 % → 50.750 EUR, Markup bình quân 14,3 % | R14, 5.1, 5.2, R25, W27, W28, AC36, AC69–AC71 |
+| Q9 | Markup cho từng hạng mục (phản hồi 12/11/2026, làm rõ cùng ngày) | Hạng mục là nhóm dịch vụ: Lưu trú, Di chuyển, HDV, Tham quan… Hai cấp: Markup theo hạng mục (W27, mặc định QT05) → Markup chung theo loại Tour. Không đặt Markup cho từng khoản. Người viết thêm hạng mục Vé máy bay, Ăn uống, Khác. Ví dụ v3: Vé máy bay 5 %, Hướng dẫn viên 20 % → 50.750 EUR, Markup bình quân 14,3 % (số cũ; tính lại 13/11/2026: 51.710 EUR, 14,3 %, xem mục Tính lại ví dụ giá) | R14, 5.1, 5.2, R25, W27, W28, AC36, AC69–AC71 |
 | Q10 | Mẫu proposal (phản hồi 12/11/2026) | Công ty đã có mẫu proposal riêng: proposal trộn dữ liệu vào mẫu của công ty khai ở QT04.1; KD06 chỉ định nghĩa trường dữ liệu (R18); W33 chỉ minh họa | R18, 5.3, R25, W32, W33, AC72 |
-| Q11 | Bảng tính giá theo dịch vụ (phản hồi 12/11/2026) | Bảng tính giá có thêm cách xem Theo dịch vụ, gom theo hạng mục, mỗi dịch vụ một dòng cho cả hành trình; giữ cách xem Theo ngày. Số liệu theo hạng mục của v3 người viết đặt cho khớp tổng 44.317,40 → 50.659,00 | R14, L4.1 bước 4, W28, W49, AC73–AC75 |
+| Q11 | Bảng tính giá theo dịch vụ (phản hồi 12/11/2026) | Bảng tính giá có thêm cách xem Theo dịch vụ, gom theo hạng mục, mỗi dịch vụ một dòng cho cả hành trình; giữ cách xem Theo ngày. Số liệu theo hạng mục của v3 người viết đặt cho khớp tổng 44.317,40 → 50.659,00 (số cũ; nay tính bằng script, xem mục Tính lại ví dụ giá) | R14, L4.1 bước 4, W28, W49, AC73–AC75 |
 | Q6 | Khách thao tác trên proposal | Chỉ xem và tải PDF; hệ thống ghi số lần mở và lần mở gần nhất; kết quả do Kinh doanh ghi | R18, L6.1, W33, W34 |
 
-## Thiết kế do người viết tự quyết, cần xác nhận
+## Thiết kế do người viết tự quyết, cần xác nhận (chấp nhận mặc định, Q3)
 
 1. **[Đã thay ở v1.2 theo Q1 12/11/2026: hủy Booking thì yêu cầu Đã hủy] Trạng thái khi Booking bị hủy (R02).** Đã có Booking chỉ tính Booking Hiệu lực; yêu cầu chỉ có Booking đã hủy là Đang xử lý kèm dải báo. Suy từ Q1 và Q4, nhưng **khác RSD KD05 R02 và KD03-KD04 R08** (Booking đã hủy giữ nhóm Đã có Booking). Cần xác nhận rồi sửa hai RSD đó.
 2. **Booking có khi lưu ở KD08**, không phải khi bấm Tạo Booking ở KD06 (giống mẫu KD04 → KD06). KD08 kiểm tra lại điều kiện khi lưu.
@@ -73,7 +96,7 @@ Sửa không cần hỏi (đồng bộ với RSD khác): R13 tuổi trẻ em tí
 ## Thay đổi cần làm ở màn khác
 
 - **Markup (Q9).** QT05: danh mục hạng mục dịch vụ (Lưu trú, Di chuyển, Vé máy bay, Hướng dẫn viên, Tham quan, Ăn uống, Khác), gán mỗi loại dịch vụ vào một hạng mục, Markup mặc định theo hạng mục (không bắt buộc). Cần xác nhận danh sách hạng mục và việc tách Vé máy bay khỏi Di chuyển. Thuật ngữ: “hạng mục dịch vụ” ở DH08 đang mang nghĩa một dịch vụ cần đặt; đề xuất gọi nhóm này là “hạng mục Markup” hoặc chấp nhận hai nghĩa theo ngữ cảnh.
-- **Mẫu proposal (Q10).** Cần bản mẫu proposal hiện có của công ty để đối chiếu danh sách trường dữ liệu ở R18 (thiếu trường nào thì bổ sung). QT04.1 phải nhận được mẫu có sẵn (bản web và PDF, mỗi ngôn ngữ một bản).
+- [Thay theo Q22 phase coding: proposal dùng chính W33, W36, W37, không cần mẫu của công ty] **Mẫu proposal (Q10).** Cần bản mẫu proposal hiện có của công ty để đối chiếu danh sách trường dữ liệu ở R18 (thiếu trường nào thì bổ sung). QT04.1 phải nhận được mẫu có sẵn (bản web và PDF, mỗi ngôn ngữ một bản).
 
 - **Ngân sách (Q8).** Cần xác nhận các điểm tự quyết: trường không bắt buộc; so theo bình quân mỗi khách gồm cả trẻ em; vượt ngân sách chỉ cảnh báo. RSD KD05: cân nhắc thêm cột hoặc bộ lọc Ngân sách và nhãn vượt ngân sách của báo giá mới nhất. RSD KD03-KD04 W27 (mở KD06 từ hồ sơ khách): form KD06.1 nay có ô Ngân sách. QT08: có thể thống kê tỷ lệ chốt theo trong và vượt ngân sách.
 
@@ -96,8 +119,9 @@ Sửa không cần hỏi (đồng bộ với RSD khác): R13 tuổi trẻ em tí
 - Đã xem trực quan: W03, W05, W10, W11, W13, W14, W15, W16, W20, W25, W27, W28, W29, W32, W33, W34, W38, W40, W42, W44, W47, W48. Đã sửa: ô Mong muốn tách chữ khi có đoạn tô vàng; bỏ ô Người phụ trách lặp với phần đầu; nút tính giá khóa khi còn việc cần xử lý (W15, W17, W20, W24); bỏ Tính giá ở W42; thông báo che nút ở W38; bỏ chỉ báo lặp với dải ở W47; chip Thiếu giá ở W29.
 - Chưa xem từng ảnh: W01, W02, W04, W06–W09, W12, W17–W19, W21–W24, W26, W30, W31, W35–W37, W39, W41, W43, W45, W46 (cùng khung với ảnh đã xem).
 - Trạng thái chỉ mô tả bằng chữ, không có ảnh riêng: bảng trượt Lịch sử thay đổi (R24), hộp thoại xác nhận Thu hồi link, ô Gia hạn tại chỗ, Đổi dịch vụ (dùng khung W18), danh mục trống (E1.7), không có quyền (E2.6, E1.10), không tìm thấy yêu cầu (E2.7).
-- Số liệu đã đối chiếu: v3 = 2.040 × 23 + 1.630 × 2 + 410 × 2 = 51.000 EUR; giá vốn 1.772,80 × 23 + 1.415,30 × 2 + 356,20 × 2 = 44.317,40 = 40.360,15 (1.107.886.000 ₫ ÷ 27.450) + 3.957,25 (4.280 × 25.380 ÷ 27.450); lãi gộp 6.682,60 (13,1 %). v2 = 2.110 × 23 + 1.690 × 2 + 420 × 2 = 52.750; v1 = 54.100 (khớp KD05). Ngày: 10/03/2027 Thứ Tư, 15/03/2027 Thứ Hai. TM-008: 8 ngày 21 dịch vụ (khớp KD01-KD02); ghép 2 ngày TM-010 (6 dịch vụ) → 27. Bianchi 14 NL, 0 phòng đơn → 7 phòng; Müller 23 NL, 2 phòng đơn → 13 phòng. Lê Thu Hà 9, Phạm Thanh Tùng 5, Vũ Đức Minh 0 yêu cầu đang xử lý (khớp KD05).
-- `rsd/BOI-CANH-DU-AN.md` đã thêm thuật ngữ và nguyên tắc; bản cũ sao lưu ở `BOI-CANH-DU-AN.md.bak-20261111-kd06`.
+- Số liệu đã đối chiếu (số Müller v3 ở dòng này là số cũ, đã thay ở mục Tính lại ví dụ giá 13/11/2026): v3 = 2.040 × 23
+ + 1.630 × 2 + 410 × 2 = 51.000 EUR; giá vốn 1.772,80 × 23 + 1.415,30 × 2 + 356,20 × 2 = 44.317,40 = 40.360,15 (1.107.886.000 ₫ ÷ 27.450) + 3.957,25 (4.280 × 25.380 ÷ 27.450); lãi gộp 6.682,60 (13,1 %). v2 = 2.110 × 23 + 1.690 × 2 + 420 × 2 = 52.750; v1 = 54.100 (khớp KD05). Ngày: 10/03/2027 Thứ Tư, 15/03/2027 Thứ Hai. TM-008: 8 ngày 21 dịch vụ (khớp KD01-KD02); ghép 2 ngày TM-010 (6 dịch vụ) → 27. Bianchi 14 NL, 0 phòng đơn → 7 phòng; Müller 23 NL, 2 phòng đơn → 13 phòng. Lê Thu Hà 9, Phạm Thanh Tùng 5, Vũ Đức Minh 0 yêu cầu đang xử lý (khớp KD05).
+- `docs/rsd/BOI-CANH-DU-AN.md` đã thêm thuật ngữ và nguyên tắc; bản cũ sao lưu ở `BOI-CANH-DU-AN.md.bak-20261111-kd06`.
 
 ## Cập nhật v1.3 (12/11/2026)
 
@@ -129,3 +153,45 @@ Sửa không cần hỏi (đồng bộ với RSD khác): R13 tuổi trẻ em tí
 - `check-rsd.js --final`: 51 tham chiếu ảnh, 51 mã W, không lỗi.
 
 - **Kiểm tra chéo cuối đợt rà soát lần ba (12/11/2026).** E1.7: câu báo danh mục trống hướng thêm ở QT05 theo phòng sở hữu (R25), bỏ “liên hệ Quản trị”.
+
+## Dịch vụ đi kèm 12/11/2026
+
+Sửa tại chỗ `RSD-KD06-Ho-so-yeu-cau-Tour-v1.6.md`, dòng “Thay đổi ở v1.6 (bổ sung 12/11/2026 · dịch vụ đi kèm)”. Nguồn: BOI-CANH (Dịch vụ đi kèm, Giường phụ, Nền tảng “Phòng”), Q13' đổi 12/11/2026, RSD DH03 R23. Thêm E3.13, E3.14, E4.12, AC92–AC100. Bỏ mọi câu “phòng 3 người và giường phụ dùng Nhập tay” (R04, R13, R15); Nhập tay giữ cho khoản thiếu và ghi đè.
+
+**Thay đổi chính:** ô Giường phụ ở KD06.1 và điều kiện tính; số phòng đôi = làm tròn lên ((người lớn − phòng đơn − giường phụ) ÷ 2); thêm đi kèm vào dòng dịch vụ chính (menu ⋯ của dòng, L3.4 bước 4), số lượng Cố định, Theo số khách, Theo số giường phụ; bộ tính giá tính khoản đi kèm theo hợp đồng áp dụng của dịch vụ chính và mùa của ngày dùng; Markup theo hạng mục của loại dịch vụ của chính đi kèm; proposal không có dòng giá đi kèm, lưu trú ghi “+ n giường phụ”.
+
+**Tự quyết (U6):**
+- **Markup của đi kèm** theo hạng mục chứa loại dịch vụ của chính dịch vụ đi kèm (QT05), như mọi khoản; không theo hạng mục của dịch vụ chính. Giường phụ có loại của dịch vụ chính (DH03 R23) nên luôn vào Lưu trú.
+- Ô Giường phụ thêm cả ở KD06.1 (cạnh phòng đơn) để hành trình hiện số lượng giường phụ và điều kiện tính điền sẵn, như phòng đơn; điều kiện tính sửa được, không ghi ngược về yêu cầu.
+- Phòng đơn tự xếp xét (người lớn − phòng đơn người dùng nhập − giường phụ); tính lại khi người lớn, phòng đơn, giường phụ đổi. Giường phụ vượt số phòng đôi thì chặn (mỗi phòng đôi tối đa một giường phụ, suy từ “phòng 3 người = phòng đôi + 1 giường phụ”).
+- **Phân bổ tiền phòng khi có giường phụ:** khoản phòng đôi và khoản giường phụ của cùng đêm chia đều cho người lớn ở phòng đôi (gồm người ở giường phụ); không thêm đối tượng giá bán “người ở giường phụ”. Phụ thu phòng đơn hiển thị = phần vượt phần tiền phòng mỗi người lớn ở phòng đôi (bằng nửa giá phòng đôi khi không có giường phụ), để tổng giá bán khớp.
+- Điều kiện có giường phụ mà đêm lưu trú chưa có đi kèm Giường phụ: khoản thiếu (thêm đi kèm hoặc nhập tay), để báo giá không thiếu tiền giường phụ.
+- Đổi dịch vụ của dòng bỏ đi kèm cũ (theo tinh thần quyết định 4 ở DH08). AI không đề xuất đi kèm; sao chép Tour mẫu không có đi kèm.
+- Proposal: không có tên tiếng Anh của đi kèm (DH03 không có), nên giường phụ ghi bằng chữ cố định “+ n giường phụ” / “+ n extra bed(s)”; đi kèm khác không có dòng riêng, thẻ bao gồm của đi kèm vào mục Bao gồm.
+
+**Ví dụ Müller:** không tính lại ở đợt này (không có giường phụ; đã ghi chờ tính lại theo Q13', Q14). Ví dụ có giường phụ ở AC92–AC94.
+
+**Hình chưa cập nhật:** W05, W27 (ô Giường phụ), W15, W17, W18 (đi kèm trên dòng), W28, W29, W49 (khoản đi kèm), W33 (giường phụ trong lưu trú).
+
+**Kiểm tra.** `check-rsd.py`: 51 ảnh, 51 mã W, không lỗi.
+
+## Tính lại ví dụ giá 13/11/2026
+
+Sửa tại chỗ `RSD-KD06-Ho-so-yeu-cau-Tour-v1.6.md`, dòng “Thay đổi ở v1.6 (bổ sung 13/11/2026 · tính lại ví dụ giá)”. Lý do: ví dụ Müller v3 (50.750 EUR) tính trước Q13', Q14 và không còn dữ liệu từng dòng (wireframe chỉ có vài dòng minh họa, còn lệch số với RSD), nên không “tính lại” được. Dựng bộ dữ liệu ví dụ đầy đủ ở `docs/rsd/BO-TINH-GIA/VI-DU-TINH-GIA-v1.0.md` và tính bằng `docs/rsd/BO-TINH-GIA/tinh_vi_du.py` (ví dụ A Müller v3, B TM-008, C giường phụ).
+
+- **Ví dụ A (Müller v3).** Giữ danh tính YC-2611-0019, 15/03–28/03/2027, 23 người lớn + 2 trẻ 8, 10 tuổi, Deluxe, nhập 2 phòng đơn, EUR, tỷ giá ngày 11/11/2026. Hành trình 14 ngày dựng mới (62 dòng, 36 dịch vụ, 88 khoản), giữ các điểm RSD đã nêu: Mường Thanh Holiday Huế Ngày 5–6 thiếu hợp đồng cho 19/03/2027 nên nhập tay (AC37), HDV tiếng Đức 14 ngày (AC74), Set menu có dòng 20–24 và 25–29 khách (AC82), hai chặng bay HAN–HUI (VND) và DAD–SGN (USD).
+- **Kết quả:** 3 phòng đơn (1 tự xếp), 10 phòng đôi, 13 phòng; giá vốn 45.222,82 EUR; người lớn 1.990, trẻ em 780, phụ thu phòng đơn 1.460 × 3; tổng 51.710 EUR; lãi gộp 6.487,18 EUR (12,5 %); Markup bình quân 14,3 %; bình quân 2.068,40 EUR/khách (trong ngân sách 2.100). Theo dịch vụ: Lưu trú 31.608,11 → 36.349,33; Vé máy bay 3.418,26 → 3.589,17; Hướng dẫn viên 764,96 → 917,95; tổng 45.222,82 → 51.702,67.
+- **Sửa ở RSD:** L3.7 bước 1 (62 dịch vụ), L4.1 bước 3, 4, ghi chú dưới W28, R14 (viết lại ví dụ, bỏ câu cần tính lại, thêm dòng dẫn), AC35, AC36, AC65, AC69, AC73, ghi chú Hình chưa cập nhật. v1 2.164 và v2 2.110 giữ như lịch sử.
+- **AC93, AC94** đối chiếu với ví dụ C: khớp (người lớn 920.000 × 1,10 = 1.012.000 → 1.020.000 ₫; tổng 5.100.000 ₫; lãi gộp 500.000 ₫; trẻ 8 tuổi thêm giường 500.000 ₫). Hợp đồng Lotus của ví dụ C dùng đúng số AC93, khác LH-2026/HĐ-12 của RSD DH03 AC70 (giường phụ 630.000 ₫ sau gia hạn +5 %); không sửa DH03 ở đợt này.
+- **Cách hiểu đã chọn** khi script phải chọn: mục 2 của tài liệu ví dụ (phụ thu lễ áp cho phòng đơn kiểu phụ thu thêm; phụ thu phòng đơn tỷ lệ tính trên giá mùa; trẻ cùng nhóm gộp dòng lấy bình quân; phân bổ trên số đã quy đổi; giá bán trước làm tròn không làm tròn từng khoản…).
+- **Hình chưa cập nhật:** mọi hình có số Müller v3 (W23, W26, W28–W31, W38–W42, W49, W51) còn số cũ; không dựng lại theo yêu cầu.
+- **Ngoài phạm vi, cần sửa sau:** RSD KD07 AC17 (đợt 1 15.225 EUR của BK-2611-0158) nay là 15.513 EUR; RSD KT01 AC59 (khoản thu 15.225 EUR cho BK-2611-0158, nên đổi thành 15.513 EUR cho khớp đợt 1); GHI-CHU KD07 dòng số liệu Müller; wireframe KD07, KD08, KT01 còn 50.750 và 15.225 EUR.
+
+
+## Hai quy tắc tính giá người dùng chốt 13/11/2026
+
+Sửa tại chỗ `RSD-KD06-Ho-so-yeu-cau-Tour-v1.6.md` R13 (hai bullet mới/viết lại) và dòng “Thay đổi ở v1.6 (bổ sung 13/11/2026 · tính lại ví dụ giá)”. Nguồn: BOI-CANH-DU-AN, mục Tính lại ví dụ giá (13/11/2026).
+
+- **Trẻ em cùng nhóm tuổi gộp một dòng giá bán:** giá = bình quân giá vốn các trẻ trong dòng (kể cả khi một trẻ được suất miễn phí), rồi Markup và làm tròn lên theo bội số. Ví dụ A không đổi số (hai trẻ 778,00 và 779,67 trước làm tròn, đều ra 780).
+- **Phụ thu lễ theo phòng áp cho mọi phòng, kể cả phòng đơn:** phòng đơn kiểu phụ thu thêm = giá phòng của đêm sau phụ thu lễ + phụ thu phòng đơn; phụ thu phòng đơn dạng tỷ lệ tính trên giá mùa chưa gồm phụ thu lễ.
+- Còn chưa có quy tắc: phòng đơn trọn gói trùng đêm có phụ thu lễ (dữ liệu ví dụ không có; script dừng nếu gặp).

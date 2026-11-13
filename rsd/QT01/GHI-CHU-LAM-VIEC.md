@@ -35,7 +35,7 @@ Không thuộc bản phát hành. Tạo 12/11/2026 khi viết RSD QT01 v1.0.
 - **QT02.** Bốn vai trò mặc định Kinh doanh, Điều hành, Kế toán, Quản trị hệ thống; quyền QT01 không nằm trong ma trận cấp cho vai trò khác; mỗi tài khoản nhiều vai trò, quyền là hợp, phạm vi bản ghi lấy rộng nhất.
 - **QT03.** Đã khớp RSD QT03 v1.0 (viết song song cùng ngày): thao tác QT01 ghi kho nhật ký với cờ nhạy cảm; mật khẩu chỉ ghi “đã đổi”; email, điện thoại che; không ghi đăng nhập. QT01 đã đổi theo: tab Lịch sử đọc kho QT03 (giá trị đã che), liên kết “Xem thao tác của người này” mở QT03 theo Người dùng, 30 ngày qua; bỏ mọi chỗ nói “nhật ký đăng nhập ở QT03”. QT03 cần thêm: cho tab Lịch sử của QT01 đọc theo đối tượng là tài khoản.
 - **Màn Đăng nhập, Đổi mật khẩu, Tài khoản của tôi** (chưa có trong danh sách màn): theo QT01 R04 (bắt đổi mật khẩu tạm, quy tắc mật khẩu, thông báo tài khoản bị khóa; mật khẩu tạm không hết hạn, không có quên mật khẩu qua email). Đề xuất bổ sung vào danh sách màn.
-- **Danh sách màn (`luồng/danh-sach-man-hinh-level1.md`).** Dòng QT01 còn ghi “Đề xuất, ngoài Level 1”; cập nhật theo Q1–Q3 nếu người dùng muốn.
+- **Danh sách màn (`docs/flows/danh-sach-man-hinh-level1.md`).** Dòng QT01 còn ghi “Đề xuất, ngoài Level 1”; cập nhật theo Q1–Q3 nếu người dùng muốn.
 
 ## 4. Kiểm tra đã chạy
 
@@ -62,3 +62,84 @@ Tệp mới `RSD-QT01-Nguoi-dung-v1.2.md` (đã xóa v1.1).
 - `check-rsd.js --final`: 23 ảnh, 23 mã W, đạt.
 
 - **Kiểm tra chéo cuối đợt rà soát lần ba (12/11/2026).** 1.5, R05: điều kiện chọn theo RSD DH06 v1.3 R03 (vai trò Điều hành; người thực hiện checklist không có tài khoản Bị khóa).
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-QT01-Nguoi-dung-v1.3.md` (`git mv` từ v1.2). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `BOI-CANH-DU-AN.md` bản sửa 12/11/2026.
+
+**Thay đổi**
+
+- **Q1.** Mục 1.4 đổi thành “Quyền mặc định theo vai trò” (màn · thao tác), cấu hình ở QT02. R02 bỏ câu “phạm vi bản ghi lấy rộng nhất”. Người phụ trách ngừng hoạt động do người có quyền Chuyển phụ trách của màn sở hữu chuyển, không chỉ Quản trị (1.2, 1.3, 1.5, L5.1, E3.1, R03, R06, R08, AC28). Hồ sơ Tour: giao lại ở DH07 theo quyền (mặc định Điều hành); Đã đóng thì Mở lại Tour theo quyền (mặc định Điều hành và Quản trị hệ thống) (AC38, AC39). R08: bỏ vai trò thì mất quyền của vai trò đó, không còn “không sửa được bản ghi”.
+- **C3.** Bỏ chiến dịch chăm sóc (KD09, KD10) khỏi nguồn, 1.1, 1.3, phép đếm R06, hộp thoại khóa, cảnh báo bỏ vai trò, 5.1, cấu hình phụ thuộc; AC19 còn 3 liên kết, AC27 còn 3 loại, AC28 bỏ “chiến dịch vẫn gửi”.
+- **Q24, Q2.** Màn Đăng nhập và Đổi mật khẩu có đặc tả riêng; 1.3 và R04 chỉ tham chiếu (phiên 7 ngày, tạm khóa 15 phút sau 5 lần sai, mật khẩu ≥ 10 ký tự có chữ và số, bắt đổi mật khẩu tạm). R03 thêm Tạm khóa đăng nhập, khác Bị khóa. Bỏ “Tài khoản của tôi”, thay bằng màn Đổi mật khẩu (E3.2, R04).
+- **Q3.** R06: bỏ nhãn “(suy ra, chờ xác nhận)” ở câu công việc chưa hoàn tất; chấp nhận mặc định (Q3). Mục 2 “Thiết kế tự quyết cần xác nhận” và mục “Suy ra, chờ xác nhận” ở v1.1 coi như đã chốt.
+- **Q5.** Nhật ký QT03 ghi trong cùng giao dịch (2.6, R09).
+- **Q8.** E3.3, R11, AC21: chỉ có nút Tải lại, không ghi đè.
+- **U3.** Bộ lọc nhớ theo người dùng, cả sau khi đăng xuất (1.2, 2.2).
+- Bỏ câu “Hạn mật khẩu tạm tính theo giờ máy chủ” ở 2.6 (mật khẩu tạm không hết hạn từ v1.0).
+
+**Tự đơn giản hóa giao diện (U6)**
+
+- **Gỡ liên kết nhân sự** (L3.2, R05, E3.8, AC22): bỏ hộp thoại W15, gỡ ngay kèm thông báo ngắn có Hoàn tác, thông báo ghi số hồ sơ Tour và công việc giữ nguyên (U2: thao tác hoàn tác được). Không đổi dữ liệu, quyền hay luồng.
+- **Bị khóa** màu xám thay đỏ (K6).
+- **Trường chỉ đọc** hiện dạng chữ thay viền nét đứt (U5).
+- Giữ hộp thoại cho đặt lại mật khẩu, khóa, mở khóa (không hoàn tác được) và cảnh báo bỏ vai trò (BOI-CANH giữ “cảnh báo rồi cho lưu”).
+
+**Hình chưa cập nhật** (đã ghi dòng ngay dưới hình)
+
+- Mọi hình: mục menu Chăm sóc khách hàng, chữ “chăm sóc” trong mô tả vai trò Kinh doanh, “KD10” trong dòng nguồn ô Đang phụ trách (ghi chung một lần ở phần Wireframe đầu tài liệu, không lặp dưới 23 hình).
+- W10, W11, W14: ô Đang phụ trách còn “2 chiến dịch chăm sóc”; W14 nút “Tải bản mới và nhập lại”.
+- W12, W18: dòng và liên kết chiến dịch; W18 câu “chỉ Quản trị hệ thống chuyển được”.
+- W13: “Tự đổi ở Tài khoản của tôi”.
+- W15: hộp thoại gỡ liên kết đã bỏ.
+- W02, W19, W21, W23: thẻ Bị khóa màu đỏ.
+
+**Để ngỏ**
+
+- Mục 1.4 giữ câu “Quyền QT01 gắn cố định với vai trò Quản trị hệ thống; QT02 không cấp cho vai trò khác” từ v1.0. Câu này hạn chế việc cấu hình ở QT02 (Q1); chờ người dùng chọn khi duyệt ma trận QT02.
+- Trang dùng 20 dòng (2.2, 2.6), chuẩn bảng K1 là 50 dòng; không sửa, K1 thắng khi code.
+
+**Kiểm tra**
+
+- `python3 .claude/skills/sme-erp-rsd-skill/scripts/check-rsd.py`: 23 ảnh, 23 mã W, không lỗi.
+- `grep` từ cấm: chỉ còn ở lịch sử phiên bản, ghi chú hình và “Thử lại” khi lỗi tải hoặc mất mạng (không phải tác động chéo).
+
+## Sửa sau rà chéo 12/11/2026 (bổ sung v1.3)
+
+Sửa tại chỗ `RSD-QT01-Nguoi-dung-v1.3.md`, không đổi tên tệp, thêm dòng “Thay đổi ở v1.3 (bổ sung 12/11/2026)”. Không dựng lại wireframe. Số hiệu L, E, R, AC giữ nguyên; thêm AC40–AC44.
+
+- **Vai trò thuộc phòng (người dùng chốt 12/11/2026, RSD QT02 R13).** Chỗ cần vai trò Kinh doanh, Điều hành để chọn người phụ trách, tính Ngừng hoạt động, cảnh báo bỏ vai trò đọc là “vai trò thuộc phòng Kinh doanh, Điều hành”: 1.5, E3.1, R02 (thêm định nghĩa), R03, R05, R08. **Tự quyết:** đổi giữa hai vai trò cùng phòng (ví dụ Kinh doanh sang vai trò tự tạo thuộc phòng Kinh doanh) không cảnh báo W12 vì người đó không ngừng hoạt động (R08). Gợi ý vai trò theo nhóm công việc (R05) vẫn chỉ tích vai trò hệ thống. Thêm AC43.
+- **T4 · Khóa và mật khẩu tạm.** Chọn cách an toàn: khóa làm mật khẩu tạm mất hiệu lực ngay (R04, R06, vòng đời 2.5, L5.2); mở khóa tài khoản có mật khẩu tạm lúc khóa thì ô Đặt mật khẩu tạm mới tích sẵn và khóa, máy chủ từ chối mở khóa không kèm mật khẩu tạm mới (R07, L5.3 bước 2 và 3, 5.2). Bỏ tích chỉ được với tài khoản có mật khẩu chính thức lúc khóa (AC34 ghi rõ). Thêm AC41. CH01 E11.3, AC69 sửa theo.
+- **T5 · Quy tắc mật khẩu.** R04 dẫn RSD CH01 R05 làm nguồn duy nhất, cả mật khẩu tạm tự nhập và tự sinh (R04, E2.1, E4.3, 5.2). Thêm AC42.
+- **T6 · Tạm khóa đăng nhập và đổi mật khẩu.** Thêm chỉ báo “Tạm khóa đăng nhập, tự hết lúc hh:mm” (vàng theo CGD K6.02) ở 2.4, nhắc ở 2.1 và R03 (tự hết sau 15 phút, không nút mở sớm, đặt lại và mở khóa không xóa). Thêm AC40. Sự kiện “Đổi mật khẩu” (tự đổi) dẫn CH01 R12 ở 2.6, R04, R09; thêm AC44.
+- **N1.** R02: thông báo “Quyền của bạn vừa thay đổi” kèm nút Tải lại trang, giao diện đổi ở lần tải sau (CGD U5.05, QT02 R07).
+- **N-2 (áp thêm ở QT01 cho nhất quán).** 2.6 Không có quyền theo CGD K0.09 (nút Về Việc của tôi). Tự quyết, chỉ đổi chữ.
+- **Kiểm tra:** `check-rsd.py`: 23 ảnh, 23 mã W, mã thoát 0.
+
+**Cần sửa ở tệp ngoài phạm vi lượt này**
+
+- **QT03 R15:** thêm dòng CH01 · Đổi mật khẩu, Đổi mật khẩu tạm (sự kiện tài khoản hiện ở tab Lịch sử QT01). Lượt này không sửa QT03.
+- **DH06 R03, DH07, DH08, KD03-KD04, KD05, KD08:** điều kiện “có vai trò Điều hành/Kinh doanh” đọc là “có vai trò thuộc phòng …” (RSD QT02 R13).
+- **BOI-CANH:** thuật ngữ Mật khẩu tạm ghi thêm “mất hiệu lực khi khóa tài khoản”; thuật ngữ Ngừng hoạt động ghi “không còn vai trò thuộc phòng mà bản ghi cần”.
+
+## Bổ sung vai trò HDV 12/11/2026 (giữ v1.3)
+
+Giữ số hiệu L, E, R, AC; thêm L2.2, E2.8, E2.9, E3.10–E3.12, AC45–AC52. Không dựng lại wireframe; W05 có ghi chú hình chưa cập nhật.
+
+**Quyết định của người dùng (BOI-CANH “Vai trò HDV”, ADR 0007)**
+
+- Năm vai trò hệ thống, thêm HDV. Cộng tác viên được có tài khoản, nhưng chỉ với vai trò thuộc phòng HDV. Nội bộ được liên kết với mọi vai trò.
+
+**Tự quyết (U6)**
+
+1. **Ràng buộc Cộng tác viên kiểm ở máy chủ ở mọi lần ghi** chạm vai trò hoặc liên kết: tạo, lưu tab Thông tin, liên kết, Hoàn tác gỡ liên kết, mở khóa (R05). Quản trị hệ thống không thuộc phòng nào nên cũng bị chặn với Cộng tác viên.
+2. **Chặn trước trên giao diện:** tài khoản liên kết Cộng tác viên thì vai trò khác hiện mờ kèm lý do; tài khoản có vai trò khác thì dòng Cộng tác viên trong danh sách chọn hiện mờ kèm lý do. Đổi nhân sự trong form tạo từ Nội bộ sang Cộng tác viên thì tự bỏ tích vai trò khác phòng HDV và ghi rõ đã bỏ gì (E2.9).
+3. **Gợi ý vai trò:** nhóm Hướng dẫn viên → HDV; Cộng tác viên luôn gợi ý HDV. Chỉ là tích sẵn, Quản trị sửa được (cách giảm thao tác).
+4. **Danh sách chọn nhân sự:** Nội bộ trước, Cộng tác viên sau, nhãn Cộng tác viên.
+5. **Bỏ vai trò HDV, khóa, gỡ liên kết tài khoản HDV không cảnh báo**: HDV không phụ trách bản ghi; phân công phục vụ ở DH08.5 giữ nguyên; Tour của tôi rỗng hoặc mất theo RSD QT02 R16.
+6. **AC43** đổi VT-005 → VT-006 vì VT-005 nay là HDV (RSD QT02).
+
+**Cần sửa ở tệp ngoài phạm vi lượt này**
+
+- **RSD DH06 R01, E3.2, cột Tài khoản, W05 (“Cộng tác viên không có tài khoản đăng nhập”):** Cộng tác viên có thể có tài khoản chỉ với vai trò thuộc phòng HDV; đổi Nội bộ sang Cộng tác viên chỉ chặn khi tài khoản liên kết có vai trò ngoài phòng HDV (khớp R05 ở đây).
+- **Wireframe W05, W06:** khi dựng lại, thêm nhóm Cộng tác viên và trạng thái mờ của vai trò.

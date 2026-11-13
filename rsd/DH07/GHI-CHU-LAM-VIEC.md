@@ -1,12 +1,35 @@
-# Ghi chú làm việc · RSD DH07 v1.2
+# Ghi chú làm việc · RSD DH07 v1.8
 
 Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã chốt và các thiết kế do người viết tự quyết, cần người dùng xác nhận.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+**Tệp:** `git mv` v1.7 → `RSD-DH07-Danh-sach-ho-so-Tour-v1.8.md`. Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md` (bản sửa 12/11/2026), ADR 0001, 0002, 0006. Không đánh số lại L, E, R, W, AC; mục bỏ để lại dòng “Bỏ theo Q5/Q1”.
+
+**Đã sửa:**
+- *Q5:* hồ sơ tạo trong cùng giao dịch lưu Booking; lỗi thì Booking không được lưu, KD08 báo lỗi. Bỏ tình trạng Tạo lỗi, tự thử lại 3 lần, nút Thử lại, dải và bảng trượt Booking chờ (W08), trường cách tạo, bảng Lần tạo lỗi, số đã thu (chỉ dùng ở W08), lối DH07 → KD08 qua W08. Bỏ L2.1, L2.3, E1.3, E2.2, E2.6–E2.9, AC07, AC15, AC43. Viết lại 1.1, 1.2, 1.3, 2.1, 2.5 (đổi tên “Tạo hồ sơ cùng Booking”), 2.7, L1.1, E1.1, E1.2, R01, R05, R09 (bỏ dòng Tạo lỗi), R11 (gộp hai dòng nhóm Tạo lỗi), 5.1, AC01, AC06, AC08.
+- *Q1:* 1.4 thành “Quyền mặc định theo vai trò”, cấu hình ở QT02; Kinh doanh, Kế toán, Quản trị xem mọi hồ sơ, chỉ xem; giao người phụ trách là thao tác Chuyển phụ trách ở QT02, mặc định Điều hành. Bộ lọc Phụ trách mặc định Của tôi (2.3). Bỏ E3.3. Mở lại Tour theo quyền, có thể chọn người phụ trách mới (E4.5, R08, AC46; RSD DH08 v2.9 R16). Sửa 1.2, 2.1, 2.2, L3.1, L3.4, L5.4, R10, AC16, AC25, AC34, AC38, AC45.
+- *Q7:* R02 cho phép thủng số; tiền tố là tham số chung QT05, mặc định TP; R12.
+- *Q2, C2:* “thông báo nội bộ” → thông báo trong ứng dụng (1.3, L1.1, 5.3); số hàng tối đa ở Lịch, số hồ sơ tối đa vẽ trên Lịch chuyển sang tệp cấu hình hoặc dữ liệu khởi tạo (R12).
+- *Q3:* bỏ “suy ra, chờ xác nhận” ở R10, AC44. Các mục “Tự quyết, cần xác nhận” bên dưới coi là **chấp nhận mặc định (Q3)**.
+- *U3:* bộ lọc nhớ theo người dùng, cả sau khi đăng xuất (1.2, 2.3, R10, 5.1). *U2:* giao người làm ngay, thông báo ngắn có Hoàn tác (2.7). *Q8:* không có nút ghi đè (2.7). *K6:* “NCC ngừng sử dụng” → “NCC ngừng dùng” (E1.4, R03, 5.1, AC13).
+
+**Tự đơn giản hóa giao diện (U6):**
+- Bộ lọc Phụ trách mặc định Của tôi chỉ với vai trò có hồ sơ mình phụ trách ở màn này (Điều hành; Kinh doanh theo Booking); Kế toán, Quản trị mặc định Tất cả, vì Của tôi với họ luôn rỗng.
+- Nút Thử lại khi lỗi tải danh sách hoặc cột Kanban đổi thành Tải lại (E3.1, E5.2, AC27). Giữ “Thử lại” ở E4.4 (lỗi lưu tại chỗ), vì không phải nút Thử lại tạo hồ sơ của Q5.
+- Tiêu đề “Chỉ xem” hiện theo quyền, không theo tên vai trò (2.1).
+
+**Hình chưa cập nhật (đã ghi dưới hình):** W01 (dải Booking chờ, bộ lọc Phụ trách Tất cả), W02–W07, W13, W15–W17 (dải Booking chờ; W13 còn câu nhắc mục Booking chờ), W14 (nút Thử lại). W08 không còn được nhúng trong RSD; tệp `wireframes/W08.png` và `wireframes-src/html/W08.html` vẫn còn vì không sửa wireframe trong lượt này.
+
+**Câu hỏi cho người dùng:**
+- W08 (bảng trượt Booking chờ) không còn dùng: có xóa tệp ảnh và khóa W08 trong `captions.js`, `screens-dh07.js` khi dựng lại wireframe không (mã W08 không dùng lại).
+- Bộ lọc Phụ trách mặc định Của tôi làm Điều hành mở DH07 không thấy hồ sơ chưa giao (trước đây mặc định Tất cả). Lối vào từ thông báo vẫn lọc Chưa có người phụ trách. Có muốn Điều hành mặc định Tất cả hoặc Của tôi + Chưa có người phụ trách không (đổi luồng làm việc hằng ngày nên không tự quyết).
 
 ## Bổ sung ở v1.2 · Dạng xem Bảng, Kanban, Lịch (11/11/2026)
 
 **Đã chốt với người dùng:** DH07 có thêm Kanban và Lịch; không kéo thả ở bất kỳ dạng xem nào.
 
-**Tự quyết, cần xác nhận:**
+**Tự quyết, cần xác nhận (chấp nhận mặc định, Q3):**
 - Kanban bốn cột theo trạng thái hồ sơ; Đã đóng thu gọn mặc định (38 hồ sơ sẽ lấn át ba cột còn lại).
 - Điều hành vẫn giao người phụ trách tại chỗ trên thẻ Kanban (cùng R08, không phải kéo thả). Giao hàng loạt chỉ ở Bảng.
 - Lịch có hai chế độ: Theo người phụ trách (dòng thời gian, mặc định của Điều hành) và Tháng (mặc định của Kinh doanh, Kế toán). Dòng thời gian không có thao tác giao.
@@ -29,13 +52,13 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 | Q4 | Booking chưa đủ điều kiện | Hiện ở DH07 và cho Tạo sớm, lý do bắt buộc | L2.1, L2.2, R06, W08–W10 |
 | Q5 | Người phụ trách hồ sơ tự tạo | Để trống; giao tại DH07 (tại chỗ hoặc hàng loạt), có thông báo | L4.1–L4.3, R08, R09 |
 
-## Thiết kế do người viết tự quyết, cần xác nhận
+## Thiết kế do người viết tự quyết, cần xác nhận (chấp nhận mặc định, Q3)
 
 1. **Dạng Tour Code `TP-YYMM-NNNN`.** Khi hỏi, ví dụ ghi STT 3 chữ số (`TP2612-001`). Bản này dùng dấu gạch nối và 4 chữ số để khớp ảnh và dữ liệu của RSD DH08 (`TP-2611-0042`). YYMM là tháng **khởi hành**; STT đếm lại mỗi tháng; Tour Code không đổi khi ngày khởi hành đổi. *Đã đóng (12/11/2026):* 4 chữ số đã chốt 11/11/2026, ghi ở `BOI-CANH-DU-AN.md` (thuật ngữ Tour Code); không còn hỏi.
 2. **Điều kiện mặc định cho Booking mới là Thu đủ đến đợt 1**, Quản trị đổi được. Lý do: Booking được tạo trước khi Kinh doanh lập lịch thanh toán (SYS04.02 rồi SYS04.03). Nếu mặc định là “không có điều kiện”, hồ sơ sẽ luôn được tạo ngay khi tạo Booking và điều kiện thanh toán không bao giờ có tác dụng. Booking chưa có lịch thanh toán thì chờ.
 3. **“Thu đủ đến đợt n” tính lũy kế** từ đợt 1 đến đợt n, theo khoản thu có liên kết đợt ở KT01.1.
 4. **Hồ sơ không bị xóa** khi giao dịch thu bị hủy sau khi tạo (E1.6; từ v1.4, KT01 không cho sửa số tiền, xóa giao dịch).
-5. **Tự thử lại 3 lần** (1, 5, 15 phút) khi tạo lỗi, rồi đưa vào nhóm Tạo lỗi.
+5. **Tự thử lại 3 lần** (1, 5, 15 phút) khi tạo lỗi, rồi đưa vào nhóm Tạo lỗi. Bỏ theo Q5 ở v1.8.
 6. **Hạng mục của NCC đã tắt** vẫn được tạo, để trống NCC (E1.4). Không có mẫu checklist thì checklist rỗng (E1.5).
 7. **Chip Đang mở là mặc định**, gồm Mới tạo, Đang diễn ra, Đã kết thúc; Đã đóng tách riêng.
 8. **Tab đích khi mở từ DH07** theo trạng thái: Đã kết thúc mở DH08.8 cho mọi vai trò (R10).
@@ -68,13 +91,13 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 
 - `wireframes-src/check-rsd.js --final` (bản Node của `check-rsd.py`; chưa chạy bản Python): 30 tham chiếu ảnh, 15 mã W, không lỗi bảng hay đường dẫn, không còn nhãn chưa chốt. Mọi bước ở mục 3 có mã W; mọi mục con có ngoại lệ.
 - Đã xem trực quan 13/15 ảnh (W01, W02, W04–W13). Chưa mở W03 (cùng bố cục với W04, không có danh sách thả xuống) và W14 (khung lỗi đơn giản).
-- ZIP `rsd/DH07-RSD-v1.0.zip` (RSD và thư mục `wireframes/`, đường dẫn dùng `/`) đã được giải nén thử và chạy lại `check-rsd`: mọi ảnh mở được.
+- ZIP `docs/rsd/DH07-RSD-v1.0.zip` (RSD và thư mục `wireframes/`, đường dẫn dùng `/`) đã được giải nén thử và chạy lại `check-rsd`: mọi ảnh mở được.
 - Đã sửa: Xóa bộ lọc bị lặp (thanh lọc và vùng bảng rỗng) ở W07, W13; W09 và W09a vẽ hộp thoại trên bảng trượt W08 cho đúng ngữ cảnh.
 - Số liệu đã đối chiếu: Đang mở 13 = 9 + 2 + 2; Chưa có người phụ trách 4; số hồ sơ đang mở trên W04 khớp danh sách; sau tạo sớm 14 = 10 + 2 + 2; dải Booking chờ 4 → 3.
 
 ## Cập nhật v1.1 (11/11/2026) · đồng bộ RSD DH01 v1.0
 
-- Đổi tên tệp thành `RSD-DH07-Danh-sach-ho-so-Tour-v1.1.md`; bản v1.0 sao lưu ở `rsd/_backup-20261111-truoc-dong-bo-DH01/`.
+- Đổi tên tệp thành `RSD-DH07-Danh-sach-ho-so-Tour-v1.1.md`; bản v1.0 sao lưu ở `docs/rsd/_backup-20261111-truoc-dong-bo-DH01/`.
 - R04 viết lại: một mẫu theo loại Tour, rơi về Mẫu mặc định; không gộp mẫu; ghi phiên bản mẫu; hạn theo ba mốc của DH01.
 - E1.5, AC14: thay checklist rỗng bằng Mẫu mặc định.
 - Mục 4.1 (từ v1.3 là mục 5.1): công việc checklist thêm phiên bản mẫu, ID công việc mẫu, ID hạng mục, hướng dẫn, người thực hiện.
@@ -98,7 +121,7 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - R07, AC28: “Gửi hủy n NCC” khi hồ sơ Đang diễn ra chỉ tính dịch vụ chưa dùng (theo RSD DH08 R14 bản v2.4 đang sửa song song; cần đối chiếu câu chữ khi DH08 v2.4 xong).
 - Mục 1.3, R11: thay đổi Booking diễn đạt theo quyết định Q2 (tính giá lại ở KD06 chế độ điều chỉnh, Chuyển sang Điều hành ở KD08); bỏ “sửa hành trình, số khách, ngày” trực tiếp ở KD08.
 - Mục 1.4, R09, E5.7: người nhận thông báo nhóm Điều hành theo RSD DH06 R03 (Đang nhận phân công, tài khoản liên kết đang hoạt động); nhãn “Không nhận phân công”.
-- Mục 1.4, R10, R13: thêm cột Quản trị hệ thống: xem mọi hồ sơ, chỉ xem, mở DH08 theo phạm vi DH08; Lịch mặc định Tháng. *Tự quyết, cần xác nhận* (như KD07).
+- Mục 1.4, R10, R13: thêm cột Quản trị hệ thống: xem mọi hồ sơ, chỉ xem, mở DH08 theo phạm vi DH08; Lịch mặc định Tháng. *Tự quyết, cần xác nhận* (như KD07); thay bằng Q1, Q25 ở v1.8.
 - Mục 2.4, nguồn nghiệp vụ: tham chiếu RSD DH08 v2.4, DH01 v1.2, DH06 v1.2, KD08 v1.2, KT01 v1.2. Mục 2.5, L1.1: Booking tạo ở KD08 (thay “KD06.3”).
 - Câu hỏi 3 hay 4 chữ số Tour Code: đã đóng (mục Thiết kế tự quyết, số 1).
 - Mục “Thiết kế tự quyết” số 4: sửa thành giao dịch thu bị hủy (E1.6).
@@ -117,7 +140,7 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - AC01, AC02, AC08, AC15 viết lại; AC03, AC04 bỏ.
 - Quyết toán: R07 (Đã kết thúc → “Chờ đóng Tour”), mục 2.4 thêm chỉ báo Chưa quyết toán, mục 2.3 bộ lọc Quyết toán xét cả Đã đóng, L3.3 thêm bước 3, AC42.
 
-**Tự quyết, cần xác nhận:**
+**Tự quyết, cần xác nhận (chấp nhận mặc định, Q3):**
 - R10, AC44: Kế toán bấm hồ sơ Đã đóng chưa quyết toán thì mở thẳng DH08.8 (vai trò khác vẫn mở DH08.1 chỉ đọc). Ghi “suy ra, chờ xác nhận” trong RSD.
 - Giữ cả chỉ báo Đã quyết toán và Chưa quyết toán (mỗi hồ sơ Đã kết thúc, Đã đóng có đúng một trong hai).
 - R01: tạo hồ sơ chạy trong giao dịch riêng sau khi Booking đã lưu, lỗi không làm hỏng việc lưu Booking (giữ cách cũ của E1.1). Trong 3 lần tự thử lại, Booking chưa hiện ở W08.
@@ -141,7 +164,7 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - W08 giữ cột số đã thu (tham khảo); KT01 v1.4 thêm lại DH07 vào danh sách màn đọc số liệu.
 - Nguồn nghiệp vụ: DH08 v2.6, KD08 v1.4, KT01 v1.4, thêm QT01 v1.1, QT05 v1.1.
 
-**Tự quyết, cần xác nhận:** nhãn “(ngừng hoạt động)” áp cả trên thẻ Kanban và hàng của người đó ở Lịch theo người phụ trách (R08), theo nguyên tắc “các màn hiện tên kèm (ngừng hoạt động)” ở BOI-CANH.
+**Tự quyết, cần xác nhận (chấp nhận mặc định, Q3):** nhãn “(ngừng hoạt động)” áp cả trên thẻ Kanban và hàng của người đó ở Lịch theo người phụ trách (R08), theo nguyên tắc “các màn hiện tên kèm (ngừng hoạt động)” ở BOI-CANH.
 
 **Wireframe:** không dựng lại (giao diện không đổi; nhãn “(ngừng hoạt động)” không có trên hình hiện tại).
 
@@ -158,3 +181,11 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 **Kiểm tra.** `node wireframes-src/check-rsd.js RSD-DH07-Danh-sach-ho-so-Tour-v1.7.md --final`: không lỗi.
 
 - **Kiểm tra chéo cuối đợt rà soát lần ba (12/11/2026).** 1.4, R09: người nhận thông báo nhóm Điều hành có vai trò Điều hành (RSD DH06 v1.3 R03).
+
+## Sửa sau rà chéo 12/11/2026
+
+- **Bộ lọc Việc cần xử lý** (người dùng chốt 12/11/2026, để RSD CH03 có thẻ VT-DH-04 đến 06): chọn nhiều, mặc định Tất cả. Thay đổi chương trình = có thay đổi Chờ áp dụng (RSD DH08 2.3, R19); Đặt dịch vụ = số trên tab Đặt dịch vụ của DH08 > 0 (RSD DH08 2.1, R02); Chờ NCC phản hồi quá hạn = có chỉ báo “n ngày chưa phản hồi” (RSD DH08 2.3, R04), tính lúc đọc (Q6). Sửa 1.5, 2.1, 2.3, 5.2; thêm AC48, AC49.
+- **T7 · R09 viết lại theo RSD CH02 R04:** nhắc hồ sơ chưa giao mỗi ngày trên cùng một dòng, mỗi ngày quay về Chưa đọc kể cả đã đọc; gồm hồ sơ đã qua ngày khởi hành; dừng khi có người phụ trách hoặc rời Mới tạo. Bỏ câu “Thông báo đã đọc không hiện lại”. Sửa L4.3.
+- **T8 · giờ nhắc:** Giờ chạy nhắc hằng ngày là tham số chung QT05 R17, chung cho mọi loại nhắc định kỳ (RSD CH02 R09). R12 thêm dòng.
+- Người nhận nhóm Điều hành ở R09 vẫn ghi “có vai trò Điều hành” theo RSD DH06 R03; RSD CH02 đã dùng “vai trò thuộc phòng Điều hành” theo quyết định 12/11/2026. Cần sửa DH06 R03 và câu này cùng lúc (câu hỏi cho người dùng).
+- **Kiểm tra.** `check-rsd.py`: 15 ảnh, 15 mã W, không lỗi. AC48: 10/11 09:00 → 12/11 10:00 là 49 giờ; 10/11 11:00 → 12/11 11:01 là 48 giờ 1 phút (AC49).

@@ -2,7 +2,7 @@
 
 ## Nguồn và quy ước
 
-- Nguồn: `luồng/level 1/luonghotro.md` (bản cập nhật mới nhất) gồm 4 luồng hỗ trợ HT01, HT03, HT04, HT05. HT02 (Dịch vụ và Bảng giá) đã gộp vào HT01 — Quản lý Hồ sơ Nhà cung cấp; mã HT02 không còn dùng. Thay thế `danh-sach-tinh-nang-ho-tro-level1-v1.md` (chỉ có HT03–HT05).
+- Nguồn: `docs/flows/level 1/luonghotro.md` (bản cập nhật mới nhất) gồm 4 luồng hỗ trợ HT01, HT03, HT04, HT05. HT02 (Dịch vụ và Bảng giá) đã gộp vào HT01 — Quản lý Hồ sơ Nhà cung cấp; mã HT02 không còn dùng. Thay thế `danh-sach-tinh-nang-ho-tro-level1-v1.md` (chỉ có HT03–HT05).
 - Vai trò lấy từ sơ đồ: **Kinh doanh**, **Điều hành**, **Kế toán**. Không thêm vai trò đăng nhập mới.
 - Mã tính năng `CNHTxx.yy` **giữ nguyên theo cột "Tính năng tương ứng"** trong bảng mô tả nguồn. Mã bước giữ nguyên.
 - Nút điều kiện và nút liên kết sang nghiệp vụ khác không tạo tính năng hỗ trợ (đúng như nguồn ghi "Điều hướng/điều kiện, không tính thành tính năng riêng"). Nút liên kết được đối chiếu với *tính năng tiếp nhận* trong danh sách hỗ trợ này hoặc danh sách chính `danh-sach-tinh-nang-level1-v2.md` (bảng cuối tài liệu).
