@@ -1,4 +1,26 @@
-# Ghi chú làm việc · RSD KT01 v1.3
+# Ghi chú làm việc · RSD KT01 v1.6
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md` (bản sửa 12/11/2026). Tệp đổi tên `RSD-KT01-Cong-no-va-thu-chi-v1.6.md` bằng `git mv`. Không đổi số hiệu L, E, R, W, AC; thêm E1.14, AC62.
+
+**Đã sửa:**
+- **Q1.** Bỏ “Kinh doanh chỉ thấy dữ liệu của Booking mình phụ trách” ở quyết định đầu tài liệu, 1.4, R01, R03 (số trên tab), 5.2, L1.7, E0.11, AC27–AC29. 1.4 thành “Quyền mặc định theo vai trò”, cấu hình ở QT02. Thông tin nhận thanh toán NCC và điều khoản thanh toán của đợt trả theo thao tác riêng Xem thông tin thanh toán NCC, dùng chung với RSD DH03 v1.5 mục 1.4 (mặc định Kế toán, Điều hành, Quản trị có; Kinh doanh không). E3.8 mở lại hồ sơ theo quyền.
+- **Q18.** Khoản phải thu phát sinh là khoản riêng, loại tiền riêng (R04, R11, L3.2, 5.1). Tự phân bổ, Tiền thừa, Dùng tiền thừa, hoàn chỉ trong cùng loại tiền (R06, R07, E1.6, 5.1). Thêm E1.14 (Booking còn phải thu nhiều loại tiền: chọn loại tiền rồi khóa) và AC62.
+- **Q9.** Phí giữ lại làm tròn half-up theo đơn vị nhỏ nhất của loại tiền, không áp bội số (R07, R16, nguồn KD06 R14).
+- **Q2, Q5.** Thông báo nội bộ → thông báo in-app (1.2, L1.6, R05, 5.3). Nghĩa vụ từ lịch thanh toán KD08 thay trong cùng giao dịch; R13 ghi rõ phần màn nhận phải ghi nằm cùng giao dịch, còn lại đọc lúc tải.
+- **Q3.** Bỏ nhãn “suy ra, chờ xác nhận” ở L3.3, R03. Các mục “Thiết kế do người viết tự quyết, cần xác nhận” trong tệp này coi là chấp nhận mặc định (Q3).
+- **Q6, Q7, Q19, K6.** Tình trạng tính lúc đọc (R03); mã GD cho phép thủng số, YYMM theo giờ Asia/Ho_Chi_Minh (R15); tệp chứng từ 20 MB, 10 tệp, PDF/JPG/PNG/XLSX/DOCX (R15, trước 10 MB, 5 tệp, chỉ PDF/JPG/PNG); E2.10 “Ngừng dùng”. Ngưỡng Đến hạn ghi chủ sở hữu QT05.
+- Bỏ phần “DH07 W08 hiện số đã thu của Booking tạo hồ sơ lỗi” (1.1, 5.1) vì Q5 bỏ Tạo lỗi; giữ DH07 trong danh sách màn đọc theo BOI-CANH.
+
+**Tự đơn giản hóa giao diện (U6):**
+- KT01.1 có chip Của tôi (Booking mình phụ trách) bật sẵn với Kinh doanh, tắt sẵn với vai trò khác, để Kinh doanh vẫn mở thẳng Booking của mình như W15 (theo nguyên tắc danh sách có người phụ trách bật sẵn chip Của tôi). KT01.2, KT01.3 không thêm chip.
+- Bỏ nhãn “… · chỉ xem” ở phần đầu; người chỉ xem chỉ không thấy nút ghi (U5). Trường chỉ đọc hiện dạng chữ thay vì viền nét đứt và 🔒.
+- Giữ nút Thử lại khi lỗi tải phần đầu hoặc lịch thanh toán (tải lại dữ liệu đọc, không phải Thử lại đã bỏ theo Q5).
+
+**Hình chưa cập nhật:** W15 (nhãn “Booking bạn phụ trách”, “Kinh doanh · chỉ xem”; chưa có chip Của tôi) có ghi chú dưới hình. Ghi chung ở “Dữ liệu trên hình”: thanh bên mọi hình còn mục Chăm sóc khách hàng (C3); trường chỉ đọc còn viền nét đứt, 🔒. Chưa có hình cho khoản phải thu phát sinh khác loại tiền (E1.14).
+
+**Còn mở:** quyền “Xem tài khoản nhận hoàn của khách” mặc định chỉ Kế toán (giữ như bản cũ; Quản trị chưa cấp dù Q25 cho Quản trị xem mọi màn). E1.14: cách chọn loại tiền khi Booking còn phải thu nhiều loại tiền là suy từ Q18. KD07 R04 hiện một số Còn phải thu mỗi dòng; khi Booking có khoản phát sinh khác loại tiền thì KD07 cần hiện theo từng loại tiền (ngoài phạm vi KT01).
 
 ## Cập nhật v1.3 (12/11/2026) · Kế toán không làm chốt chặn cho KD, DH
 
@@ -64,7 +86,7 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 
 | Mã | Câu hỏi | Trả lời | Tác động |
 |---|---|---|---|
-| Q0 | Màn cần viết, hướng làm | KT01 · Công nợ và thu chi (KT01.1, KT01.2, KT01.3); chưa có RSD nên viết mới ở `rsd/KT01/`; MD + PNG, không đóng ZIP | Toàn bộ |
+| Q0 | Màn cần viết, hướng làm | KT01 · Công nợ và thu chi (KT01.1, KT01.2, KT01.3); chưa có RSD nên viết mới ở `docs/rsd/KT01/`; MD + PNG, không đóng ZIP | Toàn bộ |
 | Q1 | Sửa giao dịch ghi nhầm | Không sửa số tiền, không xóa; Hủy giao dịch kèm lý do (giữ trong lịch sử, gạch ngang) rồi ghi lại; chỉ sửa ngày chứng từ, tệp, ghi chú | L0.3, R12, W11, W12, AC20–AC22 |
 | Q2 | Loại tiền | Theo loại tiền gốc; giao dịch bắt buộc cùng loại tiền với khoản, không nhập tỷ giá; tổng tách theo loại tiền, không dòng quy đổi | R04, 2.1, E0.3, AC50 |
 | Q3 | Phân bổ khoản thu, khách trả thừa | Tự phân bổ vào đợt chưa thu đủ sớm nhất, sửa được; phần vượt thành Tiền thừa (hoàn hoặc dùng cho đợt mới) | R06, L1.3, W05, W06, AC07–AC09 |
@@ -148,3 +170,10 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - Dẫn phiên bản theo bảng phiên bản mới (KD07 v1.3, KD08 v1.5, KD06 v1.5, DH03 v1.4, DH07 v1.7, DH08 v2.8, QT05 v1.2). Các mục “Thay đổi ở v…” cũ giữ nguyên.
 
 **Kiểm tra:** `node sync-md.js`, `node wireframes-src/check-rsd.js RSD-KT01-Cong-no-va-thu-chi-v1.5.md --final`: 30 ảnh, 30 mã W, đạt. Đã xem lại W17.
+
+## Sửa sau rà chéo 12/11/2026
+
+- **Quyết định 2 (người dùng chốt 12/11/2026).** Không gửi thông báo cho Kế toán khi có dịch vụ chờ ghi phải trả; Kế toán theo dõi bằng chip Chờ ghi phải trả và thẻ VT-KT-05 của RSD CH03. Sửa mục 5.3 (bỏ “dịch vụ chờ ghi phải trả” khỏi danh sách thông báo).
+- **L3.4, AC49 thống nhất với R03.** Chip Chưa quyết toán không gồm Tour còn chi phí phát sinh Chưa ghi công nợ; Tour đó ở chip Chờ ghi phát sinh vì mỗi Tour thuộc đúng một chip theo thứ tự ưu tiên của R03.
+- **Mục 1.2.** Dòng Thông báo → KT01.1 dẫn RSD CH02 R07 và các mã TB; ghi rõ thông báo chi phí thực tế mở DH08.8. Không đổi nơi mở.
+- **Kiểm tra.** `check-rsd.py`: 30 ảnh, 30 mã W, không lỗi.

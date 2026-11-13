@@ -1,4 +1,25 @@
-# Ghi chú làm việc · RSD KD07 v1.3
+# Ghi chú làm việc · RSD KD07 v1.4
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md` (bản sửa 12/11/2026). Tệp đổi tên `RSD-KD07-Danh-sach-Booking-v1.4.md` bằng `git mv`.
+
+**Đã sửa:**
+- **Q1.** Bỏ phạm vi “Kinh doanh xem Booking mình phụ trách”: mọi vai trò có quyền xem KD07 thấy mọi Booking. Thêm chip Của tôi đầu hàng chip, bật sẵn với Kinh doanh (1.2, 1.4, 2.1, 2.3, R01, R07, R08, 5.2). Bộ lọc và cột Phụ trách có cho mọi vai trò; cột ẩn khi chip Của tôi bật (2.2, 2.7). 1.4 thành “Quyền mặc định theo vai trò”, cấu hình ở QT02. E1.1, E1.3 thay câu “Bạn chỉ thấy Booking mình phụ trách” bằng gợi ý Tắt Của tôi; E2.1 bỏ (giữ mã); E2.5 Tour Code dạng chữ khi không có quyền DH08 (U5). AC01, AC03, AC22, AC26, AC28 sửa; thêm AC50.
+- **Q5.** Bỏ tình trạng Tạo lỗi, “—” và bộ lọc Hồ sơ Tour: mọi Booking đều có hồ sơ Tour (1.1, 1.3, 1.5, 2.2–2.6, L1.1, L4.1, R03, R07, R11, R13, 5.1, 5.2). Lịch ngày khởi hành: xanh lá Hiệu lực, xám Đã hủy. E1.8, AC48 bỏ (giữ mã).
+- **Q3.** Bỏ nhãn “suy ra, chờ xác nhận” ở R03, R13 (cả hai câu đó bỏ theo Q5). Các mục “Suy ra, chờ xác nhận” ở dưới coi là chấp nhận mặc định (Q3), trừ hai mục về Tạo lỗi đã bỏ.
+- **Q18.** R04: khoản phải thu phát sinh có loại tiền riêng; khác loại tiền Booking thì Còn phải thu hiện theo từng loại tiền, không cộng lẫn (theo RSD KT01 v1.6 R11).
+- **Q6, Q7, U3, C2.** Tình trạng đợt tính lúc đọc (2.4, R04); mã Booking cho phép thủng số, YYMM theo giờ Asia/Ho_Chi_Minh (R10); nhớ bộ lọc cả sau khi đăng xuất (1.2, 5.1); ngưỡng Đến hạn ở QT05; giới hạn hàng và mục của Lịch ở tệp cấu hình (R11).
+
+**Tự đơn giản hóa giao diện (U6):**
+- Bỏ hẳn bộ lọc Hồ sơ Tour (không còn giá trị phân biệt); lọc theo trạng thái hồ sơ dùng bộ lọc cột chung (K2).
+- Chip Của tôi tắt sẵn với Kế toán và Quản trị vì hai vai trò này không phụ trách Booking; bật sẵn thì danh sách rỗng (xem câu hỏi bên dưới).
+- Chip Của tôi bật tương đương Phụ trách là mình; chọn người khác ở Phụ trách thì chip tắt.
+- Giữ nút Thử lại khi lỗi tải danh sách hoặc số liệu KT01 (tải lại dữ liệu đọc, không phải Thử lại tạo hồ sơ đã bỏ).
+
+**Hình chưa cập nhật:** mọi hình danh sách thiếu chip Của tôi và còn ô lọc Hồ sơ Tour; thanh bên còn mục Chăm sóc khách hàng (C3) — ghi một lần ở “Dữ liệu trên hình”. Ghi riêng dưới hình: W01, W05 (câu “Bạn chỉ thấy Booking mình phụ trách”), W06 (bộ lọc Tạo lỗi), W07, W12 (chú giải Tạo lỗi), W17 (Hanami “—”).
+
+**Còn mở:** chip Của tôi mặc định tắt với Kế toán, Quản trị (BOI-CANH ghi “bật sẵn” chung); 20 dòng mỗi trang khác chuẩn K1 (50 dòng), để đặc tả chuẩn component quyết định.
 
 ## Cập nhật v1.3 (12/11/2026) · Rà soát mâu thuẫn lần ba
 
@@ -52,7 +73,7 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 
 | Mã | Câu hỏi | Trả lời | Tác động |
 |---|---|---|---|
-| Q0 | Màn cần viết, hướng làm | KD07 · Danh sách Booking; chưa có RSD nên viết mới ở `rsd/KD07/`; bàn giao MD + PNG trong ZIP theo quy ước dự án | Toàn bộ tài liệu |
+| Q0 | Màn cần viết, hướng làm | KD07 · Danh sách Booking; chưa có RSD nên viết mới ở `docs/rsd/KD07/`; bàn giao MD + PNG trong ZIP theo quy ước dự án | Toàn bộ tài liệu |
 | Q1 (11/11/2026) | Dạng xem | Bảng (mặc định); Lịch mốc Ngày khởi hành (mặc định Kinh doanh) hoặc Hạn thanh toán (mặc định Kế toán; mỗi đợt một thẻ, màu theo còn hạn, đến hạn, quá hạn, đã thu đủ); không Kanban; không kéo thả | 2.6, R12–R14, L4.1–L4.3, W12–W15 |
 | Q2 (12/11/2026) | Booking Đã hủy trên Lịch hạn thanh toán | Ẩn đợt của Booking Đã hủy; vẫn tra cứu Booking hủy ở Bảng | R14, E4.1, W15, W17, AC37, AC38 |
 | Q3 (12/11/2026) | Nguồn số còn phải thu | Đọc từ KT01; thiếu thì ghi “Chưa có dữ liệu công nợ”, không coi là 0 | R04, R07, E1.4, E1.7, E4.5, W08, AC12, AC13, AC39 |
@@ -99,3 +120,10 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - Đã xem trực quan: W01, W02, W03, W07, W08, W09, W11, W12, W13, W14, W15, W16, W17. Đã sửa: W11 (nhãn loại khách làm dòng xuống hàng; ô Khởi hành bị tô như đang lọc dù là mặc định của Kế toán), W13 (nhãn thẻ bị cắt mất số tiền: bỏ “Đn”, thu hẹp khay), W14 (bảng nhỏ tràn đáy), W03 (bảng chọn lệch vị trí). Chưa mở lại W04, W05, W06, W10 (cùng khung với W01, W07 đã xem).
 - Trạng thái không có ảnh riêng, chỉ mô tả bằng chữ: Tạo lỗi (E1.8), một Booking thiếu số liệu (E1.7), lỗi khoảng ngày (E1.5), dạng Tuần, tháng rỗng (E4.2), thẻ xám khi KT01 lỗi ở mốc Hạn thanh toán (E4.5), Tour Code khóa (E2.5).
 - Số liệu đã đối chiếu: Của tôi, Chưa kết thúc: Hiệu lực 12 + Đã hủy 2 = 14; sau khi hủy BK-2611-0140: 11 + 3 = 14. Cần thu trong 7 ngày (12/11–19/11): Tanaka (quá 5 ngày), Lefebvre (quá 2 ngày), Müller BK-2610-0137 (13/11), Sunrise (17/11), Dupont (18/11) = 5. Müller: 4 Booking của Nam (BK-2602-0021, BK-2609-0102, BK-2610-0137, BK-2611-0158), khớp KD05 (BK-2509-0058 do Lê Thu Hà phụ trách nên không hiện) và KD06 W42 (BK-2611-0158 từ v3 50.750 EUR; đợt 1 30% = 15.225 EUR). BK-2610-0137: 38.420 = 11.526 + 26.894 EUR. Lịch 12/2026: 6 Booking khởi hành (Kyoto, Kim, Rossi, Les Amis, Brown, Sunrise). Lịch hạn 11/2026: 21 đợt = 3 quá hạn (Tanaka 07/11, Lefebvre 10/11, Wagner 10/11) + 5 đến hạn (13, 14, 15, 17, 18/11) + 4 đã thu đủ (Nordic 01/11, Green Path 03/11, Kim 10/11, Rossi 11/11) + 9 còn hạn (Kyoto 21/11, Kim 25/11, Müller 25/11, Rossi 28/11, 5 đợt ngày 30/11). Tour Code, Booking chờ khớp DH07 (Lefebvre TP-2611-0052 tạo sớm; Brown & Co chưa có lịch thanh toán; Smith TP-2611-0049 Booking đã hủy); BK-2611-0149 Hanami đã hủy 10/11 khớp KD06 W47.
+
+## Sửa sau rà chéo 12/11/2026
+
+- **Bộ lọc Yêu cầu đổi lịch trình** (người dùng chốt 12/11/2026, để RSD CH03 có thẻ VT-KD-06): Tất cả, Đang chờ, Quá hạn phản hồi; chọn một giá trị, mặc định Tất cả. Đang chờ = Booking có yêu cầu Chờ Kinh doanh (RSD DH08 2.3, R18; KD08 R13). Quá hạn phản hồi = trong đó có yêu cầu mà hôm nay sau ngày hạn phản hồi, cùng cách tính với chỉ báo Quá hạn phản hồi (RSD DH08 E3.11), tính lúc đọc (Q6). Sửa 1.5, 2.1, 2.3, R07 (kể cả tên mục), 5.1, 5.2; thêm AC51, AC52.
+- **Tự quyết:** bộ lọc thả xuống trên thanh lọc như Thanh toán, không thêm cột hay chỉ báo trên dòng (banner yêu cầu đã có ở KD08 khi mở dòng). Không đổi luồng, trạng thái, quyền.
+- Hình chưa dựng lại: thanh lọc trên W01–W17 chưa có ô Yêu cầu đổi lịch trình.
+- **Kiểm tra.** `check-rsd.py`: 17 ảnh, 17 mã W, không lỗi.

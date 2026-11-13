@@ -2,7 +2,7 @@
 
 ## Nguồn và quy ước
 
-- Nguồn: `luồng/danh-sach-tinh-nang-level1.md` (53 tính năng chính TNxx.yy), `luồng/danh-sach-tinh-nang-ho-tro-level1.md` (13 tính năng hỗ trợ CNHTxx.yy) và các luồng Level 1 trong `luồng/level 1/`.
+- Nguồn: `docs/flows/danh-sach-tinh-nang-level1.md` (53 tính năng chính TNxx.yy), `docs/flows/danh-sach-tinh-nang-ho-tro-level1.md` (13 tính năng hỗ trợ CNHTxx.yy) và các luồng Level 1 trong `docs/flows/level 1/`.
 - Bốn module theo yêu cầu: **Kinh doanh** (KD), **Điều hành** (DH), **Kế toán** (KT), **Quản trị** (QT). Module là vị trí trong menu; cột Vai trò ghi người dùng màn. Mọi màn nhóm Báo cáo đặt trong module Quản trị.
 - Vai trò theo nguồn: Kinh doanh, Điều hành, Kế toán. Vai trò Quản trị hệ thống chỉ dùng cho các màn Hệ thống đề xuất.
 - Ghi chú trong cột Tính năng: “Đề xuất, ngoài Level 1” là màn hoặc hành vi chưa có trong nguồn; “Đề xuất báo cáo, ngoài Level 1” là báo cáo suy ra từ dữ liệu đã ghi; “chờ đặc tả” là quy tắc nguồn chưa quy định.

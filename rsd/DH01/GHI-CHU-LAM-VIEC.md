@@ -1,6 +1,27 @@
-# Ghi chú làm việc · RSD DH01 v1.2
+# Ghi chú làm việc · RSD DH01 v1.5
 
 Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã chốt và các thiết kế do người viết tự quyết, cần người dùng xác nhận.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+**Tệp:** `git mv` v1.4 → `RSD-DH01-Mau-checklist-dieu-hanh-v1.5.md`. Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md` (bản sửa 12/11/2026), ADR 0001, 0002. Không đánh số lại L, E, R, W, AC.
+
+**Đã sửa:**
+- *Q5:* checklist sinh trong cùng giao dịch tạo hồ sơ, cùng giao dịch lưu Booking (RSD DH07 R01, R05). Bỏ nhắc nhóm Tạo lỗi và Thử lại của DH07 ở L4.1, L5.1, E5.8, R08, AC15. E5.6 đổi “quyết định Q5 của DH07” (mã cũ, trùng ký hiệu với Q5 phase coding) thành dẫn RSD DH07 R03.
+- *U2:* tắt Đang dùng làm ngay, không hỏi xác nhận, vì hoàn tác được; hậu quả chuyển vào thông báo ngắn có Hoàn tác (2.6, 2.7, L4.1, R08, AC15). Xóa mẫu vẫn hỏi xác nhận vì không hoàn tác được.
+- *Q1, Q25:* 1.4 thành “Quyền mặc định theo vai trò” (bốn vai trò), hai thao tác Xem mẫu checklist và Quản lý mẫu checklist cấu hình ở QT02; Quản trị hệ thống mặc định xem được. Màn không có người phụ trách nên không có Của tôi.
+- *U5:* trường chỉ đọc hiện dạng chữ (2.7); người chỉ xem thấy chữ “Đang dùng/Ngừng dùng” thay cho công tắc mờ (1.4, AC27).
+- *U3:* bộ lọc và chip nhớ theo người dùng (1.2, 2.3). *Q2:* 5.3 bỏ chữ “nội bộ”.
+- *Q3:* RSD không còn nhãn “chờ xác nhận”; các mục “Tự quyết, cần xác nhận” bên dưới coi là **chấp nhận mặc định (Q3)**.
+
+**Tự đơn giản hóa giao diện (U6):**
+- Bỏ hộp thoại xác nhận ngừng dùng (W12) theo U2; nội dung hậu quả giữ trong thông báo ngắn.
+- Nút Thử lại khi lỗi tải đổi thành Tải lại (E1.1, AC28). Giữ “Thử lại” ở E4.5 (lỗi lưu khi bật tắt), không phải nút Thử lại tạo hồ sơ của Q5.
+- Giữ công tắc mờ “Luôn dùng” của Mẫu mặc định (E4.1) vì là giá trị hệ thống, có chú thích khi bấm.
+
+**Hình chưa cập nhật (đã ghi dưới hình):** W12 (hộp thoại xác nhận, dòng Booking ở nhóm Tạo lỗi), W16 (công tắc mờ cho người chỉ xem), W17 (nút Thử lại).
+
+**Câu hỏi cho người dùng:** không có.
 
 ## Cập nhật v1.1 (12/11/2026) · khung 6 mục
 
@@ -17,7 +38,7 @@ Sắp xếp lại theo khung 6 mục, không đổi nghiệp vụ. Mục 8 cũ g
 | Q2 | Sửa mẫu có đổi hồ sơ đã tạo không | Không đổi hồ sơ đã tạo; mẫu mới chỉ dùng cho hồ sơ tạo sau (theo đề xuất của nguồn) | R06, L3.1, AC10 |
 | Q3 | Mẫu không dùng nữa | Ngừng dùng (bật/tắt); chỉ xóa được mẫu chưa dùng | R08, L4.1–L4.3, W12–W14a, AC15–AC21 |
 
-## Thiết kế do người viết tự quyết, cần xác nhận
+## Thiết kế do người viết tự quyết, cần xác nhận (chấp nhận mặc định, Q3)
 
 1. **Mẫu mặc định.** Thêm một mẫu không gắn loại Tour, luôn Đang dùng, không xóa được, dùng khi Booking chưa có loại Tour hoặc loại Tour chưa có mẫu đang dùng. Lý do: Q1 quy định một mẫu cho mỗi loại Tour nhưng chưa nói hồ sơ thiếu mẫu thì sao; RSD DH07 E1.5 đang để checklist rỗng. Nếu không muốn, bỏ Mẫu mặc định và giữ checklist rỗng như DH07.
 2. **Một loại Tour tối đa một mẫu kể cả mẫu ngừng dùng.** Muốn làm lại mẫu cho loại Tour đó thì sửa mẫu cũ (tạo phiên bản mới) hoặc xóa nếu chưa dùng.
@@ -36,7 +57,7 @@ Sắp xếp lại theo khung 6 mục, không đổi nghiệp vụ. Mục 8 cũ g
 
 ## Thay đổi cần làm ở màn khác
 
-**Tình trạng 11/11/2026:** đã cập nhật RSD DH07 (lên v1.1) và RSD DH08 (lên v2.1) theo các mục dưới; bản cũ sao lưu ở `rsd/_backup-20261111-truoc-dong-bo-DH01/`. Các mục còn lại (danh sách màn, KD06.1, KD08, QT05, QT02, khởi tạo dữ liệu) chưa làm vì chưa có RSD của các màn đó.
+**Tình trạng 11/11/2026:** đã cập nhật RSD DH07 (lên v1.1) và RSD DH08 (lên v2.1) theo các mục dưới; bản cũ sao lưu ở `docs/rsd/_backup-20261111-truoc-dong-bo-DH01/`. Các mục còn lại (danh sách màn, KD06.1, KD08, QT05, QT02, khởi tạo dữ liệu) chưa làm vì chưa có RSD của các màn đó.
 
 
 - **Danh sách màn (DH01).** Cột Danh mục: “Loại Tour (QT05), loại dịch vụ”. Luồng: một mẫu cho mỗi loại Tour, Mẫu mặc định, phiên bản, ngừng dùng và chỉ xóa mẫu chưa dùng; bỏ chữ “(đề xuất)” ở câu sửa mẫu.
@@ -66,7 +87,7 @@ Sắp xếp lại theo khung 6 mục, không đổi nghiệp vụ. Mục 8 cũ g
 
 ## Thống nhất 4 RSD DH01–DH04 (11/11/2026)
 
-Sau khi rà chồng chéo giữa bốn RSD, các điểm dưới đã được sửa thẳng trong RSD (không đổi số phiên bản). Bản trước khi sửa và ZIP cũ ở `rsd/_backup-20261111-truoc-thong-nhat-DH01-DH04/`.
+Sau khi rà chồng chéo giữa bốn RSD, các điểm dưới đã được sửa thẳng trong RSD (không đổi số phiên bản). Bản trước khi sửa và ZIP cũ ở `docs/rsd/_backup-20261111-truoc-thong-nhat-DH01-DH04/`.
 
 | # | Điểm | Chốt | Nơi sửa |
 |---|---|---|---|

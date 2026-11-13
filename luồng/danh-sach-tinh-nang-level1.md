@@ -2,8 +2,8 @@
 
 ## Nguồn và quy ước
 
-- Nguồn: 10 file luồng Level 1 tại `luồng/level 1/sys01.md` → `sys10.md` (sơ đồ Mermaid trong các file `.md` trùng khớp với `luồng/level 1/mermaid/*.mmd`).
-- V2 so với V1: cập nhật mô tả TN03.06 và TN06.03 theo mục "Liên kết với SYS03 và SYS06" của HT02 (`luồng/level 1/luonghotro.md`); không đổi số lượng, mã hay bước luồng của tính năng.
+- Nguồn: 10 file luồng Level 1 tại `docs/flows/level 1/sys01.md` → `sys10.md` (sơ đồ Mermaid trong các file `.md` trùng khớp với `docs/flows/level 1/mermaid/*.mmd`).
+- V2 so với V1: cập nhật mô tả TN03.06 và TN06.03 theo mục "Liên kết với SYS03 và SYS06" của HT02 (`docs/flows/level 1/luonghotro.md`); không đổi số lượng, mã hay bước luồng của tính năng.
 - Cập nhật hồ sơ NCC: HT02 đã gộp vào HT01 — Quản lý Hồ sơ Nhà cung cấp (hợp đồng, chính sách đổi hủy, chính sách trẻ em theo hợp đồng, điều khoản thanh toán, dịch vụ bao gồm/không bao gồm, bảng giá). Mô tả TN03.06, TN03.07, TN06.04, TN06.05 được bổ sung tham chiếu CNHT01.03–CNHT01.05; không đổi số lượng, mã hay bước luồng.
 - Vai trò lấy từ sơ đồ: **Kinh doanh**, **Điều hành**, **Kế toán**. Xử lý AI/tự động nằm trong tính năng của vai trò phụ trách, không tạo vai trò riêng.
 - Không có bước phê duyệt và thao tác ngoài hệ thống (theo phạm vi ghi trong từng luồng).

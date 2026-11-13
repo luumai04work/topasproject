@@ -1,6 +1,28 @@
-# Ghi chú làm việc · RSD KD05 v1.4
+# Ghi chú làm việc · RSD KD05 v1.5
 
-Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã chốt và các thiết kế do người viết tự quyết, cần người dùng xác nhận.
+Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã chốt và các thiết kế do người viết tự quyết. Theo Q3 (12/11/2026), mọi mục “tự quyết, cần xác nhận” ở các phần dưới coi là đã chốt (chấp nhận mặc định, Q3), trừ chỗ đã bị quyết định phase coding thay. Mã Q1–Q4 ở các phần cũ là mã câu hỏi của RSD này, không phải mã quyết định phase coding.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-KD05-Danh-sach-yeu-cau-Tour-v1.5.md` (`git mv` từ v1.4). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md`, ADR 0001.
+
+**Thay đổi chính**
+
+- **Q1 phân quyền.** 1.4 viết lại thành quyền mặc định theo vai trò (thao tác × vai trò), cấu hình ở QT02. R01 bỏ “chỉ người phụ trách được sửa…” và phạm vi Booking. KD06 mở được và sửa theo quyền của KD06, không có chế độ chỉ đọc cho người không phụ trách (L3.1, E3.1, AC18).
+- **Chuyển phụ trách theo quyền (R08, L4.1, L4.2).** Người có quyền Chuyển người phụ trách (mặc định Kinh doanh, Quản trị) chuyển được mọi yêu cầu Đang xử lý, kể cả của người khác; người nhận khác người đang phụ trách các dòng đã chọn (trước đây quy tắc này chỉ áp cho Quản trị). Người cũ vẫn sửa được sau khi chuyển (AC23). E4.3, E4.6, AC20, AC21, AC47 sửa theo. Thông báo người cũ khi người chuyển không phải người phụ trách cũ (trước: khi Quản trị chuyển).
+- **Chip Của tôi (Q1).** “Của tôi” chuyển từ giá trị mặc định của ô Phụ trách thành chip bật sẵn, tắt được, đầu hàng chip (2.1, 2.2, 2.3, 2.6, 2.7, L1.1–L1.3, E1.3, L6.3, 5.2, AC01, AC05, AC27, AC30, AC32). Ô Phụ trách còn Tất cả và từng người. Thay thiết kế tự quyết số 1 bên dưới.
+- **Mã Booking (1.2, 2.2, E3.5, R01, R11, AC08).** Bấm được theo quyền xem KD08; không có quyền thì hiện dạng chữ. Bỏ khóa 🔒 “do … phụ trách”.
+- **U5.** Bỏ dòng “Quản trị · chỉ xem và chuyển người phụ trách” ở tiêu đề; nút không có quyền thì ẩn (2.1, E2.2).
+- **Q2, Q5.** Thông báo giao việc là thông báo in-app, ghi cùng giao dịch với lần chuyển (R08, 5.3).
+- **Q7.** R10 ghi YYMM theo giờ Asia/Ho_Chi_Minh, cho phép thủng số.
+- **C2.** Giới hạn xuất Excel, khoảng cập nhật Kanban, giới hạn Lịch ở tệp cấu hình hoặc dữ liệu khởi tạo, không còn “Quản trị hệ thống” (R11).
+- Các nút “Thử lại” còn lại (E1.2, E5.3, E6.1, AC13, AC41) là tải lại khi lỗi mạng, không phải trạng thái “Tạo lỗi”; giữ nguyên.
+
+**Tự đơn giản hóa giao diện (U6):** chip Của tôi và ô Phụ trách loại trừ nhau (chọn một người thì chip tắt, bật chip thì ô về Tất cả). Quản trị mở lần đầu với chip Của tôi tắt, giữ hành vi cũ (Quản trị không phụ trách yêu cầu nên chip bật sẽ luôn rỗng).
+
+**Hình chưa cập nhật:** mọi hình còn mục Chăm sóc khách hàng ở thanh bên và “Của tôi” là giá trị ô Phụ trách (ghi một lần ở đầu RSD); W02 (mã Booking khóa 🔒 “do … phụ trách”), W13 (dòng “Quản trị · chỉ xem và chuyển người phụ trách”).
+
+**Lưu ý cho bước code (không sửa RSD):** chuẩn bảng K1 (50 dòng mỗi trang, phân trang máy chủ) và U3 (nhớ bộ lọc cả sau khi đăng xuất) thắng chỗ RSD ghi 20 dòng mỗi trang và giữ bộ lọc trong phiên; chưa sửa các số 20 dòng trong RSD và AC25 vì không thuộc danh sách quyết định được giao.
 
 ## 12/11/2026 · v1.4 · rà soát mâu thuẫn lần ba
 
@@ -48,12 +70,12 @@ Sắp xếp lại theo khung 6 mục, không đổi nghiệp vụ. Mục 8 cũ g
 
 | Mã | Câu hỏi | Trả lời | Tác động |
 |---|---|---|---|
-| Q0 | Màn cần viết, hướng làm | KD05 · Danh sách yêu cầu Tour; chưa có RSD nên viết mới ở `rsd/KD05/`; bàn giao MD + PNG trong ZIP như các RSD trước (người viết theo quy ước dự án, không hỏi lại) | Toàn bộ tài liệu |
+| Q0 | Màn cần viết, hướng làm | KD05 · Danh sách yêu cầu Tour; chưa có RSD nên viết mới ở `docs/rsd/KD05/`; bàn giao MD + PNG trong ZIP như các RSD trước (người viết theo quy ước dự án, không hỏi lại) | Toàn bộ tài liệu |
 | Q1 | Ai xem, ai sửa yêu cầu | Xem chung; chỉ người phụ trách yêu cầu sửa, báo giá, hủy; mặc định lọc yêu cầu của tôi | R01, 1.4, E3.1, AC18, AC23 |
 | Q2 | Trạng thái hiển thị | Đúng nguồn: Đang xử lý, Đã có Booking, Đã hủy và kết quả báo giá mới nhất (Chốt, Cần điều chỉnh, Không chốt, Chưa có). Không thêm giai đoạn, không nhắc theo dõi | R02, R03, 1.3, R08 (không tự chuyển, không nhắc) |
 | Q3 | Hàng loạt và xuất tệp | Chuyển phụ trách hàng loạt (người phụ trách với yêu cầu của mình; Quản trị với mọi yêu cầu) và Xuất Excel theo bộ lọc. Hủy vẫn làm từng yêu cầu ở KD06 | R08, R09, L4.1, L4.2, L5.1 |
 
-## Thiết kế do người viết tự quyết, cần xác nhận
+## Thiết kế do người viết tự quyết, cần xác nhận (chấp nhận mặc định, Q3; số 1, 9, 10, 13 đã thay ở v1.5 theo Q1)
 
 1. **Phụ trách là ô chọn thả xuống, chip là trạng thái.** Câu Q1 ghi “chip mặc định Của tôi”; bản này đặt Của tôi làm giá trị mặc định của ô Phụ trách để chỉ có một hàng chip (theo trạng thái). Hành vi giống nhau.
 2. **Sắp xếp mặc định.** Chip Đang xử lý theo ngày đi gần nhất (chưa chốt ngày xếp cuối); các chip khác theo ngày tạo mới nhất.
@@ -78,17 +100,17 @@ Sắp xếp lại theo khung 6 mục, không đổi nghiệp vụ. Mục 8 cũ g
 - **Danh sách màn (KD05).** Thêm: bộ lọc Phụ trách mặc định Của tôi; chuyển phụ trách hàng loạt (người phụ trách và Quản trị hệ thống); Xuất Excel theo bộ lọc. Cột Vai trò thêm Quản trị hệ thống (xem, chuyển phụ trách, xuất).
 - **Danh sách màn (vòng đời Yêu cầu Tour, Phiên bản báo giá).** Bỏ nhãn “đề xuất” của Đang xử lý và của Chốt, Cần điều chỉnh, Không chốt (người dùng đã chọn 11/11/2026).
 - **RSD KD06.**
-  - Quyền: chỉ người phụ trách yêu cầu sửa, lập báo giá, ghi kết quả, tạo Booking, hủy; người khác và Quản trị mở chỉ đọc (R01).
+  - [Thay theo Q1 phase coding: quyền theo vai trò] Quyền: chỉ người phụ trách yêu cầu sửa, lập báo giá, ghi kết quả, tạo Booking, hủy; người khác và Quản trị mở chỉ đọc (R01).
   - Nhận tab đích từ KD05 (R07); trả về KD05 giữ ngữ cảnh.
   - Ghi người phụ trách (mặc định người tạo), lịch sử chuyển phụ trách; cân nhắc nút Chuyển phụ trách ở phần đầu.
   - Chốt quy tắc mã `YC-YYMM-NNNN` và việc cho nhập tháng dự kiến khi chưa chốt ngày.
   - Danh sách giá trị kết quả báo giá là Chốt, Cần điều chỉnh, Không chốt.
 - **RSD KD03-KD04.** R08 đã giả định KD05, KD06 không giới hạn phạm vi; nay đã chốt, không cần sửa.
-- **QT02.** Thêm quyền Chuyển phụ trách yêu cầu (Kinh doanh: yêu cầu của mình; Quản trị: mọi yêu cầu) và Xuất Excel yêu cầu Tour.
+- **QT02.** [Thay theo Q1 phase coding: Kinh doanh và Quản trị chuyển mọi yêu cầu Đang xử lý] Thêm quyền Chuyển phụ trách yêu cầu (Kinh doanh: yêu cầu của mình; Quản trị: mọi yêu cầu) và Xuất Excel yêu cầu Tour.
 - **QT03.** Ghi chuyển phụ trách yêu cầu và lần xuất Excel.
 - **QT08.** Đếm theo người phụ trách hiện tại của yêu cầu; yêu cầu đã chốt hoặc đã hủy không bị chuyển nên số của người cũ giữ nguyên.
 - **Trung tâm thông báo.** Thông báo gộp “Bạn được giao n yêu cầu Tour từ …”.
-- **Quản trị.** Cấu hình giới hạn số dòng xuất Excel (mặc định 5.000).
+- **Quản trị.** [Thay theo C2: ở tệp cấu hình] Cấu hình giới hạn số dòng xuất Excel (mặc định 5.000).
 
 ## Kiểm tra đã thực hiện
 
@@ -97,4 +119,4 @@ Sắp xếp lại theo khung 6 mục, không đổi nghiệp vụ. Mục 8 cũ g
 - Đã xem trực quan sau lần chụp cuối: W01–W04, W06–W14. Đã sửa: W02 (gộp cột Booking vào Trạng thái để không xuống dòng), W05–W07 (Xuất Excel khóa kèm lý do khi không có dòng), W14 (ô Phụ trách bị cắt chữ; bỏ tên người nhận lặp với cột Phụ trách). W05, W15 cùng khung với ảnh đã xem.
 - Trạng thái không có ảnh riêng, chỉ mô tả bằng chữ: liên kết “Chọn tất cả n yêu cầu khớp bộ lọc” (AC25), nhãn Mới giao (AC32), nút Xuất Excel khóa khi quá 5.000 dòng (E5.2), lỗi khoảng ngày (E1.4).
 - Số liệu đã đối chiếu: Của tôi 12 + 23 + 7 = 42; sau khi hủy YC-2611-0028: 11 + 23 + 8 = 42; sau khi chuyển 3: 9 + 23 + 7 = 39. Toàn công ty Đang xử lý 37 = Nam 12 + Lê Thu Hà 9 + Trần Quốc Bảo 11 + Phạm Thanh Tùng 5 + Vũ Đức Minh 0. Trần Quốc Bảo 11 + 31 + 6 = 48; sau khi chuyển 0 + 32 + 6 = 38 (10 chuyển đi, 1 sang Đã có Booking). Müller Reisen GmbH 1 + 4 + 1 = 6, khớp RSD KD03-KD04 (W25, AC34). Cột Yêu cầu đang xử lý ở KD03 W01 khớp: Atlas 1, David 1, Hanami 2, Müller 1, Nordic 1, Van den Berg 1. Số ngày đêm khớp ngày đi, ngày về. W04: 3 tháng tới từ 11/11/2026 đến 10/02/2027 gồm David (06/12) và Hanami (08/02).
-- `rsd/BOI-CANH-DU-AN.md` đã thêm vai trò, thuật ngữ, nguyên tắc của yêu cầu Tour; bản cũ sao lưu ở `BOI-CANH-DU-AN.md.bak-20261111-kd05`.
+- `docs/rsd/BOI-CANH-DU-AN.md` đã thêm vai trò, thuật ngữ, nguyên tắc của yêu cầu Tour; bản cũ sao lưu ở `BOI-CANH-DU-AN.md.bak-20261111-kd05`.

@@ -1,4 +1,4 @@
-# Ghi chú làm việc · RSD DH03 v1.4
+# Ghi chú làm việc · RSD DH03 v1.5
 
 Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã chốt và các thiết kế do người viết tự quyết, cần người dùng xác nhận.
 
@@ -28,7 +28,7 @@ Trong lúc viết DH03, dự án có thêm RSD DH01, DH02, DH04 và `BOI-CANH-DU
 | Trường địa chỉ | Tỉnh/thành | Địa điểm; tên 2–200 ký tự | RSD DH02 R07 |
 | Kinh doanh vào DH03 | Từ DH02 | Từ DH04; Kinh doanh không xem DH02 | RSD DH02 E1.2, RSD DH04 |
 
-## Thiết kế do người viết tự quyết, cần xác nhận
+## Thiết kế do người viết tự quyết, cần xác nhận (đã chấp nhận theo Q3, 12/11/2026)
 
 1. **Kế toán vẫn sửa được điều khoản thanh toán** sau Q5 (nguồn ghi Kế toán sở hữu phần này). Nếu chỉ Điều hành sửa, bỏ W23 và cột Kế toán ở 1.4.
 2. **Chỉ báo Sắp áp dụng** cho từng hợp đồng có kỳ bắt đầu sau hôm nay. Nguồn chỉ có Còn hiệu lực, Sắp hết hạn, Hết hạn; thiếu giá trị này thì dòng hợp đồng gia hạn không có tình trạng đúng. Cấp NCC vẫn theo R01 của DH02.
@@ -53,12 +53,12 @@ Trong lúc viết DH03, dự án có thêm RSD DH01, DH02, DH04 và `BOI-CANH-DU
 
 ## Thay đổi cần làm ở màn khác
 
-- **Danh sách màn (`luồng/danh-sach-man-hinh-level1.md`).**
+- **Danh sách màn (`docs/flows/danh-sach-man-hinh-level1.md`).**
   - DH03, DH03.2: điều khoản thanh toán do Điều hành nhập, Kế toán sửa được; kỳ hiệu lực chồng lấn **chặn** (bỏ “cảnh báo … (đề xuất)”); thêm xóa hợp đồng và dịch vụ chưa dùng.
   - DH05.2: bỏ “(đề xuất)” ở nhập file Excel.
   - Vòng đời Hợp đồng NCC: thêm Sắp áp dụng; ngưỡng 30 ngày đã chốt (bỏ “số ngày chờ đặc tả”).
   - Vòng đời NCC: bỏ “(đề xuất)” ở câu NCC đã tắt không hiện khi chọn mới.
-- **`luồng/level 1/luonghotro.md`.** HT01.04: vai trò nhập điều khoản thanh toán là Điều hành (Kế toán sửa được).
+- **`docs/flows/level 1/luonghotro.md`.** HT01.04: vai trò nhập điều khoản thanh toán là Điều hành (Kế toán sửa được).
 - **RSD DH02.** ~~R01 chỉ cảnh báo kỳ chồng lấn~~: đã sửa ngày 11/11/2026 (xem mục Thống nhất 4 RSD). R07 đã ghi cấp mã `NCC-NNNN` theo R19.
 - **RSD DH04.** Đã thống nhất ngày 11/11/2026 (xem mục Thống nhất 4 RSD): R02 không còn câu kỳ chồng lấn, Giá từ và tính theo đêm dẫn về R14 của DH03, chế độ chỉ xem của DH05 do DH04 đặc tả.
 - **DH08.3 (RSD DH08).** Gợi ý phí hủy theo R08; NCC thiếu email thì không soạn email, có liên kết sang DH03.1; chỉ báo NCC ngừng sử dụng khi đặt mới hoặc đặt lại.
@@ -77,7 +77,7 @@ Trong lúc viết DH03, dự án có thêm RSD DH01, DH02, DH04 và `BOI-CANH-DU
 
 ## Thống nhất 4 RSD DH01–DH04 (11/11/2026)
 
-Sau khi rà chồng chéo giữa bốn RSD, các điểm dưới đã được sửa thẳng trong RSD (không đổi số phiên bản). Bản trước khi sửa và ZIP cũ ở `rsd/_backup-20261111-truoc-thong-nhat-DH01-DH04/`.
+Sau khi rà chồng chéo giữa bốn RSD, các điểm dưới đã được sửa thẳng trong RSD (không đổi số phiên bản). Bản trước khi sửa và ZIP cũ ở `docs/rsd/_backup-20261111-truoc-thong-nhat-DH01-DH04/`.
 
 | # | Điểm | Chốt | Nơi sửa |
 |---|---|---|---|
@@ -121,7 +121,7 @@ Tệp mới `RSD-DH03-Ho-so-nha-cung-cap-v1.2.md`, đã xóa bản v1.1. Không 
 Tệp mới `RSD-DH03-Ho-so-nha-cung-cap-v1.3.md`, đã xóa bản v1.2.
 
 - **Lý do.** RSD QT04 R07 tự khớp bản ngôn ngữ của mẫu email đặt dịch vụ theo “ngôn ngữ giao dịch của NCC”, nhưng DH03 chưa có trường này nên mọi email NCC chỉ ra Tiếng Việt. Thêm trường **Ngôn ngữ giao dịch** ở phần Thông tin chung: Điều hành nhập, danh mục Ngôn ngữ QT05, mặc định Tiếng Việt, không bắt buộc (R22; L1.1, L3.1; R21; 5.1, 5.2; AC63).
-- **Suy ra, chờ xác nhận.** Ngôn ngữ bị tắt ở QT05 thì NCC giữ giá trị, sửa thì phải chọn ngôn ngữ đang dùng (R22). NCC nhập Excel ở DH02 nhận mặc định Tiếng Việt (DH02 chưa có cột này; không sửa DH02).
+- **Suy ra, chờ xác nhận (đã chấp nhận theo Q3).** Ngôn ngữ bị tắt ở QT05 thì NCC giữ giá trị, sửa thì phải chọn ngôn ngữ đang dùng (R22). NCC nhập Excel ở DH02 nhận mặc định Tiếng Việt (DH02 chưa có cột này; không sửa DH02).
 - **Hình.** Form Thông tin chung thêm ô Ngôn ngữ giao dịch cạnh Địa chỉ (`formGeneral` trong `screens-a.js`). Dựng lại W01, W02, W04, W05, W06, W07, W08, W09, W43; đã xem W02, W04.
 - **Kiểm tra.** `node wireframes-src/check-rsd.js RSD-DH03-Ho-so-nha-cung-cap-v1.3.md --final`: 48 tham chiếu ảnh, 48 mã W, không lỗi.
 
@@ -140,3 +140,57 @@ Tệp mới `RSD-DH03-Ho-so-nha-cung-cap-v1.4.md`, đã xóa bản v1.3 (đổi 
 - **Nguồn nghiệp vụ.** Dẫn DH02 v1.3, DH04 v1.3, DH08 v2.8, KT01 v1.5, QT04 v1.3, QT05 v1.2.
 - **Hình.** `node build.js W42 W42a`, `node sync-md.js`; đã xem W42a.
 - **Kiểm tra.** `node wireframes-src/check-rsd.js RSD-DH03-Ho-so-nha-cung-cap-v1.4.md --final`: 48 tham chiếu ảnh, 48 mã W, không lỗi.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-DH03-Ho-so-nha-cung-cap-v1.5.md` (đổi tên bằng `git mv`). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md`. Không đổi số hiệu L, E, R, W, AC; không thêm mã mới.
+
+**Thay đổi**
+
+- **Q1 phân quyền.** Mục 1.4 thành bảng quyền mặc định theo vai trò (phần × thao tác), thêm cột Quản trị, ghi rõ cấu hình ở QT02. Thông tin nhận thanh toán và điều khoản thanh toán gom vào thao tác riêng **Xem thông tin thanh toán NCC** (mặc định Điều hành, Kế toán, Quản trị; không cấp cho Kinh doanh); sửa từng phần là thao tác riêng. R04, R20, E1.5, E2.5, E5.8, E7.1, L2.3, L4.6, L7.1, AC35, AC59 nói theo quyền thay vì theo vai trò cứng. Bỏ câu “phạm vi bản ghi”.
+- **U5.** Trường chỉ đọc hiện dạng chữ (2.5, 1.4, L3.1, L3.2, L4.6, L7.1, AC12, AC29), thay viền nét đứt.
+- **K6.** “Cho phép sử dụng”, “Ngừng sử dụng” đổi thành công tắc **Đang dùng / Ngừng dùng** trong toàn bộ thân RSD (lịch sử phiên bản giữ nguyên chữ cũ). Tiêu đề R05 đổi theo.
+- **Q2, Q5.** Thông báo cho Điều hành phụ trách khi ngừng dùng NCC là thông báo in-app, ghi cùng giao dịch với thao tác tắt (L2.2 bước 3, R03, R05, AC10).
+- **Q6.** Tình trạng hợp đồng, việc cần xử lý, số trên tab tính lúc đọc; bỏ “Hệ thống, 00:00” ở 2.4 và “cập nhật lúc 00:00” ở R01, R03. Thông báo nhắc 08:00 (RSD DH02 R08) giữ vì gây ra hành động.
+- **Q8.** Lưu bị từ chối vì phiên khác chỉ có nút Tải lại, không ghi đè (E3.1, E4.14, E6.8, R04, AC14).
+- **Q11, Q12, Q14, Q15.** R09: bộ tính giá dùng chung dùng tuổi nhập cho từng trẻ, mỗi dòng áp nhóm tuổi của hợp đồng của chính dòng; trẻ nhỏ nhất được miễn trước; giá trẻ tỷ lệ tính trên giá mỗi người lớn của cùng dòng. R15: thêm cách kết hợp (Thay thế lấy mức cao nhất, rồi cộng mọi Cộng dồn), bỏ trường quy tắc ưu tiên (L6.4, 5.1); phòng đơn = giá phòng + phụ thu đã khai, phần vượt nửa giá phòng đôi chỉ để hiển thị. L4.5, L6.6 nói “bộ tính giá dùng chung” thay cho chỉ KD06.3.
+- **Q19.** Tệp đính kèm hợp đồng: PDF, JPG, PNG, XLSX, DOCX; 20 MB mỗi tệp; tối đa 10 tệp (5.2, E4.13). Giới hạn nhập file bảng giá (.xlsx ≤ 5 MB, ≤ 2.000 dòng) giữ nguyên vì là nhập dữ liệu, không phải đính kèm.
+- **Q7, Q9, Q3.** Mã NCC được phép thủng số (R19); làm tròn khi gia hạn ghi rõ half-up (R12); R22 bỏ nhãn “suy ra, chờ xác nhận”. Các mục “cần xác nhận” trong ghi chú này coi là đã chấp nhận (Q3).
+- **U2.** Mục 2.5 ghi rõ hộp thoại chỉ để nhập liệu ngắn hoặc xác nhận khi không hoàn tác được hoặc chạm tiền; danh sách hộp thoại xác nhận không đổi (ngừng dùng NCC đang được dùng vẫn cảnh báo nơi đang dùng theo BOI-CANH).
+
+**Tự đơn giản hóa giao diện (U6):** không có. Giữ bố cục cũ; chỉ đổi cách hiện trường chỉ đọc theo U5.
+
+**Giữ nguyên, đã rà:** các chữ “Thử lại” còn lại (E1.4, E2.4, E2.6, E3.7, E4.12, E4.13, E5.3, E5.5, E6.9, AC60) là thử lại khi lỗi mạng, lỗi tải hoặc tải tệp lên của chính thao tác, không phải trạng thái Tạo lỗi của tác động chéo module (Q5). Biểu tượng 🔒 ở 2.1 là tab khóa khi NCC chưa lưu (chế độ tạo), không liên quan người phụ trách. Câu “Kinh doanh không thấy thanh toán” ở 1.5 là truy vết quyết định 11/11/2026.
+
+**Hình chưa cập nhật** (ghi chú ngay dưới hình): W04, W05, W06, W07, W09, W23, W43, W44 (viền nét đứt, “Chỉ đọc · … cập nhật”; W07 còn nút Xem bản mới); W08, W09 (“Ngừng sử dụng”); W24, W25, W26, W40, W42, W42a (cột “Cho phép sử dụng”, chip “Ngừng sử dụng”); W27, W28, W29 (nhãn công tắc “Cho phép sử dụng”); W33 (ô “Quy tắc kết hợp”). Bảng DH03.3 mờ phía sau các hình DH05 (W30–W39, W41) cũng còn cột “Cho phép sử dụng”, không ghi chú riêng. Chú thích ảnh W08 trong RSD đã đổi sang “Ngừng dùng” nhưng `wireframes-src/captions.js` chưa sửa, nên `sync-md.js` sẽ đưa lại chữ cũ khi chạy.
+
+**Câu hỏi cho người dùng**
+
+1. **Nghĩa của phụ thu Thay thế (R15, dòng 743–745).** RSD DH03, DH04 hiểu Thay thế là “dùng thay giá mùa ngày đó”; BOI-CANH định nghĩa phụ thu là “khoản cộng vào giá NCC”. Đã viết Q15 theo cách hiểu: ngày có nhiều phụ thu Thay thế thì lấy mức cao nhất thay giá mùa, rồi cộng mọi Cộng dồn. Cần xác nhận Thay thế thay giá mùa hay chỉ thay các phụ thu khác.
+2. **Quản trị xem thông tin thanh toán NCC (1.4).** Đã cho Quản trị quyền xem theo Q25 (xem được mọi màn). Nếu thông tin ngân hàng cần ẩn với Quản trị thì sửa ở ma trận QT02.
+3. **Phòng đơn “Giá phòng đơn trọn gói” (R15, dòng 744).** Q14 nói phòng đơn = giá phòng + phụ thu đã khai; RSD còn lựa chọn “Giá phòng đơn trọn gói”. Đã giữ lựa chọn này (coi như phụ thu bằng 0 trên giá phòng đơn). Cần xác nhận có bỏ lựa chọn này không.
+
+
+## Dịch vụ đi kèm 12/11/2026
+
+Sửa tại chỗ `RSD-DH03-Ho-so-nha-cung-cap-v1.5.md`, dòng “Thay đổi ở v1.5 (bổ sung 12/11/2026 · dịch vụ đi kèm)”. Nguồn: BOI-CANH (thuật ngữ Dịch vụ đi kèm, Giường phụ; Nền tảng “Phòng (Q13', Q14)”), `docs/QUYET-DINH-PHASE-CODING.md` Q13'. Giữ số hiệu; thêm L5.6, E5.9–E5.11, E6.13, R23, AC64–AC71.
+
+**Thay đổi:** ô Đi kèm dịch vụ và dấu Giường phụ ở DH05.1; khối Dịch vụ đi kèm trong DH05.1 của dịch vụ chính; DH03.3 hiện đi kèm thụt lề; R05 (ngừng dùng), R12 (gia hạn), R13 (đã dùng, xóa kèm), R14 (thay ví dụ “thêm giường theo khách”; tên đi kèm chỉ không trùng trong cùng dịch vụ chính), R17 (nhân bản), R23 mới; 5.1, 5.2.
+
+**Tự quyết (U6, ghi lại để người dùng đổi được):**
+- “Cùng hợp đồng” hiểu là cùng NCC: dịch vụ thuộc NCC, hợp đồng thuộc NCC và không chồng kỳ, nên đi kèm và dịch vụ chính luôn dùng một hợp đồng áp dụng cho mỗi ngày. Quan hệ đi kèm là thuộc tính của dịch vụ, không lưu theo hợp đồng; gia hạn tự giữ quan hệ.
+- Chỉ một tầng: dịch vụ chính phải là dịch vụ thường; dịch vụ đang có đi kèm không thành đi kèm.
+- Dịch vụ chính Ngừng dùng: không tự tắt đi kèm; đi kèm không chọn được vì chỉ thêm kèm dịch vụ chính; bật lại dịch vụ chính thì đi kèm theo công tắc riêng. Đi kèm Ngừng dùng riêng: KD06 coi là việc cần xử lý, DH08 chỉ báo.
+- Xóa dịch vụ chính chưa dùng thì xóa kèm các đi kèm (đi kèm không thể đã dùng khi dịch vụ chính chưa dùng). Đổi ô Đi kèm dịch vụ chỉ khi dịch vụ chưa dùng.
+- Đi kèm không có cột Hạng phòng, không phụ thu phòng đơn; giường phụ không có cột trẻ em (trẻ em thêm giường theo chính sách trẻ em, quyết định 3).
+- Giường phụ nhận biết bằng dấu Giường phụ trên đi kèm (chỉ khi dịch vụ chính thuộc loại lưu trú, tối đa một mỗi dịch vụ chính), không thêm cờ ở QT05.
+- Loại dịch vụ của đi kèm chọn trong các loại của NCC, mặc định loại của dịch vụ chính; giường phụ khóa theo loại của dịch vụ chính (để Markup KD06 theo Lưu trú).
+- Tên tiếng Anh: DH05.1 không có tên tiếng Anh cho dịch vụ thường, nên đi kèm cũng không có; proposal KD06 ghi giường phụ bằng chữ cố định theo ngôn ngữ.
+
+**Hình chưa cập nhật:** W24 (dòng đi kèm), W27 (khối Dịch vụ đi kèm), W29 (ô Đi kèm dịch vụ, Giường phụ). L5.6 dùng lại W27, W29, W24, không thêm mã W.
+
+**Kiểm tra.** `python3 .claude/skills/sme-erp-rsd-skill/scripts/check-rsd.py`: 48 ảnh, 48 mã W, không lỗi.
+
+## Phụ thu lễ áp cho phòng đơn (13/11/2026)
+
+Sửa tại chỗ `RSD-DH03-Ho-so-nha-cung-cap-v1.5.md` R15 (bullet Phụ thu phòng đơn). Người dùng chốt 13/11/2026: phụ thu lễ theo phòng áp cho mọi phòng của đêm, kể cả phòng đơn; giá phòng đơn kiểu Phụ thu thêm = giá phòng của đêm sau phụ thu lễ + phụ thu phòng đơn; phụ thu phòng đơn dạng tỷ lệ tính trên giá mùa của dòng, chưa gồm phụ thu lễ. Chỉ nêu nguồn dữ liệu cho bộ tính giá (RSD KD06 R13); không đổi màn hình hay trường.

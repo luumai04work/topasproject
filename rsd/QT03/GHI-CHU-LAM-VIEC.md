@@ -6,7 +6,7 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 
 | Mã | Câu hỏi | Trả lời | Tác động |
 |---|---|---|---|
-| Q0 | Màn cần viết, hướng làm | QT03 · Nhật ký thao tác người dùng; chưa có RSD nên viết mới; bàn giao MD + PNG trong `rsd/QT03/` theo BOI-CANH | Toàn bộ tài liệu |
+| Q0 | Màn cần viết, hướng làm | QT03 · Nhật ký thao tác người dùng; chưa có RSD nên viết mới; bàn giao MD + PNG trong `docs/rsd/QT03/` theo BOI-CANH | Toàn bộ tài liệu |
 | Q1 | Nhật ký ghi những gì | Chỉ thao tác ghi dữ liệu; không ghi đăng nhập, không ghi lượt xem | 1.3, R01, AC05 |
 | Q2 | Ai xem QT03 | Chỉ Quản trị hệ thống; người dùng nghiệp vụ xem lịch sử trong hồ sơ | 1.4, E1.7, W16, AC02 |
 | Q4 | Lịch sử nhân sự (DH06) và Tour mẫu (KD01-KD02) vốn ghi “xem ở QT03” | Chỉ Quản trị xem; không thêm lịch sử trong DH06, KD02 | Đã ghi câu chốt vào RSD DH06 R09 và RSD KD01-KD02 R09; BOI-CANH |
@@ -48,7 +48,7 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - `sync-md.js` đã đồng bộ tên hình với `captions.js`; `indent-images.js` không phải sửa dòng nào.
 - Đã xem trực quan sau lần chụp cuối: W01, W02, W04, W05, W06, W07, W08, W09, W10, W12, W13, W15. Chưa mở: W03, W11, W14, W16 (cùng khung với W01, W13).
 - Số liệu đã đối chiếu: 7 ngày qua Tất cả 1.284, Nhạy cảm 37 (W01, W04, W11). Lê Thu Hà + Khách hàng: 4 mục, 1 nhạy cảm (KH-00412). BK-2610-0137: 19.200 EUR = đợt 1 6.000 + đợt 2 10.200 + đợt 3 3.000; đã thu 6.000 (02/11) + 3.000 (11/11) = 9.000 (W05, W08, W10). Lô chuyển phụ trách: 12 = 11 Đã chuyển + 1 Bỏ qua (W01, W09).
-- `rsd/BOI-CANH-DU-AN.md` đã thêm thuật ngữ, chủ sở hữu dữ liệu nhật ký và nguyên tắc đã chốt (sửa trực tiếp, không sao lưu).
+- `docs/rsd/BOI-CANH-DU-AN.md` đã thêm thuật ngữ, chủ sở hữu dữ liệu nhật ký và nguyên tắc đã chốt (sửa trực tiếp, không sao lưu).
 
 ## 12/11/2026 · v1.1 · rà soát mâu thuẫn lần ba
 
@@ -58,3 +58,61 @@ Tệp mới `RSD-QT03-Nhat-ky-thao-tac-nguoi-dung-v1.1.md` (đã xóa v1.0).
 - **1.2.** Thêm QT05 → QT03 (RSD QT05 1.3: menu ⋯ → Lịch sử thay đổi, chỉ Quản trị). Sửa thêm dòng QT01 → QT03: RSD QT01 1.2 đã có liên kết “Xem thao tác của người này” ở tab Lịch sử, nên bỏ “thay đổi cần làm ở QT01” và dùng đúng nhãn của QT01 (ngoài danh sách việc được giao, sửa vì cùng mục 1.2 và đã lỗi thời).
 - Dòng nguồn ghi phiên bản các RSD đã đối chiếu: KT01 v1.5, QT01 v1.2, QT04 v1.3, QT05 v1.2, QT06-QT12 v1.2.
 - `check-rsd.js --final`: 16 ảnh, 16 mã W, đạt.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Tệp mới `RSD-QT03-Nhat-ky-thao-tac-nguoi-dung-v1.2.md` (`git mv` từ v1.1). Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `BOI-CANH-DU-AN.md` bản sửa 12/11/2026.
+
+**Thay đổi**
+
+- **Q1.** “Chỉ Quản trị hệ thống xem QT03” thành quyền mặc định, cấu hình ở QT02. Mục 1.4 đổi thành “Quyền mặc định theo vai trò” (QT03 · thao tác). E1.7, R14, R16, AC02 ghi theo quyền thay vì vai trò.
+- **Q25.** Quản trị xem được mọi màn: Mở bản ghi theo quyền của người xem ở màn nguồn (1.2, L2.1, R10). E2.4 và AC26 viết lại cho trường hợp QT02 cấp quyền xem QT03 cho vai trò khác không xem được màn nguồn; với Quản trị không xảy ra. Giữ số E2.4, AC26.
+- **C3.** Bỏ lịch sử chiến dịch KD10 (1.3), việc gửi chiến dịch theo lịch (1.3), “số ghi nhận chăm sóc” ở mục Xóa khách (L2.3, R08), “chiến dịch Nháp” (E2.3), đối tượng Chiến dịch chăm sóc (R12), dòng KD09, KD10 ở R15. Báo cáo còn QT07–QT12; tên RSD báo cáo đổi thành QT07-QT12 (nguồn, R12, R15).
+- **Q5.** Nhật ký ghi trong cùng giao dịch (1.1, R05); dòng DH07 ở R15 bỏ “thử lại khi tạo lỗi”, ghi tạo hồ sơ là tác động kèm theo của lưu Booking.
+- **Q6.** 1.3: trạng thái theo thời gian tính lúc đọc nên không có gì để ghi; việc theo lịch còn lại là tự xóa nhật ký và tạo thông báo.
+- **Q7.** R02: mã `TT-YYMM-NNNNNNN` YYMM theo giờ Asia/Ho_Chi_Minh, cho phép thủng số.
+- **U3.** Bộ lọc nhớ theo người dùng, cả sau khi đăng xuất (1.2, R11, AC01). Trang, vị trí cuộn, dòng đang chọn vẫn giữ trong phiên.
+- **C2.** R07 bỏ “khóa API (cấu hình AI)”: cấu hình AI nằm ở tệp, không có thao tác ghi trên giao diện.
+- **Thuật ngữ.** R15 dòng DH02: “cho phép sử dụng” đổi thành “công tắc Đang dùng” (từ cấm ở BOI-CANH).
+- **Q3.** Mục “Thiết kế do người viết tự quyết, cần xác nhận” (16 mục ở trên) coi như đã chốt: chấp nhận mặc định (Q3).
+- 1.5: dòng quyền trỏ R14 (xuất Excel) thay cho R04 (thao tác hàng loạt), vì R04 không nói về quyền.
+
+**Tự đơn giản hóa giao diện (U6)**
+
+- Nhãn Xóa, Hủy đổi từ đỏ sang xám (K6: đỏ chỉ cho việc phải xử lý); Gọi AI đổi sang xám nhạt để khác hai nhãn này. Thao tác rủi ro vẫn nhận ra bằng cờ ⚑ Nhạy cảm (2.3).
+
+**Hình chưa cập nhật** (đã ghi dòng ngay dưới hình)
+
+- Mọi hình: mục menu Chăm sóc khách hàng; danh sách nền ở các hình bảng trượt (W05–W10) còn nhãn Xóa, Hủy màu đỏ và dòng KH-00412 “2 ghi nhận chăm sóc” (ghi chung một lần ở phần Dữ liệu trên hình).
+- W01, W03, W04: nhãn Xóa, Hủy màu đỏ; dòng KH-00412 “2 ghi nhận chăm sóc”.
+- W07: dòng “Ghi nhận chăm sóc · 2 ghi nhận”.
+- W16: câu “chỉ dành cho Quản trị hệ thống”; menu trái còn hiện các mục Quản trị cho người dùng Kinh doanh (U5 ẩn).
+
+**Kiểm tra**
+
+- `python3 .claude/skills/sme-erp-rsd-skill/scripts/check-rsd.py`: 16 ảnh, 16 mã W, không lỗi.
+- `grep` từ cấm: chỉ còn ở lịch sử phiên bản, ghi chú hình, “Thử lại” khi lỗi tải hoặc mất mạng, và “trong phiên” cho trang, vị trí cuộn.
+
+## Bổ sung vai trò HDV 12/11/2026 (giữ v1.2)
+
+- **R15:** thêm dòng HD01: HDV thêm, sửa, xóa mục nhật ký, sự cố, chi phí phát sinh, chi phí thực tế (kèm tệp chứng từ); ghi như DH08 (đối tượng Hồ sơ Tour, nhãn Tạo, Sửa, Xóa; Xóa có cờ nhạy cảm như mọi Xóa).
+- **Tự quyết (U6):** Mở bản ghi của mục HD01 mở DH08 ở tab tương ứng (R10), vì HD01 chỉ hiện Tour mà chính người xem được phân công (RSD QT02 R16); người xem QT03 mặc định là Quản trị, có `DH08.xem`.
+- **Bộ lọc Màn:** yêu cầu bổ sung ghi “bộ lọc Màn thêm HD01”, nhưng QT03 v1.2 không có bộ lọc theo màn (R12 chỉ có Thời gian, Người dùng, Đối tượng, Thao tác; Màn là cột). Lượt này chỉ thêm HD01 vào ví dụ của cột Màn; mục HD01 lọc được bằng Đối tượng Hồ sơ Tour, Người dùng, thẻ Bản ghi. Không tự thêm bộ lọc mới (xem câu hỏi).
+- Thêm AC36, AC37. `check-rsd.py` mã thoát 0.
+
+**Câu hỏi cho người dùng**
+
+1. Có cần thêm bộ lọc Màn cho QT03 (ví dụ để xem riêng mọi thao tác HDV ghi ở HD01) không? Hiện xem được bằng bộ lọc Người dùng hoặc Đối tượng.
+
+## Bổ sung 12/11/2026 · HDV chốt thêm (giữ v1.2)
+
+Nguồn: BOI-CANH “Vai trò HDV”, đoạn “Người dùng chốt thêm (12/11/2026, sau khi viết RSD HD01)”: HDV xem được số hộ chiếu đầy đủ ở HD01, mỗi lần hiện được ghi vào QT03; đây là ngoại lệ của quy tắc “QT03 không ghi lượt xem”. Điều hành sửa và xóa được mục Do HDV ghi, mỗi lần ghi QT03 (mặc định Q3 ngay sau đoạn đó).
+
+**Đã sửa (dòng “Thay đổi ở v1.2 (bổ sung 12/11/2026 · HDV chốt thêm)”):** 1.3 (ngoại lệ duy nhất của “Không ghi”); 1.5 (dòng truy vết); 2.3 (nhóm thao tác Xem dữ liệu cá nhân, nhãn Hiện số hộ chiếu, màu vàng, nhạy cảm); R01 (ngoại lệ, nội dung mục, ghi trong giao dịch, ghi lỗi thì không trả số); R10 (Mở bản ghi của mục Hiện số mở DH08.4, của mục Xuất tệp PDF mở DH08.1); R13 (Hiện số hộ chiếu là thao tác nhạy cảm); R15 (dòng HD01 thêm Hiện số hộ chiếu, Xuất tệp PDF chương trình; dòng DH08 thêm Điều hành sửa, xóa mục Do HDV ghi, Bỏ số HDV); thêm AC38–AC40.
+
+**Tự quyết (U6):**
+- Nhóm thao tác riêng “Xem dữ liệu cá nhân” thay vì xếp vào Sửa hay Xuất tệp, để Quản trị lọc riêng các lượt hiện số và không lẫn với thao tác ghi dữ liệu. Màu vàng (không đỏ, K6).
+- Mục Hiện số ghi trường Số hộ chiếu với giá trị đã che ở cột Sau (Trước “—”), theo R07 kho không giữ số đầy đủ; đối tượng chính Hồ sơ Tour, đối tượng liên quan là khách, để lọc theo Tour Code hoặc tìm theo tên khách.
+- Tải PDF chương trình ở HD01 ghi như mọi lần xuất tệp (R01 đã có “xuất tệp”), không phải ngoại lệ thứ hai.
+
+**Kiểm tra.** `check-rsd.py`: 16 ảnh, 16 mã W, không lỗi. W01 (bộ lọc Thao tác) chưa có nhóm mới trên hình; không dựng lại.

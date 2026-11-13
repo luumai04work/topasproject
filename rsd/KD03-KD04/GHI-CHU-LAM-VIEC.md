@@ -1,6 +1,26 @@
-# Ghi chú làm việc · RSD KD03-KD04 v1.4
+# Ghi chú làm việc · RSD KD03-KD04 v1.5
 
 Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã chốt và các thiết kế do người viết tự quyết, cần người dùng xác nhận.
+
+## Cập nhật 12/11/2026 theo quyết định phase coding
+
+Nguồn: `docs/QUYET-DINH-PHASE-CODING.md`, `docs/rsd/BOI-CANH-DU-AN.md` (bản sửa 12/11/2026), ADR 0001, 0002, 0005. Tệp đổi tên `RSD-KD03-KD04-Khach-hang-v1.5.md` bằng `git mv`.
+
+**Đã sửa:**
+- **C3.** Bỏ trọn KD04.4 Chăm sóc và phản hồi: mục 3.8 còn một dòng “Bỏ theo C3”; R07 (Cần chăm sóc sau Tour), R09 (Ghi nhận chăm sóc), R11 (Nhận email chăm sóc) giữ tiêu đề “(Bỏ theo C3)”; L1.2 bỏ; AC06–AC08, AC36–AC42, AC45 ghi “Bỏ theo C3”. Bỏ chip Cần chăm sóc sau Tour, cột Chăm sóc gần nhất, ngày màu cam, trường Nhận email chăm sóc và Ghi chú nguồn đồng ý, danh mục Kết quả chăm sóc, cửa sổ N ngày, lối KD10.2 → KD04.4 và KD04.4 → KD10, dòng thời gian lần gửi. Điều kiện xóa khách chỉ còn “chưa có yêu cầu Tour” (2.5, L5.1, E5.1, E5.2, R05, AC27, AC28). Giữ KD04.2 Lịch sử Tour.
+- **Q1.** 1.4 thành “Quyền mặc định theo vai trò”, cấu hình ở QT02; bỏ cột “người phụ trách / người khác”. Bỏ luật chỉ người phụ trách sửa, xóa, chuyển (1.1, 2.4, 2.5, L3.1, L4.1, L5.1, R03–R05); bỏ dòng “🔒 Chỉ xem · do … phụ trách”, ô viền nét đứt (U5). E3.5 bỏ (giữ mã). Mở KD08, DH08 từ KD04 theo quyền xem màn đó, không có biểu tượng khóa theo người phụ trách (L6.2, L7.1, R08, AC33, AC34). AC19, AC23, AC26 sửa.
+- **Q5.** Lịch sử Tour ghi trong cùng giao dịch với Đóng Tour, mở lại, đóng lại ở DH08: bỏ L6.3, E6.3 (giữ mã), banner thiếu lịch sử, nút Cập nhật lịch sử, đối soát hằng đêm (2.4, R06, E6.4, AC32 bỏ).
+- **Q8.** E3.4, AC22: chỉ có Tải lại, không có “Tải bản mới, giữ thay đổi của tôi”.
+- **Q2, Q6, Q7, U3.** Thông báo chuyển phụ trách là thông báo in-app (L4.1, R04, 5.3); “trong 30 ngày” tính lúc đọc; mã KH cho phép thủng số (R12); nhớ bộ lọc KD03 cả sau khi đăng xuất (1.2).
+
+**Tự đơn giản hóa giao diện (U6):**
+- Giữ nhãn chip “Khách của tôi” (là chip Của tôi của Q1) để không phải dựng lại hình.
+- Khi Q8 bỏ nút giữ thay đổi, banner W16 liệt kê giá trị người dùng đã nhập để nhập lại; không tự áp lại.
+- Giữ nút Thử lại khi lỗi tải (tải lại dữ liệu đọc, không phải Thử lại đã bỏ theo Q5).
+
+**Hình chưa cập nhật:** ghi dưới hình ở W01, W08, W14, W16, W17, W18, W19, W20, W21, W25. Ghi chung ở “Dữ liệu trên hình”: thanh bên còn mục Chăm sóc khách hàng; mọi hình KD03 còn chip Cần chăm sóc sau Tour, cột Chăm sóc gần nhất; mọi hình KD04 còn tab Chăm sóc và phản hồi, trường Nhận email chăm sóc (W09, W12, W13…); trường chỉ đọc còn viền nét đứt. Bỏ nhúng (giữ PNG): W02, W23, W28, W29, W30, W31.
+
+**Các mục “Thiết kế do người viết tự quyết, cần xác nhận” bên dưới** coi là chấp nhận mặc định (Q3), trừ phần về chăm sóc, lần gửi, đối soát lịch sử đã bỏ.
 
 ## 12/11/2026 · v1.2 · đồng bộ sau rà soát mâu thuẫn giữa các RSD
 
@@ -20,7 +40,7 @@ Tệp mới `RSD-KD03-KD04-Khach-hang-v1.2.md`; đã xóa md v1.1. Theo `BOI-CAN
 
 | Mã | Câu hỏi | Trả lời | Tác động |
 |---|---|---|---|
-| Q0 | Màn cần viết, hướng làm | KD03 · Danh sách khách hàng và KD04 · Hồ sơ khách hàng; chưa có RSD nên viết mới; gộp một RSD ở `rsd/KD03-KD04/`; bàn giao MD + PNG trong ZIP như các RSD trước | Toàn bộ tài liệu |
+| Q0 | Màn cần viết, hướng làm | KD03 · Danh sách khách hàng và KD04 · Hồ sơ khách hàng; chưa có RSD nên viết mới; gộp một RSD ở `docs/rsd/KD03-KD04/`; bàn giao MD + PNG trong ZIP như các RSD trước | Toàn bộ tài liệu |
 | Q1 | Loại khách hàng | Hai loại: Cá nhân và Doanh nghiệp; doanh nghiệp có người liên hệ | R01, R02, W08, W09, W13 |
 | Q2 | Hạng khách hàng (DX06) | Tạm bỏ qua | 1.3; bỏ lọc hạng ở KD03, hạng ở phần đầu KD04, tính hạng ở KD04.2 |
 | Q3 | Quyền xem và sửa | Xem chung; chỉ người phụ trách sửa | R03, 1.4, W14, W31 |
@@ -71,7 +91,7 @@ Tệp mới `RSD-KD03-KD04-Khach-hang-v1.2.md`; đã xóa md v1.1. Theo `BOI-CAN
 - `sync-md.js` đã đồng bộ tên hình với `captions.js`.
 - Đã xem trực quan sau lần chụp cuối: W01, W03, W07, W12, W17, W23, W27, W31. Đã xem ở lần chụp đầu và sửa: W06, W07 (chip của Quản trị, số Tất cả sau khi chuyển), W13, W14, W16, W20 (header gọn một dòng, ô chọn chỉ đọc), W21 (số đêm khách sạn khớp 10N9Đ), W12, W19 (bỏ nhãn gợi ý sau khi lưu). Chưa mở lại sau lần chụp cuối: W02, W04, W05, W08–W11, W15, W18, W19a, W22, W24–W26, W28–W30 (cùng khung với ảnh đã xem).
 - Số liệu đã đối chiếu: Khách của tôi 64, Tất cả 412, Cần chăm sóc 3 (Chen 30/10, Müller 05/11, Hanami 08/11; cùng nằm trong 30 ngày tính từ 11/11/2026); Van den Berg đóng 25/10 đã chăm sóc 27/10 nên không vào. Müller: 3 Tour đã đi; 6 yêu cầu = 1 Đang xử lý + 4 Đã có Booking + 1 Đã hủy (chip KD04.3, số trên tab, cột KD03, lý do không xóa ở W20); TP-2611-0042 và BK-2610-0137 khớp RSD DH08. KD04.4: 7 mục = 3 ghi nhận + 2 Survey + 2 email; sau khi lưu 8 = 4 + 2 + 2. Chuyển hàng loạt: 12 = 11 chuyển + 1 bỏ qua; sau đó Lê Thu Hà còn 0 khách. TP-2610-0031 10N9Đ: 3 + 2 + 3 đêm khách sạn + 1 đêm du thuyền = 9; 18 dịch vụ = 3 + 1 + 4 + 6 + 2 + 2.
-- `rsd/BOI-CANH-DU-AN.md` đã thêm thuật ngữ, vai trò, chủ sở hữu dữ liệu khách hàng và các nguyên tắc đã chốt; bản cũ sao lưu ở `BOI-CANH-DU-AN.md.bak-20261111-kd03-kd04`.
+- `docs/rsd/BOI-CANH-DU-AN.md` đã thêm thuật ngữ, vai trò, chủ sở hữu dữ liệu khách hàng và các nguyên tắc đã chốt; bản cũ sao lưu ở `BOI-CANH-DU-AN.md.bak-20261111-kd03-kd04`.
 - v1.1 (12/11/2026, chuyển sang khung 6 mục, không đổi nghiệp vụ): `indent-images.js`, `sync-md.js`, `check-rsd.js --final` bản mới của skill; 32 ảnh, 32 mã W, mỗi ảnh nhúng một lần, không cảnh báo. Tập ảnh và tập mã L, E, R, AC giống hệt v1.0.
 
 ## 12/11/2026 · v1.3 · rà soát lần hai
