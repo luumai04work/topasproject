@@ -18,7 +18,7 @@ module.exports = {
   W16: ['KD06.2 · Hộp thoại Ghép ngày', 'Ghép ngày từ Tour mẫu', 'Chọn ngày nguồn từ một hoặc nhiều Tour mẫu, gán vị trí đích (chèn hoặc thay); thấy trước các ngày bị dời.'],
   W17: ['KD06.2 · Hành trình', 'Sau khi ghép ngày', 'Ngày ghép có nhãn nguồn, ngày cũ dời theo; tổng số ngày khớp yêu cầu; Tour mẫu nguồn không đổi.'],
   W18: ['KD06.2 · Bảng trượt Thêm dịch vụ', 'Thêm dịch vụ từ danh mục NCC', 'Chọn nhiều dịch vụ đang dùng, lọc sẵn theo điểm đến của ngày; thấy giá tham chiếu theo ngày sử dụng; số lượng tự tính.'],
-  W19: ['KD06.2 · Bảng trượt Tạo bằng AI', 'Tiêu chí tạo hành trình bằng AI', 'Nhu cầu của yêu cầu điền sẵn làm tiêu chí; nhập thêm điểm đến, nhịp độ, ưu tiên; nói rõ AI không xác nhận giá và chỗ.'],
+  W19: ['KD06.2 · Bảng trượt Tạo bằng AI', 'Tiêu chí tạo hành trình bằng AI', 'Nhu cầu của yêu cầu điền sẵn làm tiêu chí; nhập thêm điểm đến, nhịp độ, ưu tiên; chọn số phương án 1–3 (mặc định 1); nói rõ AI không xác nhận giá và chỗ.'],
   W20: ['KD06.2 · Hành trình', 'Đề xuất AI chờ xem', 'Đề xuất hiện trên lưới với nhãn Đề xuất AI; dịch vụ khớp danh mục NCC được gán sẵn, dịch vụ chưa khớp cần chọn; dùng hoặc bỏ đề xuất.'],
   W21: ['KD06.2 · Lỗi', 'AI không trả được đề xuất', 'AI lỗi hoặc quá thời gian: không có gì được ghi; giữ tiêu chí để thử lại hoặc chuyển sang cách khác.'],
   W22: ['KD06.2 · Hộp thoại', 'Thay hành trình đã có', 'Tạo lại hành trình bằng cách khác thì xác nhận ghi đè; nêu số ngày, dịch vụ bị thay và báo giá đã lưu không đổi.'],
@@ -51,4 +51,7 @@ module.exports = {
   W49: ['KD06.3 · Bảng trượt Tính giá', 'Bảng tính giá theo dịch vụ', 'Cùng kết quả tính, xem theo dịch vụ: gom theo hạng mục (tổng giá vốn, Markup, giá bán từng hạng mục), mở ra từng dịch vụ với ngày dùng, số lượng cả hành trình, giá vốn, Markup, giá bán; tổng khớp giá vốn và giá bán trước làm tròn.'],
   W50: ['KD06.2 · Chế độ điều chỉnh', 'Chế độ điều chỉnh, sửa hành trình', 'Mở từ Điều chỉnh chương trình ở Booking: dải tím, nút Về Booking; hành trình bắt đầu từ phiên bản của Booking; Lưu và tính giá tự tính lại giá.'],
   W51: ['KD06.3 · Chế độ điều chỉnh', 'Chế độ điều chỉnh, sau khi lưu phiên bản mới', 'Phiên bản mới Chưa có kết quả, nhãn Điều chỉnh cho Booking; không ghi kết quả, không tạo Booking; publish được proposal của phiên bản điều chỉnh (ghi phương án điều chỉnh cho Booking); khách đồng ý thì về Booking bấm Chuyển sang Điều hành.'],
+  W52: ['KD06.2 · Bảng trượt Tạo bằng AI', 'Đang tạo phương án AI', 'Trong lúc AI tạo: thời gian đã chờ, tiến độ từng phương án (Đang chờ, Đang tạo, Xong, Lỗi), tiêu chí đã gửi; Dừng tạo giữ phương án đã xong; hành trình trên lưới chưa đổi.'],
+  W53: ['KD06.2 · Bảng trượt So sánh phương án', 'So sánh phương án AI', 'Các phương án đặt cạnh nhau: tên, hướng, số ngày và dịch vụ, số khớp danh mục NCC, nhịp độ, điểm nhấn, tiêu đề từng ngày; chọn một phương án để đưa lên lưới.'],
+  W54: ['KD06.2 · Khung Sửa bằng AI', 'Sửa hành trình bằng AI qua khung chat', 'Khung chat ở cuối tab Hành trình: người dùng nhập yêu cầu sửa, AI áp ngay lên lưới (chưa lưu), tóm tắt thay đổi kèm Hoàn tác lượt đó; ngày, dòng đổi có nhãn; lịch sử chỉ trong phiên.'],
 };

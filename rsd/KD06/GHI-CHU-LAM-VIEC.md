@@ -384,3 +384,32 @@ Người dùng yêu cầu 23/11/2026: yêu cầu Tour phải là hạng khách s
 - **Chữ trên màn.** Trường Hạng phòng của KD06.1, KD06.3 (bảng trượt Tính giá), dải nhắc ở tab Hành trình, thông tin yêu cầu, bảng so sánh khi xung đột, cột của tệp xuất KD05 và câu “Sửa số khách, thời gian, hạng … không đổi báo giá đã lưu” đọc là **Hạng khách sạn**. Ở RSD này, “hạng phòng” của yêu cầu và của điều kiện tính đọc là hạng khách sạn.
 - **Cơ chế không đổi.** Vẫn là danh mục `room-classes` của QT05 (nay mang tên Hạng khách sạn, xem `docs/rsd/QT05/GHI-CHU-LAM-VIEC.md` mục Ticket 108); R13 vẫn chọn dòng giá theo giá trị đó, chưa chọn thì lấy hạng giá thấp nhất. Code, API, DB giữ tên `roomClass`.
 - **Ngoài phạm vi (giữ chữ “Hạng phòng”).** Cột hạng phòng của dòng giá DH03/DH05, bộ lọc tra cứu dịch vụ DH04, rooming list DH08.4 và mẫu QT04, nhật ký QT03 (trường “Hạng phòng”), proposal. Đổi các chỗ này khi người dùng yêu cầu.
+
+## AI: nhiều phương án và Sửa bằng AI (25/11/2026)
+
+Người dùng yêu cầu 25/11/2026: (1) khi AI đã tạo xong hoặc người dùng đã sửa xong mà muốn sửa tiếp bằng AI thì có khung chat ở cuối màn hành trình; (2) khi tạo hành trình bằng AI thì chọn được số phương án AI tạo, có màn khi đang tạo. Sửa tại chỗ `RSD-KD06-Ho-so-yeu-cau-Tour-v1.6.md`, dòng “Thay đổi (25/11/2026 · AI…)” ở đầu tài liệu. Không đổi số phiên bản RSD (như các thay đổi 18/11, 23/11).
+
+**Người dùng chốt (hỏi 25/11/2026):**
+
+| Câu hỏi | Trả lời | Ở RSD |
+|---|---|---|
+| Số phương án, cách chọn | 1–3, mặc định 1. Một phương án đi thẳng lên lưới; 2–3 thì có màn so sánh, chọn một phương án đưa lên lưới, các phương án khác bị bỏ | L3.5, W19, W52, W53, R09, 5.2 |
+| Thay đổi của khung chat áp thế nào | Áp ngay lên lưới (chưa lưu), có nhãn, kèm Hoàn tác lượt đó | L3.10 bước 2–3, W54 |
+| Lịch sử trò chuyện | Chỉ trong phiên; không lưu | L3.10 bước 4, E3.10, R09, 5.3 |
+
+**Người viết tự quyết (cần người dùng xem lại nếu khác ý):**
+
+1. **Màn Đang tạo dùng cho cả 1 phương án** (thay cho nút “Đang tạo” khóa ở bước cũ), để chỉ có một kiểu chờ.
+2. **Hướng của phương án** cố định theo số thứ tự: 1 Bám sát tiêu chí, 2 Khác tuyến hoặc điểm nhấn, 3 Tiết kiệm hơn trong ngân sách. Mỗi phương án là một lời gọi riêng (gateway nhận 2 lời gọi song song theo ghi chú ticket 106, nên phương án 3 có thể Đang chờ); không gọi một lần trả 3 phương án vì một lỗi sẽ mất cả ba và JSON dài dễ quá thời gian.
+3. **Một phần phương án lỗi** vẫn sang so sánh, thẻ lỗi có Thử lại riêng; mọi phương án lỗi thì W21 như cũ. Dừng tạo giữ phương án đã xong.
+4. **Hủy ở W53** có Hoàn tác trên thông báo ngắn (U2), vì bỏ nhầm thì mất cả lượt tạo.
+5. **Không có AI ở chế độ điều chỉnh** (giữ cách hiểu ticket 67 “Không AI ở chế độ điều chỉnh”), nên thanh Sửa bằng AI cũng ẩn ở đó; ẩn khi chỉ xem và khi không có gateway.
+6. **Phạm vi sửa của khung chat:** tên hành trình, ngày (thêm, xóa, chuyển, tiêu đề, nội dung tiếng Việt), hoạt động trong ngày (ticket 107), dòng dịch vụ (thêm, xóa, đổi, chuyển ngày, cách tính số lượng, số lượng Cố định, ghi chú). Không sửa tiếng Anh (để Dịch nháp, Dịch tự động lo), không giá, không đi kèm (như R09 cũ). Đổi dịch vụ bỏ đi kèm cũ như L3.8.
+7. **Lưới chỉ xem trong lúc chờ AI sửa**, để thay đổi trả về áp đúng hành trình đã gửi, khỏi phải trộn với sửa tay xảy ra cùng lúc.
+8. **Hoàn tác** chỉ ở lượt gần nhất và chỉ khi chưa sửa tay sau lượt đó (tránh hoàn tác đè mất sửa tay); hoàn tác lần lượt từng lượt ngược về trước.
+9. **Nhật ký lần gọi không ghi nội dung tin nhắn, câu trả lời hay nội dung phương án**, để khớp “lịch sử chỉ trong phiên”; chỉ ghi người, thời điểm, mục đích, mã yêu cầu, số thay đổi, kết quả. Lịch sử yêu cầu ghi dấu “có sửa bằng AI” cho lần lưu.
+10. **Tin nhắn người dùng gửi nguyên văn**, không lọc dữ liệu cá nhân; ô nhập nhắc không nhập tên, email, điện thoại khách. Mỗi lượt gửi kèm tối đa 20 lượt trước.
+
+**Hình.** Thêm W52, W53, W54; dựng lại W19 (ô Số phương án; sửa dải xanh vỡ dòng có từ trước), W21 (cùng form). `node build.js W19 W21 W52 W53 W54`. Hình khác của tab Hành trình chưa vẽ thanh Sửa bằng AI thu gọn (ghi ở đầu RSD).
+
+**Thay đổi cần làm ở nơi khác:** hợp đồng API AI (`ai-proposals`) thêm số phương án, hướng và các trường tóm tắt của phương án; API mới cho Sửa bằng AI (mục đích mới trên gateway, schema danh sách thay đổi); nhật ký `AI_GATEWAY` thêm mục đích Sửa bằng AI, số thứ tự và hướng phương án.

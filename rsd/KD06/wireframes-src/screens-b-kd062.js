@@ -142,8 +142,38 @@ const aiForm = (err = '') => `${err}<div class="sec" style="margin-top:0">Từ y
 <div class="f2">${f('Nhịp độ', 'Vừa phải', { cls: 'sel' })}${f('Điểm vào – ra', 'Vào Hà Nội · ra Đà Nẵng', { cls: 'sel' })}</div>
 <div class="field"><label>Ưu tiên</label><div class="input" style="height:auto;min-height:30px">${['Ẩm thực', 'Văn hóa', 'Ít di chuyển đường dài'].map(tag).join('')}</div></div>
 ${f('Ghi chú cho AI', 'Có trẻ em 7 và 9 tuổi; tránh ngày có quá 4 giờ đi xe.', { cls: 'area' })}
-<div class="banner i small">AI dùng Tour mẫu và danh mục NCC đang dùng để gợi ý dịch vụ. Đề xuất <b>không xác nhận giá hay tình trạng còn chỗ</b>; giá tính ở tab Báo giá từ bảng giá NCC.</div>`;
-S.W19 = P({ last: 'YC-2611-0031', body: biaHdr() + `<div style="height:400px"></div>`, overlay: drawer('Tạo hành trình bằng AI', aiForm(), `${B('Hủy')}${B('✨ Tạo đề xuất', 'p')}`, { sub: 'Kết quả hiện trên lưới để bạn xem và sửa trước khi lưu' }) });
+<div class="field"><label>Số phương án</label><div class="grid" style="grid-template-columns:1fr 1fr 1fr;gap:8px">
+${[[1, 'Đưa thẳng lên lưới', 'Bám sát tiêu chí'], [2, 'So sánh rồi chọn', '+ Khác tuyến'], [3, 'So sánh rồi chọn', '+ Tiết kiệm hơn']].map(([n, d, h]) => { const on = n === 3; return `<div style="border:${on ? '1.5px solid #2563eb' : '1px solid #d1d5db'};background:${on ? '#eff6ff' : '#fff'};border-radius:8px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start"><span class="rd ${on ? 'on' : ''}" style="margin-top:2px"></span><div><div style="font-weight:600;${on ? 'color:#1e40af' : ''}">${n} phương án${n === 1 ? ' <span class="muted small" style="font-weight:400">· mặc định</span>' : ''}</div><div class="small muted">${d}</div><div class="small" style="color:#6d28d9">${h}</div></div></div>`; }).join('')}</div></div>
+<div class="banner i small"><span>AI dùng Tour mẫu và danh mục NCC đang dùng để gợi ý dịch vụ. Đề xuất <b>không xác nhận giá hay tình trạng còn chỗ</b>; giá tính ở tab Báo giá từ bảng giá NCC.</span></div>`;
+S.W19 = P({ last: 'YC-2611-0031', body: biaHdr() + `<div style="height:400px"></div>`, overlay: drawer('Tạo hành trình bằng AI', aiForm(), `${B('Hủy')}${B('✨ Tạo 3 phương án', 'p')}`, { sub: 'Một phương án thì hiện thẳng trên lưới; nhiều phương án thì so sánh trước khi chọn' }) });
+
+// ---------- W52 Đang tạo phương án ----------
+const genRow = (n, st, d, pct, cls = '') => `<div style="border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;margin-bottom:8px;${st === 'xong' ? 'background:#f0fdf4;border-color:#86efac' : ''}">
+<div class="flex"><b>Phương án ${n}</b>${st === 'xong' ? ind('Xong', 'g') : st === 'tao' ? ind('Đang tạo', 'v') : '<span class="ind" style="background:#f3f4f6;color:#6b7280">Đang chờ</span>'}<span class="ml muted small">${d}</span></div>
+<div class="flex" style="margin-top:6px"><div class="prog ${cls}"><i style="width:${pct}%"></i></div></div></div>`;
+S.W52 = P({ last: 'YC-2611-0031', body: biaHdr() + `<div style="height:400px"></div>`, overlay: drawer('Tạo hành trình bằng AI', `<div class="flex" style="margin-bottom:12px"><span style="font-size:22px">✨</span><div><div style="font-size:14px;font-weight:700">Đang tạo 3 phương án · 0:24</div><div class="muted small">Mỗi phương án tối đa 60 giây. Phương án nào xong hiện ngay; hành trình trên lưới chưa đổi.</div></div></div>
+${genRow(1, 'xong', 'Bám sát tiêu chí · 10 ngày, 24 dịch vụ · 18 giây', 100, 'g')}
+${genRow(2, 'tao', 'Khác tuyến hoặc điểm nhấn', 55)}
+${genRow(3, 'cho', 'Tiết kiệm hơn trong ngân sách', 0)}
+<div class="sec">Tiêu chí đã gửi</div>
+<div class="kv"><span>Thời gian, khách</span><span>10/03 – 19/03/2027 · 14 người lớn, 2 trẻ em · Deluxe · Tiếng Ý</span><span>Ngân sách</span><span>đến 2.000 EUR mỗi khách</span><span>Điểm đến phải có</span><span>Hà Nội, Hạ Long, Huế, Hội An</span><span>Nhịp độ, vào – ra</span><span>Vừa phải · vào Hà Nội, ra Đà Nẵng</span></div>
+<div class="banner i small" style="margin-top:12px">Dừng tạo thì bỏ các phương án chưa xong; phương án đã xong vẫn xem và chọn được. Lỗi ở một phương án không làm hỏng phương án khác.</div>`,
+  `<span class="muted small">Còn 2 phương án đang tạo · xong cả thì tự mở so sánh</span>${B('Dừng tạo')}`, { sub: 'Bảng trượt không đóng khi bấm ra ngoài; ✕ cũng là Dừng tạo' }) });
+
+// ---------- W53 So sánh phương án ----------
+const optCard = (n, name, tag, kv, hi, days, on = false) => `<div style="border:${on ? '2px solid #2563eb' : '1px solid #e5e7eb'};border-radius:10px;padding:12px;background:${on ? '#f5f9ff' : '#fff'};display:flex;flex-direction:column;gap:8px">
+<div class="flex"><span class="rd ${on ? 'on' : ''}"></span><b style="font-size:13.5px">Phương án ${n}</b>${ind(tag, 'v')}</div>
+<div style="font-weight:600">${name}</div>
+<div class="kv" style="grid-template-columns:110px 1fr">${kv.map(([k, v]) => `<span>${k}</span><span>${v}</span>`).join('')}</div>
+<div class="sec" style="margin:2px 0 0">Điểm nhấn</div><ul class="small" style="margin:0;padding-left:16px">${hi.map(h => `<li>${h}</li>`).join('')}</ul>
+<div class="sec" style="margin:2px 0 0">Lịch trình</div><div class="small">${days.map((d, i) => `<div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><b>N${i + 1}</b> ${d}</div>`).join('')}</div></div>`;
+S.W53 = P({ last: 'YC-2611-0031', body: biaHdr() + `<div style="height:400px"></div>`, overlay: `<div class="overlay"></div><div class="drawer xl"><div class="dh"><div class="t">So sánh 3 phương án AI<span class="x">✕</span></div><div class="muted small" style="margin-top:2px">Chọn một phương án để đưa lên lưới; các phương án khác bị bỏ khi đưa lên. Chưa xác nhận giá và chỗ.</div></div>
+<div class="db"><div class="grid" style="grid-template-columns:1fr 1fr 1fr">
+${optCard(1, 'Bắc – Trung cổ điển, ẩm thực', 'Bám sát tiêu chí', [['Ngày, dịch vụ', '10 ngày · 24 dịch vụ'], ['Danh mục NCC', '22 khớp · <span class="ind r">2 chưa gán</span>'], ['Nhịp độ', 'Vừa phải · xe dài nhất 3,5 giờ'], ['Vào – ra', 'Hà Nội → Đà Nẵng']], ['Lớp nấu ăn Hà Nội, làng rau Trà Quế', '1 đêm du thuyền Hạ Long', 'Bay Hà Nội – Huế'], ['Hà Nội – đón khách, phố cổ', 'Hà Nội – lớp nấu ăn', 'Hà Nội – Hạ Long, du thuyền', 'Hạ Long – Hà Nội – bay Huế', 'Huế – Đại Nội, chợ Đông Ba', 'Huế – Hải Vân – Hội An', 'Hội An – làng rau Trà Quế', 'Hội An – Mỹ Sơn', 'Đà Nẵng – Sơn Trà', 'Đà Nẵng – tiễn khách'])}
+${optCard(2, 'Ninh Bình thay Hà Nội city, ít bay', 'Khác tuyến', [['Ngày, dịch vụ', '10 ngày · 26 dịch vụ'], ['Danh mục NCC', '25 khớp · <span class="ind r">1 chưa gán</span>'], ['Nhịp độ', 'Vừa phải · xe dài nhất 4 giờ'], ['Vào – ra', 'Hà Nội → Đà Nẵng']], ['Tràng An, Hang Múa thay 1 ngày Hà Nội', 'Tàu đêm Hà Nội – Huế thay chuyến bay', 'Chợ đêm và show Ký ức Hội An'], ['Hà Nội – đón khách', 'Hà Nội – Ninh Bình, Tràng An', 'Ninh Bình – Hạ Long, du thuyền', 'Hạ Long – Hà Nội – tàu đêm', 'Huế – Đại Nội, sông Hương', 'Huế – Hải Vân – Hội An', 'Hội An – show Ký ức Hội An', 'Hội An – Mỹ Sơn', 'Hội An tự do', 'Đà Nẵng – tiễn khách'], true)}
+${optCard(3, 'Gọn hơn, khách sạn 4★ tiêu chuẩn', 'Tiết kiệm hơn', [['Ngày, dịch vụ', '10 ngày · 21 dịch vụ'], ['Danh mục NCC', '21 khớp'], ['Nhịp độ', 'Thong thả · ít điểm mỗi ngày'], ['Vào – ra', 'Hà Nội → Đà Nẵng']], ['Hạ Long trong ngày, không ngủ du thuyền', 'Bớt 1 HDV địa phương', 'Bữa tối tự túc 2 ngày'], ['Hà Nội – đón khách', 'Hà Nội city tour', 'Hà Nội – Hạ Long – Hà Nội', 'Hà Nội – bay Huế', 'Huế – Đại Nội', 'Huế – Hải Vân – Hội An', 'Hội An – làng rau Trà Quế', 'Hội An – Mỹ Sơn', 'Hội An tự do', 'Đà Nẵng – tiễn khách'])}
+</div><div class="banner i small" style="margin-top:10px">Thẻ ghi đúng số liệu AI trả (số ngày, dịch vụ, khớp danh mục NCC). Phương án đưa lên lưới hiện như đề xuất một phương án (W20): sửa, Bỏ đề xuất hoặc lưu. Các phương án còn lại không giữ.</div></div>
+<div class="df">${B('Tạo lại với tiêu chí khác')}<span class="ml"></span>${B('Hủy')}${B('Đưa phương án 2 lên lưới', 'p')}</div></div>` });
 
 // ---------- W20 Đề xuất AI ----------
 const AI = [
@@ -159,6 +189,27 @@ const AI2 = [
 S.W20 = P({ last: 'YC-2611-0031', body: biaHdr({ cnt: { h: '<span class="cnt w">2</span>' } }) + `<div class="banner small ai" style="margin-top:10px;color:#581c87">✨ <span style="flex:1"><b>Đề xuất AI · 10 ngày, 24 dịch vụ</b>: 22 khớp danh mục NCC, 2 chưa gán NCC. Chưa xác nhận giá và chỗ. Sửa trực tiếp trên lưới rồi lưu, hoặc bỏ đề xuất.</span>${B('Tạo lại với tiêu chí khác', 'sm')}${B('Bỏ đề xuất', 'sm d')}</div>` +
   `<div style="margin-top:8px"></div>` + grid(dnav(AI, 2, { total: 10, bad: [], more: '<div class="muted small" style="padding:6px 10px">Ngày 9–10 · cuộn để xem</div>' }), editor(AI[1], 'Sáng học nấu ăn cùng đầu bếp địa phương: đi chợ, làm nem và phở. Chiều tự do. Tối đi bộ phố ẩm thực Tống Duy Tân.', AI2, { svHint: 'dịch vụ chưa gán NCC phải chọn trước khi tính giá' })) +
   savebar('<span class="dirty">● Chưa lưu</span> · Đề xuất AI 11/11/2026 15:31', B('Lưu hành trình', 'p') + '<span class="muted small">Còn 2 dịch vụ chưa gán NCC, cần xử lý trước khi tính giá</span>' + B('Lưu và tính giá', 'dis')) });
+
+// ---------- W54 Sửa bằng AI (khung chat cuối tab Hành trình) ----------
+// Bianchi: hành trình đã lưu 10 ngày, 27 dịch vụ. Nam nhờ AI bỏ Bà Nà Hills, thay bằng ngày Hội An có lớp nấu ăn.
+const BIA10c = BIA10.map(d => d.n === 9 ? Object.assign({}, d, { t: 'Hội An – lớp nấu ăn, làng gốm Thanh Hà', sv: 3, x: ind('Sửa bằng AI', 'v') + ind('1 chưa gán NCC', 'r') }) : d);
+const D9c = [
+  R('Lớp nấu ăn Hội An · nửa ngày ' + ind('Mới', 'g'), '<span class="ind r">Chưa gán NCC</span> AI đề xuất, không có trong danh mục', '<span class="isel ph">Chọn dịch vụ</span>', '—', '—', 'bad'),
+  R('Vé tham quan làng gốm Thanh Hà ' + ind('Mới', 'g'), 'Hội An Heritage · Vé tham quan', 'Theo số khách · 16', '—', '35.000 ₫ /khách', 'new'),
+  R('HDV tiếng Ý · theo ngày', 'Đất Việt Guides · Hướng dẫn viên', 'Cố định · 1', '—', '1.500.000 ₫ /đoàn/ngày'),
+];
+const bub = (who, html, me = false) => `<div style="display:flex;${me ? 'justify-content:flex-end' : ''};margin-bottom:8px"><div style="max-width:78%;border-radius:10px;padding:7px 10px;font-size:12.3px;${me ? 'background:#1e40af;color:#fff' : 'background:#faf5ff;border:1px solid #e9d5ff;color:#3b0764'}">${who ? `<div class="small" style="font-weight:700;margin-bottom:2px">${who}</div>` : ''}${html}</div></div>`;
+const CHAT = `<div style="margin-top:10px;background:#fff;border:1px solid #c4b5fd;border-radius:10px;box-shadow:0 -2px 10px rgba(124,58,237,.08);overflow:hidden">
+<div class="flex" style="padding:6px 12px;border-bottom:1px solid #ede9fe;background:#faf5ff"><b style="color:#5b21b6">✨ Sửa bằng AI</b><span class="muted small">Áp ngay lên lưới, chưa lưu · lịch sử trò chuyện chỉ giữ tới khi lưu hoặc rời hồ sơ · không xác nhận giá, chỗ</span><span class="ml muted small">Thu gọn ▾</span></div>
+<div style="padding:8px 12px 0;height:168px;overflow:hidden">
+${bub('', 'Bỏ Bà Nà Hills ở Ngày 9, thay bằng một buổi lớp nấu ăn ở Hội An và một điểm làng nghề; giữ HDV.', true)}
+${bub('AI · đã áp 1 thay đổi', `<b>Ngày 9 · Hội An – lớp nấu ăn, làng gốm Thanh Hà</b>: sửa tiêu đề, nội dung; bỏ Vé cáp treo Bà Nà Hills, Xe 29 chỗ Đà Nẵng – Bà Nà; thêm Lớp nấu ăn Hội An (<b>chưa gán NCC</b>, cần chọn dịch vụ), Vé làng gốm Thanh Hà; giữ HDV tiếng Ý.<div class="flex" style="margin-top:5px">${B('↶ Hoàn tác lượt này', 'sm')}${B('Xem Ngày 9', 'sm')}<span class="muted small">2 dịch vụ bỏ · 2 thêm · 1 ngày sửa</span></div>`)}
+</div>
+<div class="flex" style="padding:6px 12px 4px;flex-wrap:wrap">${['Bớt di chuyển đường dài', 'Thêm 1 ngày nghỉ ở Hội An', 'Đổi khách sạn Huế sang 5★', 'Rút còn 9 ngày'].map(t => `<span class="chip">${t}</span>`).join('')}</div>
+<div class="flex" style="padding:4px 12px 10px"><div class="input focus" style="flex:1"><span class="muted">Nhập yêu cầu sửa, ví dụ “đổi Ngày 4 sang tàu đêm thay chuyến bay”</span></div>${B('Gửi', 'p')}</div></div>`;
+S.W54 = P({ last: 'YC-2611-0031', body: biaHdr({ cnt: { h: '<span class="cnt w">2</span>' } }) + tools('Từ Tour mẫu TM-008, ghép TM-010 · lưu 11/11/2026 15:34 · có sửa bằng AI chưa lưu') +
+  `<div class="lt" style="height:228px;overflow:hidden">${dnav(BIA10c, 9)}${editor(BIA10c[8], 'Sáng lớp nấu ăn cùng đầu bếp địa phương: đi chợ Hội An, làm cao lầu và bánh xèo. Chiều đạp xe thăm làng gốm Thanh Hà. Tối tự do phố cổ.', D9c, { svHint: 'dịch vụ chưa gán NCC phải chọn trước khi tính giá' })}</div>` + CHAT +
+  savebar('<span class="dirty">● Chưa lưu</span> · sửa bằng AI: 1 ngày, 4 dịch vụ', B('Hủy thay đổi') + B('Lưu hành trình', 'p') + '<span class="muted small">Còn 2 dịch vụ cần xử lý trước khi tính giá</span>' + B('Lưu và tính giá', 'dis')) });
 
 // ---------- W21 AI lỗi ----------
 S.W21 = P({ last: 'YC-2611-0031', body: biaHdr() + `<div style="height:400px"></div>`, overlay: drawer('Tạo hành trình bằng AI', aiForm(`<div class="banner e small" style="margin-bottom:10px">AI chưa trả được đề xuất sau 60 giây. Hành trình chưa thay đổi. Thử lại với cùng tiêu chí, hoặc chọn Từ Tour mẫu, Thủ công.</div>`), `${B('Chọn cách khác')}${B('Thử lại', 'p')}`, { sub: 'Kết quả hiện trên lưới để bạn xem và sửa trước khi lưu' }) });

@@ -36,7 +36,7 @@ body{margin:0;font:13px/1.42 "Segoe UI",Arial,sans-serif;color:#1f2937;backgroun
 .cnt{background:#e5e7eb;color:#374151;border-radius:9px;padding:0 6px;font-size:11px;font-weight:600}
 .cnt.w{background:#fef3c7;color:#92400e}.cnt.r{background:#fee2e2;color:#991b1b}.cnt.g{background:#dcfce7;color:#166534}
 .badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11.5px;font-weight:600;white-space:nowrap;line-height:18px}
-.b-gray{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb}
+.b-gray{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb}.b-slate{background:#f1f5f9;color:#334155;border:1px solid #e2e8f0}
 .b-blue{background:#dbeafe;color:#1e40af}.b-green{background:#dcfce7;color:#166534}
 .b-amber{background:#fef3c7;color:#92400e}.b-red{background:#fee2e2;color:#991b1b}
 .b-violet{background:#ede9fe;color:#5b21b6}.b-cyan{background:#cffafe;color:#155e75}
@@ -243,6 +243,8 @@ tr.new td{background:#f0fdf4}
 .ev.green{background:#dcfce7;color:#14532d;border-left-color:#16a34a}
 .ev.gray{background:#f3f4f6;color:#6b7280;border-left-color:#9ca3af;text-decoration:line-through}
 .ev.gray2{background:#f3f4f6;color:#374151;border-left-color:#9ca3af}
+.ev.slate{background:#f1f5f9;color:#334155;border-left-color:#64748b}
+.dot.slate{background:#64748b}
 .ev.violet{background:#ede9fe;color:#4c1d95;border-left-color:#7c3aed}
 .ev.amber{background:#fef3c7;color:#78350f;border-left-color:#f59e0b}
 .ev.red{background:#fee2e2;color:#7f1d1d;border-left-color:#dc2626}
@@ -314,11 +316,13 @@ table.sv td{vertical-align:top}
 <div class="page"><div class="hdr"><div class="r1"><span class="code">YC-2611-0031</span><span class="badge b-blue">Đang xử lý</span>
 <div class="actions"><span class="btn d">Hủy yêu cầu</span><span class="btn ">⋯</span></div></div>
 <div class="meta"><span>Khách <b class="lnk">Bianchi Viaggi S.r.l.</b> · Marco Rossi</span><span>Thời gian đi <b>10/03 – 19/03/2027</b> · 10N9Đ</span><span><b>16 khách</b> (14 người lớn, 2 trẻ em)</span><span>Ngân sách <b>đến 2.000 EUR/khách</b></span><span>Ngôn ngữ phục vụ <b>Tiếng Ý</b></span><span>Phụ trách <b>Nguyễn Hoàng Nam</b></span><span>Báo giá mới nhất <b>—</b></span></div>
-<div class="tabs"><div class="tab ">Thông tin yêu cầu</div><div class="tab on">Hành trình</div><div class="tab ">Báo giá</div></div></div><div style="height:400px"></div></div><div class="overlay"></div><div class="drawer "><div class="dh"><div class="t">Tạo hành trình bằng AI<span class="x">✕</span></div><div class="muted small" style="margin-top:2px">Kết quả hiện trên lưới để bạn xem và sửa trước khi lưu</div></div><div class="db"><div class="sec" style="margin-top:0">Từ yêu cầu <span class="auto">Tự điền</span></div>
+<div class="tabs"><div class="tab ">Thông tin yêu cầu</div><div class="tab on">Hành trình</div><div class="tab ">Báo giá</div></div></div><div style="height:400px"></div></div><div class="overlay"></div><div class="drawer "><div class="dh"><div class="t">Tạo hành trình bằng AI<span class="x">✕</span></div><div class="muted small" style="margin-top:2px">Một phương án thì hiện thẳng trên lưới; nhiều phương án thì so sánh trước khi chọn</div></div><div class="db"><div class="sec" style="margin-top:0">Từ yêu cầu <span class="auto">Tự điền</span></div>
 <div class="kv"><span>Mong muốn</span><span>Miền Bắc và miền Trung, khách sạn 4 sao, trải nghiệm ẩm thực địa phương, 1 đêm ngủ du thuyền Hạ Long.</span><span>Thời gian</span><span>10/03 – 19/03/2027 · 10 ngày</span><span>Khách</span><span>14 người lớn, 2 trẻ em (7, 9 tuổi) · Deluxe · Tiếng Ý</span><span>Ngân sách</span><span><b>đến 2.000 EUR mỗi khách</b> · AI dùng để chọn hạng dịch vụ, không xác nhận giá</span></div>
 <div class="sec">Tiêu chí thêm</div>
 <div class="field"><label>Điểm đến phải có</label><div class="input" style="height:auto;min-height:30px"><span class="tag">Hà Nội</span><span class="tag">Hạ Long</span><span class="tag">Huế</span><span class="tag">Hội An</span></div></div>
 <div class="f2"><div class="field"><label>Nhịp độ</label><div class="input sel">Vừa phải</div></div><div class="field"><label>Điểm vào – ra</label><div class="input sel">Vào Hà Nội · ra Đà Nẵng</div></div></div>
 <div class="field"><label>Ưu tiên</label><div class="input" style="height:auto;min-height:30px"><span class="tag">Ẩm thực</span><span class="tag">Văn hóa</span><span class="tag">Ít di chuyển đường dài</span></div></div>
 <div class="field"><label>Ghi chú cho AI</label><div class="input area">Có trẻ em 7 và 9 tuổi; tránh ngày có quá 4 giờ đi xe.</div></div>
-<div class="banner i small">AI dùng Tour mẫu và danh mục NCC đang dùng để gợi ý dịch vụ. Đề xuất <b>không xác nhận giá hay tình trạng còn chỗ</b>; giá tính ở tab Báo giá từ bảng giá NCC.</div></div><div class="df"><span class="btn ">Hủy</span><span class="btn p">✨ Tạo đề xuất</span></div></div></div></div></body></html>
+<div class="field"><label>Số phương án</label><div class="grid" style="grid-template-columns:1fr 1fr 1fr;gap:8px">
+<div style="border:1px solid #d1d5db;background:#fff;border-radius:8px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start"><span class="rd " style="margin-top:2px"></span><div><div style="font-weight:600;">1 phương án <span class="muted small" style="font-weight:400">· mặc định</span></div><div class="small muted">Đưa thẳng lên lưới</div><div class="small" style="color:#6d28d9">Bám sát tiêu chí</div></div></div><div style="border:1px solid #d1d5db;background:#fff;border-radius:8px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start"><span class="rd " style="margin-top:2px"></span><div><div style="font-weight:600;">2 phương án</div><div class="small muted">So sánh rồi chọn</div><div class="small" style="color:#6d28d9">+ Khác tuyến</div></div></div><div style="border:1.5px solid #2563eb;background:#eff6ff;border-radius:8px;padding:7px 10px;display:flex;gap:8px;align-items:flex-start"><span class="rd on" style="margin-top:2px"></span><div><div style="font-weight:600;color:#1e40af">3 phương án</div><div class="small muted">So sánh rồi chọn</div><div class="small" style="color:#6d28d9">+ Tiết kiệm hơn</div></div></div></div></div>
+<div class="banner i small"><span>AI dùng Tour mẫu và danh mục NCC đang dùng để gợi ý dịch vụ. Đề xuất <b>không xác nhận giá hay tình trạng còn chỗ</b>; giá tính ở tab Báo giá từ bảng giá NCC.</span></div></div><div class="df"><span class="btn ">Hủy</span><span class="btn p">✨ Tạo 3 phương án</span></div></div></div></div></body></html>
