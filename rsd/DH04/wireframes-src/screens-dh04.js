@@ -12,6 +12,7 @@ const CSS = `
 .sw.on{background:#2563eb}.sw.on i{left:15px}
 .pr{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
 .pr .u{font-weight:400;color:#6b7280;font-size:11.5px}
+.pr .u.info{color:#2563eb}
 .tip{position:absolute;background:#111827;color:#f9fafb;border-radius:8px;padding:10px 12px;box-shadow:0 10px 30px rgba(0,0,0,.3);font-size:12px;z-index:6}
 .tip table{background:transparent}.tip td,.tip th{border-bottom:1px solid #374151;color:#f9fafb;padding:3px 8px;background:transparent}
 .tip th{color:#9ca3af;font-weight:600}
@@ -90,7 +91,7 @@ function priceCell(r, mode) {
     return r.from ? `<span class="pr"><span class="u">từ</span> ${r.from[0]} <span class="u">${r.from[1]}</span></span>` : '<span class="muted">—</span>';
   }
   if (r.noPrice) return `<span class="ind r" style="margin:0;white-space:normal">${r.err}</span>`;
-  let h = `<span class="pr">${r.ap[0]} <span class="u">${r.ap[1]}</span>${r.night ? ' <span class="u" style="color:#2563eb">ⓘ</span>' : ''}</span><div class="muted small">${r.sub}</div>`;
+  let h = `<span class="pr">${r.ap[0]} <span class="u">${r.ap[1]}</span>${r.night ? ' <span class="u info">ⓘ</span>' : ''}</span><div class="muted small">${r.sub}</div>`;
   if (r.plus) h += `<div class="small" style="color:#5b21b6">${r.plus}</div>`;
   if (r.warn) h += `<div class="small" style="color:#92400e">⚠ ${r.warn}</div>`;
   if (r.err) h += `<div class="small" style="color:#b91c1c">⛔ ${r.err}</div>`;

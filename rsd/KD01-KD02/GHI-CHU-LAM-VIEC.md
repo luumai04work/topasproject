@@ -98,3 +98,23 @@ Sửa tại chỗ `RSD-KD01-KD02-Tour-mau-v1.3.md`, dòng “Thay đổi ở v1.
 - **Kết quả.** 12 khách: 9.903.333 ₫ + 305 USD mỗi khách (AC29); xóa Ngày 7: 8.353.333 ₫ + 305 USD (AC19, L4.2 bước 3); 16 khách: 9.407.500 ₫ + 305 USD, chưa gồm 4 dịch vụ (AC30). AC28 giữ số.
 - **Mâu thuẫn đã chốt (13/11/2026).** Người dùng chốt: giá vốn tham khảo ở KD02 áp phòng đơn tự xếp như KD06 R04 khi số khách lẻ. Đã sửa R05, R07 (bước 5, 6; dòng Không tính), thêm AC40 (11 khách: 11.079.091 ₫ + 360,45 USD mỗi khách, chưa gồm 2 dịch vụ; ví dụ B4). Số 12 và 16 khách không đổi.
 - **Hình chưa cập nhật:** W14, W18, W21–W24 (9.865.000 ₫), W19 (8.315.000 ₫), W20 (Ngày 4 1.208.000 ₫/khách); không dựng lại.
+
+## Quyết định rà soát 13/11/2026
+
+- **Quyết định rà soát 13/11/2026 (Q-RS03, Q-RS27).** R07 bước 3: bỏ “lấy dòng có Thứ tự nhỏ nhất” (dòng giá không còn trường Thứ tự; cùng hạng phòng tối đa một dòng khớp); ghi N là cả số người lớn và tổng khách vì Tour mẫu không có trẻ em. Số của ví dụ B không đổi.
+- **Quyết định rà soát 13/11/2026 (Q-RS04).** R07 bước 4: phụ thu Thay thế luôn cùng căn cứ với dòng giá (chặn ở DH03). Không đổi AC.
+- **Quyết định rà soát 13/11/2026 (Q-RS05).** KD02 không tính trẻ em (R07 “Không tính”), nên giá trẻ em là đơn giá không làm đổi chữ nào của KD01-KD02.
+
+## Cách hiểu khi làm giá vốn tham khảo (ticket 29, 16/11/2026)
+
+Theo quy tắc “tài liệu chưa rõ thì chọn cách đọc giữ mọi câu cùng đúng” (người dùng chốt 16/11/2026). Không đổi AC, không đổi số của ví dụ B.
+
+- **Nhớ giá trị (L5.1, R07, 5.1).** “Giá trị vừa nhập được nhớ” và “lần đầu hôm nay + 30 ngày, 10 khách, nhãn Mặc định”: chỉ nhớ khi người dùng đổi ô Khởi hành hoặc Số khách (hoặc khi một màn gọi API tính giá không kèm `remember: false`). Mở KD02.2 lần đầu tính giá bằng giá trị mặc định mà không nhớ, nên hôm sau mở lại vẫn là hôm nay + 30 ngày và nhãn Mặc định, không phải ngày của hôm trước.
+- **Ô phòng đơn trọn gói trống** (R07 bước 6a, R07 “Thiếu giá”): dòng phòng có phòng đơn tự xếp mà hợp đồng khai phòng đơn trọn gói nhưng mùa, loại ngày đó chưa có giá phòng đơn là dòng thiếu giá lý do “mùa chưa có giá”, không lấy giá phòng đôi. Phòng đơn trọn gói vào đêm có phụ thu lễ: BO-TINH-GIA mục 2 ý 18.
+- **E5.3 “bảng giá a–b khách”**: a là khoảng thấp nhất, b là khoảng cao nhất của các dòng giá của hợp đồng ngày đó (DVG-2026: 1–15); dòng không có cận trên ghi “a+”.
+- **Thứ tự loại tiền** trong tạm tính và Cả Tour: VND trước, các loại khác theo A–Z (như RSD DH04 R07 và hình W14 “₫ + USD”).
+- **Dòng phụ dưới Đơn giá** (W14): khoảng số khách chỉ hiện khi nó giới hạn đoàn (không hiện 1–99 hay “từ 1”), như hình W14 (HDV “1–15 khách”, Set menu “10–20 khách”, phòng và xe không ghi); rồi mùa, loại ngày; phụ thu đã tính (“gồm phụ thu: cộng … 250.000”, “thay bằng …”); phòng đơn tự xếp (“phòng đơn 3.050.000 ₫”).
+- **Số lượng khi N lẻ** (R05, ví dụ B4): ô Số lượng vẫn ghi “Theo số phòng · 6”, dòng dưới ghi “5 phòng đôi + 1 phòng đơn tự xếp”, để cột giữ bề rộng của hình.
+- **Cách tính không hợp đơn vị** (dữ liệu cũ hoặc gọi API): Theo số phòng với dịch vụ không theo phòng tính làm tròn lên (N ÷ 2) đơn vị, không có phòng đơn; Theo số khách với dịch vụ theo phòng tính N phòng. Màn KD02.2 đã đặt lại cách tính khi đổi dịch vụ (ticket 28), nên chỉ là để API không lỗi.
+- **Phụ thu Cộng dồn khác căn cứ** ở KD02: tính theo căn cứ của chính nó trên cả dòng (BO-TINH-GIA mục 2 ý 16): mỗi khách × N (dòng theo khách: số lượng), mỗi phòng × số phòng, mỗi đơn vị × số lượng, mỗi đêm một lần; cộng vào Thành tiền, không vào Đơn giá.
+- **Bảng trượt Thêm dịch vụ** (L4.1 bước 3): giá tham khảo của mỗi dịch vụ theo cách tính mặc định của nó, ngày tham chiếu của ngày đang mở, số khách tham chiếu của thanh giá.

@@ -14,6 +14,10 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
   - Khi tạo, người phụ trách Booking là người đang phụ trách yêu cầu Tour nguồn, bất kể ai bấm tạo (người dùng chốt 12/11/2026); người có quyền Chuyển phụ trách **chuyển được** ở KD08 (quyền theo vai trò ở QT02, Q1). Chuyển Booking thì **người phụ trách yêu cầu Tour chuyển theo**; Điều hành phụ trách hồ sơ Tour không đổi (sửa cùng ngày).
   - Booking chụp **chính sách hoàn hủy** (QT05) lúc tạo; KT01 dùng khi điều chỉnh sau hủy.
   - **Không có luồng duyệt; Kế toán không làm chốt chặn cho Kinh doanh và Điều hành** (yêu cầu riêng của doanh nghiệp, người dùng chốt 12/11/2026). **Hồ sơ Tour tự tạo ngay khi Booking được lưu**, không chờ thanh toán (RSD DH07 R01). Số liệu KT01 chỉ để tham khảo; ràng buộc toàn vẹn của lịch thanh toán (R07) giữ nguyên.
+- **Quyết định rà soát 13/11/2026 (`docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`).**
+  - **Q-RS17 · Ghi Chốt là tạo Booking.** Booking được tạo ngay khi Kinh doanh ghi Chốt cho một phiên bản ở KD06.3 (xác nhận trong hộp thoại, RSD KD06 L6.2, R19): ghi Chốt, tạo Booking, chụp chính sách hoàn hủy, tạo hồ sơ Tour, thông báo trong một giao dịch. Bỏ nút Tạo Booking, chế độ tạo mới của KD08 (W01, W20 không còn dùng), nút Lưu Booking; bỏ quyền Tạo Booking riêng (ghi Chốt theo quyền Ghi kết quả của KD06; RSD QT02). Hủy Booking thì phiên bản của Booking giữ Chốt (người dùng trả lời 13/11/2026). Sửa 1.1, 1.2, 1.4, 1.5, 2.1–2.3, L1.1, E1.1, E1.2, E1.7, L2.1, R01, R03, R05, R08, R10, R11, 5.1, 5.2; viết lại AC01–AC05, AC15, AC38.
+  - **Q-RS19 · Lịch mặc định khi khởi hành gần.** Hạn Đợt 2 (khởi hành − 30 ngày) không sau hạn Đợt 1 (ngày tạo + 14 ngày), tức khởi hành cách ngày tạo 15–44 ngày, thì gộp thành một đợt 100 % hạn ngày tạo + 14 ngày. Sửa R05; thêm AC45, AC46; `docs/rsd/BO-TINH-GIA/tinh_vi_du.py` và tài liệu ví dụ mục lịch thanh toán.
+- **Bổ sung 13/11/2026 (người dùng trả lời Q-RS17, Q-RS19, Q-RS24).** (1) Hủy Booking thì phiên bản của Booking giữ Chốt (không chuyển Không chốt; RSD KD06 R20): sửa 2.3, R10. (2) Hạn của đợt gộp ở R05 là ngày tạo + 14 (giữ như đã áp). (3) Chuyển người phụ trách Booking (L1.4) có Hoàn tác như chuyển hàng loạt (R11); thêm AC47.
 - **Thay đổi ở v1.6 (12/11/2026).** Cập nhật theo quyết định phase coding (`docs/QUYET-DINH-PHASE-CODING.md`). Q1: bỏ phạm vi bản ghi và luật chỉ người phụ trách được thao tác; 1.4 thành bảng quyền mặc định theo vai trò, cấu hình ở QT02; chuyển phụ trách theo quyền. Q5: bỏ trạng thái Tạo lỗi của hồ sơ Tour (hồ sơ Tour, khoản công nợ, thông báo ghi trong cùng giao dịch với thao tác gốc); bỏ bước W06, AC15 viết lại. Q2: “báo Kế toán” và email nội bộ thành thông báo in-app. Q3: bỏ nhãn “suy ra, chờ xác nhận”. Q7: mã Booking cho phép thủng số. Q9: số tiền đợt làm tròn half-up theo đơn vị nhỏ nhất của loại tiền, không áp bội số. U5: trường kế thừa hiện dạng chữ. Sửa đầu tài liệu, 1.1–1.5, 2.1–2.4, L1.1–L1.5, L1.7, L1.8, E1.1, E1.4, E1.6, E2.6, L2.1, L2.3, R01, R02, R05, R07–R13, 5.1, 5.3, AC02, AC15, AC28, AC31. Không dựng lại hình.
 - **Thay đổi ở v1.6 (bổ sung 12/11/2026).** Sửa sau rà chéo: mục 1.2 thống nhất nơi mở khi bấm thông báo theo RSD CH02 R07 và Phụ lục A: thông báo hồ sơ Tour đã tạo mở DH08 (RSD DH07 R09); thông báo lịch thanh toán thay đổi gửi Kế toán, mở KT01.1 (RSD KT01 mục 1.2); các thông báo về Booking gửi Kinh doanh mở KD08.1. Không đổi luồng.
 - **Thay đổi ở v1.6 (bổ sung 12/11/2026 · sau rà soát HD01).** Mục 5.1 dòng Booking: thêm HD01 vào cột màn đọc (họ tên, điện thoại người liên hệ của Booking cho HDV được phân công; RSD HD01 R12). Không đổi luồng, quyền, AC.
@@ -42,11 +46,11 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 
 ### 1.1. Mục tiêu
 
-KD08 là hồ sơ của một Booking: nơi Booking được tạo từ phiên bản báo giá Chốt, nơi Kinh doanh nhập điều khoản và lịch thanh toán, điều chỉnh chương trình, hủy Booking, và nơi Kế toán, Điều hành xem các thông tin đó. Mục tiêu thiết kế:
+KD08 là hồ sơ của một Booking: Booking được tạo ngay khi Kinh doanh ghi Chốt cho một phiên bản báo giá ở KD06.3 (Q-RS17); KD08 là nơi Kinh doanh nhập điều khoản và lịch thanh toán, điều chỉnh chương trình, hủy Booking, và nơi Kế toán, Điều hành xem các thông tin đó. Mục tiêu thiết kế:
 
-- **Tạo Booking không nhập lại.** Khách, thời gian, số khách, hành trình, giá trị kế thừa đúng phiên bản Chốt, chỉ đọc. Lưu Booking xong mở thẳng tab lịch thanh toán với các đợt điền sẵn (R03, R05).
+- **Tạo Booking không nhập lại, không bước trung gian.** Ghi Chốt ở KD06.3 là tạo Booking; khách, thời gian, số khách, hành trình, giá trị kế thừa đúng phiên bản đó, chỉ đọc. Tạo xong mở thẳng tab lịch thanh toán với các đợt điền sẵn (R03, R05).
 - **Lịch thanh toán đúng tiền nhưng không cứng nhắc.** Tổng các đợt luôn được so với giá trị Booking; lệch thì cảnh báo và ghi lý do thay vì chặn (R06). Khoản đã thu không bị sửa mất (R07).
-- **Có hồ sơ Tour ngay khi có Booking.** Lưu Booking là hệ thống tạo hồ sơ Tour và thông báo Điều hành trong cùng giao dịch, không chờ thanh toán (R08).
+- **Có hồ sơ Tour ngay khi có Booking.** Tạo Booking (ghi Chốt) là hệ thống tạo hồ sơ Tour và thông báo Điều hành trong cùng giao dịch, không chờ thanh toán (R08).
 - **Đổi chương trình có giá.** Mọi thay đổi chương trình đi qua tính giá lại ở KD06, nên giá trị Booking luôn khớp phiên bản báo giá Chốt của yêu cầu (R09).
 - **Hủy có hậu quả rõ.** Hộp thoại hủy nêu trước tác động lên yêu cầu, hồ sơ Tour và công nợ; hệ thống không tự hủy dịch vụ và không gửi gì ra ngoài (R10).
 - **Yêu cầu của Điều hành không bị bỏ sót.** Yêu cầu đổi lịch trình từ Điều hành hiện ngay trên Booking, dẫn thẳng tới Điều chỉnh chương trình (R13).
@@ -55,7 +59,7 @@ KD08 là hồ sơ của một Booking: nơi Booking được tạo từ phiên b
 
 | Từ / đến | Hành vi |
 |---|---|
-| KD06.3 → KD08 (tạo mới) | Bấm Tạo Booking ở phiên bản Chốt: KD08 mở ở chế độ tạo mới, kế thừa phiên bản đó (W01). Booking có khi bấm Lưu Booking. |
+| KD06.3 → KD08 (Booking mới) | Ghi Chốt cho một phiên bản ở KD06.3 và xác nhận trong hộp thoại (RSD KD06 L6.2): Booking được tạo ngay từ phiên bản đó; KD08 của Booking mở ở tab Điều khoản và lịch thanh toán (W02). Không có chế độ tạo mới, không có nút Lưu Booking (Q-RS17). |
 | KD07 → KD08 | Bấm dòng: Kinh doanh, Quản trị mở KD08.1; Kế toán mở KD08.2, tô đợt chưa thu sớm nhất. Bấm thẻ đợt trên Lịch hạn thanh toán: KD08.2, tô đúng đợt (RSD KD07 R09). Quay lại giữ ngữ cảnh của KD07. |
 | KD05, KD04.3, KD06 (Mở Booking), DH07, DH08 (liên kết Booking), KT01.1, QT07 → KD08 | Mở KD08.1 (Kế toán: KD08.2), theo quyền ở 1.4. |
 | Thông báo → KD08 | Theo RSD CH02 R07, Phụ lục A: thông báo được giao Booking, Booking chuyển cho người khác, Booking đã hủy bởi người khác, thay đổi chương trình đã áp dụng, không áp dụng hoặc không áp dụng được vì chạm ngày đã qua, yêu cầu đổi lịch trình đã rút mở KD08.1 của Booking. Thông báo hồ sơ Tour đã tạo gửi Kinh doanh mở DH08 của hồ sơ (RSD DH07 R09), không mở KD08; thông báo lịch thanh toán thay đổi gửi Kế toán, mở KT01.1 (RSD KT01 mục 1.2). |
@@ -84,13 +88,13 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 |---|---|---|---|---|
 | KD08.1, KD08.2 · Xem | Có | Có | Có | Có |
 | Liên kết sang KD06 (yêu cầu, phiên bản, Xem vN) · theo quyền xem KD06 | Có | Không: mã và số phiên bản dạng chữ | Không: mã và số phiên bản dạng chữ | Có (KD06 chỉ đọc) |
-| Tạo Booking (từ KD06.3) | Có | Không | Không | Không |
 | KD08.2 · Sửa điều khoản, lịch thanh toán | Có (R06, R07) | Không | Không | Không |
 | Điều chỉnh chương trình, Chuyển sang Điều hành | Có (R09) | Không | Không | Không |
 | Hủy Booking | Có (R10) | Không | Không | Không |
 | Chuyển phụ trách Booking (yêu cầu Tour chuyển theo) | Có (R11) | Không | Không | Có (R11) |
 | Lịch sử thay đổi · Xem | Có | Có | Có | Có |
 
+- **Tạo Booking** không có quyền riêng: Booking được tạo khi người có quyền Ghi kết quả của KD06 (mặc định Kinh doanh) ghi Chốt cho một phiên bản (RSD KD06 1.4, R19; quyết định rà soát 13/11/2026, Q-RS17; bỏ mã `KD08.tao-booking` ở RSD QT02).
 - **Người không có quyền xem KD08** (vai trò không được cấp ở QT02) mở bằng đường dẫn thấy trang không có quyền, không hiện dữ liệu Booking (E1.4).
 - **Kiểm tra lúc ghi.** Mọi thao tác ghi kiểm tra lại quyền, trạng thái Booking và trạng thái hồ sơ Tour ở máy chủ.
 - **Dữ liệu cá nhân.** KD08 không hiện email, điện thoại, hộ chiếu của khách; xem ở KD04 và DH08.4 theo quyền các màn đó.
@@ -99,10 +103,10 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 | Mã nguồn | Nội dung | Luồng |
 |---|---|---|
-| TN04.01 · SYS04.01 · SYS04.02 · KD08 | Tạo Booking từ phiên bản Chốt; kế thừa khách, hành trình, giá trị; trường kế thừa chỉ đọc | L1.1, R02, R03 |
+| TN04.01 · SYS04.01 · SYS04.02 · KD08 | Tạo Booking từ phiên bản Chốt; kế thừa khách, hành trình, giá trị; trường kế thừa chỉ đọc; ghi Chốt là tạo Booking (quyết định rà soát 13/11/2026, Q-RS17) | L1.1, R02, R03 |
 | KD08 · phần đầu | Trạng thái, Tour Code nếu có, số còn phải thu | 2.1 |
 | KD08.1 · TN04.03 · SYS04.05 · SYS04.06 | Xem khách, hành trình, giá trị, phiên bản nguồn; hồ sơ Tour; khách đoàn; Hủy Booking kèm lý do; không tự hủy đặt dịch vụ | L1.2, L1.3, L1.4, R08, R10 |
-| KD08.1 · lối vào TN05.02 (SYS04.04) · quyết định 12/11/2026 | Hồ sơ Tour tự tạo khi lưu Booking, không chờ thanh toán (RSD DH07 R01) | L1.1, R08 |
+| KD08.1 · lối vào TN05.02 (SYS04.04) · quyết định 12/11/2026 | Hồ sơ Tour tự tạo khi tạo Booking, không chờ thanh toán (RSD DH07 R01) | L1.1, R08 |
 | KD08.2 · TN04.02 · SYS04.03 | Nhập điều khoản, đợt, số tiền, hạn; xem đã thu, còn phải thu; Xem công nợ | L2.1, L2.2, L2.3, R05–R07 |
 | TN04.04 · SYS04.07 | Kế toán mở thanh toán của Booking | L2.4 |
 | SYS04.06 → SYS04.10 | Hủy Booking dẫn tới điều chỉnh nghĩa vụ ở KT01 | R10 |
@@ -123,7 +127,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 | Dòng 2 | Khách (bấm mở KD04) · người liên hệ; khởi hành – kết thúc · số ngày đêm; số khách; giá trị · phiên bản hiện hành; Hồ sơ Tour (Tour Code bấm mở DH08, hoặc Chưa có); Còn phải thu; Phụ trách | KD06 (bản chụp phiên bản), DH07, KT01 |
 | Tab | Thông tin và hủy Booking; Điều khoản và lịch thanh toán, kèm số đợt Quá hạn hoặc Đến hạn (đỏ nếu có Quá hạn), hoặc “!” khi tổng lệch giá trị | R06, RSD KD07 R04 |
 
-**Nút theo trạng thái.** Chưa lưu: không có nút ở phần đầu; chân trang có Hủy, Lưu Booking. Hiệu lực, người có các quyền ghi (mặc định Kinh doanh, 1.4): Điều chỉnh chương trình · Chuyển sang Điều hành · Hủy Booking · ⋯ (Chuyển người phụ trách, Lịch sử thay đổi). Chuyển sang Điều hành là nút chính, bấm được khi Booking có phiên bản điều chỉnh chưa chuyển (2.3, R09; W13); không có thì khóa, di chuột hiện lý do “Chưa có phiên bản điều chỉnh cho Booking này · bấm Điều chỉnh chương trình để tính giá lại” (W05). Hồ sơ Tour Đã kết thúc hoặc Đã đóng: Điều chỉnh chương trình, Chuyển sang Điều hành, Hủy Booking khóa kèm lý do (W11). Người chỉ có quyền xem (mặc định Kế toán, Điều hành): không có nút ghi; ⋯ (Lịch sử thay đổi). Quản trị: ⋯ (Chuyển người phụ trách, Lịch sử thay đổi). Mỗi nút chỉ hiện khi người dùng có quyền tương ứng (U5). Đã hủy: ⋯ (Lịch sử thay đổi).
+**Nút theo trạng thái.** Không có trạng thái Chưa lưu: Booking chỉ có sau khi ghi Chốt ở KD06.3 (Q-RS17). Hiệu lực, người có các quyền ghi (mặc định Kinh doanh, 1.4): Điều chỉnh chương trình · Chuyển sang Điều hành · Hủy Booking · ⋯ (Chuyển người phụ trách, Lịch sử thay đổi). Chuyển sang Điều hành là nút chính, bấm được khi Booking có phiên bản điều chỉnh chưa chuyển (2.3, R09; W13); không có thì khóa, di chuột hiện lý do “Chưa có phiên bản điều chỉnh cho Booking này · bấm Điều chỉnh chương trình để tính giá lại” (W05). Hồ sơ Tour Đã kết thúc hoặc Đã đóng: Điều chỉnh chương trình, Chuyển sang Điều hành, Hủy Booking khóa kèm lý do (W11). Người chỉ có quyền xem (mặc định Kế toán, Điều hành): không có nút ghi; ⋯ (Lịch sử thay đổi). Quản trị: ⋯ (Chuyển người phụ trách, Lịch sử thay đổi). Mỗi nút chỉ hiện khi người dùng có quyền tương ứng (U5). Đã hủy: ⋯ (Lịch sử thay đổi).
 
 **Banner cấp hồ sơ.** Booking vừa tạo (W02), phiên bản mới chưa chuyển Điều hành (W13, L1.5), lịch thanh toán lệch giá trị sau khi chuyển (W15, L1.6), yêu cầu đổi lịch trình từ Điều hành đang chờ (W21, L1.8), Booking đã hủy (W09, L1.3), không lấy được số liệu công nợ (W18, E2.6). Banner hiện trên mọi tab, ngay dưới phần đầu. Người không có quyền xem KD06 (mặc định Kế toán, Điều hành) thấy banner phiên bản mới với số phiên bản dạng chữ, không có nút Xem vN (1.4).
 
@@ -131,10 +135,10 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 | Từ → đến | Sự kiện và tác nhân | Điều kiện | Tác động | Ngoại lệ |
 |---|---|---|---|---|
-| (chưa có) → Hiệu lực | Kinh doanh bấm Lưu Booking (W01) | Phiên bản Chốt; yêu cầu Đang xử lý; chưa có Booking Hiệu lực; người dùng có quyền Tạo Booking (RSD KD06 R19) | Cấp mã; yêu cầu thành Đã có Booking; hệ thống tạo hồ sơ Tour, thông báo Điều hành trong cùng giao dịch (RSD DH07 R01; R08) | E1.1, E1.2 |
+| (chưa có) → Hiệu lực | Kinh doanh ghi Chốt cho một phiên bản ở KD06.3, xác nhận trong hộp thoại (RSD KD06 L6.2) | Yêu cầu Đang xử lý; chưa có Booking Hiệu lực; phiên bản không Đã thay thế; người dùng có quyền Ghi kết quả (RSD KD06 R19) | Ghi Chốt cho phiên bản; cấp mã; yêu cầu thành Đã có Booking; hệ thống tạo hồ sơ Tour, thông báo Điều hành trong cùng giao dịch (RSD DH07 R01; R08) | E1.1, E1.2 |
 | Hiệu lực → Hiệu lực (phiên bản mới) | Kinh doanh bấm Chuyển sang Điều hành sau khi khách đồng ý (W13 → W15) | Booking có phiên bản điều chỉnh chưa chuyển; cùng loại tiền; hồ sơ chưa Đã kết thúc (R09) | Ghi Chốt cho phiên bản điều chỉnh mới nhất của Booking; đổi hành trình, số khách, giá trị; phiên bản cũ Đã thay thế; hồ sơ Tour nhận thay đổi | E1.8–E1.11 |
-| Hiệu lực → Đã hủy | Kinh doanh bấm Hủy Booking (W08, W10) | Hồ sơ Tour Mới tạo hoặc Đang diễn ra (R10) | Yêu cầu tự chuyển Đã hủy; DH08 R14 (thay đổi chương trình còn Chờ áp dụng thành Không áp dụng); KT01 chờ điều chỉnh | E1.5–E1.7 |
-| Đã hủy → (không) | — | Không mở lại Booking. Khách đặt lại: Mở lại yêu cầu kèm lý do ở KD06, báo giá, tạo Booking mới (RSD KD06 R20, R22) | — | — |
+| Hiệu lực → Đã hủy | Kinh doanh bấm Hủy Booking (W08, W10) | Hồ sơ Tour Mới tạo hoặc Đang diễn ra (R10) | Yêu cầu tự chuyển Đã hủy; phiên bản của Booking giữ Chốt; DH08 R14 (thay đổi chương trình còn Chờ áp dụng thành Không áp dụng); KT01 chờ điều chỉnh | E1.5–E1.7 |
+| Đã hủy → (không) | — | Không mở lại Booking. Khách đặt lại: Mở lại yêu cầu kèm lý do ở KD06, báo giá, ghi Chốt để tạo Booking mới (RSD KD06 R19, R20, R22) | — | — |
 
 ### 2.3. Đối tượng con
 
@@ -142,7 +146,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 |---|---|---|
 | Đợt thanh toán | Còn hạn, Đến hạn, Quá hạn, Đã thu đủ | Tính lúc đọc như RSD KD07 R04 (Q6) |
 | So sánh tổng | Khớp giá trị; Thiếu x; Thừa x (kèm lý do đã lưu) | R06 |
-| Hồ sơ Tour của Booking | Luôn có: tạo trong cùng giao dịch lưu Booking; không có trạng thái Tạo lỗi (Q5) | RSD DH07 R01; KD08 R08 |
+| Hồ sơ Tour của Booking | Luôn có: tạo trong cùng giao dịch tạo Booking; không có trạng thái Tạo lỗi (Q5) | RSD DH07 R01; KD08 R08 |
 | Phiên bản của Booking | Hiện hành; Đã thay thế (kết quả của phiên bản báo giá ở KD06, khi phiên bản Chốt bị phiên bản mới thay lúc Chuyển sang Điều hành) | R09; RSD KD06 R17 |
 | Phiên bản mới chưa chuyển (phiên bản điều chỉnh của Booking) | Phiên bản mới · chưa chuyển Điều hành: phiên bản lưu ở chế độ điều chỉnh mở từ chính Booking này (nhãn “Điều chỉnh cho BK-…” của Booking), lưu sau lần tạo hoặc lần Chuyển sang Điều hành gần nhất của Booking, Chưa có kết quả. Phiên bản khác của yêu cầu, kể cả số lớn hơn phiên bản của Booking (ví dụ Booking tạo từ phiên bản Chốt cũ hơn, RSD KD06 E6.7, R19) hoặc gắn nhãn của Booking đã hủy trước đó, không phải phiên bản điều chỉnh của Booking | R09; chỉ là nhãn hiển thị |
 | Thay đổi chương trình ở hồ sơ Tour | Chờ áp dụng; Đã áp dụng; Đã thay thế (bị lần Chuyển sang Điều hành sau thay khi chưa áp dụng); Không áp dụng (còn Chờ áp dụng khi Booking bị hủy hoặc hồ sơ Tour sang Đã kết thúc, kèm lý do) | RSD DH08 R14, R19, E1.6; KD08 chỉ đọc |
@@ -170,17 +174,15 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 ### 3.1. Tab KD08.1 · Thông tin và hủy Booking (TN04.01 · TN04.03)
 
-**L1.1 Tạo Booking từ phiên bản Chốt.** *Điều kiện:* người dùng có quyền Tạo Booking; phiên bản Chốt; yêu cầu Đang xử lý; chưa có Booking Hiệu lực.
+**L1.1 Tạo Booking khi ghi Chốt (quyết định rà soát 13/11/2026, Q-RS17).** *Điều kiện:* người dùng có quyền Ghi kết quả ở KD06; yêu cầu Đang xử lý; chưa có Booking Hiệu lực; phiên bản không Đã thay thế.
 
-1. **W01 · Nút Tạo Booking ở bảng trượt phiên bản KD06.3 → KD08 tạo mới.** KD08 mở với nhãn Chưa lưu, tab lịch thanh toán khóa 🔒. Khối Kế thừa từ yêu cầu YC-2611-0019 · phiên bản v3 Chốt hiện khách, thời gian, số khách và cơ cấu, hành trình, giá trị, ngôn ngữ phục vụ, loại Tour, tất cả chỉ đọc, dạng chữ (R03); chính sách hoàn hủy sẽ chụp (theo loại Tour, hoặc mặc định), chỉ đọc; người phụ trách Booking điền sẵn là người tạo. Không có trường phải nhập.
+1. **RSD KD06 W40 · Nút chọn Chốt ở bảng trượt phiên bản KD06.3 → hộp thoại.** Khách đồng ý đặt Tour theo v3 của YC-2611-0019. Người dùng chọn Chốt cho v3; hộp thoại “Chốt v3 và tạo Booking?” nêu những gì Booking sẽ kế thừa (khách, thời gian, số khách và cơ cấu, hành trình, giá trị, ngôn ngữ phục vụ, loại Tour; R03), chính sách hoàn hủy sẽ chụp (theo loại Tour, hoặc mặc định), hồ sơ Tour sẽ được tạo; ô ghi chú xác nhận của khách (RSD KD06 L6.2, R19). Quay lại thì không ghi gì. Không có chế độ tạo mới của KD08 và không có trường nhập nào ở KD08.
 
-   ![W01 · Booking mới từ phiên bản Chốt](wireframes/W01.png)
+   > Hình W01 (KD08 tạo mới, chưa lưu) và W20 (Lưu Booking bị từ chối) không còn dùng từ Q-RS17; tệp giữ lại, không nhúng.
 
-   > Hình chưa cập nhật: trường kế thừa còn vẽ dạng ô viền nét đứt; nay hiện dạng chữ (U5).
+2. **W02 · Nút Chốt và tạo Booking trong hộp thoại.** Trong một giao dịch, máy chủ kiểm tra lại điều kiện (RSD KD06 R19), ghi Chốt cho v3, cấp mã BK-2611-0158 (R02), ghi Booking Hiệu lực theo v3, chụp chính sách hoàn hủy vào Booking (R03), yêu cầu chuyển Đã có Booking; cũng trong giao dịch đó hệ thống tạo hồ sơ Tour TP-2703-0001 (RSD DH07 R01), không chờ thanh toán, và tạo thông báo cho Điều hành (Q5); phần đầu hiện Tour Code (R08). Giao dịch lỗi thì không ghi gì, phiên bản giữ kết quả cũ, người dùng bấm lại trong hộp thoại (RSD KD06 E6.13). KD08 của Booking mở thẳng tab Điều khoản và lịch thanh toán (L2.1) với banner xanh “Đã tạo Booking … · đã tạo hồ sơ Tour …”.
 
-2. **W01 → W02 · Nút Lưu Booking ở chân trang.** Người dùng bấm Lưu Booking. Máy chủ kiểm tra lại điều kiện trong cùng giao dịch (RSD KD06 R19), cấp mã BK-2611-0158 (R02), ghi Booking Hiệu lực theo v3, chụp chính sách hoàn hủy vào Booking (R03), yêu cầu chuyển Đã có Booking; cũng trong giao dịch đó hệ thống tạo hồ sơ Tour TP-2703-0001 (RSD DH07 R01), không chờ thanh toán, và tạo thông báo cho Điều hành (Q5); phần đầu hiện Tour Code (R08). Giao dịch lỗi thì không ghi gì, người dùng bấm Lưu Booking lại. KD08 chuyển thẳng sang tab Điều khoản và lịch thanh toán (L2.1) với banner xanh “Đã tạo Booking … · đã tạo hồ sơ Tour …”. Bấm Hủy thay vì Lưu: không tạo gì, quay về KD06.3.
-
-*Kết quả:* Booking Hiệu lực và hồ sơ Tour tồn tại; Điều hành đã nhận thông báo. Nếu người dùng rời đi trước khi lưu lịch, Booking ở trạng thái Chưa có lịch thanh toán (RSD KD07).
+*Kết quả:* Booking Hiệu lực và hồ sơ Tour tồn tại ngay khi ghi Chốt; Điều hành đã nhận thông báo. Nếu người dùng rời đi trước khi lưu lịch, Booking ở trạng thái Chưa có lịch thanh toán (RSD KD07).
 
 **L1.2 Xem thông tin Booking.** *Điều kiện:* người có quyền xem.
 
@@ -188,7 +190,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
    ![W05 · Thông tin Booking đã có hồ sơ Tour](wireframes/W05.png)
 
-2. **W06 · (Bỏ theo Q5.)** Hồ sơ Tour tạo trong cùng giao dịch lưu Booking nên không còn dạng “Hồ sơ Tour chưa tạo được” (Tạo lỗi); tệp W06.png giữ lại, không nhúng.
+2. **W06 · (Bỏ theo Q5.)** Hồ sơ Tour tạo trong cùng giao dịch tạo Booking nên không còn dạng “Hồ sơ Tour chưa tạo được” (Tạo lỗi); tệp W06.png giữ lại, không nhúng.
 
 *Kết quả:* người dùng biết Booking theo phiên bản nào và hồ sơ Tour đang ở đâu.
 
@@ -208,7 +210,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 **L1.4 Chuyển người phụ trách Booking.** *Điều kiện:* người có quyền Chuyển phụ trách Booking (mặc định Kinh doanh và Quản trị hệ thống, 1.4); Booking Hiệu lực.
 
-1. **W16 · ⋯ → Chuyển người phụ trách → hộp thoại.** Người dùng chọn người nhận (Kinh doanh đang hoạt động, khác người hiện tại; mỗi người kèm số Booking hiệu lực), nhập ghi chú tùy chọn, bấm Chuyển. Hộp thoại nêu yêu cầu Tour của Booking chuyển theo, Điều hành phụ trách hồ sơ Tour không đổi. Hệ thống đổi người phụ trách Booking và người phụ trách yêu cầu Tour trong một giao dịch, gửi thông báo cho người nhận (và người cũ khi người chuyển không phải người cũ), ghi lịch sử Booking và lịch sử yêu cầu (R11). Quyền của người cũ không đổi (theo vai trò); Booking và yêu cầu chỉ ra khỏi chip Của tôi của người cũ.
+1. **W16 · ⋯ → Chuyển người phụ trách → hộp thoại.** Người dùng chọn người nhận (Kinh doanh đang hoạt động, khác người hiện tại; mỗi người kèm số Booking hiệu lực), nhập ghi chú tùy chọn, bấm Chuyển. Hộp thoại nêu yêu cầu Tour của Booking chuyển theo, Điều hành phụ trách hồ sơ Tour không đổi. Hệ thống đổi người phụ trách Booking và người phụ trách yêu cầu Tour trong một giao dịch, gửi thông báo cho người nhận (và người cũ khi người chuyển không phải người cũ), ghi lịch sử Booking và lịch sử yêu cầu (R11). Thông báo ngắn xác nhận kèm Hoàn tác 10 giây (CGD U2.02, U2.06; người dùng trả lời 13/11/2026, Q-RS24). Quyền của người cũ không đổi (theo vai trò); Booking và yêu cầu chỉ ra khỏi chip Của tôi của người cũ.
 
    ![W16 · Chuyển người phụ trách Booking](wireframes/W16.png)
 
@@ -239,7 +241,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 **L1.7 Xem lịch sử thay đổi.** *Điều kiện:* người có quyền xem.
 
-1. **W19 · ⋯ → Lịch sử thay đổi → bảng trượt.** Bảng trượt liệt kê sự kiện mới nhất trước, lọc theo loại: tạo Booking, lưu và sửa lịch thanh toán (kèm lý do lệch nếu có), chuyển sang Điều hành theo phiên bản điều chỉnh mới nhất (ghi Chốt, phiên bản bị thay), hồ sơ Tour đã áp dụng chương trình, thay đổi chương trình thành Không áp dụng kèm lý do (Booking đã hủy hoặc hồ sơ Tour Đã kết thúc; RSD DH08 R14, R19), tạo hồ sơ Tour khi lưu Booking, yêu cầu đổi lịch trình nhận từ Điều hành, chuyển người phụ trách, hủy.
+1. **W19 · ⋯ → Lịch sử thay đổi → bảng trượt.** Bảng trượt liệt kê sự kiện mới nhất trước, lọc theo loại: tạo Booking, lưu và sửa lịch thanh toán (kèm lý do lệch nếu có), chuyển sang Điều hành theo phiên bản điều chỉnh mới nhất (ghi Chốt, phiên bản bị thay), hồ sơ Tour đã áp dụng chương trình, thay đổi chương trình thành Không áp dụng kèm lý do (Booking đã hủy hoặc hồ sơ Tour Đã kết thúc; RSD DH08 R14, R19), tạo hồ sơ Tour khi tạo Booking, yêu cầu đổi lịch trình nhận từ Điều hành, chuyển người phụ trách, hủy.
 
    ![W19 · Lịch sử thay đổi](wireframes/W19.png)
 
@@ -260,11 +262,8 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 **Ngoại lệ**
 
-- **E1.1 Tạo Booking khi yêu cầu vừa có Booking Hiệu lực (W20).** Bấm Lưu Booking mà ở phiên khác vừa có Booking từ yêu cầu này: máy chủ từ chối, banner đỏ nêu Booking đã có và nút Mở BK-…; Lưu Booking khóa. Các điều kiện khác của RSD KD06 R19 không còn đúng (phiên bản không còn Chốt, yêu cầu Đã hủy, người dùng không còn quyền Tạo Booking) cũng bị từ chối với lý do tương ứng.
-
-  ![W20 · Tạo Booking bị từ chối](wireframes/W20.png)
-
-- **E1.2 Bấm Lưu Booking lặp hoặc mất kết nối.** Mã chống lặp: chỉ một Booking được tạo; nếu kết quả chưa rõ, KD08 kiểm tra theo mã thao tác và mở Booking đã tạo thay vì tạo lần hai.
+- **E1.1 Ghi Chốt khi yêu cầu vừa có Booking Hiệu lực.** Ở phiên khác vừa có Booking từ yêu cầu này: máy chủ từ chối, không ghi gì; hộp thoại Chốt ở KD06 hiện banner đỏ nêu Booking đã có và nút Mở BK-… (RSD KD06 E6.4). Các điều kiện khác của RSD KD06 R19 không còn đúng (phiên bản vừa đổi ở phiên khác hoặc Đã thay thế, yêu cầu Đã hủy, người dùng không còn quyền Ghi kết quả) cũng bị từ chối với lý do tương ứng. (Hình W20 không còn dùng từ Q-RS17.)
+- **E1.2 Bấm Chốt và tạo Booking lặp hoặc mất kết nối.** Mã chống lặp: chỉ một Booking được tạo; nếu kết quả chưa rõ, hệ thống kiểm tra theo mã thao tác và mở KD08 của Booking đã tạo thay vì tạo lần hai.
 - **E1.3 Booking Đã hủy.** Mọi tab chỉ xem; không có Điều chỉnh chương trình, Chuyển sang Điều hành, Hủy Booking, Chuyển người phụ trách (W09).
 - **E1.4 Người dùng không có quyền xem.** Tài khoản mà vai trò không được cấp quyền xem KD08 mở bằng đường dẫn: trang không có quyền, không hiện dữ liệu Booking.
 - **E1.5 Hủy khi Tour đang diễn ra (W10).** Hộp thoại có cảnh báo đỏ “đoàn đang ở Việt Nam”, ghi chú bắt buộc và ô xác nhận “đã thống nhất với Điều hành phụ trách”; hủy không dừng dịch vụ đã xác nhận, Điều hành xử lý và kết thúc Tour như bình thường (RSD DH08 R14).
@@ -275,7 +274,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
   ![W11 · Hồ sơ Tour đã kết thúc: không hủy, không điều chỉnh](wireframes/W11.png)
 
-- **E1.7 Hủy khi có phiên bản mới chưa chuyển Điều hành.** Hộp thoại hủy ghi thêm “Phiên bản v4 chưa chuyển Điều hành sẽ không được dùng”. Sau khi hủy, yêu cầu Đã hủy như R10; v4 giữ Chưa có kết quả ở KD06. Khách muốn đặt lại thì Mở lại yêu cầu rồi báo giá, ghi kết quả ở KD06; bấm Tạo Booking ở KD06.3 mở KD08 để tạo Booking mới (L1.1).
+- **E1.7 Hủy khi có phiên bản mới chưa chuyển Điều hành.** Hộp thoại hủy ghi thêm “Phiên bản v4 chưa chuyển Điều hành sẽ không được dùng”. Sau khi hủy, yêu cầu Đã hủy như R10; v4 giữ Chưa có kết quả ở KD06. Khách muốn đặt lại thì Mở lại yêu cầu rồi báo giá; ghi Chốt cho một phiên bản ở KD06.3 tạo Booking mới (L1.1).
 - **E1.8 Thoát chế độ điều chỉnh ở KD06 khi chưa chuyển.** Booking không đổi; các phiên bản đã lưu giữ ở KD06, Chưa có kết quả; link proposal đã publish của chúng giữ nguyên (RSD KD06 R18). Chuyển sang Điều hành bấm được ngay vì Booking có phiên bản điều chỉnh chưa chuyển (banner W13). Bấm Điều chỉnh chương trình lần sau tiếp tục từ hành trình đang lưu (thường là của phiên bản điều chỉnh mới nhất), không hỏi (RSD KD06 R27, E6.12). Hành trình chỉ nạp lại từ bản chụp phiên bản của Booking ở lần vào đầu tiên, khi Booking chưa có phiên bản điều chỉnh chưa chuyển.
 - **E1.9 Nhiều phiên bản điều chỉnh trước khi chuyển.** Ví dụ người dùng lưu v4 rồi v5 ở chế độ điều chỉnh: phiên bản được chuyển luôn là phiên bản điều chỉnh mới nhất của Booking, v5; banner W13 nêu v5 và chênh lệch so với phiên bản của Booking. Bấm Chuyển sang Điều hành: v5 Chốt, v3 Đã thay thế, v4 giữ Chưa có kết quả. Hệ thống không cho chọn v4. Khách chọn phương án v4 thì vào lại Điều chỉnh chương trình (hành trình đang lưu là của v5), sửa hành trình về phương án v4 (Kinh doanh xem v4 ở KD06.3), lưu thành phiên bản điều chỉnh mới nhất (v6) rồi chuyển.
 - **E1.10 Hồ sơ Tour còn thay đổi chương trình chưa áp dụng.** Chuyển sang Điều hành lần nữa thay phiên bản chương trình đang chờ ở DH08; lần gửi cũ thành Đã thay thế ở DH08 (RSD DH08 E1.6); banner sau khi chuyển ghi “đã thay thay đổi v4 đang chờ Điều hành áp dụng”.
@@ -288,7 +287,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 **L2.1 Nhập lịch thanh toán lần đầu.** *Điều kiện:* người có quyền sửa lịch thanh toán; Booking Hiệu lực chưa có đợt nào (ngay sau L1.1, hoặc mở lại Booking Chưa có lịch thanh toán).
 
-1. **W02 · Tab Điều khoản và lịch thanh toán (chế độ sửa).** Hồ sơ Tour đã tạo khi lưu Booking (L1.1), nên tab không có ô nào về hồ sơ Tour. Điều khoản thanh toán và các đợt điền sẵn từ mẫu mặc định (R05): Đợt 1 30% hạn ngày tạo + 14 ngày, Đợt 2 70% hạn khởi hành − 30 ngày, nhãn Mẫu mặc định. Người dùng sửa điều khoản, thêm, bớt đợt, sửa hạn, % hoặc số tiền (nhập một bên, bên kia tự tính). Dòng Tổng so với giá trị Booking: Khớp giá trị, Thiếu x hoặc Thừa x, cập nhật ngay khi nhập.
+1. **W02 · Tab Điều khoản và lịch thanh toán (chế độ sửa).** Hồ sơ Tour đã tạo cùng Booking (L1.1), nên tab không có ô nào về hồ sơ Tour. Điều khoản thanh toán và các đợt điền sẵn từ mẫu mặc định (R05): Đợt 1 30% hạn ngày tạo + 14 ngày, Đợt 2 70% hạn khởi hành − 30 ngày, nhãn Mẫu mặc định. Người dùng sửa điều khoản, thêm, bớt đợt, sửa hạn, % hoặc số tiền (nhập một bên, bên kia tự tính). Dòng Tổng so với giá trị Booking: Khớp giá trị, Thiếu x hoặc Thừa x, cập nhật ngay khi nhập.
 
    ![W02 · Lịch thanh toán điền sẵn](wireframes/W02.png)
 
@@ -353,7 +352,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 - Quyền theo màn và thao tác, gán cho vai trò ở QT02; giá trị mặc định ở 1.4. Không có phạm vi bản ghi: ai có quyền một thao tác thì làm được trên mọi Booking (Q1).
 - Mặc định Kinh doanh xem và thao tác mọi Booking; Kế toán, Điều hành xem mọi Booking, không có thao tác ghi; Quản trị hệ thống xem mọi Booking và chuyển được người phụ trách (R11).
 - **Liên kết sang KD06** (mã yêu cầu, số phiên bản ở khối Nguồn Booking và khối Thay đổi chương trình, nút Xem vN trên banner W13) chỉ hiện với người có quyền xem KD06 (mặc định Kinh doanh và Quản trị hệ thống; KD06 mở chỉ đọc với Quản trị). Người không có quyền xem KD06 (mặc định Điều hành, Kế toán; RSD KD06 R01, E2.6) thấy mã yêu cầu và số phiên bản dạng chữ, không có liên kết, không có nút Xem vN.
-- Tạo Booking: người có quyền Tạo Booking (RSD KD06 R19); người tạo thành người phụ trách Booking. Từ đó người phụ trách yêu cầu luôn là người phụ trách Booking (R11).
+- Tạo Booking: Booking được tạo khi người có quyền Ghi kết quả ở KD06 ghi Chốt (RSD KD06 R19; không còn quyền Tạo Booking riêng, Q-RS17); người phụ trách Booking là người đang phụ trách yêu cầu (R11). Từ đó người phụ trách yêu cầu luôn là người phụ trách Booking (R11).
 
 ### R02. Mã Booking
 
@@ -361,11 +360,11 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 ### R03. Kế thừa khi tạo Booking
 
-- Từ phiên bản Chốt: khách, người liên hệ, ngôn ngữ phục vụ, loại Tour, thời gian, số khách và cơ cấu, hành trình (bản chụp của phiên bản), giá trị và loại tiền. Chỉ đọc ở KD08.
-- Booking chỉ có khi bấm Lưu Booking; máy chủ kiểm tra lại các điều kiện của RSD KD06 R19 trong cùng giao dịch; mỗi yêu cầu tối đa một Booking Hiệu lực.
+- Từ phiên bản được ghi Chốt: khách, người liên hệ, ngôn ngữ phục vụ, loại Tour, thời gian, số khách và cơ cấu, hành trình (bản chụp của phiên bản), giá trị và loại tiền. Chỉ đọc ở KD08.
+- Booking có ngay khi ghi Chốt ở KD06.3, trong cùng giao dịch với kết quả Chốt (quyết định rà soát 13/11/2026, Q-RS17); máy chủ kiểm tra lại các điều kiện của RSD KD06 R19 trong giao dịch đó; mỗi yêu cầu tối đa một Booking Hiệu lực. Không có Booking “chưa lưu” và không có phiên bản Chốt chưa có Booking.
 - **Chụp chính sách hoàn hủy** (quyết định 12/11/2026) trong cùng giao dịch lưu: chính sách Đang dùng theo loại Tour của Booking ở QT05 (nhóm Chính sách hoàn hủy Booking); loại Tour không có chính sách riêng thì chính sách mặc định. Lưu tên, phiên bản chính sách, thời điểm chụp và các bậc (hủy trước ngày khởi hành từ N ngày → giữ lại X%).
 - Bản chụp không đổi: sửa hoặc ngừng chính sách ở QT05 không đổi Booking đã tạo; Chuyển sang Điều hành không chụp lại. KD08 không có thao tác sửa. KD08.1 hiện chỉ đọc ở khối Nguồn Booking (tên, các bậc). KT01 đọc khi điều chỉnh sau hủy (RSD KT01 R07).
-- QT05 luôn có Chính sách mặc định (giá trị hệ thống, không xóa, không ngừng dùng; RSD QT05 R06, R20) nên mọi Booking đều có bản chụp chính sách hoàn hủy; không có trường hợp lưu Booking mà không chụp được chính sách.
+- QT05 luôn có Chính sách mặc định (giá trị hệ thống, không xóa, không ngừng dùng; RSD QT05 R06, R20) nên mọi Booking đều có bản chụp chính sách hoàn hủy; không có trường hợp tạo Booking mà không chụp được chính sách.
 
 ### R04. Trạng thái Booking
 
@@ -373,8 +372,12 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 ### R05. Lịch thanh toán mặc định
 
-- Lịch thanh toán không liên quan tới việc tạo hồ sơ Tour: hồ sơ đã tạo khi lưu Booking (R08; RSD DH07 R01). Lưu hoặc sửa lịch chỉ ghi nghĩa vụ ở KT01 và tạo thông báo cho Kế toán, trong cùng giao dịch.
-- **Mẫu lịch mặc định** (tệp cấu hình hoặc dữ liệu khởi tạo, C2): Đợt 1 30% hạn ngày tạo + 14 ngày; Đợt 2 70% hạn ngày khởi hành − 30 ngày. Hạn tính ra trước ngày tạo thì lấy ngày tạo; khởi hành trong 14 ngày tới thì chỉ một đợt 100% hạn ngày tạo + 3 ngày (không muộn hơn ngày khởi hành). Điều khoản thanh toán điền sẵn từ mẫu. Mẫu chỉ điền sẵn; chưa lưu thì chưa có nghĩa vụ ở KT01.
+- Lịch thanh toán không liên quan tới việc tạo hồ sơ Tour: hồ sơ đã tạo cùng Booking (R08; RSD DH07 R01). Lưu hoặc sửa lịch chỉ ghi nghĩa vụ ở KT01 và tạo thông báo cho Kế toán, trong cùng giao dịch.
+- **Mẫu lịch mặc định** (tệp cấu hình hoặc dữ liệu khởi tạo, C2): Đợt 1 30% hạn ngày tạo + 14 ngày; Đợt 2 70% hạn ngày khởi hành − 30 ngày. Hạn tính ra trước ngày tạo thì lấy ngày tạo. Điều khoản thanh toán điền sẵn từ mẫu. Mẫu chỉ điền sẵn; chưa lưu thì chưa có nghĩa vụ ở KT01.
+- **Khởi hành gần** (xét theo thứ tự, dừng ở trường hợp đầu tiên đúng):
+  1. Khởi hành trong 14 ngày tới (ngày khởi hành ≤ ngày tạo + 14 ngày): một đợt 100% hạn ngày tạo + 3 ngày, không muộn hơn ngày khởi hành.
+  2. Hạn Đợt 2 không sau hạn Đợt 1 (ngày khởi hành − 30 ngày ≤ ngày tạo + 14 ngày, tức khởi hành cách ngày tạo 15–44 ngày): **gộp thành một đợt 100%, hạn ngày tạo + 14 ngày** (hạn của Đợt 1), để không có đợt 70% đến hạn trước đợt 30% (quyết định rà soát 13/11/2026, Q-RS19). Ví dụ Booking tạo 11/11/2026: khởi hành 10/12/2026 hoặc 25/12/2026 thì một đợt 100% hạn 25/11/2026; khởi hành 26/12/2026 thì Đợt 1 hạn 25/11/2026, Đợt 2 hạn 26/11/2026.
+  3. Còn lại: hai đợt như mẫu. Số của các ví dụ tính bằng `docs/rsd/BO-TINH-GIA/tinh_vi_du.py` (tài liệu ví dụ, mục lịch thanh toán).
 - Số tiền theo % làm tròn half-up theo đơn vị nhỏ nhất của loại tiền, không áp bội số làm tròn giá bán (Q9); đợt cuối nhận phần dư để tổng khớp giá trị.
 
 ### R06. Tổng các đợt so với giá trị Booking (quyết định 12/11/2026)
@@ -395,7 +398,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 ### R08. Khối Hồ sơ Tour
 
-- **Hồ sơ Tour tự tạo khi lưu Booking** (quyết định 12/11/2026): bấm Lưu Booking thì hệ thống tạo hồ sơ Tour (RSD DH07 R01) và thông báo Điều hành trong cùng giao dịch với Booking: thành công cả hoặc không gì cả (Q5). Không chờ thanh toán, không phụ thuộc lịch thanh toán hay số liệu KT01.
+- **Hồ sơ Tour tự tạo khi tạo Booking** (quyết định 12/11/2026; Q-RS17): ghi Chốt ở KD06.3 tạo Booking thì hệ thống tạo hồ sơ Tour (RSD DH07 R01) và thông báo Điều hành trong cùng giao dịch với Booking: thành công cả hoặc không gì cả (Q5). Không chờ thanh toán, không phụ thuộc lịch thanh toán hay số liệu KT01.
 - Khối Hồ sơ Tour chỉ có một dạng: Tour Code, trạng thái, Điều hành phụ trách, liên kết khách đoàn. Không có trạng thái Tạo lỗi, không có nút Thử lại (Q5).
 
 ### R09. Điều chỉnh chương trình và Chuyển sang Điều hành (quyết định 12/11/2026)
@@ -421,7 +424,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 - **Lý do** từ danh mục QT05 “Lý do hủy Booking” (ví dụ: Khách hủy chuyến, Khách hoãn hoặc đổi thời gian, Khách không thanh toán, Khách dừng chuyến giữa chừng, Khác); ghi chú bắt buộc khi Khác hoặc khi Tour đang diễn ra. Tour đang diễn ra cần đánh dấu xác nhận đã thống nhất với Điều hành.
 - **Tác động** (ghi tất cả trong cùng một giao dịch, Q5):
   - Booking Đã hủy, chỉ xem; ghi lý do, người, thời điểm.
-  - Yêu cầu Tour tự chuyển **Đã hủy**, lý do hệ thống “Booking đã hủy”, ghi chú là mã Booking và lý do hủy Booking; phiên bản của Booking giữ Chốt, ghi Booking đã hủy (RSD KD06 R02, R20, R21). Khách muốn đặt lại: người có quyền Mở lại yêu cầu (có thể chọn người phụ trách mới) Mở lại yêu cầu kèm lý do ở KD06, yêu cầu về Đang xử lý, rồi báo giá và tạo Booking mới (RSD KD06 R22).
+  - Yêu cầu Tour tự chuyển **Đã hủy**, lý do hệ thống “Booking đã hủy”, ghi chú là mã Booking và lý do hủy Booking; phiên bản của Booking giữ Chốt, KD06.3 ghi kèm “Booking … · Đã hủy” (RSD KD06 R02, R20, R21; người dùng trả lời 13/11/2026). Khách muốn đặt lại: người có quyền Mở lại yêu cầu (có thể chọn người phụ trách mới) Mở lại yêu cầu kèm lý do ở KD06, yêu cầu về Đang xử lý, rồi báo giá và ghi Chốt để tạo Booking mới (RSD KD06 R19, R22).
   - Có phiên bản điều chỉnh chưa chuyển Điều hành: phiên bản đó giữ Chưa có kết quả, không được dùng (E1.7); link proposal của nó bị thu hồi cùng các link Đang mở khác của yêu cầu khi yêu cầu tự Đã hủy (RSD KD06 R20, R21).
   - Hồ sơ Tour: RSD DH08 R14 (chỉ báo, khóa đặt mới, email hủy NCC soạn sẵn, thông báo Điều hành).
   - Thay đổi chương trình đã chuyển mà còn Chờ áp dụng ở hồ sơ Tour: DH08 chuyển **Không áp dụng** kèm lý do (Booking đã hủy) và chặn Áp dụng (RSD DH08 R14, R19); khối Thay đổi chương trình ở KD08.1 và lịch sử Booking hiện trạng thái này.
@@ -431,11 +434,12 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 ### R11. Người phụ trách Booking (quyết định 12/11/2026)
 
-- Khi tạo, người phụ trách Booking là người đang phụ trách yêu cầu Tour nguồn, bất kể ai bấm Tạo Booking; không có chuyển phụ trách ngầm (người dùng chốt 12/11/2026).
+- Khi tạo, người phụ trách Booking là người đang phụ trách yêu cầu Tour nguồn, bất kể ai ghi Chốt; không có chuyển phụ trách ngầm (người dùng chốt 12/11/2026).
 - Người có quyền Chuyển phụ trách Booking (mặc định Kinh doanh và Quản trị hệ thống, QT02) chuyển được từng Booking Hiệu lực; người nhận là Kinh doanh đang hoạt động, khác người hiện tại.
 - **Yêu cầu Tour chuyển theo.** Người phụ trách yêu cầu luôn là người phụ trách Booking: chuyển Booking thì người phụ trách yêu cầu nguồn (KD06) đổi sang người nhận trong cùng giao dịch (RSD KD06 R23); lịch sử yêu cầu ghi lần chuyển kèm “theo Booking BK-…”. Yêu cầu Đã có Booking không chuyển riêng ở KD05 (RSD KD05 R08).
 - Điều hành phụ trách hồ sơ Tour (DH08) không đổi. Yêu cầu đổi lịch trình đang chờ (R13) chuyển sang người nhận.
 - Thông báo cho người nhận; người chuyển không phải người cũ thì người cũ cũng nhận thông báo. Ghi lịch sử và QT03.
+- **Hoàn tác** (người dùng trả lời 13/11/2026, Q-RS24; CGD U2.02, U2.06; RSD CH02 R05): thông báo ngắn sau khi chuyển có Hoàn tác 10 giây. Hoàn tác là một lần ghi mới, trong một giao dịch: Booking và yêu cầu Tour về người phụ trách trước đó, yêu cầu đổi lịch trình đang chờ về người cũ, thông báo của lần chuyển (người nhận, người cũ) bị gỡ kể cả khi đã đọc; không tạo thông báo mới. Booking đã bị đổi tiếp (chuyển tiếp ở phiên khác, hủy) thì không hoàn tác, thông báo ngắn nêu lý do. Lịch sử Booking, lịch sử yêu cầu và QT03 ghi thêm mục Hoàn tác.
 - Người phụ trách ngừng hoạt động (tài khoản bị khóa hoặc không còn vai trò Kinh doanh) mà còn phụ trách Booking: Booking không đổi gì; tên hiện “(ngừng hoạt động)” cho tới khi người có quyền Chuyển phụ trách chuyển.
 
 ### R12. Cấu hình phụ thuộc
@@ -468,7 +472,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 | Đối tượng | Khóa | Dữ liệu chính | Nguồn hoặc tác động |
 |---|---|---|---|
-| Booking | Mã Booking | Yêu cầu nguồn, phiên bản hiện hành, khách, người liên hệ, ngôn ngữ, loại Tour, thời gian, số khách và cơ cấu, giá trị, loại tiền, trạng thái, người phụ trách, lý do và thời điểm hủy, người hủy | KD08 ghi; KD07, KD05, KD04, DH07, DH08, KT01 đọc; HD01 đọc họ tên và điện thoại của người liên hệ (nhãn “Người liên hệ của Booking”) cho HDV được phân công ở hồ sơ Tour của Booking, không đọc mã, giá trị hay trường nào khác (RSD HD01 R03, R12); lưu Booking tạo hồ sơ Tour trong cùng giao dịch (RSD DH07 R01; Q5) |
+| Booking | Mã Booking | Yêu cầu nguồn, phiên bản hiện hành, khách, người liên hệ, ngôn ngữ, loại Tour, thời gian, số khách và cơ cấu, giá trị, loại tiền, trạng thái, người phụ trách, lý do và thời điểm hủy, người hủy | KD08 ghi; KD07, KD05, KD04, DH07, DH08, KT01 đọc; HD01 đọc họ tên và điện thoại của người liên hệ (nhãn “Người liên hệ của Booking”) cho HDV được phân công ở hồ sơ Tour của Booking, không đọc mã, giá trị hay trường nào khác (RSD HD01 R03, R12); tạo Booking (ghi Chốt ở KD06.3) tạo hồ sơ Tour trong cùng giao dịch (RSD DH07 R01; Q5) |
 | Chính sách hoàn hủy của Booking | Mã Booking | Bản chụp lúc tạo: ID và phiên bản chính sách, tên, loại Tour áp dụng hoặc mặc định, các bậc (từ N ngày, % giữ lại), thời điểm chụp | KD08 ghi một lần khi tạo (R03); KD08.1, KT01 đọc (RSD KT01 R07) |
 | Phiên bản của Booking | Mã Booking + số phiên bản | Phiên bản, thời điểm áp vào Booking, người cập nhật, Hiện hành hoặc Đã thay thế | KD08 ghi khi tạo và khi Chuyển sang Điều hành; kết quả Chốt, Đã thay thế ghi ở KD06 trong cùng giao dịch (R09) |
 | Điều khoản và lịch thanh toán | Mã Booking | Điều khoản (văn bản), lý do lệch tổng | KD08 ghi; KT01 đọc |
@@ -482,7 +486,6 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 
 | Form | Trường | Bắt buộc | Mặc định hoặc điền sẵn | Kiểm tra |
 |---|---|---|---|---|
-| Tạo Booking | (không có trường nhập) | — | Kế thừa phiên bản Chốt; chụp chính sách hoàn hủy (R03) | RSD KD06 R19 khi lưu |
 | KD08.2 | Điều khoản thanh toán | Không | Mẫu mặc định | Tối đa 2.000 ký tự |
 | KD08.2 · đợt | Điều khoản đợt | Có | Mẫu mặc định | Tối đa 200 ký tự |
 | KD08.2 · đợt | Hạn | Có | R05 | dd/mm/yyyy; ≥ ngày tạo Booking; sau ngày kết thúc thì cảnh báo |
@@ -504,11 +507,11 @@ KD08 không gửi email, tài liệu hay thông báo cho khách hoặc NCC. Các
 
 | Mã | Điều kiện và thao tác | Kết quả kiểm chứng được |
 |---|---|---|
-| AC01 | Bấm Tạo Booking ở v3 Chốt của YC-2611-0019 | KD08 tạo mới, mọi trường kế thừa chỉ đọc, tab lịch thanh toán khóa; chưa có Booking nào được ghi (W01) |
-| AC02 | Bấm Lưu Booking | Booking BK-2611-0158 Hiệu lực theo v3, có bản chụp chính sách hoàn hủy theo loại Tour Inbound đoàn; yêu cầu Đã có Booking; hồ sơ Tour TP-2703-0001 được tạo trong cùng giao dịch, không chờ thanh toán, Điều hành nhận thông báo in-app, phần đầu hiện Tour Code; KD08 mở tab lịch thanh toán với lịch điền sẵn chưa lưu, không có ô nào về hồ sơ Tour (W02, R08) |
-| AC03 | Bấm Hủy ở chế độ tạo mới | Không tạo Booking; quay về KD06.3 |
-| AC04 | Lưu Booking khi yêu cầu vừa có Booking Hiệu lực ở phiên khác | Từ chối, banner nêu Booking đã có, nút mở Booking đó (W20, E1.1) |
-| AC05 | Bấm Lưu Booking hai lần liên tiếp | Chỉ một Booking được tạo (E1.2) |
+| AC01 | Chọn Chốt cho v3 của YC-2611-0019 ở KD06.3 | Hộp thoại “Chốt v3 và tạo Booking?” nêu những gì Booking kế thừa, chính sách hoàn hủy sẽ chụp, hồ sơ Tour sẽ được tạo; chưa có Booking nào được ghi; không có chế độ tạo mới của KD08 (L1.1; RSD KD06 W40; Q-RS17) |
+| AC02 | Bấm Chốt và tạo Booking trong hộp thoại | v3 Chốt; Booking BK-2611-0158 Hiệu lực theo v3, có bản chụp chính sách hoàn hủy theo loại Tour Inbound đoàn; yêu cầu Đã có Booking; hồ sơ Tour TP-2703-0001 được tạo trong cùng giao dịch, không chờ thanh toán, Điều hành nhận thông báo in-app, phần đầu hiện Tour Code; KD08 mở tab lịch thanh toán với lịch điền sẵn chưa lưu, không có ô nào về hồ sơ Tour (W02, R03, R08) |
+| AC03 | Bấm Quay lại trong hộp thoại Chốt | Không ghi Chốt, không tạo Booking; v3 giữ kết quả cũ; ở lại KD06.3 (RSD KD06 E6.6) |
+| AC04 | Ghi Chốt khi yêu cầu vừa có Booking Hiệu lực ở phiên khác | Từ chối, không ghi gì; báo Booking đã có, nút mở Booking đó (E1.1) |
+| AC05 | Bấm Chốt và tạo Booking hai lần liên tiếp | Chỉ một Booking được tạo (E1.2) |
 | AC06 | Booking tạo 11/11/2026, khởi hành 15/03/2027, giá trị 51.710 EUR (ví dụ A của `docs/rsd/BO-TINH-GIA/VI-DU-TINH-GIA-v1.0.md`) | Lịch điền sẵn: Đợt 1 15.513 EUR (30 %) hạn 25/11/2026; Đợt 2 36.197 EUR (phần còn lại) hạn 13/02/2027; Tổng Khớp giá trị (W02, R05) |
 | AC07 | Lưu lịch khớp tổng | Lịch chỉ xem với đã thu, còn phải thu, tình trạng; KT01 có 2 nghĩa vụ; Kế toán nhận thông báo; hồ sơ Tour không đổi (W04) |
 | AC08 | Tổng các đợt 50.000 EUR với giá trị 51.710 EUR, bấm Lưu | Hộp thoại nêu thiếu 1.710 EUR, lý do bắt buộc; lưu kèm lý do thì dòng Tổng ghi Thiếu 1.710 EUR, tab có “!”; KT01 ghi phải thu 50.000 EUR (W03, R06) |
@@ -517,7 +520,7 @@ KD08 không gửi email, tài liệu hay thông báo cho khách hoặc NCC. Các
 | AC10 | Xóa đợt đã có khoản thu | Không có nút xóa trên đợt đó (W07) |
 | AC11 | Kế toán ghi thu đợt 2 trong lúc Kinh doanh đang xóa đợt 2, rồi Kinh doanh bấm Lưu | Từ chối, ô đợt 2 báo số đã thu mới, dữ liệu đang nhập giữ (E2.5) |
 | AC12 | KT01 không trả số liệu; BK-2610-0137 lần tải trước đã biết Đợt 1 có thu | Đã thu, còn phải thu ghi Chưa có dữ liệu, không có số 0; Sửa lịch thanh toán bấm được; đợt chưa biết số đã thu không giảm được số tiền, không có nút xóa; thêm đợt, sửa hạn, sửa điều khoản, tăng số tiền lưu được (W18, E2.6) |
-| AC15 | Tạo hồ sơ Tour thất bại trong giao dịch lưu Booking (lỗi dựng sẵn) | Không có Booking, không có hồ sơ Tour, không có thông báo; yêu cầu giữ Đang xử lý; KD08 giữ chế độ tạo mới, báo lỗi, bấm Lưu Booking lại được; không có trạng thái Tạo lỗi (R08; Q5) |
+| AC15 | Tạo hồ sơ Tour thất bại trong giao dịch ghi Chốt (lỗi dựng sẵn) | Không ghi Chốt, không có Booking, không có hồ sơ Tour, không có thông báo; yêu cầu giữ Đang xử lý, phiên bản giữ kết quả cũ; hộp thoại báo lỗi, bấm Chốt và tạo Booking lại được; không có trạng thái Tạo lỗi (R08; Q5; RSD KD06 E6.13) |
 | AC16 | KD08.1 của Booking có hồ sơ | Không lặp khách, thời gian, giá trị của phần đầu; có hành trình, nguồn, chính sách hoàn hủy chỉ đọc, chi tiết hồ sơ, liên kết khách đoàn mở DH08.4; Chuyển sang Điều hành khóa, lý do “Chưa có phiên bản điều chỉnh cho Booking này” (W05) |
 | AC17 | Hủy BK-2611-0140 với lý do Khách hoãn hoặc đổi thời gian | Booking Đã hủy, chỉ xem; YC-2610-0036 tự chuyển Đã hủy, lý do ghi theo Booking; không tạo được Booking mới khi chưa Mở lại yêu cầu; TP-2611-0047 có chỉ báo Booking đã hủy; Điều hành và Kế toán nhận thông báo; KT01.1 có Booking ở chờ điều chỉnh; không email nào được gửi (W08, W09, R10) |
 | AC18 | Hủy Booking của Tour đang diễn ra | Hộp thoại có cảnh báo, ghi chú và ô xác nhận bắt buộc; hủy được (W10) |
@@ -537,13 +540,16 @@ KD08 không gửi email, tài liệu hay thông báo cho khách hoặc NCC. Các
 | AC32 | Mở Lịch sử thay đổi | Đủ các sự kiện của Booking, mới nhất trước, lọc theo loại (W19) |
 | AC33 | Hai người cùng sửa lịch, người sau bấm Lưu | Không ghi đè; báo bản ghi vừa được cập nhật, có Tải lại (2.4) |
 | AC34 | Booking BK-2610-0137 theo v3, chưa có phiên bản điều chỉnh nào của Booking | Chuyển sang Điều hành khóa, lý do “Chưa có phiên bản điều chỉnh cho Booking này”; bấm không được (W05, R09) |
-| AC35 | Tạo Booking loại Tour Inbound đoàn khi QT05 có chính sách riêng cho loại Tour này, sau đó Quản trị sửa chính sách | Booking giữ bản chụp lúc tạo, KD08.1 hiện tên và các bậc chỉ đọc; KT01 điều chỉnh sau hủy dùng bản chụp (R03) |
+| AC35 | Ghi Chốt (tạo Booking) loại Tour Inbound đoàn khi QT05 có chính sách riêng cho loại Tour này, sau đó Quản trị sửa chính sách | Booking giữ bản chụp lúc tạo, KD08.1 hiện tên và các bậc chỉ đọc; KT01 điều chỉnh sau hủy dùng bản chụp (R03) |
 | AC36 | Điều hành gửi yêu cầu đổi lịch trình cho hạng mục Khách sạn Huế 4★ của TP-2611-0042 | Nam nhận thông báo, bấm mở KD08.1 có banner yêu cầu; Xem ở hồ sơ Tour mở DH08.3 chỉ xem; sau khi Chuyển sang Điều hành và Điều hành áp dụng, banner mất (W21, R13) |
 | AC37 | Lịch có Đợt 1 (đã thu), Đợt 2, Đợt 3; xóa Đợt 2 rồi thêm một đợt | Còn Đợt 1, Đợt 3; đợt mới là Đợt 4; KT01 giữ phân bổ của Đợt 1 (R07) |
-| AC38 | Lưu Booking khi chưa có lịch thanh toán và chưa có khoản thu nào | Hồ sơ Tour vẫn được tạo ngay; lưu hay sửa lịch thanh toán sau đó không tạo thêm và không đổi hồ sơ Tour (R05, R08) |
+| AC38 | Ghi Chốt (tạo Booking) khi chưa có lịch thanh toán và chưa có khoản thu nào | Hồ sơ Tour vẫn được tạo ngay; lưu hay sửa lịch thanh toán sau đó không tạo thêm và không đổi hồ sơ Tour (R05, R08) |
 | AC39 | KT01 không trả số liệu; Booking lần tải trước đã biết chưa có khoản thu nào; Kinh doanh giảm Đợt 1 rồi bấm Lưu | Sửa được như bình thường; máy chủ kiểm tra lại R07 với số đã thu thực; Đợt 1 vừa có thu mà bị giảm dưới số đã thu thì từ chối như E2.5 (E2.6) |
 | AC40 | Yêu cầu có v2 Chốt, v3 Cần điều chỉnh (số lớn hơn); Booking tạo từ v2 | Chuyển sang Điều hành khóa, lý do “Chưa có phiên bản điều chỉnh cho Booking này”; gọi trực tiếp API chuyển với v3 bị máy chủ từ chối; v3 không bao giờ thành Chốt từ KD08. Điều chỉnh chương trình lần đầu nạp hành trình từ bản chụp v2; lưu v4 ở chế độ điều chỉnh thì nút bấm được và chuyển v4 (E1.14, R09) |
 | AC41 | Lưu v4 ở chế độ điều chỉnh, thoát, rồi bấm Điều chỉnh chương trình lần nữa | KD06 không hỏi; hành trình là hành trình đang lưu (của v4), không nạp lại bản chụp v3. Sau khi Chuyển sang Điều hành v4, lần điều chỉnh kế tiếp nạp hành trình từ bản chụp v4 (E1.8, R09) |
 | AC42 | Ở chế độ điều chỉnh, publish proposal English của v4 | Tạo link riêng cho v4, có hạn, thu hồi được; v4 vẫn Chưa có kết quả; Booking không đổi; banner W13 ở KD08 vẫn nêu v4 (R09; RSD KD06 R18, R27) |
 | AC43 | Kế toán (hoặc Điều hành) mở KD08.1 của BK-2610-0137 khi có v4 chưa chuyển | Khối Nguồn Booking ghi YC-2610-0008, v3 dạng chữ, không có liên kết; banner phiên bản mới không có nút Xem v4; Quản trị mở cùng Booking thì có liên kết và Xem v4 (1.4, R01) |
 | AC44 | Hủy Booking khi hồ sơ Tour còn thay đổi chương trình Chờ áp dụng và một yêu cầu đổi lịch trình Chờ Kinh doanh | Thay đổi chương trình hiện Không áp dụng kèm lý do ở khối Thay đổi chương trình và lịch sử Booking; yêu cầu đổi lịch trình thành Đã rút, lý do “Booking đã hủy” (R10; RSD DH08 R14, R19, E3.15) |
+| AC45 | Booking tạo 11/11/2026, khởi hành 10/12/2026 (29 ngày), giá trị 10.000 EUR; mở tab lịch thanh toán | Lịch điền sẵn một đợt 10.000 EUR (100 %) hạn 25/11/2026; không có đợt 70 % (R05; Q-RS19) |
+| AC46 | Như AC45 với khởi hành 25/12/2026 (44 ngày), rồi với khởi hành 26/12/2026 (45 ngày) | 25/12/2026: một đợt 10.000 EUR hạn 25/11/2026 (hạn Đợt 2 trùng hạn Đợt 1 nên gộp). 26/12/2026: Đợt 1 3.000 EUR (30 %) hạn 25/11/2026, Đợt 2 7.000 EUR hạn 26/11/2026 (R05; Q-RS19) |
+| AC47 | Quản trị chuyển BK-2611-0158 cho Lê Thu Hà ở W16 (như KD06 AC81), rồi bấm Hoàn tác trên thông báo ngắn trong 10 giây | BK-2611-0158 và YC-2611-0019 về người phụ trách trước đó (Nguyễn Hoàng Nam); thông báo của Hà và của Nam về lần chuyển bị gỡ; Nam không nhận thông báo mới; lịch sử Booking, lịch sử yêu cầu, QT03 có mục Hoàn tác. Nếu Booking đã bị hủy trước khi bấm: không hoàn tác, thông báo ngắn nêu lý do (L1.4, R11; RSD CH02 R05; Q-RS24) |

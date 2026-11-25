@@ -5,6 +5,7 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 
 - **Nguồn nghiệp vụ.** `docs/flows/danh-sach-man-hinh-level1.md` (QT07 Báo cáo doanh thu; QT08 Báo cáo chuyển đổi yêu cầu và báo giá; QT09 Báo cáo P&L theo Tour; QT10 Báo cáo công nợ phải thu và phải trả; QT11 Báo cáo hiệu suất nhà cung cấp; QT12 Báo cáo sự cố và chi phí phát sinh; QT07–QT12 nguồn ghi “Đề xuất báo cáo, ngoài Level 1”). Các RSD nguồn số liệu: KD05 v1.4, KD06 v1.5 (yêu cầu, phiên bản báo giá, lý do hủy), KD08 v1.5 (Booking), DH03 v1.4 (NCC), DH08 v2.8 (lần đặt, sự cố, chi phí phát sinh, quyết toán), KT01 v1.5 (sổ công nợ, giao dịch, tình trạng), QT03 v1.1 (nhật ký xuất tệp). `docs/rsd/BOI-CANH-DU-AN.md`, `docs/QUYET-DINH-PHASE-CODING.md` (Q1, Q3, U3, C3).
 - **Quyết định 12/11/2026.** (1) Các báo cáo viết chung một RSD; quy ước báo cáo dùng chung viết một lần. (2) QT07 lọc kỳ theo **ngày kết thúc Tour** (ngày về của Booking); mỗi dòng một Booking với giá trị Booking, tiền đã thu và doanh thu theo quyết toán; Tour chưa quyết toán ghi “Chưa quyết toán”, không coi là 0. (3) Mọi báo cáo xuất Excel theo bộ lọc, lần xuất ghi nhật ký QT03. (4) **Mặc định mọi vai trò xem được cả sáu báo cáo với đủ dữ liệu** (thay cách phân quyền theo vai trò của v1.0), trừ vai trò thuộc phòng HDV (RSD QT02 R04); quyền cấu hình ở QT02 (Q1). (5) (Bỏ theo C3: nút Xem thống kê ở KD09 và QT06.) (6) QT08 dùng trường nguồn tạo đã có của hành trình ở KD06, không thêm trường. (7) DH08.8 lưu P&L dự tính VND trong phiên bản quyết toán (RSD DH08 v2.6).
+- **Quyết định rà soát 13/11/2026 (`docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`).** (Q-RS21) QT07 đọc Đã thu và Còn phải thu của Booking từ số liệu công nợ của KT01 (RSD KT01 5.1), không tự tính “giá trị − đã thu”; tách theo loại tiền, khoản phát sinh khác loại tiền là dòng riêng trong ô, không cộng lẫn. Sửa L2.1 bước 1, R06; thêm AC51, AC52. (Q-RS22) Tên giá trị danh mục trên báo cáo (lý do hủy…) là tên hiện tại ở QT05 lúc tải, không giữ tên lúc ghi; đếm theo giá trị nên đổi tên không tách nhóm. Sửa R03, E3.4, R07; thêm AC53. (Q-RS17) Ghi Chốt là tạo Booking (RSD KD06 R19): cột báo giá của Danh sách yêu cầu QT08 theo RSD KD05 R03 (phiên bản của Booking khi có Booking Hiệu lực). Sửa 2.x bảng nhãn, L3.3 bước 1, R07; thêm AC54. Hình W05, W10 chưa vẽ lại.
 - **Thay đổi ở v1.3 (12/11/2026).** Cập nhật theo quyết định phase coding. Đổi tên RSD và thư mục từ QT06-QT12 thành QT07-QT12. C3: bỏ trọn QT06 (thống kê Survey và chiến dịch email): mục 3.1 (L1.1–L1.3, E1.1–E1.6), R05, AC06–AC13 để lại dòng “Bỏ theo C3”; bỏ dòng QT06 ở 1.1, 1.2, 1.3, 1.5, 2.1, 2.3, R02, R12, R13, R16, 5.1, 5.2, E8.8; bỏ nhúng W01–W03 (giữ tệp PNG). Còn sáu báo cáo QT07–QT12. Q1: mục 1.4 thành quyền mặc định theo vai trò, mặc định mọi vai trò xem và xuất cả sáu báo cáo, cấu hình ở QT02 (1.4, R01, R13, R15, AC01); ví dụ khoan sâu sang KT01 bỏ “chỉ Booking mình phụ trách”; Mở lại yêu cầu theo quyền ở KD06 (L3.3, E3.2). U3: bộ lọc nhớ theo người dùng, cả sau khi đăng xuất (1.2, L8.1, R14). K6: “ngừng sử dụng”, “cho phép sử dụng” đổi theo công tắc Đang dùng / Ngừng dùng (L6.2, E6.4). Không dựng lại wireframe; hình lệch ghi chú ở phần Dữ liệu trên hình.
 - **Thay đổi ở v1.3 (bổ sung 12/11/2026 · sau rà soát HD01).** Câu “mặc định mọi vai trò xem” thêm “trừ vai trò thuộc phòng HDV (RSD QT02 R04)” ở Quyết định (4), 1.2, 1.4 (thêm ý vai trò thuộc phòng HDV), 1.5, R01, bảng cấu hình phụ thuộc. Không đổi luồng, AC.
 - **Thay đổi ở v1.2 (12/11/2026).** Đồng bộ sau rà soát mâu thuẫn lần ba. (1) Tình trạng bước Remarketing theo RSD KD10 2.4: bước kế tiếp Sắp gửi, các bước sau Chờ; sửa 2.3 (thêm Chờ), L1.3; tên bước trên W03 lấy theo tiêu đề email ở RSD KD10 W11; dựng lại W03. (2) Ví dụ ở E8.8 và AC50 đổi sang Điều hành, Kế toán khoan sâu tới KD06 (RSD KD06 R01), vì Quản trị xem được mọi khoản ở KT01 (RSD KT01 1.4, R01). (3) E1.6: chỉ Kinh doanh và Quản trị hệ thống mở được KD06 chỉ xem. L3.3: Mở lại yêu cầu do người phụ trách hoặc Quản trị hệ thống (RSD KD06 R22). (4) Bỏ E5.5 (đợt không có hạn): KT01 bắt buộc nhập hạn mọi đợt (RSD KT01 5.2); mã không dùng lại. (5) AC07 sửa tổng: 15 lần gửi = 14 Đã gửi + 1 Gửi lỗi, cùng cách đếm với RSD KD10 AC30. AC17 dẫn E2.4 thay E2.5. (6) Dẫn phiên bản: KD09 v1.3, KD10 v1.2, KD05 v1.4, KD06 v1.5, KD08 v1.5, DH03 v1.4, DH08 v2.8, KT01 v1.5, QT03 v1.1; sửa mục đầu, R08, 5.1.
@@ -138,7 +139,7 @@ Báo cáo không có vòng đời và không đổi trạng thái của đối t
 | Báo cáo | Nhãn trên dòng | Nguồn |
 |---|---|---|
 | QT07 | Đã quyết toán, Chưa quyết toán, Hồ sơ chưa kết thúc; Booking Đã hủy | R06; RSD DH08 R16, KD08 |
-| QT08 | Yêu cầu: Đang xử lý, Đã có Booking (hiện trên báo cáo là “Đang có Booking”), Đã hủy; kết quả báo giá mới nhất | RSD KD05 R02, KD06 R17 |
+| QT08 | Yêu cầu: Đang xử lý, Đã có Booking (hiện trên báo cáo là “Đang có Booking”), Đã hủy; kết quả của báo giá hiển thị (phiên bản của Booking khi có Booking Hiệu lực, còn lại mới nhất; Q-RS17) | RSD KD05 R02, R03, KD06 R17 |
 | QT09 | Chưa quyết toán; chỉ báo Booking đã hủy, Đã mở lại, KT01 có giao dịch mới | RSD DH08 R14, R16, E8.8 |
 | QT10 | Nhóm tuổi nợ (R09); chỉ báo Chờ điều chỉnh | RSD KT01 R03, R07 |
 | QT11 | Lần đặt: Đã gửi, Đã xác nhận, Không đáp ứng, Đã hủy | RSD DH08 2.3 |
@@ -181,7 +182,7 @@ QT06 (thống kê Survey và chiến dịch email) bỏ khỏi phạm vi theo C3
    - Đã thu ≈ 4.325 triệu ₫ (65.600 EUR · 38.360 USD · 58.400 AUD · 486.000.000 ₫);
    - Doanh thu quyết toán 3.147 triệu ₫, 5/8 Booking đã quyết toán.
 
-   Mỗi Booking một dòng, xếp theo ngày về: mã Booking và khách, Tour Code và thời gian, người phụ trách, Giá trị Booking và Đã thu theo loại tiền gốc (còn thiếu thì ghi “còn …” màu cam), Doanh thu quyết toán VND, Tình trạng (R06). BK-2609-0119 đã hủy: giá trị gạch ngang, ghi “không cộng vào tổng”; đã thu 3.780 USD là phần khách chịu; doanh thu quyết toán 98.180.000 ₫ là phí giữ lại đã quy đổi (RSD DH08 R15). Dòng tổng tách theo loại tiền.
+   Mỗi Booking một dòng, xếp theo ngày về: mã Booking và khách, Tour Code và thời gian, người phụ trách, Giá trị Booking và Đã thu theo loại tiền gốc, số còn phải thu đọc từ KT01 ghi “còn …” màu cam, mỗi loại tiền một dòng trong ô (R06; Q-RS21), Doanh thu quyết toán VND, Tình trạng (R06). BK-2609-0119 đã hủy: giá trị gạch ngang, ghi “không cộng vào tổng”; đã thu 3.780 USD là phần khách chịu; doanh thu quyết toán 98.180.000 ₫ là phí giữ lại đã quy đổi (RSD DH08 R15). Dòng tổng tách theo loại tiền.
 
    ![W05 · Báo cáo doanh thu](wireframes/W05.png)
 
@@ -234,7 +235,7 @@ QT06 (thống kê Survey và chiến dịch email) bỏ khỏi phạm vi theo C3
 
 **L3.3 Xem danh sách yêu cầu sau một con số.** *Điều kiện:* như L3.1.
 
-1. **W10 · Bấm số 5 ở cột Đã hủy, dòng Nguyễn Hoàng Nam (W08).** Báo cáo chuyển sang mục Danh sách yêu cầu (5) với thẻ lọc “Phụ trách: Nguyễn Hoàng Nam”, “Trạng thái: Đã hủy”, ghi “trong 22 yêu cầu của kỳ”. Mỗi yêu cầu một dòng: mã và khách, ngày tạo, cách tạo hành trình, báo giá mới nhất (số phiên bản và kết quả), trạng thái, lý do hủy (Booking đã hủy kèm mã Booking và ngày hủy). Bấm ✕ trên thẻ để bỏ từng điều kiện; bấm mục Tổng hợp để về bảng tổng hợp với bộ lọc chung giữ nguyên. Bấm một lý do ở khối Lý do hủy cho danh sách lọc theo lý do đó.
+1. **W10 · Bấm số 5 ở cột Đã hủy, dòng Nguyễn Hoàng Nam (W08).** Báo cáo chuyển sang mục Danh sách yêu cầu (5) với thẻ lọc “Phụ trách: Nguyễn Hoàng Nam”, “Trạng thái: Đã hủy”, ghi “trong 22 yêu cầu của kỳ”. Mỗi yêu cầu một dòng: mã và khách, ngày tạo, cách tạo hành trình, báo giá (số phiên bản và kết quả, theo RSD KD05 R03), trạng thái, lý do hủy (Booking đã hủy kèm mã Booking và ngày hủy). Bấm ✕ trên thẻ để bỏ từng điều kiện; bấm mục Tổng hợp để về bảng tổng hợp với bộ lọc chung giữ nguyên. Bấm một lý do ở khối Lý do hủy cho danh sách lọc theo lý do đó.
 
    ![W10 · Danh sách yêu cầu theo số đã chọn](wireframes/W10.png)
 
@@ -247,7 +248,7 @@ QT06 (thống kê Survey và chiến dịch email) bỏ khỏi phạm vi theo C3
 - **E3.1 Yêu cầu được mở lại.** Yêu cầu Đã hủy được mở lại (RSD KD06 R22) về Đang xử lý ở lần tải kế tiếp; vẫn là một yêu cầu, không đếm hai lần; lý do hủy cũ không còn trong khối Lý do hủy.
 - **E3.2 Yêu cầu đổi người phụ trách.** Đếm theo người phụ trách hiện tại (RSD KD05 R08, KD08 R11); chuyển phụ trách làm số của hai người đổi ở lần tải kế tiếp. Yêu cầu Đã hủy giữ người phụ trách cũ trừ khi được mở lại kèm người mới.
 - **E3.3 Booking của yêu cầu bị hủy.** Yêu cầu tự Đã hủy với lý do “Booking đã hủy” (RSD KD06 R21) nhưng vẫn tính vào Chốt Booking vì đã từng tạo Booking (R07); phễu tách “Booking đã hủy n”.
-- **E3.4 Lý do hủy chuyển Ngừng dùng ở QT05.** Yêu cầu đã hủy với lý do đó vẫn đếm theo tên lý do lúc hủy, kèm “(ngừng dùng)”. “Booking đã hủy” và “Khác” là giá trị hệ thống, không tắt được (RSD QT05 R06).
+- **E3.4 Lý do hủy đổi tên hoặc chuyển Ngừng dùng ở QT05.** Yêu cầu đã hủy với lý do đó vẫn đếm vào lý do đó (theo giá trị, không theo chữ), hiện tên hiện tại ở QT05: đổi tên thì báo cáo hiện tên mới, như QT05 (quyết định rà soát 13/11/2026, Q-RS22); Ngừng dùng thì kèm “(ngừng dùng)”. “Booking đã hủy” và “Khác” là giá trị hệ thống, không tắt được (RSD QT05 R06).
 - **E3.5 Yêu cầu chưa có hành trình** nằm ở nhóm Chưa có hành trình; Có báo giá luôn bằng 0 ở nhóm này.
 - **E3.6 Danh sách dài.** Mục Danh sách yêu cầu phân trang 50 dòng, sắp theo ngày tạo giảm dần.
 
@@ -445,6 +446,7 @@ QT06 (thống kê Survey và chiến dịch email) bỏ khỏi phạm vi theo C3
 - Số liệu tính ở máy chủ, đọc trực tiếp dữ liệu hiện hành của màn sở hữu, tại lúc tải. Không có bảng số liệu chụp sẵn theo ngày.
 - Lần tải ghi thời điểm ở tiêu đề (“Số liệu lúc …”). Báo cáo không tự làm mới; Tải lại tính lại với cùng bộ lọc.
 - Thời gian tải tối đa 30 giây; quá thì lỗi tải (E8.2).
+- **Tên danh mục** (lý do hủy, loại dịch vụ, loại Tour, hạng mục…) là tên hiện tại ở QT05 lúc tải, không giữ tên lúc ghi; báo cáo nhóm và đếm theo giá trị (ID) nên đổi tên không tách nhóm (quyết định rà soát 13/11/2026, Q-RS22).
 - Định nghĩa trạng thái dùng chung đọc từ màn sở hữu, không tính lại: trạng thái yêu cầu (RSD KD05 R02), tình trạng đợt và khoản (RSD KT01 R03), trạng thái hạng mục và lần đặt (RSD DH08 R02, 2.3), chỉ báo quyết toán (RSD DH08 R16).
 
 ### R04. Tiền và quy đổi
@@ -463,13 +465,13 @@ QT06 (thống kê Survey và chiến dịch email) bỏ khỏi phạm vi theo C3
 
 - **Dòng:** mỗi Booking (Hiệu lực hoặc Đã hủy) có ngày kết thúc Tour trong kỳ. Ngày kết thúc Tour là ngày về theo phiên bản hiện hành của Booking; Booking Đã hủy dùng ngày về lúc hủy.
 - **Giá trị Booking:** giá trị hiện hành của Booking ở KD08, loại tiền của Booking. Booking Đã hủy hiện gạch ngang, không cộng vào tổng và thẻ “Giá trị Booking hiệu lực”.
-- **Đã thu:** Σ giao dịch Thu từ khách Hiệu lực − Σ giao dịch Hoàn cho khách Hiệu lực của Booking ở KT01, tính đến lúc tải (không giới hạn theo kỳ). Dòng phụ “còn …” = giá trị Booking − đã thu khi dương và Booking Hiệu lực. Thiếu số KT01: E2.1.
+- **Đã thu, còn phải thu** (quyết định rà soát 13/11/2026, Q-RS21): đọc từ số liệu công nợ của Booking ở KT01 (RSD KT01 5.1: tổng đã thu, còn phải thu theo loại tiền, gồm khoản phải thu phát sinh), tính đến lúc tải, không giới hạn theo kỳ; báo cáo không tự tính. Dòng phụ “còn …” là số còn phải thu của KT01 (Σ còn của các đợt và khoản, không phải giá trị Booking − đã thu: lịch lệch giá trị thì khoản chênh không là phải thu, RSD KT01 R05), hiện khi dương. **Tách theo loại tiền:** Booking có khoản phát sinh khác loại tiền (RSD KT01 E1.14, Q18) có mỗi loại tiền một dòng trong ô, cộng vào tổng của đúng loại tiền đó. Booking Đã hủy: số của KT01 sau điều chỉnh (E2.5). Thiếu số KT01: E2.1.
 - **Doanh thu quyết toán:** doanh thu thực tế VND của phiên bản quyết toán Hiện hành (RSD DH08 R15). Không có phiên bản thì không có số:
   - **Chưa quyết toán** khi hồ sơ Đã kết thúc hoặc Đã đóng;
   - **Hồ sơ chưa kết thúc** khi hồ sơ Mới tạo hoặc Đang diễn ra.
 - **Tình trạng** (chip, mỗi Booking đúng một chip): Đã quyết toán → Chưa quyết toán → Hồ sơ chưa kết thúc như trên.
 - **Người phụ trách:** người phụ trách Booking hiện tại (RSD KD08 R11). Nhóm theo Khách hàng dùng khách của Booking.
-- **Tổng:** giá trị và đã thu theo loại tiền; doanh thu quyết toán là tổng VND của các dòng có số, kèm “n/m Booking”.
+- **Tổng:** giá trị, đã thu và còn phải thu theo loại tiền, không cộng lẫn (R04); doanh thu quyết toán là tổng VND của các dòng có số, kèm “n/m Booking”.
 
 ### R07. QT08 · Định nghĩa số liệu
 
@@ -478,10 +480,10 @@ QT06 (thống kê Survey và chiến dịch email) bỏ khỏi phạm vi theo C3
 - **Chốt Booking:** đã từng tạo ít nhất một Booking, kể cả Booking sau đó bị hủy; tính đến lúc tải.
 - **Đang có Booking, Đã hủy, Đang xử lý:** trạng thái hiện tại của yêu cầu (RSD KD05 R02); ba số cộng lại bằng Yêu cầu.
 - **Tỷ lệ chốt** = Chốt Booking ÷ Yêu cầu. Phễu ghi thêm Chốt Booking ÷ Có báo giá.
-- **Lý do hủy:** lý do của lần hủy gần nhất của yêu cầu đang Đã hủy (danh mục QT05; “Booking đã hủy” là lý do hệ thống, RSD KD06 R21).
+- **Lý do hủy:** lý do của lần hủy gần nhất của yêu cầu đang Đã hủy (danh mục QT05; “Booking đã hủy” là lý do hệ thống, RSD KD06 R21); đếm theo giá trị, hiện tên hiện tại (R03, E3.4; Q-RS22).
 - **Người phụ trách:** người phụ trách hiện tại của yêu cầu (RSD KD05 R08, KD08 R11).
 - **Cách tạo hành trình:** đọc trường nguồn tạo của hành trình hiện hành ở KD06 (Tour mẫu mã nào, Thủ công, Bằng AI; RSD KD06 5.1): Tour mẫu mã nào thì nhóm Từ Tour mẫu. Yêu cầu chưa có hành trình thì “Chưa có hành trình”. Báo cáo không suy lại từ lịch sử hành trình.
-- **Bấm số** chuyển sang mục Danh sách yêu cầu với điều kiện của ô (nhóm của dòng, cột) cộng bộ lọc chung; dòng Tổng bấm được với điều kiện của cột. Danh sách hiện mỗi yêu cầu một dòng, không theo phiên bản; cột Báo giá mới nhất theo RSD KD05 R03.
+- **Bấm số** chuyển sang mục Danh sách yêu cầu với điều kiện của ô (nhóm của dòng, cột) cộng bộ lọc chung; dòng Tổng bấm được với điều kiện của cột. Danh sách hiện mỗi yêu cầu một dòng, không theo phiên bản; cột Báo giá theo RSD KD05 R03: phiên bản của Booking khi yêu cầu có Booking Hiệu lực, còn lại phiên bản mới nhất (quyết định rà soát 13/11/2026, Q-RS17).
 
 ### R08. QT09 · Định nghĩa số liệu
 
@@ -681,3 +683,7 @@ Báo cáo không gửi email hay tài liệu ra ngoài hệ thống.
 | AC48 | Mở KD08 từ QT07 rồi quay lại | Bộ lọc, chip, nhóm, vị trí cuộn giữ nguyên (R14) |
 | AC49 | Đổi bộ lọc, mở báo cáo | Không có mục nào trong QT03 (R14; RSD QT03 R01) |
 | AC50 | Kế toán mở QT08, mục Danh sách yêu cầu | Báo cáo xem được; bấm dòng không mở KD06 (RSD KD06 R01), di chuột ghi lý do (E8.8) |
+| AC51 | Booking EUR có lịch 10.000 EUR, đã thu 4.000 EUR và một khoản phải thu phát sinh 120 USD chưa thu, kết thúc Tour trong kỳ; mở QT07 | Ô Đã thu 4.000 EUR; còn phải thu hai dòng “còn 6.000 EUR”, “còn 120 USD”, khớp số còn phải thu của Booking ở KT01.1; dòng Tổng cộng 6.000 vào EUR, 120 vào USD, không cộng lẫn (R06; Q-RS21) |
+| AC52 | Booking 51.710 EUR có lịch thanh toán 50.000 EUR lưu kèm lý do lệch, đã thu 15.513 EUR; mở QT07 | Dòng ghi “còn 34.487,00 EUR” theo KT01 (các đợt), không phải 36.197,00 EUR (giá trị − đã thu) (R06; RSD KT01 R05; Q-RS21) |
+| AC53 | 6 yêu cầu đã hủy với lý do “Giá không phù hợp”; Kinh doanh đổi tên lý do này ở QT05 thành “Giá cao hơn ngân sách”; mở QT08 | Khối Lý do hủy và Danh sách yêu cầu hiện “Giá cao hơn ngân sách” với 6 yêu cầu, không còn tên cũ, không tách thành hai nhóm (R03, R07, E3.4; Q-RS22) |
+| AC54 | Yêu cầu Đã có Booking theo v1 (Chốt) có v2 lưu ở chế độ điều chỉnh, chưa Chuyển sang Điều hành; mở Danh sách yêu cầu của QT08 | Cột Báo giá ghi “v1 · Chốt” như KD05, không phải v2 (R07; RSD KD05 R03; Q-RS17) |

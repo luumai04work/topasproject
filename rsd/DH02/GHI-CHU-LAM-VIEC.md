@@ -134,3 +134,7 @@ Tệp mới `RSD-DH02-Danh-sach-nha-cung-cap-v1.4.md` (đổi tên bằng `git m
 
 - **T8.** Giờ chạy nhắc hằng ngày là tham số chung ở QT05 (RSD QT05 R17), một giờ cho mọi loại nhắc định kỳ của RSD CH02 R09; không còn ở tệp cấu hình. Sửa R08 (câu “chạy lúc 08:00”), R10; dòng “Thay đổi ở v1.4 (bổ sung 12/11/2026)” ở đầu RSD. Mốc nhắc, người nhận, gộp trên 5 NCC không đổi.
 - **Kiểm tra.** `check-rsd.py`: 18 ảnh, 18 mã W, không lỗi.
+
+## Quyết định rà soát 13/11/2026
+
+- **Quyết định rà soát 13/11/2026 (Q-RS13, Q-RS23).** Người nhận nhắc hợp đồng (nhóm Điều hành) theo RSD DH06 R03 mới: nhân sự Nội bộ, Nhận phân công Đang dùng, tài khoản liên kết đang hoạt động có vai trò hệ thống Điều hành; không xét nhóm công việc, không tính vai trò tự tạo thuộc phòng Điều hành. Sửa 1.4, E3.6. Không đổi AC.

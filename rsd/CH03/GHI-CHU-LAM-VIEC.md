@@ -88,3 +88,34 @@ Giữ số hiệu; thêm E1.10, E1.11, R10, AC37–AC40. Số thẻ không đổ
 **Câu hỏi cho người dùng**
 
 1. Người vừa Điều hành vừa HDV có cần một thẻ đếm “Tour đang phục vụ” ở Việc của tôi không? Hiện chỉ có liên kết không số.
+
+## Quyết định rà soát 13/11/2026 (phần điều hành)
+
+- **Quyết định rà soát 13/11/2026 (Q-RS10, Q-RS11).** VT-DH-05 và dòng truy vết bộ lọc Việc cần xử lý · Đặt dịch vụ đếm theo số trên tab Đặt dịch vụ mới của DH08: thêm hạng mục Đã hủy có chỉ báo Chưa thay thế, bỏ hạng mục Xác nhận một phần có chỉ báo Chờ Kinh doanh (RSD DH08 2.1, R02). Không thêm AC.
+
+## Quyết định rà soát 13/11/2026 (phần kinh doanh, kế toán)
+
+- **Quyết định rà soát 13/11/2026 (Q-RS17).** Ghi Chốt ở KD06.3 là tạo Booking ngay (RSD KD06 R19), nên không còn yêu cầu “đã chốt, chưa tạo Booking”: bỏ thẻ VT-KD-03 (mã không dùng lại; ghi chú 10 ở trên là lịch sử). Dữ liệu mẫu YC-2611-0103 đổi từ v1 Chốt thành v1 Cần điều chỉnh để vẫn Đang xử lý mà không trái quy tắc mới; VT-KD-01 = 3, VT-KD-02 = 1 không đổi. Sửa đầu tài liệu, 1.5, dữ liệu mẫu, kết quả đếm mong đợi, AC02, AC04 (chỉ còn VT-KD-02), AC26, Phụ lục A (dòng VT-KD-03 ghi bỏ; tổng 21 thẻ, Kinh doanh 5).
+- **Bổ sung 13/11/2026 (người dùng trả lời Q-RS17).** Phiên bản của Booking đã hủy giữ Chốt (RSD KD06 R20); VT-KD-03 vẫn bỏ vì không có phiên bản Chốt chờ tạo Booking. Sửa chữ dữ liệu mẫu và Phụ lục A.
+
+## Cách hiểu khi code (ticket 71, 17/11/2026)
+
+Theo quy tắc “tài liệu chưa rõ thì chọn cách hiểu để mọi câu cùng đúng” (người dùng chốt 16/11/2026):
+
+1. **Nhóm thẻ và thẻ chưa dựng.** Danh mục thẻ (Phụ lục A, 21 thẻ: phòng, quyền xem màn hoặc tab đích, dòng phụ, màu đỏ) nằm trong mã dùng chung (`MY_WORK_CARDS`, 5.1). Nhóm của một phòng hiện khi tài khoản có vai trò thuộc phòng đó và xem được màn đích của ít nhất một thẻ của phòng (R01: nhóm hết thẻ vì thiếu quyền thì ẩn). Thẻ chỉ hiện khi module của màn đích đã đăng ký cách đếm (thẻ Điều hành ở ticket 72, Kế toán ở ticket 84); trước đó nhóm chỉ có tiêu đề, không có dòng ✓ (không có thẻ nào để báo 0). Rà soát 17/11/2026 xét lại: E1.5 “mọi thẻ đều bị ẩn vì thiếu quyền xem màn đích” và R01 “nhóm không còn thẻ nào vì thiếu quyền thì ẩn” nói về thẻ bị ẩn do quyền; tài khoản chỉ có vai trò Điều hành hoặc Kế toán có quyền xem màn đích nên theo RSD có nhóm với thẻ (CH03 AC21, AC36; QT02 AC30, AC67). Nhóm chỉ có tiêu đề là trạng thái tạm cho tới khi ticket 72, 84 đăng ký thẻ, không phải E1.5; giữ cách này để các AC trên đúng với bản cuối.
+2. **Sắp xếp của đích (R03).** “Sắp xếp mặc định của màn cho chip đó” được ghi bằng cách không ghi tham số `sort`: màn đích lấy mặc định của nó (CGD U3.06, tham số vắng mặt lấy mặc định của màn). KD07 không còn tự viết thêm `sort` lên URL khi đường dẫn đã có Của tôi và chip, để URL của thẻ giữ nguyên (mọi bộ lọc tường minh, AC05).
+3. **“Tất cả” trên URL.** Bộ lọc Thời gian đi, Kết quả báo giá của KD05 nhận `ALL` (như không lọc), để thẻ ghi tường minh mọi bộ lọc (R03); KD05 không coi `ALL` là bộ lọc hỏng (CGD U3.07).
+4. **Thiếu số liệu KT01 (E1.3).** Khi KT01 không trả số liệu công nợ, KD07 khóa bộ lọc Thanh toán (KD07 E1.4) và thẻ VT-KD-04, VT-KD-05 trả “–” với “Chưa có dữ liệu công nợ”; VT-KD-06 không dùng bộ lọc Thanh toán nên vẫn đếm.
+5. **Màu đỏ (R05).** Số đỏ trả từ máy chủ (`highlight: 'RED'`, thẻ có cột Màu đỏ = Số); dòng phụ đỏ theo danh mục (VT-KD-04, VT-KD-06).
+6. **Nút Làm mới** (2.1, L1.3): chữ “Làm mới” theo RSD; tệp chữ mong đợi `scenarios/fixtures/ch03.vi.json` ghi nhầm “Tải lại”, đã sửa.
+7. **Không có wireframe** (W01–W06 giữ chỗ): trang dựng bằng lớp có sẵn của bộ giao diện (`.ttl`, `.sec`, ô `.kp` của QT07–QT12, `.card`); tên thẻ một dòng, dài thì cắt “…” và hiện đủ khi rê chuột (2.2 “tên thẻ (một dòng)”).
+
+## Ticket 109 · Khối theo dõi, lời chào, lối tắt (RSD v1.1, 23/11/2026)
+
+Người dùng yêu cầu 23/11/2026: màn Việc của tôi “xấu quá, chỉ có mỗi mấy cái cards”, bổ sung gì cũng được cho đỡ trống, thông tin để dễ dùng, dễ theo dõi, hoặc biểu đồ. Người dùng chọn làm luôn (không duyệt kế hoạch). Cách hiểu đã chọn, ghi vào RSD v1.1 (2.1, 2.4, L1.4, E1.12, R11, R12, AC41–AC47, Phụ lục B):
+
+- **Không thêm số liệu riêng.** Mỗi khối đọc từ đúng danh sách nguồn với bộ lọc của nó (như R02 của thẻ): thanh, cột đếm bằng tổng của danh sách mở ra khi bấm; danh sách ngắn là 5 dòng đầu của danh sách đó. Tổng hợp công nợ là thẻ đầu của KT01 (≈ VND, KT01 R04). Như vậy không có định nghĩa đếm mới nào phải giữ cho khớp với màn nguồn.
+- **Chọn khối theo việc của từng phòng.** Kinh doanh: yêu cầu theo kết quả báo giá (phễu việc đang làm), Booking khởi hành 30 ngày tới, Booking theo tháng khởi hành (6 tháng). Điều hành: Tour khởi hành 14 ngày tới, hồ sơ theo trạng thái. Kế toán: tổng hợp phải thu, phải trả, phải thu cần theo dõi (quá hạn rồi đến hạn). Biểu đồ đếm số bản ghi, không cộng tiền khác loại tiền (K0.04, KT01 R04 chỉ cộng ≈ VND).
+- **Không thư viện biểu đồ.** Thanh và cột vẽ bằng HTML/CSS; một chuỗi số liệu mỗi biểu đồ nên một màu (màu của phòng: Kinh doanh xanh dương, Điều hành tím, Kế toán xanh lơ, màu sẵn có của badge), không chú giải; đỏ chỉ cho quá hạn (K6).
+- **Không đụng scenario cũ.** Khối không phải `nav`, tiêu đề khối không chứa tên phòng hay tên thẻ, liên kết của thanh, cột có tên bắt đầu bằng tên khối, để các phép tìm theo tên của scenario CH03 hiện có (tên phòng, tên thẻ, khối thông báo) không trùng.
+- **Lời chào.** “Xin chào, <họ tên> · <thứ>, dd/mm/yyyy” theo ngày của máy chủ (K0.03), tên thứ viết đủ (“Thứ Năm”).

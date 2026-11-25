@@ -136,3 +136,7 @@ Tệp mới `RSD-DH01-Mau-checklist-dieu-hanh-v1.3.md`, đã xóa bản v1.2. Kh
 - **Wireframe.** Sửa `captions.js` (W12) và `screens-dh01.js` (W12); dựng lại W12, đã xem ảnh.
 - **Phiên bản.** Nguồn nghiệp vụ và mục 1.5 dẫn RSD DH07 v1.7, RSD DH08 v2.8, RSD KD06 v1.5 (thêm R05 của DH07). Dẫn phiên bản trong các mục “Thay đổi ở v1.3, v1.2” là lịch sử, giữ nguyên.
 - **Kiểm tra.** `node wireframes-src/check-rsd.js RSD-DH01-Mau-checklist-dieu-hanh-v1.4.md --final`: 20 tham chiếu ảnh, 20 mã W, không lỗi.
+
+## Quyết định rà soát 13/11/2026
+
+- **Quyết định rà soát 13/11/2026 (Q-RS28).** Giao người phụ trách lần đầu ở DH08 nay là nút Giao ở header (ô trong Thông tin điều hành chỉ đọc); R05 dẫn theo. Không đổi AC.

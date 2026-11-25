@@ -26,6 +26,7 @@ const CSS = `.qt{display:grid;grid-template-columns:232px 1fr;gap:12px;align-ite
 .ein.gy{color:#9ca3af;font-style:italic}
 .ein.warn{border-color:#f59e0b;background:#fffbeb}
 .ein.ro{border-style:dashed;border-color:#d1d5db;background:#f9fafb;color:#374151}
+.input.tags{height:auto;min-height:30px;flex-wrap:wrap;white-space:normal;padding:3px 8px}
 tr.ed td{background:#f8fbff;border-bottom:1px solid #bfdbfe;border-top:1px solid #bfdbfe}
 tr.edx td{background:#f8fbff;padding-top:0}
 .rowact{display:flex;gap:6px;justify-content:flex-end}
@@ -39,6 +40,8 @@ tr.edx td{background:#f8fbff;padding-top:0}
 .rate td.num{font-variant-numeric:tabular-nums}
 .paste{border:1px solid #d1d5db;border-radius:6px;background:#f9fafb;font-family:Consolas,monospace;font-size:11.5px;padding:6px 9px;white-space:pre;line-height:1.5;color:#374151}
 .tier td{padding:4px 8px}
+.w34 td{padding-top:4px;padding-bottom:4px;white-space:nowrap}
+.w34 td:first-child{white-space:normal}
 .ex{background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:6px 10px;font-size:12px;color:#0c4a6e}
 .res .li{display:flex;align-items:center;gap:10px;padding:7px 10px;border-bottom:1px solid #f1f5f9}
 .res .grpn{width:200px;color:#6b7280;font-size:12px}

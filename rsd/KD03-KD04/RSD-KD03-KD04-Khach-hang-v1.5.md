@@ -6,8 +6,11 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 - **Nguồn nghiệp vụ.** `docs/flows/danh-sach-man-hinh-level1.md` (KD03, KD04, KD04.1–KD04.3; KD04.4 bỏ theo C3), `docs/flows/danh-sach-tinh-nang-level1.md` (TN02.02, TN02.03, TN02.04, TN10.01, TN10.03), `docs/flows/level 1/sys02.md` (SYS02.03–SYS02.05), `docs/flows/level 1/sys10.md` (SYS10.01–SYS10.10), `docs/flows/level 1/sys09.md` (SYS09.04), `docs/flows/danh-sach-tinh-nang-ho-tro-level1.md` (DX06), RSD DH08 v2.8 (đóng Tour bằng nút ở header, ghi lịch sử khách ở KD04.2; R16 ngày đóng lần đầu, đóng Tour không cần quyết toán), RSD KD05 v1.4 (nhóm trạng thái yêu cầu), RSD KD08 v1.5 (hủy Booking), RSD QT05 v1.2 (mục 1.5 phòng sửa danh mục), `docs/rsd/BOI-CANH-DU-AN.md`, `docs/QUYET-DINH-PHASE-CODING.md` và các quyết định đã chốt với người dùng ngày 11/11/2026 và 12/11/2026.
 - **Quyết định 11/11/2026.** Khách hàng có hai loại, Cá nhân và Doanh nghiệp; doanh nghiệp có nhiều người liên hệ. Mọi người Kinh doanh xem chung mọi khách. Chỉ xóa được khách chưa dùng; không có trạng thái ngừng giao dịch. Tạm bỏ hạng khách hàng. Sửa 12/11/2026: sửa khách, chuyển người phụ trách (kể cả hàng loạt), xóa khách theo quyền ở QT02, không còn luật chỉ người phụ trách được sửa (Q1); phần chăm sóc và khảo sát bỏ khỏi phạm vi (C3).
 - **Thay đổi ở v1.1.** Sắp xếp lại theo khung 6 mục, không đổi nghiệp vụ: vị trí, kiểu thao tác và phản hồi giao diện (mục 8 cũ) gộp vào từng bước luồng; bỏ mục Wireframe riêng (mục 6 cũ), mỗi hình chỉ nhúng một lần dưới bước hoặc ngoại lệ; nút ở phần đầu, số trên tab và banner gộp vào mục phần đầu hồ sơ (2.4); quy tắc giao diện dùng chung (8.1 cũ) gộp với xử lý dùng chung (4.3 cũ) thành mục 2.7; bỏ bảng Sự kiện tự động, phần chưa có đưa vào R04, R06, R09; dữ liệu gửi ra ngoài chuyển về mục 5.3. Mã L, E, R, W, AC giữ nguyên.
+- **Quyết định rà soát 13/11/2026 (Q-RS24; `docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`).** Chuyển phụ trách hàng loạt ở KD03 có Hoàn tác 10 giây trên banner kết quả (CGD U2.02, U2.06, U2.08); Hoàn tác gỡ thông báo vừa tạo (RSD CH02 R05). Sửa L4.2, R04; thêm E4.5, AC46, AC47. Đồng bộ theo Q-RS17 (RSD KD05 R03): cột báo giá ở KD04.3 theo phiên bản của Booking khi yêu cầu có Booking Hiệu lực (L7.1, R08). Hình W07, W25 chưa vẽ lại.
+- **Bổ sung 13/11/2026 (người dùng trả lời Q-RS24).** Chuyển một khách qua hộp thoại (L4.1) cũng có Hoàn tác 10 giây trên thông báo ngắn, gỡ thông báo của lần chuyển (RSD CH02 R05). Sửa L4.1, R04; thêm AC48.
 - **Thay đổi ở v1.5 (12/11/2026).** Cập nhật theo quyết định phase coding (`docs/QUYET-DINH-PHASE-CODING.md`). C3: bỏ trọn tab KD04.4 Chăm sóc và phản hồi (mục 3.8, R07, R09, R11, W28–W31 bỏ nhúng), chip và chỉ báo Cần chăm sóc sau Tour (L1.2, W02 bỏ nhúng), cột Chăm sóc gần nhất, trường Nhận email chăm sóc và Ghi chú nguồn đồng ý, lối KD04.4 ↔ KD10; điều kiện xóa khách chỉ còn chưa có yêu cầu Tour. Giữ KD04.2 Lịch sử Tour. Q1: 1.4 thành bảng quyền mặc định theo vai trò, cấu hình ở QT02; bỏ luật chỉ người phụ trách sửa, dòng “🔒 Chỉ xem · do … phụ trách”, ô viền nét đứt; mở KD08, DH08 theo quyền. Q5: lịch sử Tour ghi trong cùng giao dịch đóng Tour; bỏ L6.3, E6.3, banner W23, đối soát hằng đêm. Q8: E3.4 chỉ có Tải lại. Q2: thông báo in-app. Q7: mã khách cho phép thủng số. AC bỏ: AC06–AC08, AC32, AC36–AC42, AC45 (giữ mã). Không dựng lại hình.
 - **Thay đổi ở v1.5 (bổ sung 12/11/2026 · sau rà soát HD01).** Mục 5.1 dòng Khách hàng và Người liên hệ: thêm HD01 vào cột màn đọc (điện thoại của người liên hệ của Booking cho HDV được phân công; RSD HD01 R12). Không đổi luồng, quyền, AC.
+- **Thay đổi ở v1.5 (bổ sung 13/11/2026 · người dùng chốt theo CGD K4.05).** Menu ⋯ ở phần đầu KD04 luôn có, ít nhất với mục Lịch sử; Quản trị hệ thống (chỉ đọc KD04.1) thấy ⋯ chỉ có Lịch sử. Sửa mục 2.4 (Nút ở phần đầu theo quyền), 2.7 (Menu ⋯), AC19. Không đổi quyền, không dựng lại hình.
 - **Thay đổi ở v1.4 (12/11/2026).** Theo rà soát mâu thuẫn lần ba. Bảng quyền 1.4: Quản trị hệ thống mở KD08, DH08 chỉ xem và chuyển người phụ trách Booking ở KD08, khớp R03 và RSD KD08 R11. R13: danh mục quốc gia thuộc Kinh doanh, danh mục ngôn ngữ thuộc Điều hành (RSD QT05 mục 1.5; Quản trị sửa được mọi nhóm). 5.2 thêm trường Ghi chú nguồn đồng ý, bắt buộc khi bật lại Nhận email chăm sóc sau khi khách tự hủy nhận (R11). Mở lại Tour ghi “khi hồ sơ được mở lại ở DH08” thay cho “khi Điều hành mở lại Tour”, vì Quản trị hệ thống cũng mở lại được (RSD DH08 R16) (2.6, E6.1, R06; chú thích W22). Cập nhật phiên bản dẫn chiếu ở Nguồn nghiệp vụ, thêm RSD QT05 v1.2. Dựng lại W22 (chỉ đổi chú thích ở index). Tên tệp lên v1.4.
 - **Thay đổi ở v1.3 (12/11/2026).** Đồng bộ sau rà soát lần hai, không đổi nghiệp vụ và wireframe: Điều hành đóng Tour bằng nút ở header DH08, không còn ở tab DH08.8 (RSD DH08 R16); bỏ cụm “kể cả khi đóng sau quyết toán” vì đóng Tour không cần quyết toán. Sửa mục 1.2, 1.5, L6.1, R06, AC30. Nguồn nghiệp vụ: DH08 v2.7, KD08 v1.4.
 - **Thay đổi ở v1.2 (12/11/2026).** Đồng bộ sau rà soát mâu thuẫn giữa các RSD:
@@ -159,7 +162,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác); Qu�
 - Khi tạo mới, phần đầu chỉ có “Khách hàng mới”, ô chọn loại Cá nhân / Doanh nghiệp và tab Thông tin khách hàng; các tab còn lại khóa với ghi chú “Lưu thông tin để mở các tab khác” (W08).
 - Thông tin ở phần đầu không lặp lại ở nội dung tab KD04.2–KD04.3.
 
-**Nút ở phần đầu theo quyền.** Kinh doanh (quyền mặc định): Tạo yêu cầu Tour (nút chính), Chuyển phụ trách, ⋯ (Xóa khách hàng). Quản trị hệ thống: Chuyển phụ trách. Không có quyền thì ẩn nút (U5). Đang tạo mới: không có nút ở phần đầu; nút Lưu ở thanh dưới.
+**Nút ở phần đầu theo quyền.** Kinh doanh (quyền mặc định): Tạo yêu cầu Tour (nút chính), Chuyển phụ trách, ⋯ (Lịch sử, Xóa khách hàng). Quản trị hệ thống: Chuyển phụ trách, ⋯ (chỉ Lịch sử). ⋯ luôn có trên hồ sơ đã lưu, ít nhất với mục Lịch sử, vì ai xem được hồ sơ cũng xem được lịch sử của nó (CGD K4.05). Không có quyền thì ẩn nút (U5). Đang tạo mới: không có nút ở phần đầu; nút Lưu ở thanh dưới.
 
 **Số trên tab.**
 
@@ -196,7 +199,7 @@ Hồ sơ khách hàng không có trạng thái người dùng chọn. Các sự 
   - *Trên bảng:* KD03, KD04.2, KD04.3; chip và bộ lọc áp dụng ngay, bấm dòng hoặc mã trên dòng để mở.
   - *Form tại tab:* tạo mới và KD04.1; thanh dưới có Lưu (và Hủy thay đổi khi sửa).
   - *Hộp thoại:* cảnh báo trùng, rời trang khi chưa lưu, chuyển phụ trách, xóa khách.
-  - *Menu ⋯:* Xóa khách hàng ở phần đầu.
+  - *Menu ⋯:* Lịch sử (CGD K4.05) và Xóa khách hàng ở phần đầu.
 - **Một thao tác, một chỗ bấm.** Tạo yêu cầu Tour chỉ có ở phần đầu hồ sơ (không lặp ở KD04.3); Xóa khách chỉ ở menu ⋯. Khi Quản trị chọn nhiều dòng, thanh hàng loạt là nơi thao tác duy nhất và có sẵn ô chọn người nhận.
 - **Không lặp header.** Tên, mã, quốc gia, ngôn ngữ, liên hệ chính, người phụ trách, số Tour đã đi chỉ ở phần đầu; tab KD04.2–KD04.3 không lặp lại. KD04.1 là nơi sửa các trường này.
 - **Nút bị khóa có lý do** ngay cạnh nút hoặc trong menu (W20, E4.1).
@@ -347,11 +350,11 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
    > Hình chưa cập nhật: ghi chú “Sau khi chuyển, bạn chỉ còn quyền xem và tạo yêu cầu Tour”; nay quyền không đổi (Q1).
 
-2. **W18 · Nút Chuyển phụ trách trong hộp thoại → phần đầu và thông báo ngắn.** Người dùng bấm Chuyển phụ trách. Hệ thống kiểm tra R04, ghi người phụ trách mới, lưu ghi chú vào lịch sử hồ sơ, tạo thông báo in-app cho người mới (kèm ghi chú). Phần đầu đổi người phụ trách, kèm thông báo ngắn; khách rời chip Khách của tôi của người cũ, quyền của người cũ không đổi.
+2. **W18 · Nút Chuyển phụ trách trong hộp thoại → phần đầu và thông báo ngắn.** Người dùng bấm Chuyển phụ trách. Hệ thống kiểm tra R04, ghi người phụ trách mới, lưu ghi chú vào lịch sử hồ sơ, tạo thông báo in-app cho người mới (kèm ghi chú). Phần đầu đổi người phụ trách, kèm thông báo ngắn có Hoàn tác 10 giây (R04; người dùng trả lời 13/11/2026, Q-RS24); khách rời chip Khách của tôi của người cũ, quyền của người cũ không đổi.
 
    ![W18 · Sau khi chuyển phụ trách](wireframes/W18.png)
 
-   > Hình chưa cập nhật: phần đầu ghi “🔒 Chỉ xem · do Vũ Đức Minh phụ trách”, form chỉ đọc; nay người cũ vẫn sửa được theo quyền.
+   > Hình chưa cập nhật: phần đầu ghi “🔒 Chỉ xem · do Vũ Đức Minh phụ trách”, form chỉ đọc; nay người cũ vẫn sửa được theo quyền. Thông báo ngắn chưa có Hoàn tác (wireframe chưa vẽ lại).
 
 *Kết quả:* khách nằm ở chip Khách của tôi của người phụ trách mới; quyền sửa theo vai trò, không đổi.
 
@@ -361,7 +364,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
    ![W06 · Chọn nhiều khách để chuyển phụ trách](wireframes/W06.png)
 
-2. **W07 · Nút Chuyển phụ trách trên thanh hàng loạt → banner kết quả.** Quản trị chọn người nhận rồi bấm Chuyển phụ trách. Hệ thống chuyển từng khách theo R04. Banner nêu số khách đã chuyển và số bỏ qua; dòng bỏ qua ghi lý do. Các dòng giữ tại chỗ (mờ, nhãn Vừa chuyển) đến khi tải lại. Người nhận nhận một thông báo gộp.
+2. **W07 · Nút Chuyển phụ trách trên thanh hàng loạt → banner kết quả.** Quản trị chọn người nhận rồi bấm Chuyển phụ trách. Hệ thống chuyển từng khách theo R04. Banner nêu số khách đã chuyển và số bỏ qua, kèm nút Hoàn tác trong 10 giây (quyết định rà soát 13/11/2026, Q-RS24); dòng bỏ qua ghi lý do. Các dòng giữ tại chỗ (mờ, nhãn Vừa chuyển) đến khi tải lại. Người nhận nhận một thông báo gộp. Bấm Hoàn tác thì các khách về người phụ trách cũ, thông báo vừa tạo bị gỡ (E4.5).
 
    ![W07 · Kết quả chuyển phụ trách hàng loạt](wireframes/W07.png)
 
@@ -371,6 +374,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 - **E4.2 Khách đã đổi ở phiên khác.** Khi chuyển, khách mà người phụ trách đã khác với lúc tải: một khách thì báo “Người phụ trách đã đổi thành … Tải lại để xem”; hàng loạt thì bỏ qua dòng đó và ghi lý do (W07).
 - **E4.3 Người phụ trách đã ngừng hoạt động.** Tài khoản bị khóa ở QT01 vẫn hiện là người phụ trách, kèm “(ngừng hoạt động)”; người có quyền Chuyển phụ trách chuyển được các khách này (L4.1, L4.2).
 - **E4.4 Lỗi giữa chừng khi chuyển hàng loạt.** Mỗi khách là một giao dịch riêng. Mất kết nối giữa chừng: banner nêu số đã chuyển; các dòng còn lại vẫn được chọn để bấm lại. Bấm lặp không chuyển hai lần.
+- **E4.5 Hoàn tác chuyển hàng loạt** (quyết định rà soát 13/11/2026, Q-RS24; CGD U2.06). Trong 10 giây, bấm Hoàn tác trên banner: khách chưa bị đổi người phụ trách sau lần chuyển thì về người cũ; khách đã bị đổi tiếp ở phiên khác thì bỏ qua, banner ghi số không hoàn tác được. Thông báo của lần chuyển (người nhận, người cũ) bị gỡ hoặc dựng lại chỉ với khách không hoàn tác được (RSD CH02 R05). Lịch sử hồ sơ và QT03 ghi thêm mục Hoàn tác. Hết 10 giây, rời màn hoặc đóng banner thì không còn Hoàn tác.
 
 ### 3.5. Xóa khách hàng (quyết định 11/11/2026)
 
@@ -431,7 +435,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **L7.1 Xem và mở yêu cầu, Booking.** *Điều kiện:* Kinh doanh hoặc Quản trị.
 
-1. **W25 · Tab Yêu cầu & Booking; chip trên bảng.** Người dùng mở tab Yêu cầu & Booking. Mỗi yêu cầu Tour của khách là một dòng, mới nhất ở trên: mã và ngày tạo, thời gian đi, số khách, phiên bản báo giá mới nhất và kết quả, Booking và hồ sơ Tour nếu có, người phụ trách yêu cầu, trạng thái. Chip Đang xử lý, Đã có Booking, Đã hủy, Tất cả lọc ngay theo R08.
+1. **W25 · Tab Yêu cầu & Booking; chip trên bảng.** Người dùng mở tab Yêu cầu & Booking. Mỗi yêu cầu Tour của khách là một dòng, mới nhất ở trên: mã và ngày tạo, thời gian đi, số khách, báo giá và kết quả (theo RSD KD05 R03, R15: của Booking khi có Booking Hiệu lực), Booking và hồ sơ Tour nếu có, người phụ trách yêu cầu, trạng thái. Chip Đang xử lý, Đã có Booking, Đã hủy, Tất cả lọc ngay theo R08.
 
    ![W25 · Yêu cầu Tour và Booking của khách](wireframes/W25.png)
 
@@ -500,6 +504,7 @@ Tab Chăm sóc và phản hồi không còn. Các mã L8.1–L8.3, E8.1–E8.6 k
 - Hàng loạt: theo quyền Chuyển phụ trách hàng loạt (mặc định Quản trị hệ thống), ở KD03. “Chọn tất cả” ở đầu bảng chỉ chọn các dòng trong trang. Khi kết quả lọc nhiều hơn một trang, thanh hàng loạt có liên kết “Chọn tất cả n khách khớp bộ lọc”; chỉ khi bấm liên kết này hệ thống mới áp dụng cho mọi kết quả lọc, và số n được ghi lại trên nút. Mỗi khách là một giao dịch; khách mà người phụ trách đã khác lúc tải thì bỏ qua và ghi lý do.
 - Thông báo in-app (Q2): người mới nhận một thông báo (hàng loạt thì gộp, ví dụ “Bạn được giao 11 khách hàng từ Lê Thu Hà”), có ghi chú bàn giao. Người mới bấm thông báo để mở KD04 của khách hoặc KD03 lọc theo mình. Khi người chuyển không phải người cũ, người cũ cũng nhận thông báo nếu tài khoản còn hoạt động.
 - Ghi lịch sử hồ sơ và QT03: người cũ, người mới, người thực hiện, ghi chú.
+- **Hoàn tác chuyển hàng loạt** (quyết định rà soát 13/11/2026, Q-RS24; CGD U2.02, U2.06, U2.08): banner kết quả có Hoàn tác 10 giây, một nút cho cả lô; Hoàn tác là một lần ghi mới, kiểm tra quyền và người phụ trách từng khách; khách đã bị đổi tiếp thì bỏ qua; gỡ thông báo của lần chuyển (RSD CH02 R05); không tạo thông báo mới (E4.5). Chuyển một khách qua hộp thoại có ghi chú (L4.1) cũng có Hoàn tác 10 giây trên thông báo ngắn (người dùng trả lời 13/11/2026; CGD U2.02): khách chưa bị đổi tiếp thì về người cũ, gỡ thông báo của lần chuyển kể cả khi đã đọc; đã bị đổi tiếp thì không hoàn tác, thông báo ngắn nêu lý do.
 
 ### R05. Xóa khách hàng (quyết định 11/11/2026)
 
@@ -524,7 +529,7 @@ Tab Chăm sóc và phản hồi không còn. Các mã L8.1–L8.3, E8.1–E8.6 k
 - KD04.3 liệt kê mọi yêu cầu Tour gắn với khách, mọi trạng thái, mới nhất ở trên. Booking và Tour Code lấy theo yêu cầu.
 - Nhóm của yêu cầu, cùng cách tính với RSD KD05 R02 và RSD KD06 R02: **Đã hủy** nếu yêu cầu có dấu hủy chưa được mở lại (người dùng hủy, hoặc hệ thống tự hủy khi Booking Hiệu lực của yêu cầu bị hủy); ngược lại **Đã có Booking** nếu có Booking Hiệu lực; còn lại **Đang xử lý**. Số trên tab KD04.3 và cột Yêu cầu đang xử lý ở KD03 là số yêu cầu Đang xử lý, nên khớp với KD05.
 - Booking đã hủy vẫn hiện ở ô Booking của yêu cầu (nhãn Đã hủy), nhưng không làm yêu cầu ở nhóm Đã có Booking.
-- Báo giá mới nhất: phiên bản lớn nhất và kết quả đã ghi (Chốt, Cần điều chỉnh, Không chốt theo KD06); chưa ghi kết quả thì “vN · Chưa có kết quả”; chưa có báo giá thì “—”.
+- Báo giá: như RSD KD05 R03 (quyết định rà soát 13/11/2026, Q-RS17): yêu cầu có Booking Hiệu lực thì phiên bản hiện hành của Booking (Chốt), còn lại phiên bản lớn nhất và kết quả đã ghi (Cần điều chỉnh, Không chốt theo KD06); chưa ghi kết quả thì “vN · Chưa có kết quả”; chưa có báo giá thì “—”. Thời gian đi, số khách của yêu cầu Đã có Booking theo Booking (RSD KD05 R15).
 - Mã yêu cầu bấm được khi người dùng có quyền xem KD06; mã Booking bấm được khi có quyền xem KD08; không có quyền thì hiện dạng chữ (U5). Không giới hạn theo người phụ trách (Q1).
 
 ### R09. (Bỏ theo C3)
@@ -619,7 +624,7 @@ KD03 và KD04 không gửi tài liệu hoặc email nào ra ngoài hệ thống.
 | AC16 | Trong hộp thoại trùng, Vẫn tạo khách hàng khi chưa nhập lý do | Nút khóa; nhập lý do đủ 10 ký tự thì bấm được; lý do lưu trong lịch sử hồ sơ |
 | AC17 | Sửa lại khách đã xác nhận không trùng với cùng hồ sơ | Không hỏi lại cặp đó (E3.3) |
 | AC18 | Bấm Lưu và tạo yêu cầu Tour khi tạo khách | Khách được lưu, KD06 mở với khách, liên hệ chính, ngôn ngữ phục vụ điền sẵn (W27) |
-| AC19 | Quản trị hệ thống (không có quyền sửa KD04.1) mở KD04.1 | Trường hiện dạng chữ; không có Lưu, Tạo yêu cầu Tour, ⋯; có Chuyển phụ trách (W14) |
+| AC19 | Quản trị hệ thống (không có quyền sửa KD04.1) mở KD04.1 | Trường hiện dạng chữ; không có Lưu, Tạo yêu cầu Tour; ⋯ chỉ có Lịch sử (CGD K4.05); có Chuyển phụ trách (W14) |
 | AC20 | Kinh doanh sửa điện thoại một người liên hệ rồi Lưu | Ô ghi giá trị trước khi chưa lưu; sau Lưu có thông báo, phần đầu cập nhật; yêu cầu Tour đã có không đổi (W13) |
 | AC21 | Đổi tab khi còn thay đổi chưa lưu | Hộp thoại W15; Ở lại giữ thay đổi; Bỏ thay đổi thì chuyển tab |
 | AC22 | Hai phiên cùng sửa; phiên sau bấm Lưu | Lưu bị từ chối, banner W16; chỉ có nút Tải lại, không có nút ghi đè; sau khi tải, banner liệt kê giá trị người dùng đã nhập (E3.4) |
@@ -646,3 +651,6 @@ KD03 và KD04 không gửi tài liệu hoặc email nào ra ngoài hệ thống.
 | AC43 | Điều hành hoặc Kế toán mở đường dẫn KD03, KD04 | Trang không có quyền (E1.4) |
 | AC44 | Booking Hiệu lực duy nhất của một yêu cầu bị hủy ở KD08; hồ sơ Tour của Booking kết thúc rồi đóng | Yêu cầu sang chip Đã hủy ở KD04.3, số yêu cầu đang xử lý ở KD03 và trên tab không tăng; không có mục lịch sử Tour; Tour đã đi, Tour gần nhất không đổi (R06, R08) |
 | AC45 | Bỏ theo C3 (chăm sóc và khảo sát ngoài phạm vi) | — |
+| AC46 | Quản trị chuyển hàng loạt 12 khách của Lê Thu Hà cho Nguyễn Hoàng Nam, rồi bấm Hoàn tác trên banner trong 10 giây | 12 khách về Lê Thu Hà; thông báo gộp của Nam bị gỡ; lịch sử từng khách và QT03 có thêm mục Hoàn tác (E4.5, R04; RSD CH02 R05; Q-RS24) |
+| AC47 | Như AC46 nhưng trong 10 giây Nam chuyển tiếp 1 khách cho Phạm Thanh Tùng ở phiên khác rồi Quản trị bấm Hoàn tác | 11 khách về Lê Thu Hà; banner ghi 1 khách không hoàn tác được vì đã đổi tiếp; thông báo của Nam còn, chỉ liệt kê khách đó (E4.5; CGD U2.06) |
+| AC48 | Nguyễn Hoàng Nam chuyển KH-00413 cho Lê Thu Hà ở W17 kèm ghi chú, Hà đã đọc thông báo; Nam bấm Hoàn tác trên thông báo ngắn trong 10 giây | KH-00413 về Nam; thông báo của Hà bị gỡ dù đã đọc; lịch sử hồ sơ và QT03 có mục Hoàn tác. Nếu Hà đã chuyển tiếp khách ở phiên khác trước khi Nam bấm: không hoàn tác, thông báo ngắn nêu khách đã đổi người phụ trách (L4.1, R04; RSD CH02 R05; Q-RS24) |

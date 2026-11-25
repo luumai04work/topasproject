@@ -5,6 +5,8 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 
 - **Phạm vi.** Màn DH03 gồm ba tab DH03.1 Thông tin chung và thanh toán, DH03.2 Hợp đồng và chính sách, DH03.3 Dịch vụ và bảng giá. Tài liệu đặc tả luôn bảng trượt DH05 · Dịch vụ và bảng giá (DH05.1, DH05.2), vì DH05 thuộc hồ sơ NCC và mở từ DH03.3.
 - **Nguồn nghiệp vụ.** `docs/flows/danh-sach-man-hinh-level1.md` (DH02–DH05, vòng đời NCC và Hợp đồng NCC), `docs/flows/level 1/luonghotro.md` luồng HT01 (HT01.01–HT01.07), tính năng hỗ trợ CNHT01.01–CNHT01.06, tính năng chính TN03.06, TN03.07, TN06.04, TN06.05, kế hoạch gộp HT02 vào HT01, RSD DH02 v1.3 và RSD DH04 v1.3 (đã thống nhất định nghĩa hợp đồng, Giá từ, cách tính theo đêm, Địa điểm và thứ tự dòng giá), RSD DH08 v2.8 (loại tiền khoản phải trả theo lần đặt, nhập email cho lần gửi), RSD KT01 v1.5, RSD QT04 v1.3 (R07 tự khớp ngôn ngữ mẫu email theo ngôn ngữ giao dịch của NCC), RSD QT05 v1.2 (danh mục Ngôn ngữ, quyền sửa danh mục theo phòng, số lẻ thập phân của loại tiền), các quyết định đã chốt với người dùng ngày 11/11/2026 và quyết định sau rà soát mâu thuẫn ngày 12/11/2026 (`docs/rsd/BOI-CANH-DU-AN.md`).
+- **Thay đổi (18/11/2026 · giường phụ cho trẻ em).** Người dùng chốt 18/11/2026 (BOI-CANH-DU-AN thuật ngữ Giường phụ; RSD KD06 R04, R13): giường phụ là giường cho trẻ em, không còn là giường phụ cho người lớn. Giường phụ vẫn là dịch vụ đi kèm của dịch vụ lưu trú; lưới giá vẫn không có cột trẻ em, cột hạng phòng. Dòng gợi ý trên lưới đổi thành “Giường phụ dành cho trẻ em; giá trẻ em theo chính sách trẻ em của <dịch vụ chính> tính thêm” (E6.13). Sửa R14 (dòng chính), R23 (Giường phụ). Không đổi AC, không đổi hình.
+- **Thay đổi sau quyết định rà soát 13/11/2026** (`docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`; ưu tiên hơn chữ cũ ở dưới). Q-RS02: cột trẻ em có ở mọi dòng giá; ở dòng căn cứ đoàn, đơn vị dịch vụ ô trẻ em **bị khóa**, không nhập, dán hay nhập file được giá trị (người dùng trả lời 13/11/2026), luôn trống và không phải thiếu giá: không phân biệt người lớn, trẻ em (L6.3, E4.7, E6.3, thêm E6.15, R14, R16, 5.2, AC77). Q-RS03: bỏ trường Thứ tự của dòng giá, giữ chặn chồng lấn (R14, 5.1, 5.2). Q-RS04: phụ thu Thay thế phải cùng căn cứ với dòng giá, khác thì chặn lưu (L6.4, R15, 5.2, thêm E6.14). Q-RS05: giá trẻ em là đơn giá riêng, bỏ khai theo % (L6.3, R09, R12, 5.1, 5.2). Q-RS06, Q-RS07: trẻ dưới nhóm tuổi thấp nhất miễn phí, trên nhóm cao nhất tính như người lớn; bỏ trường số trẻ miễn phí (L4.5, R09, 5.1). Q-RS08: kỳ hợp đồng mới dài bằng kỳ nguồn; mùa dời theo độ lệch hai kỳ; ngày cuối tháng dời thành ngày cuối tháng, nên mùa kết thúc cuối tháng 2 dời tới cuối tháng 2 (L4.3, L4.8, R11, R12, 5.2). Q-RS09: dán từ Excel nhận dạng kiểu số, ngoại lệ của CGD K0.04 (R16). Q-RS25: chính sách đổi hủy chỉ khai % trên tổng giá lần đặt; trường hợp khác Điều hành sửa tay phí gợi ý ở DH08.3 (L4.5, R08, 5.1, 5.2). Q-RS27: khoảng số khách của dòng căn cứ khách, phòng đếm người lớn; dòng căn cứ đoàn, đơn vị dịch vụ đếm tổng khách gồm trẻ em (R14, 5.2). Q-RS29: mùa và phụ thu luôn dời theo dương lịch; bỏ cờ Theo âm lịch và nhãn Cần kiểm tra ngày; Điều hành tự sửa ngày lễ sau khi gia hạn (1.1, 2.3, L4.3, L4.4, L4.8, R12, 5.1). Sửa AC18, AC25, AC30; thêm AC72–AC81. Hình chưa dựng lại; chỗ hình khác văn bản có ghi chú dưới hình.
 - **Thay đổi ở v1.5 (12/11/2026).** Cập nhật theo quyết định phase coding (`docs/QUYET-DINH-PHASE-CODING.md`): mục 1.4 viết lại thành quyền mặc định theo vai trò, cấu hình ở QT02, bỏ phạm vi bản ghi; thông tin nhận thanh toán và điều khoản thanh toán là thao tác riêng **Xem thông tin thanh toán NCC**, mặc định không cấp cho Kinh doanh (Q1; R04, R20, L7.1, AC35, AC59); trường chỉ đọc hiện dạng chữ (U5); công tắc của NCC và dịch vụ là **Đang dùng / Ngừng dùng** (K6); thông báo khi ngừng dùng NCC là thông báo in-app, ghi cùng giao dịch (Q2, Q5); tình trạng hợp đồng và việc cần xử lý tính lúc đọc (Q6; 2.4, R01, R03); lưu bị từ chối vì phiên khác chỉ có nút Tải lại (Q8; E3.1, E4.14, E6.8, R04, AC14); R15 bỏ trường quy tắc ưu tiên và ghi cách kết hợp phụ thu (Q15), phụ thu phòng đơn (Q14); R09 nhóm tuổi theo hợp đồng của từng dòng giá, tuổi nhập cho từng trẻ (Q12); tệp đính kèm hợp đồng theo Q19; mã NCC cho phép thủng số (Q7); bỏ nhãn chờ xác nhận ở R22 (Q3). Không đổi số hiệu L, E, R, W, AC. Hình chưa dựng lại; chỗ hình khác văn bản có ghi chú dưới hình.
 - **Thay đổi ở v1.5 (bổ sung 12/11/2026 · dịch vụ đi kèm).** Theo quyết định của người dùng ngày 12/11/2026 (BOI-CANH-DU-AN, thuật ngữ Dịch vụ đi kèm, Giường phụ; Nền tảng “Phòng (Q13', Q14)”; `docs/QUYET-DINH-PHASE-CODING.md` Q13'). (1) Điều hành khai **dịch vụ đi kèm**: dịch vụ của NCC gắn với một dịch vụ chính của cùng NCC, nên giá lấy theo cùng hợp đồng với dịch vụ chính; giá theo mùa như dịch vụ thường; không cho đi kèm chính nó, không cho đi kèm một dịch vụ đi kèm khác, dịch vụ đã có đi kèm không thành đi kèm (R23). (2) **Giường phụ** là dịch vụ đi kèm của dịch vụ lưu trú, có dấu Giường phụ; lưới giá không có cột hạng phòng, cột trẻ em (trẻ em cần thêm giường tính theo chính sách trẻ em của dịch vụ chính). (3) Dịch vụ chính Ngừng dùng thì đi kèm không chọn được ở đâu; xóa dịch vụ chính chưa dùng thì xóa kèm các đi kèm (R05, R13). (4) Gia hạn và nhân bản giữ quan hệ đi kèm (R12, R17). (5) R14 thay ví dụ “dòng căn cứ khác (thêm giường theo khách)” bằng giường phụ khai là dịch vụ đi kèm. Sửa 1.2, 1.3, 1.5, 2.3, 2.4, L5.1, L5.5, L6.2, R05, R12, R13, R14, R17, 5.1, 5.2; thêm L5.6, E5.9–E5.11, E6.13, R23, AC64–AC71. Không dựng hình mới; L5.6 dùng lại W27, W29 kèm ghi chú hình chưa cập nhật.
 - **Thay đổi ở v1.4 (12/11/2026).** Theo rà soát mâu thuẫn lần ba, không đổi luồng chính: E3.5 sửa theo RSD DH08 E3.1 (thiếu email đặt dịch vụ thì người dùng nhập email cho lần gửi đó ở DH08.3, DH08 không ghi email vào DH03, có liên kết mở DH03.1); R14 ghi rõ Thứ tự chỉ áp trong cùng hạng phòng, khác hạng phòng thì DH04 hiện mức thấp nhất kèm “+ n hạng khác”, KD06.3 tính theo hạng phòng của điều kiện tính (quyết định của người dùng 12/11/2026); R10 thêm ghi chú đợt Số tiền khi khoản phải trả khác loại tiền hợp đồng (quyết định của người dùng 12/11/2026, xử lý ở KT01.2); mục 2.5 và 5.2 ghi số lẻ thập phân theo loại tiền (RSD QT05 R11: VND, JPY 0, ngoại tệ khác 2); mục 1.3 và R21 sửa chủ sở hữu danh mục theo RSD QT05 mục 1.5 (câu báo thiếu loại dịch vụ không còn “liên hệ Quản trị”); mục 2.4 thêm điều kiện “không có hợp đồng kế tiếp” cho chuyển Còn hiệu lực → Sắp hết hạn (khớp R01); E4.16 sửa theo R03 (NCC Ngừng sử dụng thì không hiện việc cần xử lý nào); L5.5 bước 2 và W42a, W42 ghi đủ đối tượng “đã dùng” theo R13 (thêm hành trình yêu cầu Tour, Booking). Dựng lại W42, W42a. Không thêm mã mới.
@@ -38,7 +40,7 @@ DH03 là **nơi nhập liệu duy nhất** cho mọi thông tin của một NCC:
 - **Nhập một lần, dùng cho mọi dịch vụ.** Mùa giá, chính sách trẻ em và chính sách đổi hủy khai một lần cho hợp đồng; mọi dịch vụ của hợp đồng dùng chung. Đổi ngày một mùa thì mọi dòng giá theo mùa đó tự theo.
 - **Ít gõ lại mỗi kỳ.** Hợp đồng mới điền sẵn từ hợp đồng gần nhất. **Gia hạn** sao chép cả bảng giá, có điều chỉnh theo tỷ lệ. Bảng giá nhập dạng ma trận như bảng tính, dán được từ Excel, nhập được file Excel. **Nhân bản dịch vụ** cho các hạng phòng tương tự.
 - **Không phá dữ liệu đã dùng.** Sửa hoặc tắt không đổi báo giá, Booking, lần đặt dịch vụ, công nợ đã lưu. Chỉ xóa được thứ chưa dùng ở đâu.
-- **Inbound, Customized.** Đa tiền tệ theo hợp đồng; mùa có ngày lễ theo âm lịch (Tết) được đánh dấu để kiểm tra khi gia hạn; nhóm tuổi trẻ em theo từng hợp đồng.
+- **Inbound, Customized.** Đa tiền tệ theo hợp đồng; mùa và phụ thu dời theo dương lịch khi gia hạn, ngày lễ theo âm lịch (Tết) Điều hành tự sửa sau khi gia hạn (Q-RS29); nhóm tuổi trẻ em theo từng hợp đồng.
 
 ### 1.2. Lối vào và lối ra
 
@@ -99,6 +101,7 @@ Quyền là cặp (màn hoặc phần của màn, thao tác), gán cho vai trò 
 | DH03 (danh sách màn) · phần đầu | Cảnh báo hợp đồng, Xem công nợ, giữ tab và vị trí sau khi lưu | L2.1, L2.3, R03 |
 | Quyết định 11/11/2026 | Phạm vi DH03 + DH05; 30 ngày, chặn chồng lấn, xóa khi chưa dùng; Kinh doanh không thấy thanh toán; tắt chỉ chặn chọn mới; nhập Excel; Điều hành nhập điều khoản thanh toán | L2.2, L4.6, L4.9, L5.5, L6.5, R01, R04–R06, R13 |
 | Quyết định 12/11/2026 · dịch vụ đi kèm (BOI-CANH, Q13') | Dịch vụ đi kèm gắn dịch vụ chính cùng hợp đồng, chỉ bán kèm; giường phụ là đi kèm của dịch vụ lưu trú, giá theo mùa | L5.6, L6.2, R23 |
+| Quyết định rà soát 13/11/2026 (Q-RS02–Q-RS09, Q-RS25, Q-RS27, Q-RS29) | Ô trẻ em ở dòng đoàn, đơn vị bị khóa; bỏ Thứ tự; phụ thu Thay thế cùng căn cứ; giá trẻ em là đơn giá; nhóm tuổi quyết định miễn phí, người lớn; kỳ mới dài bằng kỳ nguồn; dán số từ Excel; phí hủy % trên tổng giá lần đặt; số khách theo căn cứ; dời ngày theo dương lịch | L4.3–L4.5, L4.8, L6.3, L6.4, R08, R09, R11, R12, R14–R16 |
 
 ---
 
@@ -134,7 +137,6 @@ Quyền là cặp (màn hoặc phần của màn, thao tác), gán cho vai trò 
 | Tình trạng hợp đồng cấp NCC | Chưa có hợp đồng, Hết hạn, Sắp hết hạn, Còn hiệu lực | R01 của RSD DH02; hiện ở phần đầu cạnh hợp đồng hiện hành |
 | Hợp đồng (từng dòng ở DH03.2) | Sắp áp dụng, Còn hiệu lực, Sắp hết hạn, Hết hạn | Tính từ kỳ hiệu lực so với hôm nay (R01). Người dùng không chọn |
 | Hợp đồng · chỉ báo phụ | HĐ kế tiếp từ dd/mm | Hợp đồng còn ≤ 30 ngày hoặc đã hết hạn mà ngày sau ngày kết thúc thuộc một hợp đồng khác (R01) |
-| Mùa giá · chỉ báo phụ | Cần kiểm tra ngày | Mùa theo âm lịch vừa được dời ngày khi gia hạn hoặc thêm hợp đồng (R12); mất khi sửa khoảng ngày hoặc chọn Đã kiểm tra |
 | Dịch vụ | Đang dùng, Ngừng dùng | Điều hành bật hoặc tắt trên dòng DH03.3 hoặc trong DH05.1 (R05) |
 | Dịch vụ · kiểu (bổ sung 12/11/2026) | Dịch vụ thường; Đi kèm <dịch vụ chính>; Đi kèm <dịch vụ chính> · Giường phụ | Điều hành chọn ô Đi kèm dịch vụ và dấu Giường phụ ở DH05.1 (R23); đổi được khi dịch vụ chưa dùng (R13) |
 | Dịch vụ · giá trong hợp đồng | Đủ giá, Thiếu n ô giá, Chưa có giá | Tính theo hợp đồng đang chọn (R14) |
@@ -318,17 +320,21 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **L4.3 Thêm hợp đồng khi đã có hợp đồng trước.** *Điều kiện:* Điều hành; NCC có ít nhất một hợp đồng.
 
-1. **W17 · Nút + Thêm hợp đồng (W10) → bảng trượt điền sẵn.** Bảng trượt mở với banner “Đã điền sẵn … từ LH-2025/HĐ-07”: kỳ nối tiếp kỳ có ngày kết thúc muộn nhất, loại tiền, mùa giá đã dời ngày sang kỳ mới, chính sách đổi hủy, chính sách trẻ em và điều khoản thanh toán (R11). Mùa theo âm lịch có nhãn Cần kiểm tra ngày. Bảng giá không sao chép; muốn chép cả giá thì dùng Gia hạn (L4.8). Con trỏ đặt ở ô Số hợp đồng.
+1. **W17 · Nút + Thêm hợp đồng (W10) → bảng trượt điền sẵn.** Bảng trượt mở với banner “Đã điền sẵn … từ LH-2025/HĐ-07”: kỳ nối tiếp kỳ có ngày kết thúc muộn nhất và dài bằng kỳ đó, loại tiền, mùa giá đã dời theo độ lệch hai kỳ (R12), chính sách đổi hủy, chính sách trẻ em và điều khoản thanh toán (R11). Mùa dời theo dương lịch, không có nhãn nhắc kiểm tra (Q-RS29). Bảng giá không sao chép; muốn chép cả giá thì dùng Gia hạn (L4.8). Con trỏ đặt ở ô Số hợp đồng.
 
    ![W17 · Thêm hợp đồng điền sẵn từ hợp đồng gần nhất](wireframes/W17.png)
 
-2. **W17 · Nút Lưu hợp đồng.** Điều hành nhập số hợp đồng, kiểm tra ngày của mùa âm lịch, sửa phần khác nếu cần, bấm Lưu hợp đồng. Kết quả như L4.2 bước 3.
+   > Hình chưa cập nhật (13/11/2026): mùa Tết còn nhãn Cần kiểm tra ngày; nhãn này bỏ theo Q-RS29.
+
+2. **W17 · Nút Lưu hợp đồng.** Điều hành nhập số hợp đồng, sửa ngày của mùa lễ theo âm lịch (ví dụ Tết) theo lịch của năm mới nếu cần, sửa phần khác nếu cần, bấm Lưu hợp đồng. Kết quả như L4.2 bước 3.
 
 **L4.4 Khai báo mùa giá.** *Điều kiện:* Điều hành; đang mở bảng trượt hợp đồng.
 
-1. **W12 · Mục Mùa giá trên thanh mục lục.** Điều hành bấm Mùa giá trên thanh mục lục. Mỗi mùa có tên, một hoặc nhiều khoảng ngày (+ khoảng), công tắc Tách cuối tuần, đánh dấu Theo âm lịch. Ngày cuối tuần chọn một lần cho hợp đồng (R11: hợp đồng đầu tiên mặc định Thứ Bảy, Chủ nhật; hợp đồng sau sao chép từ hợp đồng nguồn; Điều hành đổi được, ví dụ Thứ Sáu, Thứ Bảy cho khách sạn). Thanh lịch dưới bảng tô màu cả kỳ theo mùa, mỗi tháng một nhãn.
+1. **W12 · Mục Mùa giá trên thanh mục lục.** Điều hành bấm Mùa giá trên thanh mục lục. Mỗi mùa có tên, một hoặc nhiều khoảng ngày (+ khoảng), công tắc Tách cuối tuần. Không có đánh dấu Theo âm lịch (Q-RS29). Ngày cuối tuần chọn một lần cho hợp đồng (R11: hợp đồng đầu tiên mặc định Thứ Bảy, Chủ nhật; hợp đồng sau sao chép từ hợp đồng nguồn; Điều hành đổi được, ví dụ Thứ Sáu, Thứ Bảy cho khách sạn). Thanh lịch dưới bảng tô màu cả kỳ theo mùa, mỗi tháng một nhãn.
 
    ![W12 · Mùa giá và thanh lịch](wireframes/W12.png)
+
+   > Hình chưa cập nhật (13/11/2026): W11, W12, W13, W22 còn cột hoặc ô đánh dấu Theo âm lịch; ô này bỏ theo Q-RS29.
 
 2. **W12 · Thêm mùa, + khoảng, ô ngày.** Điều hành thêm mùa, thêm khoảng hoặc sửa khoảng ngày. Thanh lịch cập nhật ngay; ngày chưa thuộc mùa nào tô sọc vàng và có câu cảnh báo nêu khoảng ngày; vẫn lưu được (R07).
 3. **W13 · Nút Lưu hợp đồng khi hai mùa chồng lấn.** Khi bấm Lưu, hệ thống chặn, banner đỏ nêu hai mùa và các ngày trùng, ô ngày lỗi viền đỏ, đoạn trùng tô đỏ trên thanh lịch, mục Mùa giá trên thanh mục lục có dấu “!”. Điều hành sửa khoảng ngày rồi lưu lại.
@@ -344,11 +350,13 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **L4.5 Chính sách đổi hủy và chính sách trẻ em.** *Điều kiện:* Điều hành; đang mở bảng trượt hợp đồng.
 
-1. **W14 · Mục Chính sách đổi hủy trên thanh mục lục.** Bảng mốc “Hủy trước ngày sử dụng từ X ngày trở lên” → mức phí (tỷ lệ hoặc số tiền) → căn cứ tính (tổng giá dịch vụ, đêm đầu, mỗi khách, mỗi phòng). Điều hành thêm mốc; hệ thống tự hiện khoảng “Từ 15 đến 29 ngày” từ các mốc. Điều hành nhập phí no-show, điều kiện đổi ngày, đổi tên khách, giảm số lượng.
+1. **W14 · Mục Chính sách đổi hủy trên thanh mục lục.** Bảng mốc “Hủy trước ngày sử dụng từ X ngày trở lên” → phí hủy là **tỷ lệ % trên tổng giá lần đặt** (R08; quyết định rà soát 13/11/2026, Q-RS25). Không có kiểu số tiền và không chọn căn cứ khác. Điều hành thêm mốc; hệ thống tự hiện khoảng “Từ 15 đến 29 ngày” từ các mốc. Điều hành nhập phí no-show (cũng là % trên tổng giá lần đặt), điều kiện đổi ngày, đổi tên khách, giảm số lượng. NCC tính phí theo cách khác (đêm đầu, mỗi khách, mỗi phòng, số tiền cố định): Điều hành ghi vào điều kiện dạng văn bản nếu cần và sửa tay phí gợi ý khi ghi hủy ở DH08.3.
 
    ![W14 · Chính sách đổi hủy và trẻ em](wireframes/W14.png)
 
-2. **W14 · Mục Chính sách trẻ em.** Điều hành thêm các nhóm tuổi với “từ” và “đến dưới” (R09), điều kiện ngủ chung giường, thêm giường, ăn sáng; số trẻ được miễn phí; ghi chú. Mỗi nhóm tuổi tạo một cột giá trẻ em ở DH05.2. Hệ thống kiểm tra R08, R09 khi lưu hợp đồng.
+   > Hình chưa cập nhật (13/11/2026): bảng mốc còn cột Mức phí dạng tỷ lệ hoặc số tiền và cột Căn cứ tính; nay mỗi mốc chỉ có tỷ lệ % trên tổng giá lần đặt (Q-RS25). Phần trẻ em còn ô Số trẻ được miễn phí; ô này bỏ theo Q-RS07.
+
+2. **W14 · Mục Chính sách trẻ em.** Điều hành thêm các nhóm tuổi với “từ” và “đến dưới” (R09), điều kiện ngủ chung giường, thêm giường, ăn sáng; ghi chú. Không có ô số trẻ miễn phí: trẻ dưới nhóm tuổi thấp nhất miễn phí, trẻ trên nhóm cao nhất tính như người lớn (R09; Q-RS06, Q-RS07). Mỗi nhóm tuổi tạo một cột giá trẻ em ở DH05.2. Hệ thống kiểm tra R08, R09 khi lưu hợp đồng.
 
 *Kết quả:* DH08.3 dùng chính sách đổi hủy để gợi ý phí hủy (R08); bộ tính giá dùng chung của KD02, DH04, KD06.3 dùng nhóm tuổi của hợp đồng để tính giá trẻ em (R09; Q11, Q12).
 
@@ -373,15 +381,19 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **L4.8 Gia hạn hợp đồng.** *Điều kiện:* Điều hành; hợp đồng có ngày kết thúc muộn nhất của NCC (R12).
 
-1. **W18 · Nút Gia hạn trên dòng (hoặc nút ở phần đầu, L2.1) → hộp thoại.** Hộp thoại có kỳ mới điền sẵn (nối tiếp, 12 tháng), Điều chỉnh giá (tùy chọn, có thể âm), Làm tròn sau điều chỉnh (mặc định đến 1.000 ₫ với VND). Khung “Sẽ sao chép” nêu số mùa, mùa âm lịch cần kiểm tra, chính sách, điều khoản, số dòng giá và số dịch vụ, kèm một ví dụ giá trước và sau điều chỉnh. Điều hành giữ hoặc sửa kỳ, nhập tỷ lệ điều chỉnh và làm tròn. Hộp thoại chưa ghi dữ liệu.
+1. **W18 · Nút Gia hạn trên dòng (hoặc nút ở phần đầu, L2.1) → hộp thoại.** Hộp thoại có kỳ mới điền sẵn (nối tiếp, dài bằng kỳ của hợp đồng đang gia hạn, R11), Điều chỉnh giá (tùy chọn, có thể âm), Làm tròn sau điều chỉnh (mặc định đến 1.000 ₫ với VND). Khung “Sẽ sao chép” nêu số mùa, chính sách, điều khoản, số dòng giá và số dịch vụ, kèm một ví dụ giá trước và sau điều chỉnh. Điều hành giữ hoặc sửa kỳ, nhập tỷ lệ điều chỉnh và làm tròn. Hộp thoại chưa ghi dữ liệu.
 
    ![W18 · Gia hạn hợp đồng](wireframes/W18.png)
 
-2. **W19 · Nút Tiếp tục xem lại → bảng trượt Chưa lưu.** Bảng trượt hợp đồng mới mở ở trạng thái Chưa lưu, điền sẵn theo R12; số hợp đồng gợi ý theo mẫu của số cũ. Mùa Tết Nguyên đán có nhãn Cần kiểm tra ngày và banner vàng giải thích.
+   > Hình chưa cập nhật (13/11/2026): khung “Sẽ sao chép” còn dòng mùa âm lịch cần kiểm tra lại; dòng này bỏ theo Q-RS29.
+
+2. **W19 · Nút Tiếp tục xem lại → bảng trượt Chưa lưu.** Bảng trượt hợp đồng mới mở ở trạng thái Chưa lưu, điền sẵn theo R12 (mùa và phụ thu theo ngày đã dời theo độ lệch hai kỳ, theo dương lịch); số hợp đồng gợi ý theo mẫu của số cũ.
 
    ![W19 · Xem lại hợp đồng gia hạn trước khi lưu](wireframes/W19.png)
 
-3. **W19 · Nút Lưu và sao chép bảng giá.** Điều hành sửa khoảng ngày của mùa Tết và các khoảng Cao điểm liền kề; nhãn Cần kiểm tra ngày mất khi sửa (hoặc chọn Đã kiểm tra trong menu ⋯ của mùa). Bấm Lưu và sao chép bảng giá.
+   > Hình chưa cập nhật (13/11/2026): mùa Tết còn nhãn Cần kiểm tra ngày và banner vàng giải thích; cả hai bỏ theo Q-RS29.
+
+3. **W19 · Nút Lưu và sao chép bảng giá.** Điều hành sửa khoảng ngày của mùa Tết và các khoảng Cao điểm liền kề theo lịch âm của năm mới (hệ thống không nhắc, Q-RS29), hoặc để sửa sau khi lưu (L4.7). Bấm Lưu và sao chép bảng giá.
 4. **W20 · Danh sách và thông báo ngắn.** Hệ thống tạo hợp đồng và sao chép toàn bộ dòng giá đã điều chỉnh trong một giao dịch (R12). Danh sách hiện LH-2026/HĐ-12 Sắp áp dụng trên cùng, tô sáng; hợp đồng cũ chuyển Còn hiệu lực kèm “HĐ kế tiếp từ 01/12”, phần đầu cũng vậy; việc gia hạn biến khỏi phần đầu; số trên tab DH03.2 mất. Thông báo ngắn có liên kết Xem bảng giá mở DH03.3 với hợp đồng mới được chọn (W25).
 
    ![W20 · Danh sách sau khi gia hạn](wireframes/W20.png)
@@ -413,7 +425,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
   ![W15a · Tổng các đợt thanh toán khác 100%](wireframes/W15a.png)
 
 - **E4.6.** Mốc hủy trùng số ngày; mức phí tỷ lệ ngoài 0–100%; nhóm tuổi trẻ em chồng lấn hoặc “từ” không nhỏ hơn “đến dưới”: chặn lưu, lỗi cạnh ô (R08, R09). Bảng mốc không có mốc 0 ngày: cảnh báo “Không gợi ý được phí hủy khi hủy sát ngày”, vẫn lưu.
-- **E4.7.** Xóa một nhóm tuổi đang có giá trẻ em ở dòng giá: hộp thoại cùng mẫu W22 nêu số dòng giá mất cột đó; thêm nhóm tuổi mới thì DH05.2 có cột mới, ô trống được tính thiếu giá (R14).
+- **E4.7.** Xóa một nhóm tuổi đang có giá trẻ em ở dòng giá: hộp thoại cùng mẫu W22 nêu số dòng giá mất cột đó; thêm nhóm tuổi mới thì DH05.2 có cột mới; ô trống ở dòng căn cứ khách, phòng được tính thiếu giá; ở dòng căn cứ đoàn, đơn vị dịch vụ ô bị khóa, không tính thiếu giá (R14).
 - **E4.8.** Đổi kỳ hiệu lực của hợp đồng đã dùng làm một số ngày sử dụng đã báo giá nằm ngoài kỳ: cho lưu sau khi xác nhận; dữ liệu đã lưu không đổi (R18); lần tính giá mới cho các ngày đó sẽ dùng hợp đồng khác hoặc báo thiếu hợp đồng (R02).
 - **E4.9.** Đổi loại tiền của hợp đồng đã có dòng giá: dòng giá giữ loại tiền riêng (dòng giá được có loại tiền khác hợp đồng, R14); hệ thống hỏi “Đổi loại tiền của n dòng giá sang … (không quy đổi số)?” với hai lựa chọn Giữ nguyên và Đổi; chỉ đổi mã tiền, không quy đổi giá.
 - **E4.10 · W21a.** Xóa hợp đồng đã dùng: không cho (R13). Muốn ngừng dùng thì sửa kỳ hiệu lực hoặc tắt NCC.
@@ -540,7 +552,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **L6.3 Nhập bảng giá dạng ma trận.** *Điều kiện:* Điều hành; dịch vụ có hợp đồng đang chọn.
 
-1. **W30 · Tab Bảng giá và phụ thu, lưới giá.** Tab là lưới kiểu bảng tính của hợp đồng đang chọn. Mỗi dòng là một tổ hợp hạng phòng × khoảng số khách × căn cứ tính; mỗi cột giá là một mùa của hợp đồng (mùa tách cuối tuần thành hai cột Ngày thường, Cuối tuần); tiếp theo là các cột trẻ em theo nhóm tuổi của chính sách trẻ em, cột loại tiền, cột Phụ thu. Điều hành chỉ gõ giá vào ô, không nhập ngày; di chuyển giữa các ô bằng Tab, Enter, mũi tên. Hệ thống kiểm tra ô ngay khi rời ô. Rê chuột trên tiêu đề cột mùa hiện các khoảng ngày và thứ được tính là ngày thường.
+1. **W30 · Tab Bảng giá và phụ thu, lưới giá.** Tab là lưới kiểu bảng tính của hợp đồng đang chọn. Mỗi dòng là một tổ hợp hạng phòng × khoảng số khách × căn cứ tính; mỗi cột giá là một mùa của hợp đồng (mùa tách cuối tuần thành hai cột Ngày thường, Cuối tuần); tiếp theo là các cột trẻ em theo nhóm tuổi của chính sách trẻ em (có ở mọi dòng; ô là đơn giá trẻ em theo loại tiền của dòng, không nhập %, Q-RS05; ở dòng căn cứ đoàn, đơn vị dịch vụ ô trẻ em bị khóa, không nhập được, vì giá của dòng không phân biệt người lớn, trẻ em, Q-RS02), cột loại tiền, cột Phụ thu. Không có cột Thứ tự (Q-RS03). Điều hành chỉ gõ giá vào ô, không nhập ngày; di chuyển giữa các ô bằng Tab, Enter, mũi tên. Hệ thống kiểm tra ô ngay khi rời ô. Rê chuột trên tiêu đề cột mùa hiện các khoảng ngày và thứ được tính là ngày thường.
 
    ![W30 · Bảng giá dạng ma trận](wireframes/W30.png)
 
@@ -556,7 +568,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **L6.4 Phụ thu và quy tắc kết hợp.** *Điều kiện:* Điều hành.
 
-1. **W33 · “▸ n khoản” (hoặc “▸ Thêm”) ở cột Phụ thu → phần mở rộng dưới dòng.** Phần mở rộng của dòng mở ngay dưới dòng, gồm phụ thu lễ Tết (ngày, mức, căn cứ, đối tượng, kết hợp Thay thế hoặc Cộng dồn), phụ thu phòng đơn, giá cơ sở cho phụ thu theo tỷ lệ, điều kiện áp dụng. Không có trường quy tắc ưu tiên: nhiều phụ thu cùng áp thì hệ thống kết hợp theo R15 (Q15). Điều hành thêm ngày lễ, chọn kiểu phòng đơn, giá cơ sở, cách kết hợp; hệ thống kiểm tra R15 khi lưu. Bấm lại để thu gọn.
+1. **W33 · “▸ n khoản” (hoặc “▸ Thêm”) ở cột Phụ thu → phần mở rộng dưới dòng.** Phần mở rộng của dòng mở ngay dưới dòng, gồm phụ thu lễ Tết (ngày, mức, căn cứ, đối tượng, kết hợp Thay thế hoặc Cộng dồn; phụ thu Thay thế phải cùng căn cứ với dòng giá, R15, Q-RS04), phụ thu phòng đơn, giá cơ sở cho phụ thu theo tỷ lệ, điều kiện áp dụng. Không có trường quy tắc ưu tiên: nhiều phụ thu cùng áp thì hệ thống kết hợp theo R15 (Q15). Điều hành thêm ngày lễ, chọn kiểu phòng đơn, giá cơ sở, cách kết hợp; hệ thống kiểm tra R15 khi lưu. Bấm lại để thu gọn.
 
    ![W33 · Phụ thu và quy tắc kết hợp của dòng](wireframes/W33.png)
 
@@ -594,9 +606,9 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 - **E6.1 · W32.** Ô giá không phải số, số âm, hoặc quá 15 chữ số: ô đỏ, chặn lưu. Dòng trùng tổ hợp (R14): ba ô khóa của dòng đỏ, chặn lưu.
 - **E6.2.** Dòng thiếu loại tiền, thiếu căn cứ tính, khoảng số khách sai (từ > đến, chồng lấn với dòng cùng hạng phòng và căn cứ tính): lỗi trên ô, chặn lưu (R14).
-- **E6.3.** Ô giá còn trống khi lưu: cho lưu; ô giữ sọc thiếu giá; dịch vụ có tình trạng Thiếu n ô giá (R14); báo giá sẽ báo thiếu giá cho ngày thuộc mùa đó, không dùng giá 0.
+- **E6.3.** Ô giá còn trống khi lưu: cho lưu; ô giữ sọc thiếu giá; dịch vụ có tình trạng Thiếu n ô giá (R14); báo giá sẽ báo thiếu giá cho ngày thuộc mùa đó, không dùng giá 0. Ô trẻ em của dòng căn cứ đoàn, đơn vị dịch vụ bị khóa: không sọc, không đếm vào số ô thiếu (Q-RS02).
 - **E6.4.** Dán vượt số cột của lưới: phần thừa bị bỏ, banner nêu “Bỏ qua n cột thừa”. Dán vào dịch vụ chỉ đọc: không làm gì.
-- **E6.5 · W35.** File sai định dạng (không phải .xlsx), quá 5 MB hoặc quá 2.000 dòng, không có dòng tiêu đề khớp mẫu: hộp thoại báo lỗi, không đọc tiếp. Cột mùa không khớp mùa nào của hợp đồng, ô không phải số, dòng trùng tổ hợp trong chính file: dòng lỗi, bị bỏ qua khi đưa vào bảng.
+- **E6.5 · W35.** File sai định dạng (không phải .xlsx), quá 5 MB hoặc quá 2.000 dòng, không có dòng tiêu đề khớp mẫu: hộp thoại báo lỗi, không đọc tiếp. Cột mùa không khớp mùa nào của hợp đồng, ô không phải số, dòng trùng tổ hợp trong chính file, dòng căn cứ đoàn hoặc đơn vị dịch vụ có giá ở cột trẻ em (E6.15): dòng lỗi, bị bỏ qua khi đưa vào bảng.
 - **E6.6.** Chọn Thay toàn bộ bảng giá: Xem trước nêu thêm số dòng hiện có sẽ bị xóa; nút đổi thành “Thay bảng giá bằng n dòng”.
 - **E6.7 · W39.** Đổi hợp đồng hoặc chuyển dịch vụ khi chưa lưu: hỏi trước (L6.1 bước 2).
 - **E6.8.** Dịch vụ hoặc bảng giá bị sửa ở phiên khác: chặn lưu, banner chỉ có nút Tải lại (cùng mẫu W07; Q8). Không ghi đè, kể cả từng ô.
@@ -604,7 +616,9 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 - **E6.10.** Hợp đồng đang chọn Hết hạn: vẫn sửa được (dùng để tra lại giá cũ); banner xanh “Hợp đồng đã hết hạn. Sửa giá không ảnh hưởng báo giá, Booking đã lưu.”
 - **E6.11.** Hợp đồng chưa có chính sách trẻ em: không có cột trẻ em; dòng gợi ý “Thêm nhóm tuổi ở DH03.2 để nhập giá trẻ em” kèm liên kết mở bảng trượt hợp đồng ở mục Chính sách trẻ em.
 - **E6.12.** Dịch vụ không phải lưu trú (nhà hàng, vận chuyển): cột Hạng phòng ẩn; phụ thu phòng đơn không hiện (R14).
-- **E6.13 (bổ sung 12/11/2026).** Dịch vụ đi kèm: cột Hạng phòng ẩn, phụ thu phòng đơn không hiện, kể cả khi loại dịch vụ là lưu trú. Đi kèm Giường phụ còn ẩn cả các cột trẻ em, kèm dòng gợi ý “Trẻ em cần thêm giường tính theo chính sách trẻ em của <dịch vụ chính>” (R23). Ô giá mùa trống của đi kèm tính thiếu giá như dịch vụ thường (R14).
+- **E6.13 (bổ sung 12/11/2026).** Dịch vụ đi kèm: cột Hạng phòng ẩn, phụ thu phòng đơn không hiện, kể cả khi loại dịch vụ là lưu trú. Đi kèm Giường phụ còn ẩn cả các cột trẻ em, kèm dòng gợi ý “Giường phụ dành cho trẻ em; giá trẻ em theo chính sách trẻ em của <dịch vụ chính> tính thêm” (R23; sửa 18/11/2026, người dùng chốt: giường phụ cho trẻ em). Ô giá mùa trống của đi kèm tính thiếu giá như dịch vụ thường (R14).
+- **E6.14 (quyết định rà soát 13/11/2026, Q-RS04).** Phụ thu kết hợp Thay thế có căn cứ khác căn cứ của dòng giá (ví dụ Mỗi khách trên dòng căn cứ phòng): ô Căn cứ của phụ thu đỏ, lỗi “Phụ thu Thay thế phải cùng căn cứ với dòng giá: <căn cứ>”, chặn lưu (R15). Phụ thu Cộng dồn không bị ràng buộc này.
+- **E6.15 (quyết định rà soát 13/11/2026, Q-RS02; người dùng trả lời 13/11/2026).** Có giá trị ở ô trẻ em của dòng căn cứ đoàn hoặc đơn vị dịch vụ: gõ tay không được (ô khóa, chú thích “Dòng theo đoàn, xe, đơn vị không có giá trẻ em”); dán vào ô đó thì ô đỏ với cùng lý do, chặn lưu tới khi xóa; dòng file Excel có giá ở cột trẻ em của dòng như vậy là dòng lỗi (E6.5); máy chủ từ chối lưu (R14). Đổi căn cứ của dòng sang đoàn hoặc đơn vị dịch vụ khi ô trẻ em đang có giá: các ô đỏ như trên cho tới khi xóa.
 
 ### 3.7. Góc nhìn theo vai trò
 
@@ -700,17 +714,18 @@ Danh sách việc, theo thứ tự hiển thị. Chỉ tính khi NCC Đang dùng
 
 ### R08. Chính sách đổi hủy và gợi ý phí hủy
 
-- Bảng mốc: mỗi mốc là “hủy trước ngày sử dụng từ X ngày trở lên”, X không trùng. Hệ thống sắp X giảm dần và hiển thị khoảng (X đến mốc trên − 1).
-- **Gợi ý phí hủy ở DH08.3:** số ngày trước = ngày sử dụng đầu tiên − ngày ghi yêu cầu hủy (ngày lịch). Chọn mốc có X lớn nhất mà X ≤ số ngày trước. Phí = mức × căn cứ (tổng giá của lần đặt, đêm đầu, mỗi khách hoặc mỗi phòng); với căn cứ là giá, dùng giá NCC xác nhận nếu có, nếu không dùng giá tham chiếu. Không có mốc phù hợp: không gợi ý. Không đến (no-show): dùng mức no-show. Điều hành sửa được phí gợi ý (nguồn TN06.04).
+- Bảng mốc: mỗi mốc là “hủy trước ngày sử dụng từ X ngày trở lên” kèm **tỷ lệ phí % trên tổng giá lần đặt** (0–100 %), X không trùng. Hệ thống sắp X giảm dần và hiển thị khoảng (X đến mốc trên − 1). Phí no-show cũng là % trên tổng giá lần đặt. Không có kiểu số tiền, không có căn cứ khác (đêm đầu, mỗi khách, mỗi phòng) (quyết định rà soát 13/11/2026, Q-RS25).
+- **Gợi ý phí hủy ở DH08.3:** số ngày trước = ngày sử dụng đầu tiên − ngày ghi yêu cầu hủy (ngày lịch). Chọn mốc có X lớn nhất mà X ≤ số ngày trước. Phí gợi ý = tỷ lệ của mốc × tổng giá lần đặt; tổng giá lần đặt là giá NCC xác nhận nếu có, nếu không là giá tham chiếu; theo loại tiền của lần đặt, làm tròn half-up theo số lẻ thập phân của loại tiền (Q9). Không có mốc phù hợp: không gợi ý. Không đến (no-show): dùng tỷ lệ no-show. Điều hành sửa được phí gợi ý (nguồn TN06.04); NCC có điều khoản phí khác (đêm đầu, mỗi khách, mỗi phòng, số tiền cố định) thì Điều hành sửa tay theo điều khoản đó (RSD DH08 L3.8).
 - Hợp đồng dùng để gợi ý: hợp đồng áp dụng cho ngày sử dụng (R02), không phải hợp đồng hiện hành.
 - Điều kiện đổi ngày, đổi tên, giảm số lượng là văn bản hiển thị ở DH08.3 khi Điều hành gửi điều chỉnh; không tự tính phí.
 
 ### R09. Chính sách trẻ em
 
-- Nhóm tuổi có “từ” và “đến dưới”: trẻ thuộc nhóm khi từ ≤ tuổi < đến dưới. Các nhóm không chồng lấn; được có khoảng trống (tuổi ngoài mọi nhóm tính như người lớn).
+- Nhóm tuổi có “từ” và “đến dưới”: trẻ thuộc nhóm khi từ ≤ tuổi < đến dưới. Các nhóm không chồng lấn; được có khoảng trống.
+- **Trẻ ngoài mọi nhóm** (quyết định rà soát 13/11/2026, Q-RS06): tuổi nhỏ hơn “từ” của nhóm thấp nhất thì **miễn phí**; tuổi từ “đến dưới” của nhóm cao nhất trở lên, hoặc rơi vào khoảng trống giữa hai nhóm, thì **tính như người lớn**. Hợp đồng không có nhóm tuổi nào: mọi trẻ tính như người lớn. Ví dụ nhóm 2–5 và 6–11: trẻ 1 tuổi miễn phí, trẻ 13 tuổi tính giá người lớn.
 - Bộ tính giá dùng chung (KD02, DH04, KD06.3) dùng tuổi nhập cho từng trẻ; mỗi dòng giá áp nhóm tuổi của hợp đồng của chính dòng đó (dịch vụ qua hai hợp đồng thì mỗi đêm theo nhóm tuổi của hợp đồng của đêm đó) (Q11, Q12).
 - Mỗi nhóm tạo một cột giá trẻ em ở DH05.2 cho mọi dòng giá của hợp đồng. Thêm nhóm: cột mới trống (ô sọc thiếu giá), số trên tab DH03.3 tính lại. Xóa nhóm đã có giá: xác nhận như W22. Sửa tuổi của nhóm không đổi giá đã nhập.
-- Điều kiện ngủ chung giường, thêm giường, ăn sáng và số trẻ miễn phí là dữ liệu cho bộ tính giá dùng chung áp khi tính giá (TN03.06, Q11); DH03 không tự tính. Khi có suất miễn, trẻ nhỏ nhất được miễn trước; giá trẻ em dạng tỷ lệ tính trên giá mỗi người lớn của cùng dòng (Q12).
+- Điều kiện ngủ chung giường, thêm giường, ăn sáng là dữ liệu cho bộ tính giá dùng chung áp khi tính giá (TN03.06, Q11); DH03 không tự tính. Không có trường số trẻ miễn phí (Q-RS07): trẻ miễn phí xác định theo tuổi như trên. **Giá trẻ em là đơn giá riêng** của nhóm tuổi trên từng dòng giá, theo loại tiền và căn cứ của dòng, một giá cho mọi mùa của dòng; không khai theo % (Q-RS05).
 
 ### R10. Điều khoản thanh toán (quyết định 11/11/2026)
 
@@ -723,16 +738,20 @@ Danh sách việc, theo thứ tự hiển thị. Chỉ tính khi NCC Đang dùng
 ### R11. Điền sẵn khi thêm hợp đồng
 
 - Hợp đồng đầu tiên của NCC: kỳ từ hôm nay, đến hôm nay + 12 tháng − 1 ngày; loại tiền VND; một mùa “Cả kỳ hợp đồng” bằng cả kỳ; cuối tuần Thứ Bảy, Chủ nhật; các bảng chính sách và điều khoản trống.
-- Đã có hợp đồng: nguồn là hợp đồng có Hiệu lực đến muộn nhất. Kỳ mới từ (Hiệu lực đến của nguồn + 1) và dài bằng kỳ của nguồn (tối đa 12 tháng). Sao chép loại tiền, cuối tuần, mùa (dời ngày theo R12), chính sách đổi hủy, chính sách trẻ em, điều khoản thanh toán. Không sao chép số hợp đồng, ngày ký, file, dòng giá.
+- Đã có hợp đồng: nguồn là hợp đồng có Hiệu lực đến muộn nhất. **Kỳ mới dài bằng kỳ nguồn** (quyết định rà soát 13/11/2026, Q-RS08): Hiệu lực từ = Hiệu lực đến của nguồn + 1; Hiệu lực đến = Hiệu lực đến của nguồn dời theo độ lệch hai kỳ (R12). Không giới hạn 12 tháng. Ví dụ nguồn 01/12/2025 – 30/11/2026 → 01/12/2026 – 30/11/2027; nguồn một quý 01/01/2027 – 31/03/2027 → 01/04/2027 – 30/06/2027. Sao chép loại tiền, cuối tuần, mùa (dời ngày theo R12), chính sách đổi hủy, chính sách trẻ em, điều khoản thanh toán. Không sao chép số hợp đồng, ngày ký, file, dòng giá.
 - Mọi trường điền sẵn có nhãn nhỏ (Mặc định, Nối tiếp kỳ trước, Từ HĐ trước) cho tới khi người dùng sửa.
 
 ### R12. Gia hạn hợp đồng
 
 - Chỉ có trên hợp đồng có Hiệu lực đến muộn nhất của NCC. Là nút chính trên dòng khi hợp đồng Sắp hết hạn hoặc Hết hạn; với hợp đồng Còn hiệu lực hoặc Sắp áp dụng, Gia hạn nằm trong menu ⋯.
-- **Dời ngày mùa:** mỗi khoảng ngày được dời cùng ngày/tháng sang năm tương ứng trong kỳ mới; khoảng vượt ra ngoài kỳ mới bị cắt; 29/02 thành 28/02. Mùa có đánh dấu Theo âm lịch được gắn nhãn **Cần kiểm tra ngày**; nhãn mất khi người dùng sửa khoảng ngày của mùa hoặc chọn Đã kiểm tra.
-- **Sao chép bảng giá:** mọi dòng giá, giá trẻ em và phụ thu của mọi dịch vụ (kể cả dịch vụ đang ngừng dùng và dịch vụ đi kèm) sang hợp đồng mới, ô giá gắn với mùa tương ứng đã sao chép. Phụ thu theo ngày cụ thể được dời ngày như mùa.
+- **Kỳ mới** điền sẵn như R11: nối tiếp, dài bằng kỳ của hợp đồng đang gia hạn; Điều hành sửa được.
+- **Độ lệch hai kỳ** (quyết định rà soát 13/11/2026, Q-RS08) là khoảng từ Hiệu lực từ của hợp đồng nguồn tới Hiệu lực từ của hợp đồng mới: tính bằng số tháng khi hai ngày có cùng ngày trong tháng (hợp đồng theo năm, quý, tháng), ngược lại tính bằng số ngày. Điều hành sửa Hiệu lực từ của kỳ mới thì độ lệch tính lại theo ngày đã sửa. Dùng chung cho thêm hợp đồng (R11) và gia hạn.
+- **Dời một ngày** theo độ lệch m tháng: cộng m tháng, giữ ngày trong tháng; tháng đích không có ngày đó thì lấy ngày cuối tháng; ngày là ngày cuối tháng thì thành ngày cuối tháng đích. Độ lệch theo ngày thì cộng số ngày.
+- **Dời khoảng ngày** (mùa, phụ thu theo ngày): ngày cuối khoảng dời như trên; ngày đầu khoảng = (ngày liền trước ngày đầu, đã dời) + 1, nên hai khoảng liền nhau trước khi dời vẫn liền nhau sau khi dời. Mùa kết thúc cuối tháng 2 dời tới cuối tháng 2: dời 12 tháng thì mùa 01/12/2026 – 28/02/2027 thành 01/12/2027 – 29/02/2028 (năm nhuận), lần sau thành 01/12/2028 – 28/02/2029. Hợp đồng ngắn giữ đủ mùa: hợp đồng quý dời 3 tháng, mùa 01/01 – 28/02/2027 thành 01/04 – 31/05/2027. Khoảng vượt ra ngoài kỳ mới (khi Điều hành thu ngắn kỳ) bị cắt theo kỳ.
+- **Luôn theo dương lịch** (quyết định rà soát 13/11/2026, Q-RS29): mùa và phụ thu theo ngày dời theo ngày dương lịch như trên. Không có cờ Theo âm lịch, không có nhãn Cần kiểm tra ngày. Mùa hoặc phụ thu của ngày lễ theo âm lịch (Tết) Điều hành tự sửa ngày, ở bảng trượt trước khi lưu hoặc sau khi gia hạn (L4.7).
+- **Sao chép bảng giá:** mọi dòng giá, giá trẻ em và phụ thu của mọi dịch vụ (kể cả dịch vụ đang ngừng dùng và dịch vụ đi kèm) sang hợp đồng mới, ô giá gắn với mùa tương ứng đã sao chép. Phụ thu theo ngày cụ thể được dời ngày như mùa (theo dương lịch).
 - **Quan hệ đi kèm (bổ sung 12/11/2026).** Quan hệ dịch vụ đi kèm và dấu Giường phụ là thuộc tính của dịch vụ, không theo hợp đồng, nên hợp đồng mới dùng nguyên các quan hệ này: sau gia hạn, mỗi đi kèm có giá ở hợp đồng mới và vẫn gắn đúng dịch vụ chính. Khung “Sẽ sao chép” ở W18 đếm cả dòng giá của đi kèm (R23).
-- **Điều chỉnh giá:** giá mới = làm tròn(giá cũ × (1 + p%), đơn vị làm tròn), làm tròn half-up (nửa lên, Q9). Áp cho ô giá mùa, giá trẻ em kiểu cố định và phụ thu kiểu số tiền. Giá trẻ em và phụ thu kiểu tỷ lệ giữ nguyên tỷ lệ. Ví dụ 1.650.000 × 1,05 = 1.732.500 → 1.733.000.
+- **Điều chỉnh giá:** giá mới = làm tròn(giá cũ × (1 + p%), đơn vị làm tròn), làm tròn half-up (nửa lên, Q9). Áp cho ô giá mùa, giá trẻ em (đơn giá, Q-RS05) và phụ thu kiểu số tiền. Phụ thu kiểu tỷ lệ giữ nguyên tỷ lệ. Ví dụ 1.650.000 × 1,05 = 1.732.500 → 1.733.000.
 - **Giao dịch:** hợp đồng, mùa, chính sách, điều khoản và mọi dòng giá được tạo trong một giao dịch khi bấm Lưu và sao chép bảng giá; lỗi thì không tạo gì (E4.12). Hộp thoại W18 không tạo dữ liệu.
 - Lưu ID hợp đồng nguồn và tỷ lệ điều chỉnh vào hợp đồng mới để tra cứu.
 
@@ -750,13 +769,14 @@ Danh sách việc, theo thứ tự hiển thị. Chỉ tính khi NCC Đang dùng
 ### R14. Dòng giá, tổ hợp và tình trạng giá
 
 - **Khóa tổ hợp** của dòng trong một dịch vụ và một hợp đồng: hạng phòng (nếu có) + khoảng số khách + căn cứ tính. Hai dòng cùng hạng phòng và căn cứ tính không được có khoảng số khách giao nhau (trùng hoặc chồng lấn đều chặn lưu).
+- **Khoảng số khách so với số nào** (quyết định rà soát 13/11/2026, Q-RS27): dòng căn cứ khách hoặc phòng so với **số người lớn**; dòng căn cứ đoàn hoặc đơn vị dịch vụ (xe, thuyền, giường…) so với **tổng khách, gồm trẻ em**. Bộ tính giá dùng chung (RSD KD06 R13, DH04 R04, KD01-KD02 R07) chọn dòng theo quy tắc này.
 - **Căn cứ tính:** theo khách, phòng, đoàn hoặc đơn vị dịch vụ; mặc định theo đơn vị tính của dịch vụ (Phòng/đêm → phòng; Khách/suất → khách). Số lượng tính ở KD06.3 phải tương ứng căn cứ, không nhân lặp số khách và số phòng.
 - **Tính theo đêm:** dịch vụ có đơn vị tính theo đêm (Phòng/đêm, Cabin/đêm…; cờ “theo đêm” của đơn vị tính ở QT05, R21) được tính giá cho từng đêm, loại ngày lấy theo ngày nhận phòng của đêm đó (R07). Đơn vị tính khác được tính theo ngày sử dụng. KD06.3 và DH04 (RSD DH04 R03) dùng cờ này.
-- **Dòng chính** của dịch vụ trong một hợp đồng là các dòng có căn cứ tính trùng căn cứ mặc định theo đơn vị tính. Dòng có căn cứ khác, giá trẻ em và phụ thu không phải dòng chính. Giường phụ cho người lớn không khai thành dòng căn cứ khác của dịch vụ phòng mà khai là **dịch vụ đi kèm** Giường phụ của dịch vụ phòng, có dòng giá chính và giá theo mùa riêng (R23; sửa 12/11/2026, thay ví dụ “thêm giường theo khách”).
+- **Dòng chính** của dịch vụ trong một hợp đồng là các dòng có căn cứ tính trùng căn cứ mặc định theo đơn vị tính. Dòng có căn cứ khác, giá trẻ em và phụ thu không phải dòng chính. Giường phụ (giường cho trẻ em, sửa 18/11/2026) không khai thành dòng căn cứ khác của dịch vụ phòng mà khai là **dịch vụ đi kèm** Giường phụ của dịch vụ phòng, có dòng giá chính và giá theo mùa riêng (R23; sửa 12/11/2026, thay ví dụ “thêm giường theo khách”).
 - **Cột Hạng phòng** chỉ có với dịch vụ thuộc loại lưu trú (khách sạn, du thuyền theo cấu hình loại dịch vụ). Loại khác ẩn cột. Dịch vụ đi kèm không có cột này, kể cả khi thuộc loại lưu trú; đi kèm Giường phụ không có cả cột trẻ em (R23, E6.13).
 - **Loại tiền** từng dòng: mỗi dòng giá có loại tiền riêng, mặc định loại tiền của hợp đồng; được chọn loại tiền khác hợp đồng (ví dụ phụ phí USD trong hợp đồng VND). Không cộng trực tiếp các khoản khác loại tiền. Loại tiền của dòng giá là loại tiền điền sẵn của giá tham chiếu và của khoản phải trả khi đặt dịch vụ ở DH08.3; Điều hành sửa được khi ghi giá xác nhận hoặc phí hủy ở DH08.3 (quyết định 12/11/2026; RSD DH08, RSD KT01 R04).
-- **Thứ tự** của dòng trong một dịch vụ và một hợp đồng là vị trí dòng trong lưới DH05.2, số nguyên tăng dần từ 1. Hệ thống tự cấp: dòng thêm mới ở cuối, dòng nhân bản ngay dưới dòng nguồn, dán và nhập file theo thứ tự dòng trong file; Điều hành đổi bằng cách kéo dòng lên, xuống trong lưới. Gia hạn (R12) và nhân bản dịch vụ (R17) giữ thứ tự. Thứ tự chỉ áp trong cùng hạng phòng: khi nhiều dòng chính cùng hạng phòng cùng khớp, DH04 (RSD DH04 R04) và KD06.3 lấy dòng có thứ tự nhỏ nhất. Khác hạng phòng thì không so thứ tự: DH04 khi chưa lọc hạng phòng hiện mức thấp nhất kèm “+ n hạng khác”; KD06.3 tính theo hạng phòng của điều kiện tính, chưa có hạng phòng thì lấy hạng phòng có giá thấp nhất (RSD KD06 R13) (quyết định 12/11/2026, rà soát lần ba).
-- **Thiếu giá:** ô giá mùa hoặc ô trẻ em trống. Tình trạng giá của dịch vụ trong một hợp đồng: Chưa có giá (không có dòng nào), Thiếu n ô giá (có ô trống), Đủ giá. Giá 0 là giá hợp lệ (miễn phí), khác ô trống.
+- **Không có trường Thứ tự** (quyết định rà soát 13/11/2026, Q-RS03; thay đoạn Thứ tự của rà soát lần ba 12/11/2026). Vì hai dòng cùng hạng phòng và căn cứ tính không được chồng lấn khoảng số khách, trong cùng một hạng phòng tối đa một dòng chính khớp số khách. Khác hạng phòng: DH04 khi chưa lọc hạng phòng hiện mức thấp nhất kèm “+ n hạng khác” (RSD DH04 R04); KD06.3 tính theo hạng phòng của điều kiện tính, chưa có hạng phòng thì lấy hạng phòng có giá thấp nhất (RSD KD06 R13). Lưới DH05.2 sắp dòng theo hạng phòng (thứ tự của danh mục hạng phòng ở QT05), rồi căn cứ tính (dòng chính trước), rồi số khách từ; dòng vừa thêm hoặc nhân bản nằm cuối lưới cho tới khi lưu; không kéo đổi thứ tự dòng.
+- **Thiếu giá:** ô giá mùa trống; ô trẻ em trống ở dòng căn cứ khách hoặc phòng. Cột trẻ em có ở mọi dòng (trừ đi kèm Giường phụ, R23); **ở dòng căn cứ đoàn hoặc đơn vị dịch vụ, ô trẻ em bị khóa**: giá của dòng không phân biệt người lớn, trẻ em, nên ô luôn trống, không phải thiếu giá; gõ, dán, nhập file hay gọi API với giá ở ô này đều bị từ chối (E6.15; quyết định rà soát 13/11/2026, Q-RS02; người dùng trả lời 13/11/2026). Bộ tính giá không bao giờ thấy giá trẻ em ở dòng như vậy; cách chia khoản ở RSD KD06 R13. Tình trạng giá của dịch vụ trong một hợp đồng: Chưa có giá (không có dòng nào), Thiếu n ô giá (có ô trống), Đủ giá. Giá 0 là giá hợp lệ (miễn phí), khác ô trống.
 - **Giá từ** (dùng chung cho DH03.3 và DH04): giá nhỏ nhất trong các ô giá mùa (mọi mùa, mọi loại ngày) của **dòng chính** trong hợp đồng đang xem, theo loại tiền của hợp đồng; dịch vụ có dòng chính loại tiền khác thì ghi thêm “và giá USD”. Hợp đồng đang xem là hợp đồng đang chọn ở DH03.3, hoặc hợp đồng để xem giá ở DH04. Giá từ và tình trạng giá tính lại mỗi khi lưu bảng giá; DH03.3 và DH04 hiện giá trị mới.
 - **Tên dịch vụ** không trùng trong cùng NCC (so sánh không phân biệt hoa thường, bỏ dấu cách thừa). Riêng tên dịch vụ đi kèm chỉ không trùng trong các đi kèm của cùng dịch vụ chính, để mỗi phòng có được đi kèm tên “Giường phụ” (bổ sung 12/11/2026, R23).
 
@@ -764,15 +784,16 @@ Danh sách việc, theo thứ tự hiển thị. Chỉ tính khi NCC Đang dùng
 
 - Phụ thu lễ Tết theo ngày hoặc khoảng ngày (trong kỳ hợp đồng), mức là số tiền hoặc tỷ lệ, căn cứ (mỗi khách, mỗi phòng, mỗi đêm, mỗi đơn vị), đối tượng (người lớn, trẻ em theo nhóm, tỷ lệ cho trẻ em), kết hợp **Cộng dồn** (cộng vào giá mùa) hoặc **Thay thế** (dùng thay giá mùa ngày đó).
 - Phụ thu phòng đơn: Không áp dụng (giá đã theo phòng), Giá phòng đơn trọn gói, hoặc Phụ thu thêm (số tiền hoặc tỷ lệ, theo khách, phòng, đêm). Không cộng phụ thu khi giá đã gồm phòng đơn. Với Phụ thu thêm, giá phòng đơn = giá phòng + phụ thu phòng đơn đã khai; “phần vượt nửa giá phòng đôi” chỉ để hiển thị, không dùng để tính (Q14). **Phụ thu lễ theo phòng áp cho mọi phòng của đêm, kể cả phòng đơn** (người dùng chốt 13/11/2026): với Phụ thu thêm, giá phòng đơn = giá phòng của đêm sau phụ thu lễ + phụ thu phòng đơn; phụ thu phòng đơn dạng tỷ lệ tính trên giá mùa của dòng, chưa gồm phụ thu lễ. Bộ tính giá dùng chung đọc dữ liệu này (RSD KD06 R13).
-- **Kết hợp khi nhiều phụ thu cùng áp (Q15).** Lấy mức cao nhất trong các phụ thu Thay thế, rồi cộng mọi phụ thu Cộng dồn. Không có trường quy tắc ưu tiên; Điều hành chỉ chọn kiểu kết hợp của từng phụ thu.
+- **Phụ thu Thay thế cùng căn cứ với dòng giá** (quyết định rà soát 13/11/2026, Q-RS04): dòng căn cứ khách chỉ nhận phụ thu Thay thế Mỗi khách; phòng: Mỗi phòng; đoàn hoặc đơn vị dịch vụ: Mỗi đơn vị. Khác căn cứ thì chặn lưu, lỗi cạnh ô Căn cứ của phụ thu (E6.14). Phụ thu Cộng dồn được có căn cứ khác dòng giá.
+- **Kết hợp khi nhiều phụ thu cùng áp (Q15).** Lấy mức cao nhất trong các phụ thu Thay thế (cùng căn cứ với dòng nên so trực tiếp; mức kiểu tỷ lệ quy ra số tiền theo giá cơ sở trước khi so), rồi cộng mọi phụ thu Cộng dồn. Không có trường quy tắc ưu tiên; Điều hành chỉ chọn kiểu kết hợp của từng phụ thu.
 - Phụ thu theo tỷ lệ phải chọn giá cơ sở (giá mùa của dòng, hoặc giá ngày thường của mùa).
 - Kiểu kết hợp và điều kiện áp dụng là dữ liệu cho bộ tính giá dùng chung của KD02, DH04, KD06.3 (TN03.06, Q11); DH03 chỉ kiểm tra đủ trường. Ngày phụ thu trùng một mùa có giá thay thế (ví dụ ngày trong mùa Tết) mà kết hợp là Cộng dồn: cảnh báo “Phụ thu sẽ cộng vào giá mùa Tết”, vẫn cho lưu.
 
 ### R16. Dán và nhập file Excel (quyết định 11/11/2026)
 
-- **Dán:** dữ liệu dạng bảng (tab và xuống dòng) điền từ ô đang chọn; tự thêm dòng; số dạng “1.650.000”, “1,650,000”, “1650000” đều được hiểu theo cài đặt loại tiền; ô không hiểu được thì đỏ (E6.1). Dán không tự lưu.
+- **Dán:** dữ liệu dạng bảng (tab và xuống dòng) điền từ ô đang chọn; tự thêm dòng. Số trong ô dán được **nhận dạng kiểu số** theo ngoại lệ dán từ Excel của CGD K0.04 (quyết định rà soát 13/11/2026, Q-RS09): “1.650.000”, “1,650,000”, “1650000” đều là 1.650.000; “1.650,50” và “1,650.50” là 1.650,50; số chữ số thập phân vượt số lẻ thập phân của loại tiền của dòng (VND: “1.650.000,5”) hoặc ô không hiểu được thì đỏ (E6.1). Giá dán vào ô trẻ em đã khóa của dòng căn cứ đoàn, đơn vị dịch vụ thì đỏ (E6.15). Dán không tự lưu.
 - **File mẫu** sinh theo hợp đồng đang chọn: cột Hạng phòng (nếu có), Số khách từ, Số khách đến, Căn cứ tính, một cột cho mỗi mùa và loại ngày (tên đúng như tiêu đề cột ở DH05.2), một cột cho mỗi nhóm tuổi, Loại tiền.
-- **Đối chiếu:** dòng file khớp khóa tổ hợp (R14) với dòng đã có thì Cập nhật (chỉ các ô khác giá trị), không khớp thì Mới. Lỗi dòng: tiêu đề cột không khớp mùa, ô không phải số, khóa thiếu, trùng khóa trong file. Chế độ Thay toàn bộ: mọi dòng hiện có không có trong file sẽ bị xóa.
+- **Đối chiếu:** dòng file khớp khóa tổ hợp (R14) với dòng đã có thì Cập nhật (chỉ các ô khác giá trị), không khớp thì Mới. Lỗi dòng: tiêu đề cột không khớp mùa, ô không phải số, khóa thiếu, trùng khóa trong file, có giá ở cột trẻ em của dòng căn cứ đoàn hoặc đơn vị dịch vụ (E6.15). Chế độ Thay toàn bộ: mọi dòng hiện có không có trong file sẽ bị xóa.
 - Giới hạn: .xlsx, ≤ 5 MB, ≤ 2.000 dòng. Đưa vào bảng không lưu; người dùng bấm Lưu (L6.5). Danh sách dòng lỗi tải về dạng .xlsx kèm cột Lý do.
 
 ### R17. Nhân bản dịch vụ
@@ -824,7 +845,7 @@ Danh sách việc, theo thứ tự hiển thị. Chỉ tính khi NCC Đang dùng
 - **Cùng NCC, cùng hợp đồng.** Dịch vụ chính phải là dịch vụ của cùng NCC. Dịch vụ thuộc NCC, hợp đồng thuộc NCC và kỳ không chồng lấn (R06), nên với mỗi ngày dùng, đi kèm và dịch vụ chính luôn dùng cùng một hợp đồng áp dụng (R02). Bộ tính giá lấy giá đi kèm theo hợp đồng áp dụng của dịch vụ chính và mùa, loại ngày của ngày dùng (RSD KD06 R13).
 - **Ràng buộc.** Không đi kèm chính nó; dịch vụ chính phải là dịch vụ thường (không đi kèm một dịch vụ đi kèm khác); dịch vụ đang có đi kèm không thành đi kèm được (chỉ một tầng) (E5.9). Một dịch vụ chính có nhiều đi kèm. Đổi ô Đi kèm dịch vụ chỉ khi dịch vụ chưa dùng (R13, E5.11).
 - **Thông tin và giá.** Đi kèm có tên, loại dịch vụ (trong các loại của NCC, mặc định loại của dịch vụ chính), đơn vị tính, mô tả, thẻ bao gồm và không bao gồm, công tắc Đang dùng như dịch vụ thường; bảng giá theo mùa của từng hợp đồng, nhập, dán, nhập Excel, phụ thu lễ Tết như dịch vụ thường (L6.3–L6.5). Khác dịch vụ thường: không có cột Hạng phòng, không có phụ thu phòng đơn (giá đi kèm không theo hạng phòng; khác hạng phòng thì mỗi dịch vụ phòng có đi kèm riêng). Không có tên tiếng Anh riêng, vì dịch vụ thường ở DH05.1 cũng không có trường này.
-- **Giường phụ.** Đi kèm có dấu Giường phụ là giường phụ cho người lớn của dịch vụ chính. Chỉ đánh dấu được khi dịch vụ chính thuộc loại lưu trú; mỗi dịch vụ chính tối đa một đi kèm Giường phụ (E5.10); loại dịch vụ của giường phụ là loại của dịch vụ chính. Lưới giá không có cột trẻ em: trẻ em cần thêm giường tính theo chính sách trẻ em của hợp đồng trên dòng giá của dịch vụ chính (R09), không theo giá giường phụ. KD06 dùng dấu này để lấy số lượng từ số giường phụ của điều kiện tính (RSD KD06 R07); DH08 dùng để ghi chú phòng có giường phụ (RSD DH08 L4.5).
+- **Giường phụ (sửa 18/11/2026, người dùng chốt: giường phụ cho trẻ em).** Đi kèm có dấu Giường phụ là giường phụ của dịch vụ chính, dành cho **trẻ em** (BOI-CANH-DU-AN thuật ngữ Giường phụ). Chỉ đánh dấu được khi dịch vụ chính thuộc loại lưu trú; mỗi dịch vụ chính tối đa một đi kèm Giường phụ (E5.10); loại dịch vụ của giường phụ là loại của dịch vụ chính. Lưới giá không có cột trẻ em, không có cột hạng phòng: giá giường phụ là một giá mỗi giường theo mùa; giá trẻ em theo chính sách trẻ em của hợp đồng trên dòng giá của dịch vụ chính (R09) tính thêm, cộng với giá giường phụ khi báo giá (RSD KD06 R13). KD06 dùng dấu này để lấy số lượng từ số giường phụ của điều kiện tính (RSD KD06 R07); DH08 dùng để ghi chú phòng có giường phụ (RSD DH08 L4.5).
 - **Hiển thị ở DH03.3.** Đi kèm hiện thụt lề ngay dưới dịch vụ chính (L5.1); số dịch vụ ở phần đầu đếm cả đi kèm; chip Thiếu giá, Ngừng dùng và số trên tab DH03.3 đếm đi kèm như dịch vụ thường. Giá từ của dịch vụ chính không gồm giá đi kèm.
 - **Ngừng dùng, xóa, gia hạn, nhân bản.** Theo R05 (dịch vụ chính Ngừng dùng thì đi kèm không chọn được; đi kèm giữ công tắc riêng), R13 (xóa dịch vụ chính chưa dùng thì xóa kèm các đi kèm), R12 (gia hạn sao chép giá của đi kèm, quan hệ đi kèm giữ nguyên), R17 (nhân bản).
 - **Lịch sử.** Đổi ô Đi kèm dịch vụ, dấu Giường phụ ghi lịch sử của đi kèm (R20) và QT03.
@@ -841,16 +862,16 @@ Danh sách việc, theo thứ tự hiển thị. Chỉ tính khi NCC Đang dùng
 | Đầu mối | ID NCC, họ tên, chức vụ, điện thoại, email, là đầu mối chính | DH03.1 |
 | Thông tin nhận thanh toán | ID NCC, tên thụ hưởng, ngân hàng, chi nhánh, số tài khoản, tên đơn vị xuất hóa đơn, mã số thuế (duy nhất nếu có), email nhận hóa đơn | DH03.1 (Kế toán); KT01.2 |
 | Hợp đồng | ID, ID NCC, số hợp đồng, ngày ký, hiệu lực từ, hiệu lực đến, loại tiền, file, ghi chú, các thứ cuối tuần, ID hợp đồng nguồn (khi điền sẵn hoặc gia hạn), tỷ lệ điều chỉnh khi gia hạn | DH03.2; R01, R02 |
-| Mùa giá | ID, ID hợp đồng, tên, màu, các khoảng ngày, tách cuối tuần, theo âm lịch, cần kiểm tra ngày | DH03.2; cột giá ở DH05.2 |
-| Mốc đổi hủy | ID hợp đồng, từ X ngày, loại phí (tỷ lệ, số tiền), mức, căn cứ tính; no-show; điều kiện đổi ngày, đổi tên, giảm số lượng | DH03.2; DH08.3 (R08) |
-| Nhóm tuổi trẻ em | ID, ID hợp đồng, tên, từ tuổi, đến dưới tuổi, ngủ chung giường, thêm giường, ăn sáng; số trẻ miễn phí; ghi chú | DH03.2; cột trẻ em ở DH05.2; KD06.3 |
+| Mùa giá | ID, ID hợp đồng, tên, màu, các khoảng ngày, tách cuối tuần (không có theo âm lịch, cần kiểm tra ngày: bỏ theo Q-RS29) | DH03.2; cột giá ở DH05.2 |
+| Mốc đổi hủy | ID hợp đồng, từ X ngày, tỷ lệ phí (% trên tổng giá lần đặt); no-show (% trên tổng giá lần đặt); điều kiện đổi ngày, đổi tên, giảm số lượng (Q-RS25) | DH03.2; DH08.3 (R08) |
+| Nhóm tuổi trẻ em | ID, ID hợp đồng, tên, từ tuổi, đến dưới tuổi, ngủ chung giường, thêm giường, ăn sáng; ghi chú (không có số trẻ miễn phí, Q-RS07) | DH03.2; cột trẻ em ở DH05.2; KD06.3 |
 | Đợt thanh toán | ID hợp đồng, thứ tự, tên, loại (tỷ lệ, số tiền, phần còn lại), giá trị, mốc tính hạn, số ngày; phương thức | DH03.2; KT01.2 (R10) |
 | Dịch vụ | ID, ID NCC, tên, loại dịch vụ, đơn vị tính, mô tả, trạng thái dùng (Đang dùng, Ngừng dùng), ID dịch vụ nguồn (khi nhân bản), ID dịch vụ chính (trống với dịch vụ thường; bổ sung 12/11/2026), là giường phụ (có, không; chỉ có với đi kèm của dịch vụ lưu trú) | DH03.3, DH05.1; KD06.2, KD06.3, DH04, DH08 đọc quan hệ đi kèm (R23) |
 | Thẻ bao gồm, không bao gồm | ID dịch vụ, loại (bao gồm, không bao gồm), nội dung, thứ tự | DH05.1; báo giá KD06.3 tổng hợp |
-| Dòng giá | ID, ID dịch vụ, ID hợp đồng, thứ tự (duy nhất trong dịch vụ và hợp đồng), hạng phòng, số khách từ, đến, căn cứ tính, loại tiền | DH05.2 (R14); DH04 R04, KD06.3 chọn dòng theo thứ tự; DH08.3 điền sẵn loại tiền |
+| Dòng giá | ID, ID dịch vụ, ID hợp đồng, hạng phòng, số khách từ, đến, căn cứ tính, loại tiền (không có thứ tự, Q-RS03) | DH05.2 (R14); DH04 R04, KD06.3 chọn dòng theo hạng phòng và khoảng số khách; DH08.3 điền sẵn loại tiền |
 | Ô giá | ID dòng giá, ID mùa, loại ngày (cả mùa, ngày thường, cuối tuần), giá | DH05.2 |
-| Giá trẻ em của dòng | ID dòng giá, ID nhóm tuổi, kiểu (cố định, tỷ lệ trên giá mỗi người lớn của cùng dòng; Q12), giá trị | DH05.2 |
-| Phụ thu của dòng | ID dòng giá, loại (lễ Tết, phòng đơn), ngày hoặc khoảng ngày, mức, kiểu, căn cứ, đối tượng, kết hợp (thay thế, cộng dồn), giá cơ sở cho tỷ lệ; điều kiện áp dụng (không có trường quy tắc ưu tiên, Q15) | DH05.2 (R15) |
+| Giá trẻ em của dòng | ID dòng giá, ID nhóm tuổi, đơn giá theo loại tiền của dòng (không có kiểu tỷ lệ, Q-RS05) | DH05.2 |
+| Phụ thu của dòng | ID dòng giá, loại (lễ Tết, phòng đơn), ngày hoặc khoảng ngày, mức, kiểu, căn cứ (Thay thế: cùng căn cứ với dòng, Q-RS04), đối tượng, kết hợp (thay thế, cộng dồn), giá cơ sở cho tỷ lệ; điều kiện áp dụng (không có trường quy tắc ưu tiên, Q15) | DH05.2 (R15) |
 | Số lần dùng (đọc) | ID hợp đồng hoặc dịch vụ, số Tour mẫu, hành trình yêu cầu Tour, báo giá, Booking, hạng mục hồ sơ Tour, lần đặt, khoản công nợ | Tổng hợp từ KD02, KD06, KD08, DH08, KT01 (R13) |
 | Lịch sử thay đổi | Đối tượng, trường, giá trị trước, sau, người, thời điểm | R20; QT03 |
 
@@ -872,10 +893,10 @@ Danh sách việc, theo thứ tự hiển thị. Chỉ tính khi NCC Đang dùng
 | Hợp đồng | Ngày ký, file, ghi chú | Không | — | File PDF, JPG, PNG, XLSX, DOCX; ≤ 20 MB mỗi file, tối đa 10 file (Q19) |
 | Mùa giá | Tên mùa, khoảng ngày | Có, ít nhất một mùa | Cả kỳ hợp đồng | Tên không trùng trong hợp đồng; khoảng nằm trong kỳ; không chồng lấn (R07) |
 | Mùa giá | Ngày cuối tuần | Có nếu có mùa tách | Thứ Bảy, Chủ nhật; hoặc theo hợp đồng trước | Ít nhất một thứ |
-| Đổi hủy | Mốc từ X ngày, mức, căn cứ | Không (bảng có thể trống) | Theo hợp đồng trước | X nguyên ≥ 0, không trùng; tỷ lệ 0–100%; số tiền ≥ 0 |
+| Đổi hủy | Mốc từ X ngày, tỷ lệ % trên tổng giá lần đặt; no-show % | Không (bảng có thể trống) | Theo hợp đồng trước | X nguyên ≥ 0, không trùng; tỷ lệ 0–100 %; không có số tiền, căn cứ (R08, Q-RS25) |
 | Trẻ em | Tên nhóm, từ tuổi, đến dưới tuổi | Không (bảng có thể trống) | Theo hợp đồng trước | 0 ≤ từ < đến ≤ 18; không chồng lấn (R09) |
 | Điều khoản thanh toán | Đợt: loại, giá trị, mốc, số ngày | Không (thiếu thì KT01.2 không điền sẵn lịch trả) | Theo hợp đồng trước | R10 |
-| Gia hạn | Kỳ mới | Có | Nối tiếp, 12 tháng | R06 |
+| Gia hạn | Kỳ mới | Có | Nối tiếp, dài bằng kỳ của hợp đồng đang gia hạn (R11, Q-RS08) | R06 |
 | Gia hạn | Điều chỉnh giá, làm tròn | Không | Trống; 1.000 ₫ (VND), 1 (USD, EUR) | −50% đến +100% |
 | DH05.1 | Tên dịch vụ | Có | Nhân bản: tên dịch vụ nguồn; đi kèm Giường phụ: “Giường phụ” | 2–150 ký tự; không trùng trong NCC; tên đi kèm chỉ không trùng trong các đi kèm của cùng dịch vụ chính (R14) |
 | DH05.1 | Loại dịch vụ, đơn vị tính | Có | Loại đầu tiên của NCC; đơn vị mặc định của loại | Loại thuộc các loại của NCC |
@@ -883,10 +904,10 @@ Danh sách việc, theo thứ tự hiển thị. Chỉ tính khi NCC Đang dùng
 | DH05.1 | Đi kèm dịch vụ (bổ sung 12/11/2026) | Không (trống là dịch vụ thường) | Dịch vụ chính khi thêm từ L5.6 | Dịch vụ thường của cùng NCC, khác chính nó; dịch vụ đang có đi kèm thì không chọn được; khóa khi dịch vụ đã dùng (R23, E5.9, E5.11) |
 | DH05.1 | Giường phụ (bổ sung 12/11/2026) | Không | Không | Chỉ hiện khi dịch vụ chính thuộc loại lưu trú; mỗi dịch vụ chính tối đa một giường phụ (E5.10) |
 | DH05.2 | Hạng phòng | Có với dịch vụ lưu trú (dịch vụ đi kèm không có, R23) | Dòng đang chọn | Thuộc danh mục hạng phòng |
-| DH05.2 | Số khách từ, đến | Có | 1 – không giới hạn | Nguyên ≥ 1; từ ≤ đến; R14 |
+| DH05.2 | Số khách từ, đến | Có | 1 – không giới hạn | Nguyên ≥ 1; từ ≤ đến; dòng căn cứ khách, phòng là số người lớn, dòng căn cứ đoàn, đơn vị dịch vụ là tổng khách gồm trẻ em (R14, Q-RS27) |
 | DH05.2 | Căn cứ tính, loại tiền | Có | Theo đơn vị tính của dịch vụ; loại tiền của hợp đồng | Thuộc danh mục; loại tiền được khác hợp đồng (R14) |
-| DH05.2 | Thứ tự | Có (hệ thống tự cấp) | Vị trí dòng trong lưới: dòng mới ở cuối, dòng nhân bản ngay dưới dòng nguồn | Nguyên ≥ 1, không trùng trong dịch vụ và hợp đồng; đổi bằng kéo dòng (R14) |
-| DH05.2 | Ô giá mùa, ô trẻ em | Không (trống là thiếu giá) | Trống; trẻ em lấy theo dòng đang chọn | Số ≥ 0, số chữ số thập phân theo số lẻ thập phân của loại tiền (RSD QT05 R11): VND, JPY 0, ngoại tệ khác 2; trẻ em tỷ lệ 0–100% |
+| DH05.2 | Ô giá mùa, ô trẻ em | Không (ô giá mùa trống là thiếu giá; ô trẻ em trống là thiếu giá ở dòng căn cứ khách, phòng; ở dòng căn cứ đoàn, đơn vị dịch vụ ô trẻ em bị khóa, phải trống; R14, E6.15, Q-RS02) | Trống; trẻ em lấy theo dòng đang chọn | Số ≥ 0, số chữ số thập phân theo số lẻ thập phân của loại tiền (RSD QT05 R11): VND, JPY 0, ngoại tệ khác 2; ô trẻ em là đơn giá, không nhập % (Q-RS05) |
+| DH05.2 · Phụ thu | Căn cứ | Có | Căn cứ của dòng | Phụ thu Thay thế: bằng căn cứ của dòng giá (R15, E6.14, Q-RS04) |
 
 ### 5.3. Dữ liệu gửi ra ngoài
 
@@ -915,19 +936,19 @@ DH03 không gửi email hay tài liệu ra ngoài hệ thống. File mẫu Excel
 | AC15 | Nhập mã số thuế đã có ở NCC khác | Chặn, lỗi cạnh trường kèm liên kết NCC kia |
 | AC16 | Bấm Xem công nợ | KT01.2 mở lọc theo NCC; quay lại giữ tab và vị trí |
 | AC17 | Thêm hợp đồng đầu tiên, giữ mặc định | Kỳ từ hôm nay 12 tháng; một mùa Cả kỳ hợp đồng; lưu được khi chưa nhập chính sách và điều khoản |
-| AC18 | Thêm hợp đồng khi đã có LH-2025/HĐ-07 | Kỳ 01/12/2026 – 30/11/2027; mùa dời ngày; chính sách và điều khoản giống hợp đồng cũ; không có dòng giá; mùa Tết có nhãn Cần kiểm tra ngày |
+| AC18 | Thêm hợp đồng khi đã có LH-2025/HĐ-07 (01/12/2025 – 30/11/2026) | Kỳ 01/12/2026 – 30/11/2027; mùa dời 12 tháng theo dương lịch (Tết 14/02 – 22/02/2026 thành 14/02 – 22/02/2027); chính sách và điều khoản giống hợp đồng cũ; không có dòng giá; không có nhãn Cần kiểm tra ngày (R11, R12; Q-RS29) |
 | AC19 | Lưu hợp đồng có kỳ trùng một ngày với hợp đồng khác | Chặn; lỗi nêu hợp đồng trùng, số ngày trùng và ngày bắt đầu hợp lệ (W16) |
 | AC20 | Mùa Thấp điểm 01/05 – 15/09 trùng Cao điểm 01/09 – 30/11 | Chặn; banner nêu 15 ngày trùng; đoạn trùng đỏ trên thanh lịch (W13) |
 | AC21 | Mùa Thấp điểm sửa thành 01/05 – 15/08, để trống 16/08 – 31/08 | Lưu được; cảnh báo 16 ngày chưa thuộc mùa; báo giá cho ngày 20/08/2026 báo thiếu giá, không dùng giá 0 |
 | AC22 | Dời mùa Thấp điểm của hợp đồng đã có giá | Mọi dòng giá dùng mùa theo ngày mới; báo giá và Booking đã lưu không đổi giá, mùa, ngày |
 | AC23 | Bật Tách cuối tuần cho mùa đã có giá 1.450.000 | DH05.2 có hai cột; cả hai ô là 1.450.000 |
 | AC24 | Xóa mùa Tết đang có giá ở 9 dòng của 4 dịch vụ | Hộp thoại nêu 9 dòng, 4 dịch vụ, 9 ngày; Giữ mùa thì không đổi; Xóa mùa rồi lưu thì các ô giá Tết bị xóa |
-| AC25 | Mốc hủy 30, 15, 7, 0 ngày; hủy dịch vụ ngày sử dụng 20/11 vào ngày 11/11 (9 ngày) | DH08.3 gợi ý phí 50% theo căn cứ Tổng giá dịch vụ |
+| AC25 | Mốc hủy 30, 15, 7, 0 ngày (0 %, 30 %, 50 %, 100 % trên tổng giá lần đặt); hủy dịch vụ ngày sử dụng 20/11 vào ngày 11/11 (9 ngày) | DH08.3 gợi ý phí = 50 % × tổng giá lần đặt (giá NCC xác nhận, chưa có thì giá tham chiếu); Điều hành sửa được (R08, Q-RS25) |
 | AC26 | Hai nhóm tuổi 0–4 và 3–12 | Chặn lưu; lỗi cạnh nhóm thứ hai |
 | AC27 | Điều khoản: cọc 30%, đợt 2 60% | Chặn lưu; báo thiếu 10% (W15a) |
 | AC28 | Điều hành nhập điều khoản thanh toán khi tạo hợp đồng | Lưu được; KT01.2 điền sẵn lịch trả theo các đợt cho dịch vụ có ngày sử dụng trong kỳ |
 | AC29 | Kế toán mở hợp đồng | Chỉ phần Điều khoản thanh toán sửa được, đặt đầu; nút Lưu điều khoản; các phần khác hiện dạng chữ (W23) |
-| AC30 | Gia hạn LH-2025/HĐ-07 với +5%, làm tròn 1.000 ₫ | Hộp thoại nêu 10 dòng giá của 5 dịch vụ; Superior Cao điểm NT 1.650.000 → 1.733.000; sau khi lưu có LH-2026/HĐ-12 Sắp áp dụng với 10 dòng giá đã điều chỉnh, mùa và chính sách được sao chép (W20) |
+| AC30 | Gia hạn LH-2025/HĐ-07 với +5%, làm tròn 1.000 ₫ | Kỳ điền sẵn 01/12/2026 – 30/11/2027; hộp thoại nêu 10 dòng giá của 5 dịch vụ; Superior Cao điểm NT 1.650.000 → 1.733.000; sau khi lưu có LH-2026/HĐ-12 Sắp áp dụng với 10 dòng giá đã điều chỉnh, mùa và chính sách được sao chép (W20) |
 | AC31 | Gia hạn bị lỗi khi đang sao chép | Không có hợp đồng mới, không có dòng giá dở dang; bảng trượt giữ dữ liệu |
 | AC32 | Dòng hợp đồng cũ khi đã có hợp đồng kỳ sau | Không có nút Gia hạn |
 | AC33 | Xóa LH-2026/HĐ-12 chưa dùng | Xóa cùng mùa, chính sách, điều khoản, 10 dòng giá; dịch vụ còn nguyên |
@@ -969,4 +990,13 @@ DH03 không gửi email hay tài liệu ra ngoài hệ thống. File mẫu Excel
 | AC69 | Xóa Phòng Family chưa dùng, có 2 đi kèm | Hộp thoại W42 liệt kê 2 đi kèm bị xóa cùng; sau khi xóa, cả dịch vụ và 2 đi kèm biến mất; số dịch vụ ở phần đầu giảm 3 (R13, R23) |
 | AC70 | Gia hạn LH-2025/HĐ-07 +5%, làm tròn 1.000 ₫, khi Phòng nghỉ tiêu chuẩn có Giường phụ ở AC64 | Khung “Sẽ sao chép” đếm cả dòng giá của Giường phụ (11 dòng giá của 6 dịch vụ thay vì 10 dòng của 5 dịch vụ ở AC30); LH-2026/HĐ-12 có Giường phụ Cao điểm NT 630.000, Thấp điểm 525.000; Giường phụ vẫn là đi kèm của Phòng nghỉ tiêu chuẩn (R12) |
 | AC71 | Nhân bản Phòng nghỉ tiêu chuẩn thành Phòng nghỉ tiêu chuẩn hướng hồ, giữ lựa chọn Dịch vụ đi kèm (1) | Dịch vụ mới có đi kèm Giường phụ với dấu Giường phụ và 4 ô giá của hợp đồng đang chọn; Giường phụ cũ vẫn thuộc Phòng nghỉ tiêu chuẩn (R17) |
-
+| AC72 | NCC chỉ có hợp đồng quý 01/01/2027 – 31/03/2027, mùa Cao điểm 01/01 – 28/02/2027 và Thấp điểm 01/03 – 31/03/2027; bấm + Thêm hợp đồng | Kỳ điền sẵn 01/04/2027 – 30/06/2027 (dài bằng kỳ nguồn); Cao điểm 01/04 – 31/05/2027, Thấp điểm 01/06 – 30/06/2027; không mùa nào bị cắt hay mất, không có ngày chưa thuộc mùa (R11, R12; Q-RS08) |
+| AC73 | Hợp đồng 01/12/2026 – 30/11/2027 có mùa Đông 01/12/2026 – 28/02/2027 và Thường 01/03 – 30/11/2027; gia hạn giữ kỳ điền sẵn, lưu; rồi gia hạn tiếp hợp đồng vừa tạo | Lần 1: kỳ 01/12/2027 – 30/11/2028; Đông 01/12/2027 – 29/02/2028 (29/02/2028 thuộc mùa Đông), Thường 01/03 – 30/11/2028; không có cảnh báo ngày chưa thuộc mùa. Lần 2: kỳ 01/12/2028 – 30/11/2029; Đông 01/12/2028 – 28/02/2029, Thường 01/03 – 30/11/2029 (R12; Q-RS08) |
+| AC74 | Mở bảng trượt hợp đồng LH-2025/HĐ-07 ở mục Mùa giá; gia hạn hợp đồng này | Mùa không có ô Theo âm lịch, menu ⋯ của mùa không có Đã kiểm tra; khung “Sẽ sao chép” không có dòng mùa âm lịch; bảng trượt Chưa lưu có Tết 14/02 – 22/02/2027, không có nhãn Cần kiểm tra ngày, không có banner; Điều hành sửa Tết thành 05/02 – 13/02/2027 và hai khoảng Cao điểm liền kề thành đến 04/02 và từ 14/02/2027, trước khi lưu hoặc sau khi lưu ở L4.7: lưu được, không có ngày chưa thuộc mùa (R12; Q-RS29) |
+| AC75 | Ở mục Chính sách đổi hủy, thêm mốc 15 ngày | Mốc chỉ có ô tỷ lệ % (ghi “trên tổng giá lần đặt”), không có lựa chọn số tiền hay căn cứ; no-show cũng chỉ có tỷ lệ %; máy chủ từ chối mốc gửi kèm kiểu số tiền hoặc căn cứ khác (R08; Q-RS25) |
+| AC76 | Dán từ Excel vào dòng VND của DH05.2 bốn ô “1.650.000”, “1,650,000”, “1650000”, “1.650.000,5”; vào dòng USD ba ô “1,650.50”, “1.650,50”, “72,5” | VND: ba ô đầu nhận 1.650.000; ô thứ tư đỏ (VND không có số lẻ). USD: 1.650,50; 1.650,50; 72,50 (R16; CGD K0.04; Q-RS09) |
+| AC77 | Ở hợp đồng có nhóm tuổi 0–5 và 6–11: lưu dòng giá Xe đón sân bay (căn cứ đoàn) với giá mùa đủ, hai ô trẻ em trống; rồi gửi lưu cùng dòng đó có giá trẻ em 0 ở nhóm 0–5; mở lưới, gõ vào ô trẻ em của dòng xe; lưu dòng Ăn tối set menu Việt (căn cứ khách) với ô trẻ em 6–11 trống | Xe: tình trạng Đủ giá, ô trẻ em không sọc, không đếm vào số ô thiếu; lần lưu có giá trẻ em bị từ chối, lỗi tại ô trẻ em của dòng xe, không ghi gì; trên lưới ô trẻ em của dòng xe khóa, không gõ được. Set menu: Thiếu 1 ô giá (R14, E6.15; Q-RS02) |
+| AC78 | Mở DH05.2 của Phòng nghỉ tiêu chuẩn; thêm dòng Superior 15–30 khách khi đã có Superior 1–19 và 20+ | Lưới không có cột hay ô Thứ tự, không kéo đổi được thứ tự dòng; dòng sắp theo hạng phòng (thứ tự danh mục QT05), căn cứ, số khách từ; lưu bị chặn vì khoảng số khách chồng lấn (R14, E6.2; Q-RS03) |
+| AC79 | Ở dòng Superior 1–19 khách của Phòng nghỉ tiêu chuẩn (căn cứ phòng), thêm phụ thu lễ Thay thế 2.500.000 ₫ căn cứ Mỗi khách; sửa thành Mỗi phòng; thêm phụ thu Cộng dồn 100.000 ₫ căn cứ Mỗi khách | Lần 1: chặn lưu, lỗi cạnh ô Căn cứ “Phụ thu Thay thế phải cùng căn cứ với dòng giá: phòng”. Lần 2: lưu được. Phụ thu Cộng dồn Mỗi khách lưu được (R15, E6.14; Q-RS04) |
+| AC80 | Ở ô trẻ em 6–11 của dòng Ăn tối set menu Việt (420.000 ₫), gõ “50%”; rồi gõ 210.000; gia hạn hợp đồng +5 %, làm tròn 1.000 ₫ | “50%” làm ô đỏ, không có lựa chọn kiểu tỷ lệ; 210.000 lưu được; sau gia hạn, giá trẻ em ở hợp đồng mới là 221.000 ₫ (210.000 × 1,05 = 220.500 → 221.000, R12; R09; Q-RS05) |
+| AC81 | Mở mục Chính sách trẻ em của LH-2025/HĐ-07 | Có nhóm tuổi và điều kiện, không có ô Số trẻ miễn phí; hợp đồng đọc qua API không có trường số trẻ miễn phí (R09; Q-RS07) |
