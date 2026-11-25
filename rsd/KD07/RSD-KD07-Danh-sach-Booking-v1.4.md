@@ -8,6 +8,7 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 - **Quyết định 12/11/2026.** Lịch theo hạn thanh toán ẩn đợt của Booking Đã hủy; Booking đã hủy vẫn tra cứu được ở Bảng. Số còn phải thu đọc từ Công nợ (KT01); thiếu số liệu thì ghi “Chưa có dữ liệu công nợ”, không coi là 0.
 - **Quyết định sau rà soát mâu thuẫn (12/11/2026).** Ngưỡng Đến hạn là tham số chung do Quản trị hệ thống cấu hình, mặc định 7 ngày; KD07 và KT01 cùng đọc. Hủy Booking thì yêu cầu Tour tự chuyển Đã hủy; khách đặt lại thì Mở lại yêu cầu ở KD06.
 - **Quyết định của người dùng (12/11/2026, yêu cầu riêng của doanh nghiệp).** Không có luồng duyệt. Kế toán (KT01) không làm chốt chặn cho Kinh doanh và Điều hành. Hồ sơ Tour tự tạo ngay khi Booking được lưu ở KD08, không chờ thanh toán; không còn điều kiện tạo hồ sơ và Tạo sớm. Số liệu thanh toán từ KT01 trên KD07 chỉ để tham khảo.
+- **Quyết định rà soát 13/11/2026 (Q-RS17; `docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`).** Booking được tạo khi Kinh doanh ghi Chốt cho một phiên bản ở KD06.3 (RSD KD06 R19, KD08 L1.1), không còn nút Lưu Booking ở KD08; hồ sơ Tour tạo trong cùng giao dịch đó. Sửa chữ “lưu Booking” ở bảng nguồn, W01, E1.8, trạng thái Booking, mô hình dữ liệu, AC17; không đổi nghiệp vụ của KD07.
 - **Thay đổi ở v1.4 (12/11/2026).** Cập nhật theo quyết định phase coding (`docs/QUYET-DINH-PHASE-CODING.md`). Q1: bỏ phạm vi “Kinh doanh xem Booking mình phụ trách”; mọi vai trò được xem KD07 thấy mọi Booking; thêm chip Của tôi (bật sẵn với Kinh doanh); bộ lọc và cột Phụ trách cho mọi vai trò; 1.4 thành bảng quyền mặc định theo vai trò, cấu hình ở QT02. Q5: bỏ tình trạng Tạo lỗi của hồ sơ Tour và bộ lọc Hồ sơ Tour; bỏ E1.8, E2.1, AC48 (giữ mã). Q18: Còn phải thu tách theo loại tiền khi có khoản phải thu phát sinh khác loại tiền (R04). Q3: bỏ nhãn “suy ra, chờ xác nhận”. U3: nhớ bộ lọc cả sau khi đăng xuất. Sửa đầu tài liệu, 1.1–1.5, 2.1–2.7, L1.1, L1.2, L3.1, L4.1, E1.1, E1.3, E1.6, E1.9, E2.5, E3.1, R01, R03–R05, R07, R08, R10, R11, R13, 5.1, 5.2, AC01, AC03, AC22, AC26, AC28, AC32; thêm AC50. Không dựng lại hình.
 - **Thay đổi ở v1.4 (bổ sung 12/11/2026).** Theo quyết định của người dùng 12/11/2026 (để RSD CH03 có thẻ VT-KD-06): thêm bộ lọc **Yêu cầu đổi lịch trình** (Tất cả, Đang chờ, Quá hạn phản hồi), định nghĩa theo trạng thái Chờ Kinh doanh và chỉ báo Quá hạn phản hồi của RSD DH08 (R18, E3.11; RSD KD08 R13). Sửa 1.5, 2.1, 2.3, R07, 5.1, 5.2; thêm AC51, AC52. Không đổi luồng, trạng thái, quyền; không dựng lại hình (thanh lọc trên hình chưa có ô này).
 - **Thay đổi ở v1.3 (12/11/2026).** Sau rà soát mâu thuẫn lần ba, không đổi nghiệp vụ, không đổi hình: cập nhật phiên bản các RSD nguồn ở đầu tài liệu và ở mục Truy vết nguồn (KD05 v1.4, KD06 v1.5, KD08 v1.5, KT01 v1.5, DH07 v1.7, DH08 v2.8).
@@ -87,7 +88,7 @@ Bảng dưới là quyền mặc định (màn hoặc phần × thao tác) và g
 | KD07 · không có nút tạo · TN04.01 | Booking chỉ được tạo từ KD06.3 | 1.3, E1.3, E2.6 |
 | TN04.04 · SYS04.07 · SYS04.09 | Kế toán mở thanh toán của Booking; số đã thu, còn phải thu tự cập nhật | L3.1, L4.2, R04 |
 | Vòng đời Booking | Hiệu lực, Đã hủy | 2.4, R02 |
-| RSD DH07 v1.7 R01, BOI-CANH (quyết định 12/11/2026, Q5) | Hồ sơ Tour tạo trong cùng giao dịch lưu Booking; không có Tạo lỗi | R03 |
+| RSD DH07 v1.7 R01, BOI-CANH (quyết định 12/11/2026, Q5) | Hồ sơ Tour tạo trong cùng giao dịch ghi Chốt (tạo Booking); không có Tạo lỗi | R03 |
 | Quyết định 11/11/2026 · dạng xem | Bảng; Lịch mốc Ngày khởi hành (mặc định Kinh doanh) hoặc Hạn thanh toán (mặc định Kế toán); không Kanban, không kéo thả | 2.6, L4.1–L4.3, R12–R14 |
 | Quyết định 12/11/2026 | Lịch hạn thanh toán ẩn đợt Booking Đã hủy; còn phải thu đọc từ KT01, thiếu thì ghi Chưa có dữ liệu công nợ | R04, R14, E1.4, E4.1, E4.5 |
 
@@ -145,12 +146,12 @@ Booking không có trạng thái người dùng chọn ở KD07. Danh sách đ�
 
 | Trạng thái | Cách có | Thao tác làm đổi | Ở đâu |
 |---|---|---|---|
-| Hiệu lực | Có khi Kinh doanh lưu Booking ở KD08 từ phiên bản Chốt | Hủy Booking | KD06.3 → KD08 |
+| Hiệu lực | Có khi Kinh doanh ghi Chốt cho một phiên bản ở KD06.3 (ghi Chốt là tạo Booking; Q-RS17) | Hủy Booking | KD06.3 → KD08 |
 | Đã hủy | Kinh doanh hủy kèm lý do | Không có thao tác mở lại | KD08.1 |
 
 | Thông tin đọc kèm | Giá trị | Cách có giá trị |
 |---|---|---|
-| Hồ sơ Tour | Đã có (kèm trạng thái hồ sơ Mới tạo, Đang diễn ra, Đã kết thúc, Đã đóng) | Tạo trong cùng giao dịch lưu Booking (DH07 R01; Q5), DH08 (R03) |
+| Hồ sơ Tour | Đã có (kèm trạng thái hồ sơ Mới tạo, Đang diễn ra, Đã kết thúc, Đã đóng) | Tạo trong cùng giao dịch ghi Chốt, tạo Booking (DH07 R01; Q5), DH08 (R03) |
 | Tình trạng đợt thanh toán | Còn hạn, Đến hạn, Quá hạn, Đã thu đủ | Tính lúc đọc từ hạn đợt (KD08.2) và số đã thu (KT01) (R04, Q6) |
 | Điều chỉnh sau hủy | Chờ điều chỉnh, Đã điều chỉnh | KT01.1 ghi điều chỉnh nghĩa vụ (R04) |
 
@@ -203,7 +204,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **L1.1 Xem Booking của tôi.** *Điều kiện:* Kinh doanh.
 
-1. **W01 · Menu Kinh doanh → Booking.** Kinh doanh mở Booking từ menu. Danh sách ở chip Của tôi bật, Khởi hành Chưa kết thúc, chip Hiệu lực, sắp theo ngày khởi hành gần nhất. Mỗi dòng cho biết khách, thời gian, số khách, giá trị, hồ sơ Tour và còn phải thu kèm đợt chưa thu sớm nhất. Mọi Booking đều có Tour Code vì hồ sơ Tour tạo trong cùng giao dịch lưu Booking (R03). Người dùng thấy ngay Tanaka Travel Co. khởi hành 14/11 mà đợt 2 đã quá hạn 5 ngày, Lefebvre Famille chưa thu đợt 1, và Brown & Co Travel chưa có lịch thanh toán. Số liệu thanh toán chỉ để tham khảo, không ảnh hưởng hồ sơ Tour (R04).
+1. **W01 · Menu Kinh doanh → Booking.** Kinh doanh mở Booking từ menu. Danh sách ở chip Của tôi bật, Khởi hành Chưa kết thúc, chip Hiệu lực, sắp theo ngày khởi hành gần nhất. Mỗi dòng cho biết khách, thời gian, số khách, giá trị, hồ sơ Tour và còn phải thu kèm đợt chưa thu sớm nhất. Mọi Booking đều có Tour Code vì hồ sơ Tour tạo trong cùng giao dịch ghi Chốt, tạo Booking (R03). Người dùng thấy ngay Tanaka Travel Co. khởi hành 14/11 mà đợt 2 đã quá hạn 5 ngày, Lefebvre Famille chưa thu đợt 1, và Brown & Co Travel chưa có lịch thanh toán. Số liệu thanh toán chỉ để tham khảo, không ảnh hưởng hồ sơ Tour (R04).
 
    ![W01 · Booking hiệu lực chưa kết thúc của tôi](wireframes/W01.png)
 
@@ -272,7 +273,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 - **E1.5 Khoảng ngày không hợp lệ.** Từ ngày sau Đến ngày, hoặc ngày sai định dạng: nút Áp dụng khóa, lỗi ghi dưới ô (“Từ ngày phải trước hoặc bằng Đến ngày”). Bỏ trống một đầu thì khoảng mở về phía đó.
 - **E1.6 Không có quyền.** Vai trò không được cấp quyền xem KD07 (mặc định Điều hành) không có mục Booking; mở KD07 bằng đường dẫn thì hiện trang “Bạn không có quyền xem danh sách Booking” kèm liên kết Hồ sơ Tour (DH07).
 - **E1.7 Một Booking không có số liệu công nợ.** KT01 trả được số liệu cho cả trang nhưng thiếu một Booking (chưa có bản ghi công nợ dù đã có lịch thanh toán): riêng dòng đó ghi “Chưa có dữ liệu công nợ”; Booking đó khớp bộ lọc Chưa có dữ liệu công nợ, không khớp Còn phải thu hay Đã thu đủ (R04).
-- **E1.8 (Bỏ theo Q5.)** Hồ sơ Tour tạo trong cùng giao dịch lưu Booking nên không có tình trạng Tạo lỗi (R03).
+- **E1.8 (Bỏ theo Q5.)** Hồ sơ Tour tạo trong cùng giao dịch ghi Chốt (tạo Booking) nên không có tình trạng Tạo lỗi (R03).
 - **E1.9 Người phụ trách đã ngừng hoạt động.** Vẫn có trong danh sách chọn Phụ trách, kèm “(ngừng hoạt động)”, để tìm Booking của người đã nghỉ.
 
 ### 3.2. Mở Booking để hủy hoặc xem chi tiết (SYS04.05 → SYS04.06)
@@ -386,7 +387,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 ### R02. Trạng thái Booking (đúng nguồn, quyết định 11/11/2026)
 
-- Hai trạng thái do KD08 sở hữu: **Hiệu lực** (có khi lưu Booking từ phiên bản Chốt) và **Đã hủy** (Kinh doanh hủy kèm lý do ở KD08.1). KD07 chỉ đọc.
+- Hai trạng thái do KD08 sở hữu: **Hiệu lực** (có khi ghi Chốt cho một phiên bản ở KD06.3) và **Đã hủy** (Kinh doanh hủy kèm lý do ở KD08.1). KD07 chỉ đọc.
 - Không thêm trạng thái hay giai đoạn. Booking Hiệu lực vẫn là Hiệu lực sau khi Tour kết thúc hay hồ sơ Tour đã đóng; tiến độ Tour xem ở cột Hồ sơ Tour.
 - Tình trạng thanh toán không làm đổi trạng thái Booking (SYS04.09: không tạo trạng thái thanh toán chi tiết).
 
@@ -520,7 +521,7 @@ Hồ sơ Tour tạo trong cùng giao dịch khi Booking được lưu ở KD08, 
 | Số liệu công nợ của Booking | Mã Booking | Đã thu theo đợt, tổng đã thu, còn phải thu (gồm khoản Phát sinh), tình trạng đợt, tình trạng dòng Booking, tiền thừa, cần hoàn, tình trạng điều chỉnh sau hủy, kết quả điều chỉnh | KT01 (RSD KT01 5.1); KD07 chỉ đọc |
 | Ngưỡng Đến hạn | Tham số chung | Số ngày | QT05, Quản trị hệ thống sửa; KD07, KT01 đọc |
 | Yêu cầu đổi lịch trình (đọc) | ID yêu cầu | Booking (qua hồ sơ Tour), trạng thái, hạn phản hồi | DH08 sở hữu (RSD DH08 R18, mục 5.1); KD07 chỉ đọc cho bộ lọc Yêu cầu đổi lịch trình (R07) |
-| Hồ sơ Tour | Tour Code | Tour Code, trạng thái hồ sơ | DH07 (tạo trong cùng giao dịch lưu Booking), DH08; KD07 chỉ đọc |
+| Hồ sơ Tour | Tour Code | Tour Code, trạng thái hồ sơ | DH07 (tạo trong cùng giao dịch ghi Chốt, tạo Booking), DH08; KD07 chỉ đọc |
 | Khách hàng, người liên hệ | Mã khách hàng | Tên, loại, quốc gia, tên và email người liên hệ (chỉ dùng để tìm) | KD04; KD07 chỉ đọc |
 | Thiết lập dạng xem | Người dùng + màn | Dạng xem dùng lần cuối, mốc của Lịch, Tháng hay Tuần, bộ lọc và chip (U3) | KD07 ghi khi người dùng đổi; không ghi nhật ký QT03 |
 
@@ -561,7 +562,7 @@ KD07 không gửi email, tài liệu hay nhắc thanh toán cho khách hoặc NC
 | AC12 | KT01 không trả số liệu khi tải danh sách | Danh sách vẫn hiện; banner có Thử lại; mọi dòng có lịch thanh toán ghi “Chưa có dữ liệu công nợ”, không có số 0; bộ lọc Thanh toán khóa (W08, E1.4) |
 | AC13 | KT01 trả số liệu cho cả trang trừ một Booking | Riêng dòng đó ghi “Chưa có dữ liệu công nợ”; dòng khớp bộ lọc Chưa có dữ liệu công nợ, không khớp Còn phải thu, Đã thu đủ (E1.7) |
 | AC14 | Chọn Thanh toán Cần thu trong 7 ngày vào 12/11/2026 | Còn 5 Booking: 2 có đợt quá hạn, 3 có đợt hạn đến 19/11; chip 5 / 0 / 5 (W04) |
-| AC17 | Kinh doanh lưu Booking BK-2611-0158 ở KD08 (đợt 1 15.513 EUR chưa thu; số theo docs/rsd/BO-TINH-GIA, tính lại 13/11/2026); người dùng tải lại KD07 | Dòng BK-2611-0158 có Tour Code TP-2703-0001, trạng thái Mới tạo; cột Còn phải thu ghi đợt 1 chưa thu (W01, R03) |
+| AC17 | Kinh doanh ghi Chốt ở KD06.3, tạo BK-2611-0158, rồi lưu lịch thanh toán ở KD08.2 (đợt 1 15.513 EUR chưa thu; số theo docs/rsd/BO-TINH-GIA, tính lại 13/11/2026); người dùng tải lại KD07 | Dòng BK-2611-0158 có Tour Code TP-2703-0001, trạng thái Mới tạo; cột Còn phải thu ghi đợt 1 chưa thu (W01, R03) |
 | AC18 | Bấm Tour Code | DH08 mở hồ sơ Tour; bấm phần còn lại của dòng mở KD08 (R03, R09) |
 | AC19 | Nhập khoảng Từ 20/12/2026 Đến 01/12/2026 | Áp dụng khóa, lỗi dưới ô (E1.5) |
 | AC20 | Tìm “hoffmann” không có kết quả | “Không có Booking khớp bộ lọc”, khác trạng thái chưa có dữ liệu (W05, W07) |

@@ -6,7 +6,8 @@ const S = {};
 const CSS = `
 .tag{display:inline-flex;align-items:center;gap:4px;background:#eef2ff;color:#3730a3;border-radius:4px;padding:0 6px;font-size:11.5px;line-height:19px;margin:1px 3px 1px 0;white-space:nowrap}
 .tag.x::after{content:"✕";color:#6366f1;font-size:10px}
-.input.tags{height:auto;min-height:30px;flex-wrap:wrap;white-space:normal;padding:3px 8px}
+.input.tags{height:auto;min-height:30px;flex-wrap:wrap;white-space:normal;padding:3px 8px;border:1px solid #d1d5db;border-radius:6px;background:#fff;display:flex;align-items:center}
+.input.tags.bad{border-color:#dc2626;background:#fff7f7}
 .pr{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
 .pr .u{font-weight:400;color:#6b7280;font-size:11px}
 .pbar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:7px 12px;margin:10px 0 10px}

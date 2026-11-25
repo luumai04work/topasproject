@@ -5,6 +5,8 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 
 - **Nguồn nghiệp vụ.** `docs/flows/danh-sach-man-hinh-level1.md` (DH07 và vòng đời trạng thái), tính năng TN05.01 và TN05.02, luồng `SYS04.04`, `SYS05.01`–`SYS05.03`, `SYS07.05`, `SYS08.01`, `SYS08.08`, `SYS09.01`, mục DX04, RSD DH08 v2.8, RSD DH01 v1.4, RSD DH06 v1.3, RSD KD07 v1.3, RSD KD08 v1.5, RSD KT01 v1.5, RSD QT01 v1.2, RSD QT05 v1.2, `docs/rsd/BOI-CANH-DU-AN.md`, `docs/QUYET-DINH-PHASE-CODING.md` và các quyết định đã chốt với người dùng ngày 11/11/2026 và 12/11/2026.
 - **Thay đổi so với nguồn.** Nguồn ghi Điều hành bấm “Tạo từ Booking” và không yêu cầu thanh toán. Bản này áp dụng quyết định ngày 12/11/2026: **hệ thống tự tạo hồ sơ trong cùng giao dịch khi Booking được lưu** ở KD08 (Q5), không yêu cầu thanh toán, không có nút tạo tay. Hồ sơ tự tạo chưa có người phụ trách và được giao tại DH07. (Quyết định 11/11/2026 “tự tạo khi Booking đạt điều kiện thanh toán; Điều hành được tạo sớm” đã bị thay ở v1.5.)
+- **Thay đổi ở v1.8 (bổ sung 13/11/2026 · quyết định rà soát).** Theo `docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`. (1) Q-RS12: “Của tôi” là chip riêng (CGD K2.06), chỉ bật sẵn với Điều hành; Kinh doanh, Kế toán, Quản trị tắt sẵn; bộ lọc Phụ trách mặc định Tất cả, không còn giá trị Của tôi; bỏ nghĩa “hồ sơ của Booking mình” cho Kinh doanh (1.2, 1.4, 2.1, 2.3, L3.1, L3.4, L5.4, R10, AC16, AC25, AC38). (2) Q-RS13, Q-RS23: danh sách chọn người phụ trách và nhóm Điều hành theo vai trò hệ thống Điều hành, không theo nhóm công việc (1.4, R08, R09, 5.2). (3) Q-RS28: giao người phụ trách ở DH08 bằng nút Giao ở header (cùng quyền, cùng lịch sử); Mở lại Tour chỉ chọn được người mới khi có quyền giao (E4.5, R08, AC46). (4) Q-RS10, Q-RS11: bộ lọc Việc cần xử lý · Đặt dịch vụ tính cả hạng mục Đã hủy có chỉ báo Chưa thay thế, không tính hạng mục Xác nhận một phần có chỉ báo Chờ Kinh doanh (2.3). Không dựng lại hình: W01, W03, W12, W18 chưa có chip Của tôi.
+- **Quyết định rà soát 13/11/2026 (Q-RS17, Q-RS24; `docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`).** (Q-RS17) Booking được tạo khi Kinh doanh ghi Chốt ở KD06.3 (RSD KD06 R19, KD08 L1.1), không còn nút Lưu Booking ở KD08: hồ sơ Tour tạo trong cùng giao dịch ghi Chốt; lỗi thì không có Chốt, không có Booking. Sửa 1.x bảng nguồn, 2.x trạng thái, L1.1, E1.1, E1.2, R01, R02, AC01, AC06, AC08. (Q-RS24) Hoàn tác giao gỡ thông báo và nhãn Đã xử lý mà lần giao đã gắn (R08; RSD CH02 R05, R06). Hình chưa cập nhật (wireframe chưa vẽ lại).
 - **Thay đổi ở v1.8 (12/11/2026).** Cập nhật theo quyết định phase coding (`docs/QUYET-DINH-PHASE-CODING.md`), không dựng lại wireframe; hình chưa cập nhật có ghi chú dưới hình. (1) Q5: hồ sơ tạo trong cùng giao dịch với việc lưu Booking; lỗi thì Booking không được lưu. Bỏ tình trạng Tạo lỗi, tự thử lại, nút Thử lại, dải và bảng trượt Booking chờ (W08), trường cách tạo, số đã thu. Bỏ L2.1, L2.3, E1.3, E2.2, E2.6–E2.9, AC07, AC15, AC43; viết lại 1.1–1.5, 2.1, 2.5, 2.7, E1.1, E1.2, R01, R05, R09, R11, 5.1, AC01, AC06, AC08. (2) Q1: quyền mặc định theo vai trò, cấu hình ở QT02; bỏ phạm vi bản ghi (Kinh doanh thấy mọi hồ sơ, bộ lọc Phụ trách mặc định Của tôi). Mở lại Tour theo quyền, có thể chọn người phụ trách mới (RSD DH08 R16). Sửa 1.2, 1.4, 2.1–2.3, L3.4, L5.4, E3.3 (bỏ), E4.5, R08, R10, AC16, AC25, AC38, AC45, AC46. (3) Q7: Tour Code cho phép thủng số; tiền tố là tham số chung QT05, mặc định TP (R02, R12). (4) Q2: thông báo trong ứng dụng, không có thông báo nội bộ qua email (1.3, L1.1, 5.3); cấu hình không có màn ở tệp cấu hình hoặc dữ liệu khởi tạo (R12). (5) Q3: bỏ nhãn “suy ra, chờ xác nhận” (R10, AC44). (6) U3: nhớ bộ lọc theo người dùng (1.2, 2.3, R10). U2: giao người làm ngay, thông báo ngắn có Hoàn tác (2.7). K6: “NCC ngừng sử dụng” → “NCC ngừng dùng”. Nút Thử lại khi lỗi tải đổi thành Tải lại (E3.1, E5.2, AC27).
 - **Thay đổi ở v1.8 (bổ sung 12/11/2026).** Sửa sau rà chéo, theo quyết định của người dùng 12/11/2026. (1) Thêm bộ lọc **Việc cần xử lý** (chọn nhiều: Thay đổi chương trình, Đặt dịch vụ, Chờ NCC phản hồi quá hạn), định nghĩa theo trạng thái và chỉ báo của RSD DH08 (2.1, 2.3, R02, R04, R19), để RSD CH03 có thẻ VT-DH-04 đến 06. Sửa 1.5, 2.1, 2.3, 5.2; thêm AC48, AC49. (2) R09 viết lại theo RSD CH02 R04: nhắc hồ sơ chưa giao mỗi ngày trên cùng một dòng thông báo, mỗi ngày quay về Chưa đọc; giờ nhắc là tham số chung Giờ chạy nhắc hằng ngày ở QT05 (RSD QT05 R17), dùng chung cho mọi loại nhắc định kỳ. Sửa L4.3, R09, R12. Không đổi luồng, trạng thái, quyền; không dựng lại hình.
 - **Thay đổi ở v1.7 (12/11/2026).** Bổ sung sau kiểm tra chéo cuối đợt: 1.4, R09: người nhận thông báo nhóm Điều hành có vai trò Điều hành (RSD DH06 v1.3 R03). Đồng bộ sau rà soát lần ba, không đổi wireframe:
@@ -69,7 +71,7 @@ DH07 là điểm vào của module Điều hành. Màn liệt kê mọi hồ sơ
 
 | Từ / đến | Hành vi |
 |---|---|
-| Menu Điều hành → DH07 | Mở danh sách với bộ lọc và dạng xem người dùng dùng lần cuối, nhớ theo người dùng cả sau khi đăng xuất (R13, U3); lần đầu là dạng Bảng, Đang mở, Phụ trách: Của tôi (Q1; mục 2.3). |
+| Menu Điều hành → DH07 | Mở danh sách với bộ lọc và dạng xem người dùng dùng lần cuối, nhớ theo người dùng cả sau khi đăng xuất (R13, U3); lần đầu là dạng Bảng, chip Đang mở, chip Của tôi bật sẵn với Điều hành, tắt sẵn với vai trò khác (Q1; mục 2.3; quyết định rà soát 13/11/2026, Q-RS12). |
 | Thông báo → DH07 | Thông báo hồ sơ mới hoặc hồ sơ sắp khởi hành chưa giao mở DH07 ở dạng Bảng, lọc Chưa có người phụ trách (W03). |
 | KD08 → DH07 (sự kiện) | Booking được lưu ở KD08 (Booking Hiệu lực): hệ thống tạo hồ sơ trong cùng giao dịch (R01, Q5). Thao tác ở KT01 và lịch thanh toán ở KD08.2 không kích hoạt việc tạo hồ sơ. |
 | DH07 → DH08 | Bấm một dòng để mở hồ sơ. Tab đích theo trạng thái (R10): Mới tạo, Đang diễn ra mở DH08.1; Đã kết thúc mở DH08.8; Đã đóng mở DH08.1 chỉ đọc, riêng Kế toán mở hồ sơ Đã đóng chưa quyết toán thì vào DH08.8. |
@@ -92,10 +94,10 @@ Quyền là cặp (màn hoặc phần của màn, thao tác), gán cho vai trò 
 |---|---|---|---|---|
 | Danh sách, tìm, lọc, mở hồ sơ | Mọi hồ sơ | Mọi hồ sơ, chỉ xem | Mọi hồ sơ, chỉ xem | Mọi hồ sơ, chỉ xem (Q25) |
 | Giao người phụ trách (tại chỗ, hàng loạt; thao tác Chuyển phụ trách ở QT02) | Có, với hồ sơ chưa đóng | Không | Không | Không |
-| Nhận thông báo hồ sơ mới, nhắc chưa giao | Nhân sự nhóm Điều hành Nhận phân công Đang dùng, có tài khoản liên kết đang hoạt động và có vai trò Điều hành (RSD DH06 R03) | Thông báo khi hồ sơ của Booking mình được tạo | Không | Không ai nhận thông báo; hồ sơ vẫn hiện trong danh sách hồ sơ chưa giao |
+| Nhận thông báo hồ sơ mới, nhắc chưa giao | Nhóm Điều hành: nhân sự Nội bộ Nhận phân công Đang dùng, có tài khoản liên kết đang hoạt động và có vai trò hệ thống Điều hành (RSD DH06 R03; Q-RS13) | Thông báo khi hồ sơ của Booking mình được tạo | Không | Không ai nhận thông báo; hồ sơ vẫn hiện trong danh sách hồ sơ chưa giao |
 | Dạng xem Bảng, Kanban, Lịch | Cả ba; giao tại chỗ trên thẻ Kanban | Cả ba, chỉ xem | Cả ba, chỉ xem | Cả ba, chỉ xem |
 
-- **Không giới hạn theo bản ghi.** Ai có quyền xem DH07 thì thấy mọi hồ sơ; ai có quyền giao người phụ trách thì giao được mọi hồ sơ chưa đóng (Q1). Bộ lọc Phụ trách mặc định Của tôi chỉ để tiện, tắt được (mục 2.3).
+- **Không giới hạn theo bản ghi.** Ai có quyền xem DH07 thì thấy mọi hồ sơ; ai có quyền giao người phụ trách thì giao được mọi hồ sơ chưa đóng (Q1). Chip Của tôi bật sẵn với Điều hành chỉ để tiện, tắt được (mục 2.3).
 - **Ẩn và khóa.** Không có quyền thì ẩn nút; trường chỉ đọc hiện dạng chữ (U5). Người không có quyền giao không thấy ô chọn dòng và ô Chọn người; cột Phụ trách hiện tên dạng chữ. Họ vẫn mở được hồ sơ (W11, W12).
 - **Kiểm tra lúc ghi.** Máy chủ kiểm tra quyền, trạng thái hồ sơ và phiên bản dòng khi giao người phụ trách.
 - **Dữ liệu cá nhân.** Danh sách chỉ hiện tên khách hoặc tên đoàn và số khách, không hiện thông tin hộ chiếu.
@@ -112,7 +114,7 @@ Quyền là cặp (màn hoặc phần của màn, thao tác), gán cho vai trò 
 | DX04 | Quy tắc sinh Tour Code | R02 |
 | DH07 (danh sách màn) · Lọc người phụ trách | Lọc theo người phụ trách | L3.1, L4.1 |
 | Quyết định 11/11/2026 | Hồ sơ tự tạo chưa có người phụ trách; giao tại DH07 | L1.1, L4.1, L4.2 |
-| Quyết định 12/11/2026 | Tự tạo ngay khi lưu Booking, không chờ thanh toán, không tạo tay; Kế toán không làm chốt chặn; quyết toán không chặn Đóng Tour | L1.1, L3.3, R01, R07 |
+| Quyết định 12/11/2026 | Tự tạo ngay khi tạo Booking (ghi Chốt ở KD06.3, Q-RS17), không chờ thanh toán, không tạo tay; Kế toán không làm chốt chặn; quyết toán không chặn Đóng Tour | L1.1, L3.3, R01, R07 |
 | Quyết định 11/11/2026 · dạng xem | Bảng, Kanban theo trạng thái (không kéo thả), Lịch | 2.6, L5.1–L5.4, R13–R15 |
 | Quyết định phase coding 12/11/2026 | Q1 quyền theo vai trò, Của tôi bật sẵn; Q5 tạo trong cùng giao dịch, bỏ Tạo lỗi; Q7 cho phép thủng số Tour Code | 1.4, 2.3, R01, R02, R05, R10 |
 | Người dùng chốt 12/11/2026; RSD DH08 2.1, 2.3, R02, R04, R19 | Lọc hồ sơ theo việc cần xử lý ở DH08 (lối vào thẻ VT-DH-04 đến 06 của RSD CH03) | 2.3 |
@@ -126,13 +128,13 @@ Quyền là cặp (màn hoặc phần của màn, thao tác), gán cho vai trò 
 | Vùng | Nội dung | Nguồn |
 |---|---|---|
 | Tiêu đề | Hồ sơ Tour. Với người chỉ có quyền xem (mặc định Kinh doanh, Kế toán, Quản trị), ghi thêm “Chỉ xem” | — |
-| Thanh lọc | Ô tìm kiếm; bộ chọn Khởi hành, Phụ trách (mặc định Của tôi), Quyết toán, Việc cần xử lý; liên kết Xóa bộ lọc khi có bộ lọc khác mặc định | — |
-| Chip trạng thái | Đang mở, Mới tạo, Đang diễn ra, Đã kết thúc, Đã đóng, mỗi chip có số đếm theo các bộ lọc khác; cuối hàng là bộ chuyển dạng xem Bảng · Kanban · Lịch. Ở Kanban hàng chip ẩn, chỉ còn dòng ghi chú và bộ chuyển | Hồ sơ Tour, R13 |
+| Thanh lọc | Ô tìm kiếm; bộ chọn Khởi hành, Phụ trách (mặc định Tất cả), Quyết toán, Việc cần xử lý; liên kết Xóa bộ lọc khi có bộ lọc khác mặc định | — |
+| Chip trạng thái | Chip Của tôi đứng đầu hàng chip, không có số (CGD K2.06; Q-RS12); sau đó Đang mở, Mới tạo, Đang diễn ra, Đã kết thúc, Đã đóng, mỗi chip có số đếm theo các bộ lọc khác; cuối hàng là bộ chuyển dạng xem Bảng · Kanban · Lịch. Ở Kanban hàng chip ẩn, chỉ còn dòng ghi chú và bộ chuyển | Hồ sơ Tour, R13 |
 | Thanh hàng loạt | Hiện khi chọn ít nhất một dòng; thay cho ô Chọn người trên dòng | — |
 | Bảng, Kanban hoặc Lịch | Bảng: các cột ở mục 2.2, 20 dòng mỗi trang. Kanban, Lịch: mục 2.6 | Hồ sơ Tour, DH08 |
 
 - Chip Đang mở bằng tổng ba chip Mới tạo, Đang diễn ra và Đã kết thúc. Đã đóng tách riêng để danh sách hằng ngày không bị lẫn hồ sơ cũ.
-- Màn không có nút Tạo hồ sơ. Hồ sơ chỉ sinh ra theo R01, trong cùng giao dịch lưu Booking. Không có dải hay bảng trượt Booking chờ (Q5).
+- Màn không có nút Tạo hồ sơ. Hồ sơ chỉ sinh ra theo R01, trong cùng giao dịch ghi Chốt (tạo Booking). Không có dải hay bảng trượt Booking chờ (Q5).
 
 ### 2.2. Cột của bảng
 
@@ -153,7 +155,8 @@ Quyền là cặp (màn hoặc phần của màn, thao tác), gán cho vai trò 
 |---|---|---|
 | Tìm kiếm | Tour Code, mã Booking, tên khách; tìm theo chuỗi con, không phân biệt hoa thường và dấu | Trống |
 | Khởi hành | Tất cả, 7 ngày tới, 14 ngày tới, 30 ngày tới, Tháng này, Khoảng ngày… | Tất cả |
-| Phụ trách | Tất cả, Của tôi, Chưa có người phụ trách, từng người thuộc nhóm Điều hành | Của tôi (Q1). Điều hành: hồ sơ mình phụ trách và hồ sơ Chưa có người phụ trách, để thấy hồ sơ mới chưa giao (người dùng chốt 12/11/2026); Kinh doanh: hồ sơ của Booking mình phụ trách. Vai trò không phụ trách bản ghi nào ở màn này (Kế toán, Quản trị) mặc định Tất cả |
+| Chip Của tôi | Bật: hồ sơ mình là Điều hành phụ trách; với Điều hành gồm cả hồ sơ Chưa có người phụ trách, để thấy hồ sơ mới chưa giao (người dùng chốt 12/11/2026). Chip riêng, không phải giá trị của bộ lọc Phụ trách; liên động với bộ lọc Phụ trách theo CGD K2.06 | Bật sẵn với Điều hành (vai trò thuộc phòng Điều hành, RSD QT02 R13); tắt sẵn với vai trò khác: Kinh doanh, Kế toán, Quản trị (BOI-CANH “Của tôi”; quyết định rà soát 13/11/2026, Q-RS12) |
+| Phụ trách | Tất cả, Chưa có người phụ trách, từng người thuộc nhóm Điều hành | Tất cả |
 | Quyết toán | Tất cả, Chưa quyết toán, Đã quyết toán | Tất cả |
 | Việc cần xử lý | Chọn nhiều: Thay đổi chương trình, Đặt dịch vụ, Chờ NCC phản hồi quá hạn; không chọn giá trị nào là Tất cả | Tất cả |
 | Chip trạng thái | Đang mở, Mới tạo, Đang diễn ra, Đã kết thúc, Đã đóng | Đang mở |
@@ -162,7 +165,7 @@ Quyền là cặp (màn hoặc phần của màn, thao tác), gán cho vai trò 
 - Bộ lọc Quyết toán xét hồ sơ Đã kết thúc và Đã đóng: Chưa quyết toán là hồ sơ chưa có phiên bản quyết toán hiện hành, Đã quyết toán là hồ sơ có. Hồ sơ Mới tạo, Đang diễn ra không khớp hai giá trị này. Kế toán chọn chip Đã đóng với Chưa quyết toán để thấy hồ sơ đã đóng mà chưa quyết toán.
 - Bộ lọc **Việc cần xử lý** (người dùng chốt 12/11/2026) đọc trạng thái và chỉ báo do DH08 sở hữu, DH07 không tự đặt điều kiện riêng. Các giá trị chọn nhiều kết hợp theo HOẶC; kết hợp với bộ lọc khác theo VÀ (CGD K2.05):
   - **Thay đổi chương trình:** hồ sơ có thay đổi chương trình ở trạng thái **Chờ áp dụng** (RSD DH08 2.3, R19), cùng điều kiện với chỉ báo Chương trình có thay đổi ở mục 2.4.
-  - **Đặt dịch vụ:** hồ sơ có ít nhất một hạng mục dịch vụ ở trạng thái Cần đặt, Cần đặt lại, Xác nhận một phần, Cần điều chỉnh hoặc Cần hủy (RSD DH08 R02), tức số trên tab Đặt dịch vụ của DH08 lớn hơn 0 (RSD DH08 2.1). Hạng mục Chờ Kinh doanh, Chờ kết quả, Đã xác nhận, Đã hủy không tính.
+  - **Đặt dịch vụ:** hồ sơ có ít nhất một hạng mục dịch vụ ở trạng thái Cần đặt, Cần đặt lại, Xác nhận một phần, Cần điều chỉnh hoặc Cần hủy, hoặc hạng mục Đã hủy có chỉ báo Chưa thay thế (RSD DH08 R02), tức số trên tab Đặt dịch vụ của DH08 lớn hơn 0 (RSD DH08 2.1). Hạng mục Chờ Kinh doanh, Xác nhận một phần có chỉ báo Chờ Kinh doanh, Chờ kết quả, Đã xác nhận, Đã hủy không có chỉ báo Chưa thay thế không tính (quyết định rà soát 13/11/2026, Q-RS10, Q-RS11).
   - **Chờ NCC phản hồi quá hạn:** hồ sơ có ít nhất một hạng mục mang chỉ báo “n ngày chưa phản hồi”, tức có lần đặt Đã gửi chưa có kết quả quá ngưỡng chờ phản hồi NCC (mặc định 48 giờ, giờ lịch; RSD DH08 2.3, R04). Tính lúc đọc từ thời điểm gửi (Q6), không theo dữ liệu tổng hợp lưu sẵn ở mục 2.7.
 - Sắp xếp mặc định theo ngày khởi hành tăng dần; bấm tiêu đề cột Thời gian hoặc Tour Code để đổi chiều. Với chip Đã đóng, mặc định sắp theo ngày khởi hành giảm dần.
 - Hệ thống nhớ bộ lọc theo người dùng, cả sau khi đăng xuất (U3). Trang và vị trí cuộn được giữ trong phiên khi người dùng mở DH08 rồi quay lại.
@@ -185,7 +188,7 @@ Nhãn trạng thái chính dùng cùng màu với DH08. Chỉ báo phụ là nh�
 
 | Từ | Đến | Sự kiện và tác nhân | Điều kiện | Tác động | Ngoại lệ |
 |---|---|---|---|---|---|
-| (KD08) | Đã có hồ sơ | Kinh doanh lưu Booking mới ở KD08 | Booking Hiệu lực, chưa có hồ sơ (R01); không xét thanh toán | Trong cùng giao dịch lưu Booking: tạo hồ sơ theo R02–R05; thông báo (R09) | Lỗi: cả giao dịch hoàn tác, Booking không được lưu (E1.1) |
+| (KD06.3) | Đã có hồ sơ | Kinh doanh ghi Chốt ở KD06.3 (tạo Booking) | Booking Hiệu lực, chưa có hồ sơ (R01); không xét thanh toán | Trong cùng giao dịch ghi Chốt, tạo Booking: tạo hồ sơ theo R02–R05; thông báo (R09) | Lỗi: cả giao dịch hoàn tác, không có Chốt, không có Booking (E1.1) |
 
 Không có tình trạng “Tạo lỗi”, tự thử lại hay nút Thử lại: mọi Booking Hiệu lực đều có hồ sơ (Q5). Booking vẫn chỉ có hai trạng thái Hiệu lực và Đã hủy.
 
@@ -228,13 +231,13 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 ### 3.1. Tự tạo hồ sơ từ Booking (TN05.02 · SYS04.04, SYS05.02, SYS05.03)
 
-**L1.1 Hệ thống tự tạo hồ sơ khi Booking được lưu.** *Điều kiện:* Kinh doanh lưu Booking mới ở KD08 (Booking Hiệu lực), Booking chưa có hồ sơ. Không xét thanh toán (R01).
+**L1.1 Hệ thống tự tạo hồ sơ khi Booking được tạo.** *Điều kiện:* Kinh doanh ghi Chốt ở KD06.3, tạo Booking Hiệu lực (RSD KD06 R19, KD08 L1.1; Q-RS17), Booking chưa có hồ sơ. Không xét thanh toán (R01).
 
-1. **W01 · Kinh doanh lưu Booking ở KD08 từ phiên bản Chốt; hồ sơ hiện trên danh sách.** Trong cùng giao dịch lưu Booking, hệ thống tạo hồ sơ: cấp Tour Code (R02), sao chép dữ liệu khởi tạo và bóc tách hành trình thành hạng mục dịch vụ (R03), tạo checklist từ DH01 (R04). Hồ sơ ở trạng thái Mới tạo, chưa có người phụ trách, có chỉ báo Mới và ô Chọn người. Không cần khoản thu nào ở KT01.
+1. **W01 · Kinh doanh ghi Chốt ở KD06.3 (tạo Booking); hồ sơ hiện trên danh sách.** Trong cùng giao dịch ghi Chốt, tạo Booking, hệ thống tạo hồ sơ: cấp Tour Code (R02), sao chép dữ liệu khởi tạo và bóc tách hành trình thành hạng mục dịch vụ (R03), tạo checklist từ DH01 (R04). Hồ sơ ở trạng thái Mới tạo, chưa có người phụ trách, có chỉ báo Mới và ô Chọn người. Không cần khoản thu nào ở KT01.
 
    ![W01 · Danh sách hồ sơ Tour đang mở](wireframes/W01.png)
 
-   > Hình chưa cập nhật: dải “Booking chờ · tạo lỗi” không còn (Q5); bộ lọc Phụ trách mặc định nay là Của tôi (Q1).
+   > Hình chưa cập nhật: dải “Booking chờ · tạo lỗi” không còn (Q5); hình chưa có chip Của tôi (bật sẵn với Điều hành), bộ lọc Phụ trách mặc định Tất cả (Q-RS12).
 
 2. **W02 · Trung tâm thông báo.** Hệ thống gửi thông báo trong ứng dụng cho nhóm Điều hành “… được tạo tự động … Chưa có người phụ trách”, và cho Kinh doanh phụ trách Booking (R09). KD08.1 hiện Tour Code của hồ sơ.
 
@@ -246,8 +249,8 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **Ngoại lệ**
 
-- **E1.1.** Lỗi khi tạo hồ sơ (lỗi hệ thống, hết thời gian chờ): cả giao dịch được hoàn tác, Booking không được lưu và không có hồ sơ dở dang (Q5). KD08 báo lỗi, giữ dữ liệu đã nhập để Kinh doanh lưu lại. Số Tour Code đã cấp trong giao dịch lỗi có thể bị thủng (R02, Q7). Không có tự thử lại, nhóm Tạo lỗi hay nút Thử lại.
-- **E1.2.** Yêu cầu lưu Booking đến lặp: ràng buộc một Booking một hồ sơ (R05) bảo đảm chỉ một hồ sơ được tạo. Yêu cầu sau không tạo gì và nhận Tour Code đã có.
+- **E1.1.** Lỗi khi tạo hồ sơ (lỗi hệ thống, hết thời gian chờ): cả giao dịch được hoàn tác, không ghi Chốt, không có Booking và không có hồ sơ dở dang (Q5). Hộp thoại Chốt ở KD06.3 báo lỗi để Kinh doanh bấm lại (RSD KD06 E6.13). Số Tour Code đã cấp trong giao dịch lỗi có thể bị thủng (R02, Q7). Không có tự thử lại, nhóm Tạo lỗi hay nút Thử lại.
+- **E1.2.** Yêu cầu ghi Chốt (tạo Booking) đến lặp: ràng buộc một Booking một hồ sơ (R05) bảo đảm chỉ một hồ sơ được tạo. Yêu cầu sau không tạo gì và nhận Tour Code đã có.
 - **E1.3.** Bỏ theo Q5 (Booking bị hủy khi đang ở nhóm Tạo lỗi). Booking đã có hồ sơ mà bị hủy thì xử lý ở DH08 (R11).
 - **E1.4.** Một dịch vụ trong hành trình thuộc NCC hoặc dịch vụ đã tắt ở DH03, DH05: vẫn tạo hạng mục, để trống NCC và gắn chỉ báo “NCC ngừng dùng” để Điều hành chọn NCC khác ở DH08.3 (R03).
 - **E1.5.** Booking chưa có loại Tour, hoặc loại Tour chưa có mẫu đang dùng ở DH01: checklist sinh từ Mẫu mặc định. Nhật ký hồ sơ ghi lý do (R04). Không có trường hợp checklist rỗng vì Mẫu mặc định luôn đang dùng và có ít nhất một việc.
@@ -256,7 +259,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 ### 3.2. Booking chưa có hồ sơ vì tạo lỗi: thử lại (bỏ theo Q5)
 
-Hồ sơ tạo trong cùng giao dịch với việc lưu Booking (R01, Q5), nên không còn Booking Hiệu lực nào chưa có hồ sơ. Mục này chỉ giữ mã để tham chiếu chéo không gãy; W08 không còn dùng.
+Hồ sơ tạo trong cùng giao dịch với việc ghi Chốt, tạo Booking (R01, Q5), nên không còn Booking Hiệu lực nào chưa có hồ sơ. Mục này chỉ giữ mã để tham chiếu chéo không gãy; W08 không còn dùng.
 
 **L2.1** Bỏ theo Q5 (xem Booking tạo hồ sơ lỗi ở dải và bảng trượt Booking chờ, W08).
 
@@ -275,7 +278,7 @@ Hồ sơ tạo trong cùng giao dịch với việc lưu Booking (R01, Q5), nên
 
 **L3.1 Xem và lọc danh sách.** *Điều kiện:* người dùng có quyền xem DH07.
 
-1. **W01 · Menu Điều hành → Hồ sơ Tour.** Người dùng mở DH07 từ menu. Hệ thống tải danh sách mặc định ở chip Đang mở, sắp theo ngày khởi hành tăng dần, bộ lọc Phụ trách mặc định Của tôi (mục 2.3). Mỗi dòng cho biết trạng thái, việc cần xử lý và người phụ trách.
+1. **W01 · Menu Điều hành → Hồ sơ Tour.** Người dùng mở DH07 từ menu. Hệ thống tải danh sách mặc định ở chip Đang mở, sắp theo ngày khởi hành tăng dần, chip Của tôi bật sẵn với Điều hành (mục 2.3). Mỗi dòng cho biết trạng thái, việc cần xử lý và người phụ trách.
 2. **W03 · Thanh lọc và chip.** Người dùng chọn giá trị ở các bộ lọc hoặc gõ tìm kiếm. Danh sách và số trên chip cập nhật ngay; liên kết Xóa bộ lọc hiện ra.
 
    ![W03 · Lọc hồ sơ chưa có người phụ trách](wireframes/W03.png)
@@ -304,9 +307,9 @@ Hồ sơ tạo trong cùng giao dịch với việc lưu Booking (R01, Q5), nên
 2. **W11 · Bấm dòng.** DH08.8 mở thẳng để đối chiếu và lưu quyết toán.
 3. **W11 · Chip Đã đóng với Quyết toán: Chưa quyết toán.** Kế toán thấy hồ sơ đã đóng mà chưa quyết toán. Bấm dòng mở DH08.8 (R10) để lưu quyết toán, không cần Mở lại Tour (RSD DH08 R16).
 
-**L3.4 Kinh doanh xem hồ sơ của mình.**
+**L3.4 Kinh doanh xem hồ sơ.**
 
-1. **W12 · Danh sách chỉ đọc.** Kinh doanh mở DH07. Bộ lọc Phụ trách mặc định Của tôi nên danh sách gồm hồ sơ của Booking mình phụ trách; chọn Tất cả thì thấy mọi hồ sơ (Q1). Danh sách chỉ đọc, không có ô chọn và ô Chọn người. Cột Phụ trách hiện tên Điều hành hoặc Chưa có.
+1. **W12 · Danh sách chỉ đọc.** Kinh doanh mở DH07. Chip Của tôi tắt sẵn với Kinh doanh nên danh sách gồm mọi hồ sơ; Kinh doanh tìm theo mã Booking hoặc tên khách để thấy hồ sơ của Booking mình (Q1; quyết định rà soát 13/11/2026, Q-RS12). Danh sách chỉ đọc, không có ô chọn và ô Chọn người. Cột Phụ trách hiện tên Điều hành hoặc Chưa có.
 
    ![W12 · Kinh doanh xem hồ sơ của Booking mình](wireframes/W12.png)
 
@@ -373,7 +376,7 @@ Hồ sơ tạo trong cùng giao dịch với việc lưu Booking (R01, Q5), nên
 - **E4.2.** Giao tại chỗ khi hồ sơ vừa được người khác giao: hệ thống từ chối và trả ô về giá trị mới nhất. Thông báo ngắn “TP-… đã được … giao cho … lúc …”. Nếu vẫn muốn đổi, người dùng chọn lại.
 - **E4.3.** Người được chọn vừa bị tắt quyền nhận phân công ở DH06: lưu bị từ chối, ô trở về giá trị cũ, thông báo lỗi nêu lý do. Danh sách thả xuống được tải lại.
 - **E4.4.** Lỗi lưu tại chỗ (mất kết nối): ô trở về giá trị cũ, thông báo lỗi có nút Thử lại. Với hàng loạt, dòng lỗi giữ trạng thái đã chọn và banner có một nút Thử lại phần lỗi.
-- **E4.5.** Hồ sơ Đã đóng: không có ô chọn và ô Chọn người; cột Phụ trách chỉ hiện tên, kèm “(ngừng hoạt động)” khi người đó ngừng hoạt động. DH07 không giao lại người cho hồ sơ Đã đóng. Muốn đổi người thì người có quyền Mở lại Tour (mặc định Điều hành và Quản trị hệ thống) mở lại bằng nút ở header DH08 và có thể chọn Điều hành phụ trách mới ngay trong hộp thoại (RSD DH08 R16); hoặc mở lại rồi giao ở DH07, vì hồ sơ về Đã kết thúc và header DH08 ở Đã kết thúc không có Thông tin điều hành (RSD DH08 mục 2.1). Hồ sơ chưa đóng có người phụ trách ngừng hoạt động thì Điều hành giao lại theo L4.1 hoặc L4.2 (R08).
+- **E4.5.** Hồ sơ Đã đóng: không có ô chọn và ô Chọn người; cột Phụ trách chỉ hiện tên, kèm “(ngừng hoạt động)” khi người đó ngừng hoạt động. DH07 không giao lại người cho hồ sơ Đã đóng. Muốn đổi người thì người có quyền Mở lại Tour (mặc định Điều hành và Quản trị hệ thống) mở lại bằng nút ở header DH08; người có thêm quyền giao người phụ trách (mặc định Điều hành) chọn được Điều hành phụ trách mới ngay trong hộp thoại, người khác thì hồ sơ giữ người cũ (RSD DH08 R16; Q-RS28); hoặc mở lại rồi giao ở DH07 hoặc bằng nút Giao ở header DH08 (RSD DH08 L1.2). Hồ sơ chưa đóng có người phụ trách ngừng hoạt động thì Điều hành giao lại theo L4.1 hoặc L4.2 (R08).
 - **E4.6.** Hồ sơ có Booking đã hủy vẫn được giao người phụ trách, vì Điều hành vẫn phải gửi hủy cho NCC (RSD DH08 R14).
 - **E4.7.** Không còn ai thuộc nhóm Điều hành được phép nhận phân công: danh sách thả xuống hiện “Chưa có nhân sự Điều hành được phép nhận phân công. Cấu hình ở DH06”, không cho chọn.
 - **E4.8.** Chọn dòng rồi chuyển trang hoặc đổi bộ lọc: lựa chọn bị bỏ, thanh hàng loạt ẩn. “Chọn tất cả” chỉ áp dụng cho trang đang xem.
@@ -418,7 +421,7 @@ Hồ sơ tạo trong cùng giao dịch với việc lưu Booking (R01, Q5), nên
 
 **L5.4 Kinh doanh, Kế toán xem lịch tháng.** *Điều kiện:* Kinh doanh hoặc Kế toán.
 
-1. **W18 · Nút Lịch ở bộ chuyển dạng xem.** Kinh doanh bấm Lịch; dạng Tháng mở sẵn ở tháng hiện tại. Bộ lọc Phụ trách mặc định Của tôi nên lịch có hồ sơ của Booking mình phụ trách (mục 2.3): Tanaka Travel Co. 14/11 – 19/11, Müller Reisen GmbH 18/11 – 25/11, Smith Family (⚠ Booking đã hủy) 22/11 – 28/11, Kim Tours Korea từ 02/12. Không có ô chọn hay ô Phụ trách.
+1. **W18 · Nút Lịch ở bộ chuyển dạng xem.** Kinh doanh bấm Lịch; dạng Tháng mở sẵn ở tháng hiện tại. Chip Của tôi tắt sẵn với Kinh doanh nên lịch có mọi hồ sơ trong tháng (mục 2.3; Q-RS12), trong đó có Tanaka Travel Co. 14/11 – 19/11, Müller Reisen GmbH 18/11 – 25/11, Smith Family (⚠ Booking đã hủy) 22/11 – 28/11, Kim Tours Korea từ 02/12 (hình W18 vẽ khi còn lọc theo Booking của Kinh doanh; wireframe chưa vẽ lại). Không có ô chọn hay ô Phụ trách.
 
    ![W18 · Kinh doanh xem lịch tháng](wireframes/W18.png)
 
@@ -449,11 +452,11 @@ Hồ sơ tạo trong cùng giao dịch với việc lưu Booking (R01, Q5), nên
 
 ## 4. Quy tắc triển khai chi tiết
 
-### R01. Tự tạo hồ sơ khi lưu Booking (quyết định 12/11/2026)
+### R01. Tự tạo hồ sơ khi tạo Booking (quyết định 12/11/2026; Q-RS17)
 
-- **Khi nào tạo.** Khi Kinh doanh lưu Booking mới ở KD08 (Booking Hiệu lực), hệ thống tạo hồ sơ Tour theo R02–R05 trong cùng giao dịch. Không có nút tạo tay, không có bước duyệt.
+- **Khi nào tạo.** Khi Kinh doanh ghi Chốt ở KD06.3, tạo Booking mới (Booking Hiệu lực; RSD KD06 R19), hệ thống tạo hồ sơ Tour theo R02–R05 trong cùng giao dịch. Không có nút tạo tay, không có bước duyệt.
 - **Không xét thanh toán.** Việc tạo hồ sơ không có điều kiện nào về thanh toán. Khoản thu, công nợ ở KT01 và lịch thanh toán ở KD08.2 không là điều kiện và không kích hoạt việc tạo hồ sơ (nguyên tắc Kế toán không làm chốt chặn cho Kinh doanh và Điều hành, người dùng chốt 12/11/2026).
-- **Cùng giao dịch (Q5).** Lưu Booking, tạo hồ sơ (R02–R05) và thông báo (R09) ghi trong một giao dịch: thành công cả hoặc không gì cả. Lỗi tạo hồ sơ thì Booking không được lưu (E1.1). Không có tự thử lại, nhóm Tạo lỗi hay nút Thử lại.
+- **Cùng giao dịch (Q5).** Ghi Chốt, tạo Booking, tạo hồ sơ (R02–R05) và thông báo (R09) ghi trong một giao dịch: thành công cả hoặc không gì cả. Lỗi tạo hồ sơ thì không có Chốt, không có Booking (E1.1). Không có tự thử lại, nhóm Tạo lỗi hay nút Thử lại.
 - **Chỉ xét Booking** Hiệu lực và chưa có hồ sơ. Booking Đã hủy không được tạo hồ sơ.
 - Thanh toán thay đổi sau khi hồ sơ đã có không xóa, không khóa hồ sơ (E1.6).
 - Quy tắc này thay quyết định 11/11/2026 (tự tạo khi Booking đạt điều kiện thanh toán; Điều hành được tạo hồ sơ trước khi đạt).
@@ -464,13 +467,13 @@ Hồ sơ tạo trong cùng giao dịch với việc lưu Booking (R01, Q5), nên
   - Tiền tố là tham số chung ở QT05 do Quản trị sửa, mặc định `TP`, 2–4 chữ in hoa (Q7).
   - `YYMM` là năm và tháng của **ngày khởi hành** của Booking lúc tạo hồ sơ.
   - `NNNN` là số thứ tự tăng dần trong cùng tiền tố và `YYMM`, bắt đầu từ 0001, đủ 4 chữ số. Quá 9999 thì dùng thêm chữ số.
-- Số thứ tự được cấp trong giao dịch tạo hồ sơ. Số không dùng lại nhưng được phép thủng, ví dụ khi giao dịch lưu Booking bị hủy giữa chừng (Q7; BOI-CANH-DU-AN “Mã đối tượng”).
+- Số thứ tự được cấp trong giao dịch tạo hồ sơ. Số không dùng lại nhưng được phép thủng, ví dụ khi giao dịch ghi Chốt (tạo Booking) bị hủy giữa chừng (Q7; BOI-CANH-DU-AN “Mã đối tượng”).
 - Tour Code là duy nhất, không sửa tay và không đổi khi ngày khởi hành thay đổi về sau.
 
 ### R03. Dữ liệu khởi tạo và bóc tách hành trình
 
 - **Hồ sơ.** Hệ thống sao chép khách, số khách, thời gian và ngôn ngữ phục vụ từ Booking; trạng thái Mới tạo; người phụ trách để trống (giao tại DH07, R08).
-- **Hạng mục dịch vụ.** Mỗi dịch vụ của mỗi ngày trong hành trình đã chốt của Booking tạo một hạng mục, gồm: ngày dùng, dịch vụ DH05, NCC (nếu hành trình có), số lượng, đơn vị, giá tham chiếu, loại tiền, yêu cầu dịch vụ. Trạng thái tính là Cần đặt.
+- **Hạng mục dịch vụ.** Mỗi dịch vụ của mỗi ngày trong hành trình đã chốt của Booking tạo một hạng mục; riêng dịch vụ lưu trú cùng khách sạn, cùng hạng phòng, cùng số phòng ở các đêm liền nhau gộp thành **một** hạng mục có khoảng ngày (ví dụ Lotus Hanoi 18/11 – 20/11, RSD DH08 AC91; người dùng chốt 13/11/2026). Mỗi hạng mục gồm: ngày dùng (hoặc khoảng ngày với lưu trú), dịch vụ DH05, NCC (nếu hành trình có), số lượng, đơn vị, giá tham chiếu, loại tiền, yêu cầu dịch vụ. Trạng thái tính là Cần đặt.
 - **Dịch vụ đi kèm (bổ sung 12/11/2026).** Dịch vụ đi kèm của một dịch vụ trong hành trình (ví dụ giường phụ) không tạo hạng mục riêng; hạng mục của dịch vụ chính mang theo danh sách đi kèm (dịch vụ, số lượng, ngày dùng, giá tham chiếu) và được đặt, xác nhận, hủy cùng lần đặt (RSD DH08 R21).
 - Dịch vụ thuộc NCC hoặc dịch vụ đã tắt ở DH03, DH05 vẫn được tạo hạng mục, để trống NCC và gắn chỉ báo NCC ngừng dùng.
 - Giá trong hạng mục là giá tham chiếu từ hành trình, không phải giá NCC xác nhận. Giá bán của Booking không được sao chép vào hạng mục.
@@ -489,7 +492,7 @@ Quy tắc chuẩn nằm ở RSD DH01 (R01, R03, R05, R06, R07). DH07 thực hi�
 
 ### R05. Giao dịch tạo hồ sơ và chống trùng
 
-- Các bước của R02–R04 chạy trong cùng giao dịch lưu Booking ở KD08: thành công hết hoặc không lưu gì (Q5).
+- Các bước của R02–R04 chạy trong cùng giao dịch ghi Chốt (tạo Booking) ở KD06.3: thành công hết hoặc không lưu gì (Q5).
 - Mỗi Booking chỉ có một hồ sơ, bảo đảm bằng ràng buộc duy nhất trên ID Booking. Yêu cầu tạo đến lặp nhận lỗi “đã có hồ sơ” và trả về Tour Code đã có.
 - Không có tự thử lại, nhóm Tạo lỗi hay nút Thử lại (Q5).
 - Lỗi hiển thị ở KD08 bằng câu dễ hiểu. Chi tiết kỹ thuật chỉ ghi trong nhật ký hệ thống.
@@ -513,15 +516,16 @@ Cột chỉ để thông tin; bấm dòng để xử lý ở DH08.
 
 ### R08. Giao người phụ trách
 
-- **Danh sách người được chọn.** Nhân sự DH06 thuộc nhóm Điều hành, đang cho phép nhận phân công, có tài khoản liên kết (QT01) đang hoạt động và có vai trò Điều hành (RSD DH06 R03). Mỗi người hiện ngôn ngữ (DH06) và số hồ sơ đang mở mình phụ trách (Mới tạo, Đang diễn ra, Đã kết thúc).
+- **Danh sách người được chọn.** Nhân sự DH06 Nội bộ, đang cho phép nhận phân công, có tài khoản liên kết (QT01) đang hoạt động và có vai trò hệ thống Điều hành; không xét nhóm công việc, không tính vai trò tự tạo thuộc phòng Điều hành (RSD DH06 R03; quyết định rà soát 13/11/2026, Q-RS13, Q-RS23). Mỗi người hiện ngôn ngữ (DH06) và số hồ sơ đang mở mình phụ trách (Mới tạo, Đang diễn ra, Đã kết thúc).
 - **Thứ tự.** Người khớp ngôn ngữ phục vụ của đoàn đứng trước, có nhãn Khớp ngôn ngữ; trong mỗi nhóm, xếp theo số hồ sơ đang mở tăng dần, rồi theo tên. Người đang thao tác có chữ “(Tôi)”. Với thanh hàng loạt, ngôn ngữ dùng để xếp là ngôn ngữ xuất hiện nhiều nhất trong các dòng đã chọn.
 - **Lưu.** Ô tại chỗ lưu ngay khi chọn. Thanh hàng loạt lưu khi bấm Áp dụng; kết quả trả theo từng dòng.
 - **Xung đột.** Mỗi dòng gửi kèm phiên bản. Dòng đã đổi người phụ trách ở phiên khác thì bị từ chối (tại chỗ) hoặc bỏ qua (hàng loạt), không ghi đè.
 - **Hồ sơ được giao.** Chỉ hồ sơ chưa đóng. Hồ sơ có Booking đã hủy vẫn được giao.
-- **Người phụ trách ngừng hoạt động.** Tài khoản liên kết Bị khóa, hoặc không còn vai trò Điều hành (RSD QT01 R03): hồ sơ giữ nguyên người phụ trách, hệ thống không tự chuyển; ô Phụ trách (dòng, thẻ Kanban) và hàng của người đó ở Lịch hiện tên kèm “(ngừng hoạt động)”. Người này không có trong danh sách chọn. Hồ sơ chưa đóng: Điều hành giao lại ở DH07 (tại chỗ hoặc hàng loạt), như đổi người thường; hồ sơ Mới tạo, Đang diễn ra giao được cả ở DH08.1 (Thông tin điều hành); hồ sơ Đã kết thúc chỉ giao ở DH07 (RSD DH08 mục 2.1). Hồ sơ Đã đóng: không giao lại ở DH07; người có quyền Mở lại Tour mở lại ở DH08, có thể chọn Điều hành phụ trách mới (RSD DH08 R16). Theo quyền mặc định, Quản trị hệ thống chỉ xem ở DH07 (mục 1.4).
+- **Người phụ trách ngừng hoạt động.** Tài khoản liên kết Bị khóa, hoặc không còn vai trò hệ thống Điều hành (RSD QT01 R03; Q-RS13): hồ sơ giữ nguyên người phụ trách, hệ thống không tự chuyển; ô Phụ trách (dòng, thẻ Kanban) và hàng của người đó ở Lịch hiện tên kèm “(ngừng hoạt động)”. Người này không có trong danh sách chọn. Hồ sơ chưa đóng: Điều hành giao lại ở DH07 (tại chỗ hoặc hàng loạt), như đổi người thường; hồ sơ chưa đóng giao được cả bằng nút Giao ở header DH08, cùng quyền (RSD DH08 L1.2; Q-RS28). Hồ sơ Đã đóng: không giao lại ở DH07; người có quyền Mở lại Tour mở lại ở DH08; người có thêm quyền giao chọn được Điều hành phụ trách mới, người khác thì hồ sơ giữ người cũ (RSD DH08 R16; Q-RS28). Theo quyền mặc định, Quản trị hệ thống chỉ xem ở DH07 (mục 1.4).
 - **Thông báo.** Người được giao nhận một thông báo cho mỗi lần giao; giao hàng loạt cho cùng một người thì gộp thành một thông báo liệt kê các Tour Code. Người bị bỏ giao (khi đổi người) cũng nhận thông báo.
-- **Điền người thực hiện checklist.** Khi hồ sơ được giao người phụ trách **lần đầu** (tại chỗ hoặc hàng loạt ở DH07, hoặc ở DH08.1), hệ thống điền người đó vào các công việc có thuộc tính Giao người phụ trách mà chưa có người thực hiện (RSD DH01 R05). Đổi người phụ trách về sau không đổi người thực hiện của công việc.
-- Giao ở DH07 và đổi người ở DH08 (Thông tin điều hành) ghi cùng một lịch sử.
+- **Điền người thực hiện checklist.** Khi hồ sơ được giao người phụ trách **lần đầu** (tại chỗ hoặc hàng loạt ở DH07, hoặc bằng nút Giao ở header DH08), hệ thống điền người đó vào các công việc có thuộc tính Giao người phụ trách mà chưa có người thực hiện (RSD DH01 R05). Đổi người phụ trách về sau không đổi người thực hiện của công việc.
+- Giao ở DH07 và bằng nút Giao ở DH08 là cùng một thao tác (quyền `DH07.giao-phu-trach`), ghi cùng một lịch sử (Q-RS28).
+- **Hoàn tác giao** (quyết định rà soát 13/11/2026, Q-RS24; RSD CH02 R05, R06). Hoàn tác trên thông báo ngắn (tại chỗ) hoặc banner (hàng loạt) đưa hồ sơ về người phụ trách trước đó, gỡ thông báo giao và bỏ giao vừa tạo, và bỏ nhãn Đã xử lý mà lần giao đã gắn cho thông báo hồ sơ mới và nhắc hồ sơ chưa giao (R09), nên hồ sơ về Chưa có người phụ trách thì nhắc 08:00 chạy tiếp. Người thực hiện checklist vừa được điền theo lần giao đầu cũng trở về trống.
 
 ### R09. Thông báo hồ sơ mới và nhắc hồ sơ chưa giao
 
@@ -530,13 +534,13 @@ Cột chỉ để thông tin; bấm dòng để xử lý ở DH08.
 | Hồ sơ được tạo tự động | Nhóm Điều hành; Kinh doanh phụ trách Booking | Tour Code, khách, Booking; “Chưa có người phụ trách” | DH07 lọc Chưa có người phụ trách (Điều hành); DH08 (Kinh doanh) |
 | Hồ sơ chưa giao trong ngưỡng nhắc | Nhóm Điều hành | Tour Code, khách, số ngày tới khởi hành (đã qua thì ngày đã khởi hành) | DH07 lọc Chưa có người phụ trách |
 
-- **Nhóm Điều hành** (người nhận) là nhân sự DH06 thuộc nhóm Điều hành, Nhận phân công Đang dùng, có tài khoản liên kết đang hoạt động và có vai trò Điều hành (RSD DH06 R03).
+- **Nhóm Điều hành** (người nhận) là nhân sự DH06 Nội bộ, Nhận phân công Đang dùng, có tài khoản liên kết đang hoạt động và có vai trò hệ thống Điều hành; không xét nhóm công việc (RSD DH06 R03; Q-RS13, Q-RS23).
 - **Ngưỡng nhắc** mặc định 7 ngày trước khởi hành, là tham số chung ở QT05 (RSD QT05 R17; R12). Hồ sơ trong ngưỡng là hồ sơ Mới tạo, chưa có người phụ trách, có ngày khởi hành không muộn hơn hôm nay + ngưỡng, kể cả đã qua ngày khởi hành.
 - **Nhắc mỗi ngày trên cùng một dòng** (RSD CH02 R04, TB-DH07-03). Tác vụ nhắc chạy mỗi ngày vào giờ chạy nhắc hằng ngày (tham số chung QT05 R17, mặc định 08:00, dùng chung cho mọi loại nhắc định kỳ; RSD CH02 R09). Mỗi người nhận có tối đa một thông báo cho mỗi hồ sơ: lần nhắc ngày sau làm mới chính thông báo đó (số ngày tới khởi hành, thời điểm, số lần) và đưa nó về Chưa đọc, kể cả khi người nhận đã đọc hôm trước; không tạo dòng thứ hai. Nhắc cho đến khi hồ sơ có người phụ trách hoặc rời Mới tạo; khi đó thông báo nhắc và thông báo hồ sơ mới tự Đã xử lý (RSD CH02 R06).
 
 ### R10. Quyền xem, mở hồ sơ và giữ ngữ cảnh
 
-- **Không giới hạn theo bản ghi (Q1).** Mọi vai trò có quyền xem DH07 thấy mọi hồ sơ; bộ lọc Phụ trách mặc định Của tôi (mục 2.3), tắt được. Mở DH08 theo quyền ở RSD DH08 mục 1.4. Quản trị hệ thống mặc định chỉ xem.
+- **Không giới hạn theo bản ghi (Q1).** Mọi vai trò có quyền xem DH07 thấy mọi hồ sơ; chip Của tôi bật sẵn với Điều hành (mục 2.3), tắt được. Mở DH08 theo quyền ở RSD DH08 mục 1.4. Quản trị hệ thống mặc định chỉ xem.
 - **Tab đích khi mở từ DH07:**
   - Mới tạo, Đang diễn ra → DH08.1 Tổng quan;
   - Đã kết thúc → DH08.8 Quyết toán;
@@ -598,7 +602,7 @@ Cột chỉ để thông tin; bấm dòng để xử lý ở DH08.
 
 | Đối tượng | Khóa và dữ liệu chính | Nguồn hoặc tác động |
 |---|---|---|
-| Hồ sơ Tour | Tour Code (duy nhất), ID Booking (duy nhất), trạng thái, Điều hành phụ trách (có thể trống), ngôn ngữ phục vụ, thời điểm tạo, ID phiên bản chương trình ban đầu | DH07 tạo trong cùng giao dịch lưu Booking (Q5); DH08 sở hữu và cập nhật |
+| Hồ sơ Tour | Tour Code (duy nhất), ID Booking (duy nhất), trạng thái, Điều hành phụ trách (có thể trống), ngôn ngữ phục vụ, thời điểm tạo, ID phiên bản chương trình ban đầu | DH07 tạo trong cùng giao dịch ghi Chốt (tạo Booking) (Q5); DH08 sở hữu và cập nhật |
 | Bộ đếm Tour Code | Tiền tố, YYMM, số thứ tự cuối | R02 |
 | Hạng mục dịch vụ (khởi tạo) | Tour Code, ngày dùng từ–đến, ID dịch vụ DH05, NCC từ hành trình, số lượng, đơn vị, giá tham chiếu, loại tiền, yêu cầu dịch vụ, chỉ báo NCC ngừng dùng | Bóc tách từ Booking (R03); DH08 sở hữu sau khi tạo |
 | Công việc checklist (khởi tạo) | Tour Code, ID mẫu, số phiên bản mẫu, ID công việc mẫu, ID hạng mục liên kết (việc theo dịch vụ), tên, hướng dẫn, hạn, sự kiện tự hoàn tất, người thực hiện | DH01 (R04; RSD DH01 R07) |
@@ -611,7 +615,7 @@ Cột chỉ để thông tin; bấm dòng để xử lý ở DH08.
 
 | Form | Trường | Bắt buộc | Mặc định hoặc điền sẵn | Kiểm tra |
 |---|---|---|---|---|
-| Ô Phụ trách trên dòng; ô Giao cho trên thanh hàng loạt | Nhân sự Điều hành | Có | — | Thuộc nhóm Điều hành, đang cho phép nhận phân công, có tài khoản liên kết đang hoạt động và có vai trò Điều hành (R08) |
+| Ô Phụ trách trên dòng; ô Giao cho trên thanh hàng loạt | Nhân sự Điều hành | Có | — | Nhân sự Nội bộ, đang cho phép nhận phân công, có tài khoản liên kết đang hoạt động và có vai trò hệ thống Điều hành (R08; RSD DH06 R03) |
 | Thanh lọc | Tìm kiếm | Không | Trống | Từ 2 ký tự |
 | Thanh lọc | Khoảng ngày khởi hành | Không | — | Ngày đầu không sau ngày cuối |
 | Thanh lọc | Việc cần xử lý | Không | Tất cả (không chọn giá trị nào) | Một hoặc nhiều giá trị ở mục 2.3 |
@@ -626,14 +630,14 @@ DH07 không gửi email hay tài liệu ra ngoài hệ thống. Mọi thông bá
 
 | Mã | Điều kiện và thao tác | Kết quả mong đợi |
 |---|---|---|
-| AC01 | Kinh doanh lưu Booking mới ở KD08; KT01 chưa có khoản thu nào của Booking | Hồ sơ Mới tạo được tạo ngay, có Tour Code, hạng mục dịch vụ và checklist; chưa có người phụ trách; nhóm Điều hành và Kinh doanh phụ trách Booking nhận thông báo; hồ sơ và thông báo ghi trong cùng giao dịch với Booking (Q5) |
+| AC01 | Kinh doanh ghi Chốt ở KD06.3, tạo Booking mới; KT01 chưa có khoản thu nào của Booking | Hồ sơ Mới tạo được tạo ngay, có Tour Code, hạng mục dịch vụ và checklist; chưa có người phụ trách; nhóm Điều hành và Kinh doanh phụ trách Booking nhận thông báo; hồ sơ và thông báo ghi trong cùng giao dịch với Booking (Q5) |
 | AC02 | Booking đã có hồ sơ; Kế toán ghi một khoản thu, hủy giao dịch thu đó, rồi Kinh doanh sửa lịch thanh toán ở KD08.2 | Không tạo thêm hồ sơ; hồ sơ không bị xóa, khóa hay đổi trạng thái (E1.6) |
 | AC03 | Bỏ ở v1.5 (điều kiện Thu đủ đến đợt n) | — |
 | AC04 | Bỏ ở v1.5 (đổi điều kiện tạo hồ sơ ở KD08.2) | — |
 | AC05 | Booking khởi hành 16/11/2026 là hồ sơ thứ 52 có khởi hành tháng 11/2026 | Tour Code là TP-2611-0052 |
-| AC06 | Tạo hồ sơ lỗi khi Kinh doanh lưu Booking | Booking không được lưu, KD08 báo lỗi và giữ dữ liệu nhập; không có hồ sơ dở dang; lưu lại thành công thì có đúng một hồ sơ; số Tour Code của lần lỗi có thể bị thủng (E1.1, Q5, Q7) |
+| AC06 | Tạo hồ sơ lỗi khi Kinh doanh ghi Chốt (tạo Booking) | Không có Chốt, không có Booking; hộp thoại Chốt báo lỗi; không có hồ sơ dở dang; ghi Chốt lại thành công thì có đúng một hồ sơ; số Tour Code của lần lỗi có thể bị thủng (E1.1, Q5, Q7) |
 | AC07 | Bỏ theo Q5 (Thử lại trên dòng Tạo lỗi) | — |
-| AC08 | Yêu cầu lưu Booking đến lặp cho cùng Booking | Chỉ một hồ sơ được tạo; yêu cầu sau nhận Tour Code đã có (E1.2) |
+| AC08 | Yêu cầu ghi Chốt (tạo Booking) đến lặp cho cùng phiên bản | Chỉ một hồ sơ được tạo; yêu cầu sau nhận Tour Code đã có (E1.2) |
 | AC09 | Bỏ ở v1.5 (lý do tạo sớm) | — |
 | AC10 | Bỏ ở v1.5 (hồ sơ tạo sớm và thông báo) | — |
 | AC11 | Bỏ ở v1.5 (chỉ báo tạo sớm) | — |
@@ -641,7 +645,7 @@ DH07 không gửi email hay tài liệu ra ngoài hệ thống. Mọi thông bá
 | AC13 | Hành trình có dịch vụ của NCC đã tắt | Hạng mục được tạo, NCC để trống, có chỉ báo NCC ngừng dùng |
 | AC14 | Booking chưa có loại Tour, hoặc loại Tour chưa có mẫu đang dùng | Hồ sơ được tạo với checklist từ Mẫu mặc định; nhật ký ghi lý do |
 | AC15 | Bỏ theo Q5 (Booking bị hủy khi đang ở nhóm Tạo lỗi) | — |
-| AC16 | Mặc định khi Điều hành mở DH07 lần đầu | Chip Đang mở bằng Mới tạo + Đang diễn ra + Đã kết thúc; không có hồ sơ Đã đóng; bộ lọc Phụ trách là Của tôi, chọn Tất cả thì thấy mọi hồ sơ kể cả chưa giao; sắp theo ngày khởi hành tăng dần (Q1) |
+| AC16 | Mặc định khi Điều hành mở DH07 lần đầu | Chip Đang mở bằng Mới tạo + Đang diễn ra + Đã kết thúc; không có hồ sơ Đã đóng; chip Của tôi bật (hồ sơ mình phụ trách và hồ sơ Chưa có người phụ trách), bộ lọc Phụ trách là Tất cả; tắt chip Của tôi thì thấy mọi hồ sơ; sắp theo ngày khởi hành tăng dần (Q1; Q-RS12; CGD K2.06) |
 | AC17 | Tìm “BK-2610-0137” | Chỉ hiện TP-2611-0042; số trên chip tính theo kết quả tìm |
 | AC18 | Tìm chuỗi không khớp | Hiện W13, có liên kết Xóa bộ lọc ở thanh lọc; không hiện thông báo “Chưa có hồ sơ” |
 | AC19 | Điều hành bấm dòng Mới tạo, Đang diễn ra, Đã kết thúc, Đã đóng | Mở lần lượt DH08.1, DH08.1, DH08.8, DH08.1 chỉ đọc. Kế toán bấm dòng Đã đóng chưa quyết toán thì mở DH08.8 (AC44); Đã đóng đã quyết toán thì DH08.1 chỉ đọc (R10) |
@@ -650,7 +654,7 @@ DH07 không gửi email hay tài liệu ra ngoài hệ thống. Mọi thông bá
 | AC22 | Chọn 3 hồ sơ, giao cho một người; một hồ sơ đã được giao ở phiên khác | 2 hồ sơ được giao; banner nêu hồ sơ bị bỏ qua và lý do; không ghi đè người đã giao |
 | AC23 | Chọn nhiều dòng | Ô Chọn người trên dòng ẩn; thanh hàng loạt là nơi thao tác duy nhất |
 | AC24 | Hồ sơ chưa giao khởi hành sau 3 ngày | Ô Chọn người viền đỏ kèm “Khởi hành sau 3 ngày”; 08:00 nhóm Điều hành nhận thông báo nhắc |
-| AC25 | Kinh doanh mở DH07, rồi chọn Phụ trách: Tất cả | Mặc định Của tôi: thấy hồ sơ của Booking mình. Chọn Tất cả: thấy mọi hồ sơ. Cả hai: không có ô chọn, ô Chọn người (Q1) |
+| AC25 | Kinh doanh mở DH07 lần đầu, rồi bật chip Của tôi | Lần đầu: chip Của tôi tắt, bộ lọc Phụ trách Tất cả, thấy mọi hồ sơ (kể cả hồ sơ của Booking người khác). Bật Của tôi: không có hồ sơ nào (Kinh doanh không phụ trách hồ sơ Tour), vùng rỗng có nút Tắt Của tôi (CGD K1.18). Cả hai: không có ô chọn, ô Chọn người (Q1; Q-RS12) |
 | AC26 | Kế toán bấm chip Đã kết thúc và bấm dòng chưa quyết toán | DH08.8 mở |
 | AC27 | Lỗi tải danh sách | Hiện W14; Tải lại với bộ lọc cũ |
 | AC28 | Booking của hồ sơ bị hủy ở KD08 | Dòng có chỉ báo Booking đã hủy; Cần xử lý hiện “Gửi hủy n NCC”; hồ sơ Đang diễn ra thì n chỉ tính dịch vụ chưa dùng (R07) |
@@ -663,7 +667,7 @@ DH07 không gửi email hay tài liệu ra ngoài hệ thống. Mọi thông bá
 | AC35 | Điều hành bấm Lịch lần đầu | Dạng Theo người phụ trách, 5 tuần quanh hôm nay; hàng Chưa có người phụ trách trên cùng; các hàng còn lại: người đang thao tác, rồi theo số hồ sơ đang mở giảm dần (W17) |
 | AC36 | Một người có hai hồ sơ chồng ngày | Hai thanh nằm hai dòng trong hàng của người đó (W17) |
 | AC37 | Lọc Phụ trách: Chưa có người phụ trách rồi bấm Lịch | Chỉ còn hàng Chưa có người phụ trách |
-| AC38 | Kinh doanh bấm Lịch lần đầu | Dạng Tháng, tháng hiện tại; Phụ trách mặc định Của tôi nên chỉ có hồ sơ của Booking mình; hồ sơ có Booking đã hủy ghi “⚠ Booking đã hủy” trên thanh (W18) |
+| AC38 | Kinh doanh bấm Lịch lần đầu | Dạng Tháng, tháng hiện tại; chip Của tôi tắt nên có mọi hồ sơ trong tháng, kể cả hồ sơ của Booking người khác; hồ sơ có Booking đã hủy ghi “⚠ Booking đã hủy” trên thanh (W18; Q-RS12) |
 | AC39 | Bấm một thanh trên Lịch hoặc một thẻ Kanban của hồ sơ Đã kết thúc | Mở DH08.8 (R10) |
 | AC40 | Đổi sang Lịch, đăng xuất, đăng nhập lại | DH07 mở ở Lịch, đúng chế độ và độ rộng đã chọn (R13) |
 | AC41 | Bấm thông báo hồ sơ mới khi đang dùng Kanban | DH07 mở ở Bảng lọc Chưa có người phụ trách (1.2) |
@@ -671,7 +675,7 @@ DH07 không gửi email hay tài liệu ra ngoài hệ thống. Mọi thông bá
 | AC43 | Bỏ theo Q5 (Thử lại khi hệ thống vừa tự thử lại thành công) | — |
 | AC44 | Kế toán bấm dòng hồ sơ Đã đóng chưa quyết toán | Mở DH08.8 (R10) |
 | AC45 | Tài khoản của Điều hành phụ trách một hồ sơ Mới tạo bị khóa ở QT01; Điều hành mở DH07 | Ô Phụ trách hiện tên kèm “(ngừng hoạt động)”; người này không có trong danh sách chọn; Điều hành chọn người khác thì lưu ngay như L4.1; Quản trị hệ thống (mặc định không có quyền giao) chỉ thấy tên, không có ô chọn (R08) |
-| AC46 | Hồ sơ Đã đóng có người phụ trách ngừng hoạt động | Dòng không có ô chọn và ô Chọn người, cột Phụ trách hiện tên kèm “(ngừng hoạt động)”; DH07 không có cách giao lại. Người có quyền Mở lại Tour (ví dụ Quản trị hệ thống) mở lại ở DH08 kèm chọn người phụ trách mới; quay lại DH07 thì dòng ở Đã kết thúc, có chỉ báo Đã mở lại và tên người mới (E4.5, RSD DH08 R16) |
+| AC46 | Hồ sơ Đã đóng có người phụ trách ngừng hoạt động | Dòng không có ô chọn và ô Chọn người, cột Phụ trách hiện tên kèm “(ngừng hoạt động)”; DH07 không có cách giao lại. Điều hành (có quyền Mở lại Tour và quyền giao) mở lại ở DH08 kèm chọn người phụ trách mới; quay lại DH07 thì dòng ở Đã kết thúc, có chỉ báo Đã mở lại và tên người mới. Quản trị hệ thống (mặc định không có quyền giao) mở lại thì dòng ở Đã kết thúc, có chỉ báo Đã mở lại, vẫn tên người cũ kèm “(ngừng hoạt động)”; Điều hành giao lại tại chỗ như L4.1 (E4.5, RSD DH08 R16; Q-RS28) |
 | AC47 | Lê Quang Huy phụ trách TP-2611-0047 (chưa đóng) và bị tắt nhận phân công ở DH06 (RSD DH06 AC21); Điều hành mở DH07 ở Bảng và Kanban | Ô Phụ trách trên dòng và trên thẻ hiện “Lê Quang Huy” kèm chỉ báo vàng “Không nhận phân công”; người này không có trong danh sách chọn; chọn người khác thì lưu ngay và chỉ báo mất (mục 2.2, R08) |
 | AC48 | Ngày 12/11/2026 10:00, chip Đang mở, Phụ trách Tất cả: TP-2611-0071 có thay đổi chương trình v4 Chờ áp dụng, mọi hạng mục Đã xác nhận; TP-2611-0072 có 2 hạng mục Cần đặt; TP-2611-0073 có một lần đặt Đã gửi 10/11/2026 09:00 chưa có kết quả (49 giờ), các hạng mục khác Đã xác nhận; TP-2611-0074 có một hạng mục Chờ Kinh doanh và một lần đặt Đã gửi 10/11/2026 11:00 (47 giờ). Chọn lần lượt Việc cần xử lý = Thay đổi chương trình; Đặt dịch vụ; Chờ NCC phản hồi quá hạn; rồi chọn cả Thay đổi chương trình và Đặt dịch vụ | Lần lượt: đúng 1 dòng TP-2611-0071; đúng 1 dòng TP-2611-0072 (TP-2611-0074 không khớp vì Chờ Kinh doanh không tính); đúng 1 dòng TP-2611-0073 (TP-2611-0074 chưa đủ 48 giờ); 2 dòng TP-2611-0071, TP-2611-0072. Số trên chip tính theo bộ lọc (mục 2.3) |
 | AC49 | Từ AC48, đặt đồng hồ 12/11/2026 11:01, tải lại với Chờ NCC phản hồi quá hạn | 2 dòng TP-2611-0073, TP-2611-0074 (lần đặt của TP-2611-0074 vừa quá 48 giờ); không dữ liệu nào đổi (Q6; RSD DH08 R04) |

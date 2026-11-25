@@ -383,7 +383,7 @@ const afterApply = (o = {}) => bkTable(Object.assign({
   act: { 3: B('Đặt dịch vụ', 'sm p'), 5: '<span></span>', 8: B('Gửi điều chỉnh', 'sm p'), 10: B('Gửi yêu cầu hủy', 'sm dp') },
 }, o));
 const chips4 = { 'Tất cả': 11, 'Cần đặt': 4, 'Chờ kết quả': 2, 'Cần đặt lại': 0, 'Chờ Kinh doanh': 0, 'Cần điều chỉnh / hủy': 2, 'Đã xác nhận': 2, 'Đã hủy': 1 };
-S.W39 = page({ body: bkHdr({ cnt: { bk: '<span class="cnt w">6</span>' } }) + `<div class="banner s small" style="margin-top:10px"><span class="ico ok">✓</span><div style="flex:1"><b>Đã áp dụng thay đổi v4</b> lúc 14/11 10:02 · 2 dịch vụ cần đặt · 1 cần điều chỉnh · 1 cần hủy · 1 đã bỏ. Kinh doanh đã được thông báo.</div>${B('Soạn email theo NCC (3 NCC)', 'sm p')}</div>`
+S.W39 = page({ body: bkHdr({ cnt: { bk: '<span class="cnt w">6</span>' } }) + `<div class="banner s small" style="margin-top:10px"><span class="ico ok">✓</span><div style="flex:1"><b>Đã áp dụng thay đổi v4</b> lúc 14/11 10:02 · 2 dịch vụ cần đặt · 1 cần điều chỉnh · 1 cần hủy · 1 đã bỏ. Kinh doanh đã được thông báo.</div></div>`
   + bkChips('Tất cả', chips4) + afterApply() });
 
 S.W39a = page({ body: bkHdr({ cnt: { bk: '<span class="cnt w">6</span>' } }) + bkChips('Tất cả', chips4) + afterApply(),

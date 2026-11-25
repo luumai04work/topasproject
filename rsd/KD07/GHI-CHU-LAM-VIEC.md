@@ -127,3 +127,38 @@ Tài liệu này không thuộc bản RSD. Nó lưu các quyết định đã ch
 - **Tự quyết:** bộ lọc thả xuống trên thanh lọc như Thanh toán, không thêm cột hay chỉ báo trên dòng (banner yêu cầu đã có ở KD08 khi mở dòng). Không đổi luồng, trạng thái, quyền.
 - Hình chưa dựng lại: thanh lọc trên W01–W17 chưa có ô Yêu cầu đổi lịch trình.
 - **Kiểm tra.** `check-rsd.py`: 17 ảnh, 17 mã W, không lỗi.
+
+## Cách hiểu đã chọn khi làm danh sách dạng Bảng (ticket 53, 17/11/2026)
+
+- **Mặc định theo vai trò (R01, R08, 2.3).** Màn ghi mặc định lên URL khi mở không có tham số; API không áp mặc định. Vai trò thuộc phòng Kinh doanh (kể cả khi có thêm vai trò khác): Của tôi bật, Khởi hành Chưa kết thúc, chip Hiệu lực, sắp theo ngày khởi hành. Kế toán: Của tôi tắt, Khởi hành Tất cả, chip Hiệu lực, sắp theo hạn đợt chưa thu. Quản trị hệ thống (không có vai trò Kinh doanh): Của tôi tắt (R01) và Khởi hành Chưa kết thúc, sắp theo ngày khởi hành như Kinh doanh (2.3, R08), theo chữ RSD thay cho câu “others like Accounting” của hợp đồng scenario.
+- **Tab đích (R09).** Kinh doanh, Quản trị: KD08.1. Kế toán: KD08.2 với `?installment=<số>` của đợt đang hiện trên dòng; dòng đó được tô (`aria-current`).
+- **Trạng thái rỗng (E1.1, E1.3).** `emptyReason`: `NO_OWN_BOOKINGS` khi Của tôi bật mà người dùng không phụ trách Booking nào (W07); `MINE_FILTER` khi Của tôi bật mà không khớp (W05 kèm “Đang lọc Booking của tôi · Tắt Của tôi”); `NO_MATCH` khi Của tôi tắt; thêm `NO_BOOKINGS` khi hệ thống chưa có Booking nào (“Chưa có Booking nào”, E1.3 câu cuối).
+- **Sắp xếp.** Tham số `sort=DEPARTURE|NEXT_DUE|CREATED`, thêm `:desc` khi bấm tiêu đề lần hai; ba cột sắp được: Booking (ngày tạo), Khởi hành, Còn phải thu (hạn đợt chưa thu; Booking không có đợt chưa thu xếp sau theo ngày khởi hành).
+- **Không lấy được số liệu KT01 (E1.4).** Dùng bước lỗi `bookings.readReceivables` như KD08: danh sách vẫn tải, cột Còn phải thu ghi “Chưa có dữ liệu công nợ”, Booking chưa có lịch thanh toán vẫn ghi “— Chưa có lịch thanh toán”, banner vàng có Thử lại.
+- Bộ lọc Thanh toán, Yêu cầu đổi lịch trình, dạng Lịch là của ticket 54, 55; ngày hủy, lý do hủy trên dòng là của ticket 69 (Hủy Booking); kết quả điều chỉnh sau hủy của ticket 79–80.
+
+**17/11/2026 · ticket 54 (cách hiểu đã chọn, số liệu thanh toán).**
+- **Bộ lọc Thanh toán (R07).** Tham số `payment=ALL|OUTSTANDING|DUE_SOON|OVERDUE|PAID|NO_SCHEDULE|NO_DATA`, lọc trước khi đếm chip (AC14). Còn phải thu: số KT01 > 0 (Booking Đã hủy chỉ khớp khi KT01 trả nghĩa vụ còn lại, đến với ticket 79–80). Cần thu trong n ngày, Có đợt quá hạn: Booking Hiệu lực có đợt chưa thu sớm nhất Đến hạn hoặc Quá hạn (đợt chưa thu sớm nhất là đợt có hạn sớm nhất nên đủ để biết có đợt quá hạn). Chưa có lịch thanh toán chỉ Booking Hiệu lực.
+- **KT01 không trả số liệu (E1.4).** API không áp bộ lọc Thanh toán (`applied.payment = ALL`, `paymentFilterAvailable: false`); ô lọc xám, khóa, banner thêm “Bộ lọc Thanh toán đang chọn đã về Tất cả” khi URL đang có giá trị lọc. “Chưa có lịch thanh toán” đọc từ lịch của KD08.2, nên vẫn đúng khi KT01 lỗi (AC12).
+- **Thiếu số liệu của một Booking (E1.7).** Booking có lịch mà KT01 không có bản ghi công nợ, hoặc bước lỗi `bookings.readReceivables:<mã Booking>`: dòng đó Chưa có dữ liệu công nợ, chỉ khớp bộ lọc Chưa có dữ liệu công nợ.
+- **CGD-AC12 ở KD07.** KD07 không có dòng tổng: mỗi dòng một Booking, một loại tiền của lịch thanh toán, không cộng giữa các Booking (R04). Còn phải thu nhiều loại tiền của khoản Phát sinh (Q18) đến với ticket 79.
+
+**17/11/2026 · ticket 79 (cách hiểu đã chọn, nhiều loại tiền và tiền thừa).**
+- **Còn phải thu theo loại tiền (R04, Q18).** Dòng `payment.outstandingByCurrency` liệt kê mỗi loại tiền còn phải thu (đợt và khoản Phát sinh), không cộng lẫn; `outstanding` là dòng loại tiền Booking, không còn thì dòng đầu. Đợt hiện trên dòng là đợt hoặc khoản Phát sinh chưa thu đủ có hạn sớm nhất (`installment.kind: 'EXTRA'`, ghi “Phát sinh · hạn …”).
+- **Tiền thừa.** Đã thu đủ kèm chỉ báo “Tiền thừa …” theo từng loại tiền (`payment.overpayment`), không ghi số âm. “Đã điều chỉnh · Cần hoàn …” là của ticket 80.
+
+**17/11/2026 · ticket 55 (cách hiểu đã chọn, dạng Lịch).**
+- **Ghi nhớ (R12, U3).** Dạng xem, mốc và Tháng/Tuần nhớ chung một lựa chọn `calendar` của màn KD07 theo người dùng, lưu ngay khi đổi (không gom một giây), để đăng xuất ngay sau đó vẫn giữ. Mở KD07 từ menu (không tham số) thì mở lại dạng và mốc dùng lần cuối; mở bằng đường dẫn có tham số thì theo đường dẫn. URL Lịch: `?view=calendar&anchor=DEPARTURE|DUE_DATE&month=YYYY-MM` (tháng bỏ trống là tháng hiện tại, hoặc tháng đầu của khoảng Khởi hành đang lọc).
+- **API.** `GET /api/bookings/calendar?<bộ lọc của danh sách>&anchor=&month=` trả các ngày của lưới tháng (tuần từ Thứ 2). Mốc Hạn thanh toán: số tiền, hạn của đợt đọc từ lịch thanh toán KD08.2, tình trạng và đã thu từ KT01; KT01 lỗi (bước lỗi `bookings.readReceivables`) thì thẻ `NO_DATA` màu xám, banner vàng có Thử lại. Giới hạn hàng mỗi tuần và số mục tối đa là `limits.bookingCalendarRowsPerWeek` (3), `limits.bookingCalendarMaxItems` (500) của tệp cấu hình (C2).
+- **“+n” ở mốc Hạn thanh toán.** Mỗi ô ngày hiện tối đa 3 thẻ (thẻ không vắt qua ngày nên “tối đa 3 hàng mỗi tuần” tính theo ô ngày); bảng nhỏ liệt kê mọi đợt của ngày.
+- **Chữ.** Nút mốc hiện “Ngày khởi hành”, “Hạn thanh toán” như hình, tên cho trình đọc màn hình “Theo ngày khởi hành”, “Theo hạn thanh toán”. Nút ở W15 ghi “Xem Booking Đã hủy ở Bảng” (không kèm số; số Booking Đã hủy ở ngay chip). Chân khay Chưa có lịch thanh toán không lặp câu “Booking Đã hủy không hiện ở mốc này” (ghi chú cạnh chip đã nói khi chip là Tất cả).
+- **Quay lại từ KD08 (E4.7).** Thanh vừa mở mà không còn khớp chip (vừa hủy) vẫn vẽ tại chỗ, mờ, xám gạch ngang, kèm “Không còn khớp bộ lọc”, tới lần tải lại kế tiếp.
+- **Bộ chuyển dạng xem khi đang chọn dòng (CGD K1.14, K3.09, AC109).** Thanh hàng loạt thay hàng chip nên bộ chuyển dạng xem đứng ở cuối thanh hàng loạt; đổi dạng thì bỏ lựa chọn. Áp cho KD05 (KD07 không có ô chọn).
+
+**17/11/2026 · rà soát ticket 55 (cách hiểu đã chọn).**
+- **Tháng mở đầu (R13, R14).** Mốc Ngày khởi hành: tháng hiện tại; đang lọc khoảng ngày khởi hành tự chọn thì tháng của ngày đầu khoảng; chọn nhanh “Tháng sau” thì tháng sau (khoảng bắt đầu ở đó); các chọn nhanh khác bắt đầu từ hôm nay nên là tháng hiện tại. Mốc Hạn thanh toán: luôn tháng hiện tại, bộ lọc ngày khởi hành không đổi tháng mở đầu. Tháng trên URL (`month=`, quay lại từ KD08) luôn thắng.
+- **Màn hẹp (E4.8).** Cửa sổ dưới 1100 px: lưới luôn là Tuần (nút Tháng không bấm được, lựa chọn Tháng/Tuần đã nhớ giữ nguyên cho lúc cửa sổ rộng lại); khay Chưa có lịch thanh toán xuống dưới lưới, rộng bằng lưới.
+- **Người phụ trách ngừng hoạt động** hiện “(ngừng hoạt động)” cả ở chú thích thanh, thẻ, bảng nhỏ “+n” và khay.
+
+**19/11/2026 · ticket 92 (cách hiểu đã chọn, nhớ bộ lọc).**
+- **Nhớ bộ lọc (1.2, 5.1, U3).** Của tôi, chip, Khởi hành (kể cả khoảng ngày), Thanh toán, Yêu cầu đổi lịch trình, Phụ trách, sắp xếp nhớ ở lựa chọn `list` của KD07 theo người dùng; ô tìm, trang, tháng của Lịch không nhớ. Mở từ menu (không tham số): bộ lọc đã nhớ, chưa có thì mặc định theo vai trò (W01, W11), cộng dạng và mốc của lựa chọn `calendar`. Liên kết ghi Của tôi và chip (thẻ Việc của tôi) mở đúng như liên kết và không ghi đè lựa chọn đã nhớ (U3.06).

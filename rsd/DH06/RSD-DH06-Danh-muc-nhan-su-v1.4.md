@@ -7,6 +7,7 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 - **Thay đổi ở v1.4 (12/11/2026).** Cập nhật theo quyết định phase coding (`docs/QUYET-DINH-PHASE-CODING.md`): công tắc Nhận phân công có hai giá trị **Đang dùng / Ngừng dùng**, thay “Đang nhận phân công”, “Không nhận phân công” (K6); chip, trạng thái, vòng đời, R03, R05, AC sửa theo; chỉ báo cạnh tên ở DH07, DH08 giữ chữ “Không nhận phân công”. Mục 1.4 viết lại thành quyền mặc định theo vai trò, có cột Quản trị, cấu hình ở QT02 (Q1, Q25); R05, R09, R10, 5.2 sửa theo. Tác động khi tắt (chỉ báo, thông báo in-app) ghi ngay trong cùng giao dịch, bỏ chờ 10 giây; chỉ báo tính lúc đọc; Hoàn tác gỡ thông báo vừa tạo (Q2, Q5, Q6; L4.2, R05, 2.4, AC21, AC24). Lưu bị từ chối vì phiên khác chỉ có nút Tải lại (Q8; E3.1, AC18). Trường chỉ đọc hiện dạng chữ (U5). Mã nhân sự cho phép thủng số (Q7). Không đổi số hiệu L, E, R, W, AC. Hình chưa dựng lại; chỗ hình khác văn bản có ghi chú dưới hình.
 - **Thay đổi ở v1.4 (bổ sung 12/11/2026 · vai trò HDV).** Người dùng chốt thêm vai trò đăng nhập HDV cho người dẫn đoàn (BOI-CANH-DU-AN “Vai trò HDV”, ADR 0007, RSD HD01 v1.0): **Cộng tác viên được liên kết tài khoản, nhưng tài khoản đó chỉ có vai trò thuộc phòng HDV; Nội bộ liên kết với tài khoản có mọi vai trò.** Sửa R01, R06 (dòng đổi Loại), 1.2 (QT01 ↔ DH06), 2.1 và 2.3 (cột, giá trị Tài khoản của Cộng tác viên), L1.2 (trường Tài khoản đăng nhập), L2.1 bước 2, E3.2, 5.1; thêm E3.9, AC35–AC38; AC17 viết lại cho khớp E3.2. R03 không đổi: Cộng tác viên có tài khoản vẫn chỉ được chọn ở phục vụ Tour (DH08.5). Hình W01, W05, W08 chưa cập nhật.
 - **Thay đổi ở v1.4 (bổ sung 12/11/2026 · sau rà soát HD01).** Mục 1.4 (Nguồn quyền, Dữ liệu cá nhân): thêm ngoại lệ HDV thấy điện thoại của Điều hành phụ trách hồ sơ được phân công qua HD01 (RSD HD01 R12). AC36: “vai trò phục vụ” thay “vai trò”. Không đổi số hiệu, không đổi hình.
+- **Thay đổi ở v1.4 (bổ sung 13/11/2026 · quyết định rà soát).** Theo `docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`. (1) Q-RS13, Q-RS23: người phụ trách hồ sơ và nhóm Điều hành nhận thông báo xác định theo tài khoản liên kết có **vai trò hệ thống Điều hành** (VT-002), không theo nhóm công việc và không theo vai trò tự tạo thuộc phòng Điều hành; nhóm công việc Điều hành không còn là giá trị hệ thống; không logic nào dựa vào tên nhóm công việc: ngôn ngữ phục vụ bắt buộc khi nhóm công việc nhận vai trò phục vụ HDV chính hoặc HDV điểm (thay “nhóm Hướng dẫn viên”); bỏ màu cam ở cột Tài khoản và banner vàng của bảng trượt theo nhóm Điều hành. (2) Q-RS14: người thực hiện công việc checklist không gồm nhân sự có tài khoản liên kết chỉ có vai trò thuộc phòng HDV. (3) Q-RS01: vai trò phục vụ là HDV chính, HDV điểm, Trưởng đoàn. Sửa 1.2, 2.1, L2.1, L3.1, E3.4, E3.9, E4.9, R02, R03, R06, R10, 5.2, AC11, AC12, AC33, AC36, AC38; thêm AC39–AC41. Không dựng lại hình (W01, W05, W08 còn màu cam, banner).
 - **Thay đổi ở v1.3 (12/11/2026).** Bổ sung sau kiểm tra chéo cuối đợt: E2.7: câu báo hướng thêm nhóm công việc ở QT05 (Điều hành sửa nhóm này), bỏ “liên hệ Quản trị”. Sửa theo rà soát lần ba:
   - **R03 · Người phụ trách hồ sơ:** tài khoản liên kết đang hoạt động **và có vai trò Điều hành** (RSD QT01 R03, R06; BOI-CANH-DU-AN “Ngừng hoạt động”). Nhân sự có tài khoản liên kết mất vai trò Điều hành không còn trong danh sách chọn người phụ trách và không nhận thông báo nhóm Điều hành.
   - **R03 · Người thực hiện công việc checklist:** loại nhân sự có tài khoản liên kết Bị khóa (RSD QT01 R06: tài khoản bị khóa không có trong danh sách chọn người thực hiện); nhân sự Nội bộ chưa có tài khoản vẫn chọn được.
@@ -46,7 +47,7 @@ DH06 là nơi nhập liệu duy nhất cho danh mục người có thể đượ
 | Từ / đến | Hành vi |
 |---|---|
 | Menu Điều hành → Nhân sự | Mở DH06 với bộ lọc lần trước trong phiên. Lần đầu mở ở chip Đang dùng (Nhận phân công), sắp theo tên (W01). |
-| DH07, DH08 → DH06 | Khi không còn ai đủ điều kiện để chọn (RSD DH07 E4.7), câu “Cấu hình ở DH06” mở DH06 lọc sẵn theo nhóm công việc liên quan. |
+| DH07, DH08 → DH06 | Khi không còn ai đủ điều kiện để chọn (RSD DH07 E4.7), câu “Cấu hình ở DH06” mở DH06; với phục vụ Tour (DH08.5), lọc sẵn theo các nhóm công việc nhận vai trò phục vụ đã chọn. |
 | DH06 → DH08 | Bấm Tour Code ở tab Lịch phân công (W10) hoặc trong hộp thoại tắt nhận phân công (W12) để mở hồ sơ ở thẻ mới. Với hồ sơ đang phụ trách, mở DH08.1; với công việc, mở DH08.2; với phục vụ Tour, mở DH08.5. |
 | QT01 ↔ DH06 | Quản trị hệ thống liên kết tài khoản đăng nhập với một nhân sự ở QT01: nhân sự Nội bộ với tài khoản có mọi vai trò; Cộng tác viên với tài khoản chỉ có vai trò thuộc phòng HDV (R01). DH06 chỉ hiện kết quả liên kết, không có thao tác liên kết. |
 | QT05 → DH06 | Danh mục Nhóm công việc, Ngôn ngữ phục vụ và Địa điểm ở QT05 cung cấp giá trị để chọn. |
@@ -104,7 +105,7 @@ Quyền là cặp (màn hoặc phần của màn, thao tác), gán cho vai trò 
 | Nhóm công việc | Các nhóm, cách nhau bằng dấu phẩy | QT05 |
 | Ngôn ngữ | Ngôn ngữ phục vụ, cách nhau bằng dấu phẩy; “—” khi trống | QT05 |
 | Liên hệ | Điện thoại; email ở dòng dưới | — |
-| Tài khoản | “✓ Đã liên kết”, “Chưa có” (màu cam đậm khi nhân sự Nội bộ thuộc nhóm Điều hành) hoặc “Bị khóa” (đỏ); áp cho cả Nội bộ và Cộng tác viên (R01) | QT01; R01 |
+| Tài khoản | “✓ Đã liên kết”, “Chưa có” hoặc “Bị khóa” (đỏ); áp cho cả Nội bộ và Cộng tác viên (R01). Không tô màu theo nhóm công việc (Q-RS23) | QT01; R01 |
 | Đang được giao | “n hồ sơ · m việc · k Tour · từ dd/mm”, chỉ ghi phần khác 0; “—” khi không có việc nào | R04 |
 | Nhận phân công | Công tắc Đang dùng / Ngừng dùng (người có quyền Bật, tắt Nhận phân công) hoặc chữ (người khác) | R05 |
 
@@ -235,13 +236,13 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
    > Hình chưa cập nhật: công tắc Nhận phân công ghi “Có”; nay là Đang dùng (K6). Ô Mã nhân sự, Tài khoản đăng nhập vẽ viền nét đứt; theo U5 hiện dạng chữ. Câu “Cộng tác viên không có tài khoản đăng nhập” nay đổi như bước 2 (R01).
 
-2. **W05 · Các trường của form.** Điều hành nhập họ tên, chọn loại, chọn một hoặc nhiều nhóm công việc. Nếu có nhóm Hướng dẫn viên thì chọn ngôn ngữ phục vụ (bắt buộc). Sau đó nhập điện thoại, email và ghi chú nếu có. Với Cộng tác viên, chỗ của trường Tài khoản đăng nhập ghi “Chưa có · Cộng tác viên chỉ được liên kết tài khoản có vai trò thuộc phòng HDV (QT01)” (R01).
+2. **W05 · Các trường của form.** Điều hành nhập họ tên, chọn loại, chọn một hoặc nhiều nhóm công việc. Nếu có nhóm công việc nhận vai trò phục vụ HDV chính hoặc HDV điểm (R02) thì chọn ngôn ngữ phục vụ (bắt buộc). Sau đó nhập điện thoại, email và ghi chú nếu có. Với Cộng tác viên, chỗ của trường Tài khoản đăng nhập ghi “Chưa có · Cộng tác viên chỉ được liên kết tài khoản có vai trò thuộc phòng HDV (QT01)” (R01).
 3. **W05 · Nút Lưu nhân sự ở chân bảng trượt.** Điều hành bấm Lưu nhân sự. Hệ thống kiểm tra theo mục 5.2 và R07, cấp mã `NS-NNN`, rồi lưu.
 4. **W07 · Danh sách và thông báo ngắn.** Bảng trượt đóng. Nhân sự mới nằm đúng vị trí theo tên, tô nền xanh nhạt trong 5 giây, có nhãn Mới. Số trên chip tăng (W07: 25 + 3 = 28). Thông báo ngắn “Đã thêm … (NS-028)”.
 
    ![W07 · Danh sách sau khi thêm nhân sự](wireframes/W07.png)
 
-*Kết quả:* nhân sự mới có trong danh mục. Nếu Nhận phân công là Đang dùng, người đó hiện ngay trong danh sách chọn ở DH07, DH08 theo R03. Nhân sự Nội bộ thuộc nhóm Điều hành chỉ được chọn làm phụ trách hồ sơ sau khi Quản trị hệ thống liên kết tài khoản đang hoạt động có vai trò Điều hành ở QT01 (R03).
+*Kết quả:* nhân sự mới có trong danh mục. Nếu Nhận phân công là Đang dùng, người đó hiện ngay trong danh sách chọn ở DH07, DH08 theo R03. Nhân sự Nội bộ chỉ được chọn làm phụ trách hồ sơ sau khi Quản trị hệ thống liên kết tài khoản đang hoạt động có vai trò hệ thống Điều hành ở QT01 (R03).
 
 **Ngoại lệ**
 
@@ -260,11 +261,11 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **L3.1 Sửa thông tin.** *Điều kiện:* Điều hành.
 
-1. **W08 · Bấm dòng → bảng trượt, tab Thông tin.** Bảng trượt mở với dữ liệu hiện tại. Nhân sự Nội bộ thuộc nhóm Điều hành mà chưa liên kết tài khoản có banner vàng: chưa được chọn làm phụ trách hồ sơ, chưa nhận thông báo của nhóm Điều hành, và Quản trị hệ thống liên kết ở QT01.
+1. **W08 · Bấm dòng → bảng trượt, tab Thông tin.** Bảng trượt mở với dữ liệu hiện tại. Không có banner theo nhóm công việc (quyết định rà soát 13/11/2026, Q-RS23); trường Tài khoản đăng nhập ghi trạng thái liên kết (R01).
 
    ![W08 · Sửa thông tin nhân sự](wireframes/W08.png)
 
-   > Hình chưa cập nhật: ô Mã nhân sự, Tài khoản đăng nhập còn vẽ viền nét đứt; theo U5 hiện dạng chữ. Nhãn cạnh công tắc ở phần đầu ghi “Nhận phân công”; giá trị nay là Đang dùng / Ngừng dùng (K6).
+   > Hình chưa cập nhật: ô Mã nhân sự, Tài khoản đăng nhập còn vẽ viền nét đứt; theo U5 hiện dạng chữ. Nhãn cạnh công tắc ở phần đầu ghi “Nhận phân công”; giá trị nay là Đang dùng / Ngừng dùng (K6). Banner vàng “nhóm Điều hành chưa liên kết tài khoản” không còn (Q-RS23).
 
 2. **W08 · Các trường của form.** Điều hành sửa các trường. Chân bảng trượt hiện “● Có thay đổi chưa lưu”; nút Đóng đổi thành Hủy thay đổi; nút Lưu mở khóa.
 3. **W08 · Nút Lưu ở chân bảng trượt.** Điều hành bấm Lưu. Hệ thống kiểm tra như L2.1 bước 3 và R06, rồi ghi một lần. Bảng trượt ở lại tab Thông tin. Chân ghi thời điểm cập nhật mới; thông báo ngắn “Đã lưu”. Dòng trên danh sách phía sau cập nhật.
@@ -291,12 +292,12 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 - **E3.2.** Đổi Loại từ Nội bộ sang Cộng tác viên khi tài khoản liên kết có vai trò ngoài phòng HDV (R01): chặn lưu, lỗi cạnh trường “Tài khoản liên kết có vai trò ngoài phòng HDV · bỏ các vai trò đó hoặc gỡ liên kết ở QT01 trước khi đổi sang Cộng tác viên”. Tài khoản liên kết chỉ có vai trò thuộc phòng HDV thì đổi được, liên kết giữ nguyên.
 - **E3.3.** Đổi Loại từ Nội bộ sang Cộng tác viên khi còn công việc checklist chưa hoàn tất: cảnh báo như W09, liệt kê các công việc đó, rồi cho lưu (R06). Công việc giữ người thực hiện cũ.
-- **E3.4.** Bỏ hết ngôn ngữ khi còn nhóm Hướng dẫn viên: lỗi cạnh trường “Hướng dẫn viên cần ít nhất một ngôn ngữ phục vụ”.
+- **E3.4.** Bỏ hết ngôn ngữ khi còn nhóm công việc nhận vai trò phục vụ HDV chính hoặc HDV điểm (R02): lỗi cạnh trường “Hướng dẫn viên cần ít nhất một ngôn ngữ phục vụ”. Điều kiện xét vai trò phục vụ đã khai của nhóm, không xét tên nhóm (Q-RS23).
 - **E3.5.** Đổi ngôn ngữ của hướng dẫn viên đang có phân công: lưu ngay, không cảnh báo. DH08.5 chỉ kiểm tra lệch ngôn ngữ lúc phân công (RSD DH08 R12); lý do lệch ngôn ngữ đã ghi được giữ.
 - **E3.6.** Tài khoản bị khóa ở QT01 trong lúc bảng trượt đang mở: trường Tài khoản cập nhật khi lưu hoặc mở lại. Không chặn việc sửa thông tin.
 - **E3.7.** Đóng bảng trượt hoặc chuyển tab khi có thay đổi chưa lưu: hộp thoại Lưu và đóng, Bỏ thay đổi, Ở lại.
 - **E3.8.** Lỗi lưu: như E2.6; dữ liệu trên form giữ nguyên.
-- **E3.9.** Đổi Loại từ Cộng tác viên sang Nội bộ khi đã liên kết tài khoản: lưu bình thường; tài khoản giữ vai trò đang có, Quản trị gán thêm vai trò khác ở QT01 nếu cần (R01). Nhân sự từ nay có thể hiện ở danh sách chọn người thực hiện, người phụ trách theo R03.
+- **E3.9.** Đổi Loại từ Cộng tác viên sang Nội bộ khi đã liên kết tài khoản: lưu bình thường; tài khoản giữ vai trò đang có, Quản trị gán thêm vai trò khác ở QT01 nếu cần (R01). Nhân sự từ nay có thể hiện ở danh sách chọn người thực hiện, người phụ trách theo R03: khi tài khoản vẫn chỉ có vai trò thuộc phòng HDV thì chưa có ở danh sách chọn người thực hiện (Q-RS14), chưa có vai trò hệ thống Điều hành thì chưa có ở danh sách chọn người phụ trách.
 
 ### 3.4. Bật, tắt nhận phân công (CNHT03.02 · quyết định 11/11/2026)
 
@@ -343,8 +344,8 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 - **E4.5.** Bấm Hoàn tác khi đã có người đổi tiếp nhân sự đó: không hoàn tác; thông báo nêu lý do. Hết 10 giây thì thông báo ngắn biến mất; muốn đổi lại thì bấm công tắc.
 - **E4.6.** Bấm công tắc nhiều lần liên tiếp: công tắc khóa ngay sau lần bấm đầu cho tới khi có kết quả; máy chủ chỉ xử lý một yêu cầu.
 - **E4.7.** Tắt người phụ trách hồ sơ đang Đang diễn ra: hộp thoại W12 đặt hồ sơ đó lên đầu với nhãn Đang diễn ra; vẫn cho tắt.
-- **E4.8.** Người dùng tự tắt nhận phân công của chính mình: hộp thoại W12 có thêm dòng “Bạn sẽ không còn nhận thông báo của nhóm Điều hành”. Vẫn cho tắt.
-- **E4.9.** Tắt người cuối cùng thuộc nhóm Điều hành đang nhận phân công: hộp thoại W12 có thêm cảnh báo đỏ “Sau khi tắt sẽ không còn ai để giao phụ trách hồ sơ (DH07)”. Vẫn cho tắt.
+- **E4.8.** Người dùng tự tắt nhận phân công của chính mình khi đang thuộc nhóm Điều hành (R03): hộp thoại W12 có thêm dòng “Bạn sẽ không còn nhận thông báo của nhóm Điều hành”. Vẫn cho tắt.
+- **E4.9.** Tắt người cuối cùng của nhóm Điều hành (người cuối cùng còn chọn được làm phụ trách hồ sơ, R03): hộp thoại W12 có thêm cảnh báo đỏ “Sau khi tắt sẽ không còn ai để giao phụ trách hồ sơ (DH07)”. Vẫn cho tắt.
 - **E4.10.** Người dùng bị thu hồi quyền giữa chừng: máy chủ từ chối, công tắc trả về giá trị cũ, thông báo “Bạn không có quyền đổi nhận phân công”.
 
 ### 3.5. Xóa nhân sự tạo nhầm
@@ -391,9 +392,9 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 ### R02. Nhóm công việc, vai trò phục vụ và ngôn ngữ
 
-- Nhóm công việc là danh mục QT05. Mỗi nhân sự có ít nhất một nhóm. Giá trị minh họa: Điều hành, Kinh doanh, Kế toán, Hướng dẫn viên, Trưởng đoàn. Nhóm **Điều hành** là giá trị hệ thống: không xóa, không tắt được, vì DH07, DH02 và DH03 dùng nhóm này để chọn người phụ trách và gửi thông báo.
-- Mỗi nhóm công việc khai ở QT05 các **vai trò phục vụ Tour** mà nhóm đó được nhận ở DH08.5. Ví dụ: Hướng dẫn viên nhận HDV chính, HDV điểm; Trưởng đoàn nhận Trưởng đoàn.
-- **Ngôn ngữ phục vụ** chọn nhiều, từ cùng danh mục với ngôn ngữ phục vụ của Booking. Nhân sự thuộc nhóm Hướng dẫn viên phải có ít nhất một ngôn ngữ. Với nhóm khác, ngôn ngữ dùng để gợi ý (RSD DH07 R08).
+- Nhóm công việc là danh mục QT05. Mỗi nhân sự có ít nhất một nhóm. Giá trị minh họa: Điều hành, Kinh doanh, Kế toán, Hướng dẫn viên, Trưởng đoàn. **Không nhóm nào là giá trị hệ thống và không logic nào dựa vào tên nhóm** (quyết định rà soát 13/11/2026, Q-RS23): tên nhóm sửa được, nhóm tắt, xóa được theo quy tắc chung của QT05. Nhóm công việc chỉ dùng để lọc ở DH06 và, qua vai trò phục vụ đã khai, để chọn người ở DH08.5. Người phụ trách hồ sơ và nhóm Điều hành nhận thông báo xác định theo tài khoản liên kết (R03), không theo nhóm công việc.
+- Mỗi nhóm công việc khai ở QT05 các **vai trò phục vụ Tour** mà nhóm đó được nhận ở DH08.5. Vai trò phục vụ là danh sách cố định: HDV chính, HDV điểm, Trưởng đoàn (Q-RS01). Ví dụ: Hướng dẫn viên nhận HDV chính, HDV điểm; Trưởng đoàn nhận Trưởng đoàn.
+- **Ngôn ngữ phục vụ** chọn nhiều, từ cùng danh mục với ngôn ngữ phục vụ của Booking. Nhân sự có ít nhất một nhóm công việc nhận vai trò phục vụ HDV chính hoặc HDV điểm phải có ít nhất một ngôn ngữ (thay câu “nhóm Hướng dẫn viên”, Q-RS23). Với nhân sự khác, ngôn ngữ dùng để gợi ý (RSD DH07 R08).
 - **Khu vực phục vụ** chọn nhiều từ danh mục địa điểm (điểm đến, có Toàn quốc), dùng chung với Địa điểm NCC. DH08.5 hiện khu vực bên cạnh tên trong danh sách chọn để Điều hành ưu tiên hướng dẫn viên địa phương.
 - Nhóm công việc, ngôn ngữ hoặc địa điểm bị tắt ở QT05 vẫn giữ trên nhân sự đang dùng, hiện kèm “(ngừng dùng)”; không chọn mới được giá trị đó.
 
@@ -401,11 +402,12 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 | Nơi chọn | Điều kiện để hiện trong danh sách chọn | Thứ tự gợi ý |
 |---|---|---|
-| Người phụ trách hồ sơ (DH07, DH08.1) | Nhận phân công Đang dùng; thuộc nhóm Điều hành; Nội bộ; tài khoản liên kết đang hoạt động và có vai trò Điều hành (RSD QT01 R03) | Theo RSD DH07 R08 (khớp ngôn ngữ, số hồ sơ đang mở) |
-| Người thực hiện công việc checklist (DH08.2; điền theo RSD DH01 R05) | Nhận phân công Đang dùng; Nội bộ; không có tài khoản liên kết Bị khóa (nhân sự chưa có tài khoản vẫn chọn được; RSD QT01 R06) | Người phụ trách hồ sơ đứng đầu, rồi theo tên |
+| Người phụ trách hồ sơ (DH07, DH08.1) | Nhận phân công Đang dùng; Nội bộ; tài khoản liên kết đang hoạt động và có **vai trò hệ thống Điều hành** (VT-002); vai trò tự tạo thuộc phòng Điều hành không tính (RSD QT01 R03; RSD QT02 R13; Q-RS13). Không xét nhóm công việc (Q-RS23) | Theo RSD DH07 R08 (khớp ngôn ngữ, số hồ sơ đang mở) |
+| Người thực hiện công việc checklist (DH08.2; điền theo RSD DH01 R05) | Nhận phân công Đang dùng; Nội bộ; không có tài khoản liên kết Bị khóa (nhân sự chưa có tài khoản vẫn chọn được; RSD QT01 R06); không có tài khoản liên kết chỉ có vai trò thuộc phòng HDV, vì tài khoản đó không mở được DH08 (RSD DH08 1.4; quyết định rà soát 13/11/2026, Q-RS14) | Người phụ trách hồ sơ đứng đầu, rồi theo tên |
 | Nhân sự phục vụ Tour (DH08.5) | Nhận phân công Đang dùng; có nhóm công việc nhận vai trò phục vụ đã chọn (R02); Nội bộ hoặc Cộng tác viên | Theo RSD DH08 L5.2 (khớp ngôn ngữ và trống lịch, khớp ngôn ngữ nhưng bận, rồi các trường hợp còn lại) |
-| Người nhận thông báo của nhóm Điều hành (RSD DH02 R08, RSD DH07) | Nhận phân công Đang dùng; thuộc nhóm Điều hành; tài khoản liên kết đang hoạt động và có vai trò Điều hành | — |
+| Người nhận thông báo của nhóm Điều hành (RSD DH02 R08, RSD DH07) | Như người phụ trách hồ sơ: Nhận phân công Đang dùng; Nội bộ; tài khoản liên kết đang hoạt động và có vai trò hệ thống Điều hành | — |
 
+- **Nhóm Điều hành** (người nhận thông báo theo nhóm ở DH02, DH03, DH07, DH08, HD01 và RSD CH02) là đúng tập người được chọn làm người phụ trách hồ sơ ở dòng đầu bảng trên. Tên “nhóm Điều hành” là tên của tập người nhận này, không phải nhóm công việc Điều hành ở QT05 (Q-RS13, Q-RS23).
 - Danh sách chọn ở các màn trên luôn đọc dữ liệu mới nhất của DH06. Máy chủ của màn đó kiểm tra lại điều kiện khi lưu (RSD DH07 E4.3, RSD DH08 E2.2).
 - Người không còn đủ điều kiện nhưng đang được giao vẫn hiện ở phân công đã có, kèm chỉ báo theo R05 nếu Nhận phân công Ngừng dùng.
 
@@ -443,7 +445,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 | Thay đổi | Khi có việc đang được giao liên quan | Phân công đã có |
 |---|---|---|
-| Bỏ nhóm công việc | Cảnh báo trong bảng trượt (W09), liệt kê phân công cần nhóm đó. Ví dụ: hồ sơ phụ trách cần nhóm Điều hành; phục vụ Tour cần nhóm nhận vai trò đó. Bấm Vẫn lưu để lưu | Giữ nguyên, không gắn chỉ báo |
+| Bỏ nhóm công việc | Cảnh báo trong bảng trượt (W09), liệt kê phân công phục vụ Tour cần nhóm đó (nhóm nhận vai trò phục vụ của phân công). Người phụ trách hồ sơ và người thực hiện công việc không phụ thuộc nhóm công việc (R03, Q-RS23) nên không được liệt kê. Bấm Vẫn lưu để lưu | Giữ nguyên, không gắn chỉ báo |
 | Đổi Nội bộ sang Cộng tác viên | Chặn khi tài khoản liên kết có vai trò ngoài phòng HDV (E3.2). Còn công việc chưa hoàn tất thì cảnh báo như W09 | Giữ nguyên |
 | Đổi Cộng tác viên sang Nội bộ | Không cảnh báo (E3.9) | Giữ nguyên |
 | Đổi ngôn ngữ, khu vực | Không cảnh báo | Giữ nguyên; lý do lệch ngôn ngữ đã ghi ở DH08.5 được giữ |
@@ -472,9 +474,9 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 | Cấu hình | Chủ sở hữu | Dùng ở | Khi thiếu |
 |---|---|---|---|
 | Danh mục Nhóm công việc và vai trò phục vụ của từng nhóm (QT05) | Quản trị hệ thống, Điều hành | Bộ lọc, form, R02, R03 | Không lưu được nhân sự (E2.7). Nhóm chưa khai vai trò phục vụ thì người thuộc nhóm đó không hiện ở DH08.5 |
-| Danh mục Ngôn ngữ phục vụ (QT05) | Quản trị hệ thống, Điều hành | Bộ lọc, form, R02 | Không lưu được nhân sự thuộc nhóm Hướng dẫn viên; lỗi nêu cần cấu hình QT05 |
+| Danh mục Ngôn ngữ phục vụ (QT05) | Quản trị hệ thống, Điều hành | Bộ lọc, form, R02 | Không lưu được nhân sự thuộc nhóm công việc nhận vai trò phục vụ HDV chính hoặc HDV điểm; lỗi nêu cần cấu hình QT05 |
 | Danh mục địa điểm (điểm đến, có Toàn quốc), dùng chung với RSD DH02 R07 | Quản trị | Khu vực phục vụ | Chỉ có giá trị Toàn quốc |
-| Liên kết tài khoản và vai trò (QT01) | Quản trị hệ thống | Cột Tài khoản, R01, R03 | Nhân sự Nội bộ hiện “Chưa có”; không được chọn làm phụ trách hồ sơ. Tài khoản không có vai trò Điều hành: không được chọn làm phụ trách hồ sơ. Tài khoản Bị khóa: không được chọn làm phụ trách hồ sơ, người thực hiện |
+| Liên kết tài khoản và vai trò (QT01) | Quản trị hệ thống | Cột Tài khoản, R01, R03 | Nhân sự Nội bộ hiện “Chưa có”; không được chọn làm phụ trách hồ sơ. Tài khoản không có vai trò hệ thống Điều hành (kể cả khi có vai trò tự tạo thuộc phòng Điều hành): không được chọn làm phụ trách hồ sơ, không thuộc nhóm Điều hành. Tài khoản chỉ có vai trò thuộc phòng HDV: không được chọn làm người thực hiện. Tài khoản Bị khóa: không được chọn làm phụ trách hồ sơ, người thực hiện |
 | Quyền DH06 (QT02) | Quản trị hệ thống | Mục 1.4 | Mặc định theo mục 1.4: Điều hành xem và ghi, Quản trị xem |
 
 ---
@@ -502,7 +504,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 | Bảng trượt | Loại | Có | Nội bộ | Nội bộ, Cộng tác viên; đổi theo R06 |
 | Bảng trượt | Khu vực phục vụ | Có | Toàn quốc | Một hoặc nhiều địa điểm đang dùng ở QT05. Chọn Toàn quốc thì bỏ các giá trị khác, và ngược lại |
 | Bảng trượt | Nhóm công việc | Có | — | Ít nhất một nhóm đang dùng ở QT05 |
-| Bảng trượt | Ngôn ngữ phục vụ | Có khi thuộc nhóm Hướng dẫn viên | — | Ngôn ngữ đang dùng ở QT05 |
+| Bảng trượt | Ngôn ngữ phục vụ | Có khi có nhóm công việc nhận vai trò phục vụ HDV chính hoặc HDV điểm (R02) | — | Ngôn ngữ đang dùng ở QT05 |
 | Bảng trượt | Điện thoại | Có | — | Chỉ số, dấu cách, `+`, `-`, `()`; 8–15 chữ số; không trùng nhân sự khác (R07) |
 | Bảng trượt | Email | Không | — | Định dạng email; trùng thì cảnh báo |
 | Bảng trượt | Ghi chú | Không | — | Tối đa 1.000 ký tự |
@@ -530,8 +532,8 @@ DH06 không gửi email, tin nhắn hay tài liệu ra ngoài hệ thống. Thô
 | AC08 | Sau AC07, mở phân công Hướng dẫn viên ở DH08.5 | Phùng Gia Bảo có trong danh sách chọn |
 | AC09 | Thêm nhân sự không chọn nhóm công việc, điện thoại trùng Hồ Quang Vinh | Không lưu; hai lỗi cạnh trường; có liên kết mở NS-014; dữ liệu giữ nguyên (W06) |
 | AC10 | Thêm người trùng họ tên với nhân sự có sẵn, khác điện thoại | Cảnh báo trùng tên; lưu được |
-| AC11 | Chọn nhóm Hướng dẫn viên, không chọn ngôn ngữ, bấm Lưu | Lỗi “Hướng dẫn viên cần ít nhất một ngôn ngữ phục vụ” |
-| AC12 | Nhân sự Nội bộ nhóm Điều hành chưa liên kết tài khoản | Cột Tài khoản “Chưa có” màu cam; bảng trượt có banner (W08); không có trong danh sách chọn Phụ trách ở DH07 |
+| AC11 | Chọn nhóm Hướng dẫn viên (nhận HDV chính, HDV điểm), không chọn ngôn ngữ, bấm Lưu; lần khác chọn nhóm Trưởng đoàn (chỉ nhận Trưởng đoàn), không chọn ngôn ngữ; lần khác đổi tên nhóm Hướng dẫn viên ở QT05 thành “Hướng dẫn viên tự do” rồi lưu lại trường hợp đầu | Trường hợp 1 và 3: lỗi “Hướng dẫn viên cần ít nhất một ngôn ngữ phục vụ”, không lưu. Trường hợp 2: lưu được (R02, E3.4; Q-RS23) |
+| AC12 | Nhân sự Nội bộ nhóm Điều hành chưa liên kết tài khoản | Cột Tài khoản “Chưa có”, không tô màu cam; bảng trượt không có banner theo nhóm công việc; không có trong danh sách chọn Phụ trách ở DH07 (2.1, L3.1, R03; Q-RS23) |
 | AC13 | Quản trị liên kết tài khoản cho nhân sự ở AC12 ở QT01 | Lần tải sau cột ghi “✓ Đã liên kết”; người này có trong danh sách chọn Phụ trách ở DH07 |
 | AC14 | Tài khoản của Mạc Văn Tùng bị khóa ở QT01 | Cột Tài khoản “Bị khóa”; không được chọn làm phụ trách hồ sơ, người thực hiện công việc ở DH08.2; không nhận thông báo nhóm Điều hành |
 | AC15 | Bỏ nhóm Hướng dẫn viên của Đỗ Văn Khải (đang HDV chính ở 2 Tour), bấm Lưu | Chưa lưu; banner liệt kê 2 Tour; bấm Vẫn lưu thì lưu; 2 phân công giữ nguyên (W09) |
@@ -552,9 +554,12 @@ DH06 không gửi email, tin nhắn hay tài liệu ra ngoài hệ thống. Thô
 | AC30 | Kinh doanh mở đường dẫn DH06 | Thông báo không có quyền; dữ liệu không được tải |
 | AC31 | Lỗi tải danh sách | W04; bấm Thử lại thì tải lại với bộ lọc cũ |
 | AC32 | Nhóm công việc Trưởng đoàn bị tắt ở QT05 | Nhân sự đang có nhóm này vẫn hiện giá trị kèm “(ngừng dùng)”; không chọn mới được giá trị này |
-| AC33 | Nhân sự Nội bộ nhóm Điều hành có tài khoản đang hoạt động nhưng Quản trị bỏ vai trò Điều hành ở QT01 | Không có trong danh sách chọn Phụ trách ở DH07, DH08.1; không nhận thông báo nhóm Điều hành; hồ sơ đang phụ trách giữ nguyên, tên kèm “(ngừng hoạt động)” (R03, RSD QT01 R03) |
+| AC33 | Nhân sự Nội bộ nhóm Điều hành có tài khoản đang hoạt động nhưng Quản trị bỏ vai trò Điều hành ở QT01 (trường hợp khác: bỏ Điều hành và gán vai trò tự tạo “Điều hành ca đêm” thuộc phòng Điều hành) | Cả hai trường hợp: không có trong danh sách chọn Phụ trách ở DH07, DH08.1; không nhận thông báo nhóm Điều hành; hồ sơ đang phụ trách giữ nguyên, tên kèm “(ngừng hoạt động)” (R03, RSD QT01 R03; Q-RS13) |
 | AC34 | Mở ô Người thực hiện ở DH08.2: có nhân sự Nội bộ chưa có tài khoản và nhân sự có tài khoản Bị khóa, cả hai có Nhận phân công Đang dùng | Người chưa có tài khoản có trong danh sách; người có tài khoản Bị khóa không có (R03) |
 | AC35 | Quản trị liên kết tài khoản chỉ có vai trò HDV với Cộng tác viên Vũ Đức Long ở QT01; Điều hành tải lại DH06 | Cột Tài khoản của Long “✓ Đã liên kết”; bảng trượt ghi tài khoản kèm “chỉ vai trò thuộc phòng HDV”; trước khi liên kết cột ghi “Chưa có”, không còn “—” (R01, 2.1) |
-| AC36 | Sau AC35, mở chọn nhân sự cho vai trò phục vụ HDV suốt tuyến ở DH08.5, chọn người thực hiện ở DH08.2, chọn người phụ trách ở DH07 | Long có ở DH08.5; không có ở DH08.2 và DH07 (R03 không đổi) |
+| AC36 | Sau AC35, mở chọn nhân sự cho vai trò phục vụ HDV chính ở DH08.5, chọn người thực hiện ở DH08.2, chọn người phụ trách ở DH07 | Long có ở DH08.5; không có ở DH08.2 và DH07 (R03 không đổi) |
 | AC37 | Nhân sự Nội bộ có tài khoản chỉ có vai trò HDV; đổi Loại sang Cộng tác viên | Lưu được; liên kết tài khoản giữ nguyên (E3.2) |
-| AC38 | Cộng tác viên có tài khoản (vai trò HDV) đổi Loại sang Nội bộ | Lưu được, không cảnh báo; tài khoản giữ vai trò HDV; nhân sự hiện ở danh sách chọn người thực hiện DH08.2 (E3.9, R03) |
+| AC38 | Cộng tác viên có tài khoản (vai trò HDV) đổi Loại sang Nội bộ; sau đó Quản trị gán thêm vai trò Kế toán cho tài khoản ở QT01 | Lưu được, không cảnh báo; tài khoản giữ vai trò HDV. Khi tài khoản chỉ có HDV: nhân sự không có ở danh sách chọn người thực hiện DH08.2. Sau khi thêm Kế toán: nhân sự có ở danh sách đó (E3.9, R03; Q-RS14) |
+| AC39 | Nhân sự Nội bộ Nhận phân công Đang dùng, tài khoản Đang hoạt động chỉ có vai trò tự tạo “Điều hành ca đêm” thuộc phòng Điều hành; mở chọn Phụ trách ở DH07; một hồ sơ mới được tạo; sau đó Quản trị gán thêm vai trò Điều hành | Trước: không có trong danh sách chọn Phụ trách ở DH07, DH08.1; không có TB-DH07-01 của hồ sơ mới. Sau khi thêm Điều hành: có trong danh sách chọn Phụ trách và nhận thông báo nhóm Điều hành (R03; RSD QT02 R13; Q-RS13) |
+| AC40 | Nhân sự Nội bộ chỉ thuộc nhóm công việc Kinh doanh, tài khoản Đang hoạt động có vai trò Điều hành; sau đó Điều hành đổi tên nhóm công việc Điều hành ở QT05 và tắt nhóm đó | Người này có trong danh sách chọn Phụ trách ở DH07 và nhận thông báo nhóm Điều hành; đổi tên, tắt nhóm công việc Điều hành được, không có nhãn Hệ thống, danh sách chọn Phụ trách không đổi (R02, R03; Q-RS23) |
+| AC41 | Nhân sự Nội bộ Nhận phân công Đang dùng có tài khoản Đang hoạt động chỉ có vai trò HDV; mở ô Người thực hiện ở DH08.2; gửi thẳng yêu cầu giao một công việc cho người này | Không có trong danh sách chọn; yêu cầu bị từ chối, công việc giữ người thực hiện cũ (R03; RSD DH08 E2.2; Q-RS14) |

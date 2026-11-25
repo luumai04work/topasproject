@@ -37,7 +37,7 @@ body{margin:0;font:13px/1.42 "Segoe UI",Arial,sans-serif;color:#1f2937;backgroun
 .cnt{background:#e5e7eb;color:#374151;border-radius:9px;padding:0 6px;font-size:11px;font-weight:600}
 .cnt.w{background:#fef3c7;color:#92400e}.cnt.r{background:#fee2e2;color:#991b1b}.cnt.g{background:#dcfce7;color:#166534}
 .badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11.5px;font-weight:600;white-space:nowrap;line-height:18px}
-.b-gray{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb}
+.b-gray{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb}.b-slate{background:#f1f5f9;color:#334155;border:1px solid #e2e8f0}
 .b-blue{background:#dbeafe;color:#1e40af}.b-green{background:#dcfce7;color:#166534}
 .b-amber{background:#fef3c7;color:#92400e}.b-red{background:#fee2e2;color:#991b1b}
 .b-violet{background:#ede9fe;color:#5b21b6}.b-cyan{background:#cffafe;color:#155e75}

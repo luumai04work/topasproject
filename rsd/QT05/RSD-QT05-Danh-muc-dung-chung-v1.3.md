@@ -4,6 +4,7 @@
 Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customized.
 
 - **Nguồn nghiệp vụ.** `docs/flows/danh-sach-man-hinh-level1.md` (QT05; các màn dùng danh mục DH01–DH08, KD01–KD08, KT01), `docs/flows/danh-sach-tinh-nang-ho-tro-level1.md` (CNHT01.02, CNHT01.04, CNHT01.05, CNHT03.02), `docs/flows/danh-sach-tinh-nang-level1.md` (TN03.06), yêu cầu QT05 ghi trong các RSD đã có: DH01 v1.4, DH02 v1.3, DH03 v1.4, DH04 v1.3, DH06 v1.3, DH07 v1.7, DH08 v2.8, KD01-KD02 v1.2, KD03-KD04 v1.4, KD05 v1.4, KD06 v1.5, KD07 v1.3, KD08 v1.5, KT01 v1.5, QT04 v1.3, QT06-QT12 v1.2, `docs/rsd/BOI-CANH-DU-AN.md` và `docs/QUYET-DINH-PHASE-CODING.md`.
+- **Thay đổi ở v1.3 (bổ sung 13/11/2026 · quyết định rà soát).** Theo `docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`, Q-RS23 (bỏ mọi logic dựa trên tên nhóm công việc): nhóm công việc Điều hành không còn là giá trị hệ thống, vì RSD DH06 R03 không còn dùng nó (người phụ trách hồ sơ và nhóm Điều hành theo vai trò hệ thống Điều hành). Sửa 1.2 (bảng nhóm), L4.3, R06. Giá trị đã tạo khi khởi tạo giữ lại như giá trị thường. Không dựng lại hình W16, W19.
 - **Thay đổi ở v1.3 (12/11/2026).** Cập nhật theo quyết định phase coding (`docs/QUYET-DINH-PHASE-CODING.md`): mục 1.5 viết lại thành quyền mặc định theo vai trò; mỗi nhóm có một thao tác Sửa riêng ở QT02, Markup mặc định và bội số làm tròn là hai thao tác theo trường; Quản trị xem mọi nhóm; không có quyền thì ẩn nút, trường chỉ đọc hiện dạng chữ (Q1, Q25, U5; 1.3, 1.5, 2.4, R01, R21). Bỏ nhóm Kết quả chăm sóc và giá trị hệ thống Có nhu cầu Tour mới, tham số Cần chăm sóc sau Tour, Hạn link Survey, Giờ gửi mặc định của chiến dịch, mọi nơi dùng ở KD10 (C3; 1.2, 1.4, 1.6, L2.2, L4.4, R03, R06, R08, R17, R20, AC51). Thêm nhóm **Ngày nghỉ lễ** do Quản trị sửa, dùng tính ngày làm việc: thứ 2 đến thứ 6 trừ ngày nghỉ lễ (Q23; 1.2, 1.5, 3.8 mới với L8.1, E8.1–E8.4, R22 mới, 5.1, 5.2, AC53–AC56 mới); số nhóm vẫn là 21 (bỏ một, thêm một). Tham số chung còn 11. Tiền tố Tour Code mặc định `TP` (Q7; R17). Bội số làm tròn chỉ áp cho giá bán mỗi khách, làm tròn half-up (Q9; R10). Tỷ giá khi báo giá lấy theo ngày bấm Tính giá (Q10; R13). Xung đột khi lưu chỉ có nút Tải lại (Q8; E2.2, E5.2, AC14). Cấu hình kỹ thuật ở tệp cấu hình hoặc dữ liệu khởi tạo (C2; 1.2). Bỏ nhãn “suy ra, chờ xác nhận” (Q3; 1.2, R17). Bảng trượt chính sách theo cỡ 880 px (K5). Nhớ nhóm và chip theo người dùng (U3; 1.3, 2.4). Không dựng lại wireframe; hình chưa cập nhật có ghi chú ở mục Wireframe và dưới hình.
 - **Thay đổi ở v1.3 (bổ sung 12/11/2026).** Sửa sau rà chéo: tham số Giờ chạy nhắc hằng ngày là một giờ chung cho mọi loại nhắc định kỳ của RSD CH02 (hợp đồng NCC của DH02, hồ sơ chưa giao của DH07, yêu cầu đổi lịch trình quá hạn phản hồi và thay đổi chương trình không áp dụng được của DH08); cột Dùng ở thêm DH07, DH08, CH02; bỏ câu “nhắc hồ sơ chưa giao của DH07 chưa gắn vào tham số này”. Sửa R17. Số tham số vẫn 11; không đổi hình.
 - **Thay đổi ở v1.3 (bổ sung 12/11/2026 · sau rà soát HD01).** Các câu “mọi vai trò xem” thêm “trừ vai trò thuộc phòng HDV (RSD QT02 R04)”: Quyết định của người dùng (2), 1.5 (thêm ý vai trò thuộc phòng HDV), L6.1. Không đổi luồng, AC, hình.
@@ -48,7 +49,7 @@ Mọi giá trị có các thuộc tính chung: tên, thứ tự, Đang dùng (R0
 | | Hạng phòng | Mô tả | Điều hành | — | DH05.2, KD06.1, KD06.3 |
 | | Thẻ bao gồm, không bao gồm | Loại dịch vụ; Kiểu (Bao gồm, Không bao gồm); Tên tiếng Anh | Điều hành | — | DH05.1 (gợi ý), KD06 (proposal English) |
 | | Địa điểm | — | Điều hành | Toàn quốc | DH02, DH03, DH04, DH06, KD01, KD02 |
-| Nhân sự | Nhóm công việc | Vai trò phục vụ Tour được nhận | Điều hành | Điều hành | DH06, DH07, DH08 |
+| Nhân sự | Nhóm công việc | Vai trò phục vụ Tour được nhận | Điều hành | — (Q-RS23) | DH06, DH08.5 |
 | | Ngôn ngữ | Mã ngôn ngữ (ISO 639-1) | Điều hành | — | DH03 (Ngôn ngữ giao dịch của NCC), DH06, DH07, DH08, KD04, KD06, KD08, QT04 |
 | Khách & bán hàng | Loại Tour | Markup mặc định (chỉ Quản trị sửa) | Kinh doanh | — | DH01, DH07, KD01, KD02, KD06, KD08 |
 | | Quốc gia | Mã ISO 3166; Nhóm quốc gia; Ngôn ngữ mặc định | Kinh doanh | — | KD03, KD04 |
@@ -367,9 +368,11 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 *Kết quả:* DH05.1 gợi ý thẻ theo loại dịch vụ; proposal English lấy tên tiếng Anh theo tên tiếng Việt của thẻ (RSD KD06 R18, E5.2).
 
+**Dịch tự động tên tiếng Anh (bổ sung 23/11/2026, ticket 106).** Khi tệp cấu hình có gateway AI, cùng lần quét 10 phút của RSD KD06 R12 “Dịch tự động”, thẻ chưa có tên tiếng Anh được dịch từ tên tiếng Việt bằng dịch vụ AI và ghi thẳng vào thẻ (chỉ khi tên tiếng Anh còn trống và tên tiếng Việt chưa đổi trong lúc dịch). Không tạo mục QT03 (việc chạy nền); kết quả ở nhật ký hệ thống `AUTO_TRANSLATION`. Điều hành vẫn sửa được tên tiếng Anh như trên.
+
 **L4.3 Nhóm công việc và vai trò phục vụ Tour.** *Điều kiện:* Điều hành hoặc Quản trị hệ thống.
 
-1. **W19 · Nhóm Nhóm công việc, bấm ô Vai trò phục vụ Tour.** Ô chọn nhiều mở danh sách vai trò của DH08.5 (HDV chính, HDV điểm, Trưởng đoàn). Người dùng đánh dấu rồi Lưu. Nhóm Điều hành là giá trị hệ thống: không đổi tên, không tắt (RSD DH06 R03 dùng để chọn người phụ trách và gửi thông báo), vẫn khai được vai trò phục vụ.
+1. **W19 · Nhóm Nhóm công việc, bấm ô Vai trò phục vụ Tour.** Ô chọn nhiều mở danh sách vai trò của DH08.5 (HDV chính, HDV điểm, Trưởng đoàn). Người dùng đánh dấu rồi Lưu. Nhóm công việc không có giá trị hệ thống: mọi nhóm, kể cả Điều hành, đổi tên, tắt, xóa được theo quy tắc chung, vì không logic nào dựa vào tên nhóm; người phụ trách hồ sơ và nhóm Điều hành nhận thông báo theo vai trò hệ thống Điều hành của tài khoản liên kết (RSD DH06 R02, R03; quyết định rà soát 13/11/2026, Q-RS23).
 
    ![W19 · Vai trò phục vụ Tour của nhóm công việc](wireframes/W19.png)
 
@@ -595,14 +598,13 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 | Nhóm | Giá trị | Vì sao |
 |---|---|---|
 | Địa điểm | Toàn quốc | NCC phục vụ mọi nơi, khu vực phục vụ mặc định của nhân sự (RSD DH06) |
-| Nhóm công việc | Điều hành | Chọn người phụ trách hồ sơ, nhận thông báo (RSD DH06 R03) |
 | Lý do hủy yêu cầu Tour | Khác; Booking đã hủy | Khác bắt buộc ghi chú; Booking đã hủy chỉ hệ thống ghi khi hủy Booking, không hiện trong ô chọn ở KD06 (RSD KD06 R21) |
 | Lý do hủy Booking | Khác | Bắt buộc ghi chú (RSD KD08 R10) |
 | Loại tiền | VND | Tiền gốc của tỷ giá và quyết toán (RSD DH08 R15) |
 | Hạng mục dịch vụ | Khác | Hạng mục mặc định của loại dịch vụ |
 | Chính sách hoàn hủy | Chính sách mặc định | Dùng khi loại Tour không có chính sách riêng (RSD KD08 R03, KT01 E1.7) |
 
-- Giá trị hệ thống: không đổi tên, không tắt, không xóa; đổi được thứ tự và thuộc tính riêng (ví dụ vai trò phục vụ của Điều hành, bội số làm tròn của VND, bậc của Chính sách mặc định).
+- Giá trị hệ thống: không đổi tên, không tắt, không xóa; đổi được thứ tự và thuộc tính riêng (ví dụ bội số làm tròn của VND, bậc của Chính sách mặc định).
 
 ### R07. Nhóm công việc và vai trò phục vụ
 
@@ -778,7 +780,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 ### 5.3. Dữ liệu gửi ra ngoài
 
-QT05 không gửi email, tài liệu hay dữ liệu ra ngoài hệ thống và không gọi dịch vụ bên ngoài. Tên tiếng Anh của thẻ được dùng trong proposal ở KD06, nơi Kinh doanh xem trước rồi mới publish (RSD KD06 R18).
+QT05 không gửi email hay tài liệu ra ngoài hệ thống. Ngoại lệ duy nhất (ticket 106): tên tiếng Việt của thẻ bao gồm, không bao gồm chưa có tên tiếng Anh được gửi tới gateway AI để dịch tự động (L4.2); không có dữ liệu nào khác. Tên tiếng Anh của thẻ được dùng trong proposal ở KD06, nơi Kinh doanh xem trước rồi mới publish (RSD KD06 R18).
 
 ---
 
@@ -842,3 +844,4 @@ QT05 không gửi email, tài liệu hay dữ liệu ra ngoài hệ thống và 
 | AC54 | Kinh doanh, Điều hành, Kế toán mở nhóm Ngày nghỉ lễ | Chỉ xem: không có + Thêm ngày nghỉ, Thêm nhiều, menu ⋯; bấm ô không vào chế độ sửa; gọi thẳng API ghi bị từ chối (1.5) |
 | AC55 | Thêm 01/01/2027 khi đã có ngày này; dán 3 dòng trong đó 1 dòng sai định dạng | Lần thêm đầu bị chặn, lỗi nêu tên ngày đã có (E8.1); xem trước Thêm nhiều: Sẽ thêm 2, Bỏ qua 1 kèm lý do |
 | AC56 | Một hạn theo ngày làm việc đã tính và lưu ở màn dùng; Quản trị xóa 01/01/2027 rồi bấm Hoàn tác trong 10 giây | Xóa không có hộp thoại; Hoàn tác đưa ngày về; QT03 có dòng xóa và dòng hoàn tác; hạn đã lưu không đổi (R22, U2) |
+| AC57 | Gateway AI có cấu hình; Điều hành thêm thẻ Bao gồm “Nước suối trên xe” của loại Vận chuyển, không nhập tên tiếng Anh; đến lần quét 10 phút kế tiếp | Thẻ có tên tiếng Anh do AI dịch, không còn chỉ báo “Chưa có tên tiếng Anh”; thẻ đã có tên tiếng Anh không đổi; AI chỉ nhận tên tiếng Việt của thẻ thiếu tên tiếng Anh (L4.2; ticket 106) |

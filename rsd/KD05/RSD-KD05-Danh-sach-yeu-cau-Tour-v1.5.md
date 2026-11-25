@@ -6,6 +6,8 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 - **Nguồn nghiệp vụ.** `docs/flows/danh-sach-man-hinh-level1.md` (KD05; lối ra KD06), `docs/flows/danh-sach-tinh-nang-level1.md` (TN02.01), `docs/flows/level 1/sys02.md` (SYS02.01, SYS02.02, SYS02.07, SYS02.08, SYS02.10, SYS02.11), vòng đời Yêu cầu Tour và Phiên bản báo giá trong danh sách màn, RSD KD03-KD04 v1.4 (R08: nhóm yêu cầu và báo giá mới nhất), KD06 v1.5 (R02, R21, R22, R23), KD08 v1.5 (R09, R10, R11), `docs/rsd/BOI-CANH-DU-AN.md` và các quyết định đã chốt với người dùng ngày 11/11/2026 và 12/11/2026.
 - **Quyết định 11/11/2026.** Mọi người Kinh doanh xem mọi yêu cầu Tour; chỉ người phụ trách yêu cầu được sửa, lập báo giá, hủy (đã thay ở v1.5 theo Q1: quyền theo vai trò, không theo người phụ trách). Danh sách dùng đúng trạng thái của nguồn (Đang xử lý, Đã có Booking, Đã hủy) và kết quả báo giá mới nhất; không thêm giai đoạn hay nhắc theo dõi. Có chuyển người phụ trách hàng loạt và xuất Excel theo bộ lọc.
 - **Thay đổi ở v1.2.** Sắp xếp lại theo khung 6 mục, không đổi nghiệp vụ: đặc tả thao tác và phản hồi giao diện (mục 8 cũ) gộp vào từng bước luồng ở mục 3; bỏ mục Wireframe riêng (mục 6 cũ), mỗi ảnh chỉ nằm dưới bước hoặc ngoại lệ đầu tiên hiện màn đó; quy tắc dùng chung (8.1 cũ) gộp với xử lý dùng chung (4.3 cũ) thành mục 2.7; bảng Sự kiện tự động bỏ, phần chưa có đưa vào R03, R08; Dữ liệu gửi ra ngoài chuyển về mục 5.3. Quy tắc R thành mục 4, Dữ liệu mục 5, Tiêu chí nghiệm thu mục 6. Mã L, E, R, W, AC giữ nguyên.
+- **Quyết định rà soát 13/11/2026 (`docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`).** (Q-RS17) Ghi Chốt ở KD06.3 là tạo Booking; không còn yêu cầu có phiên bản Chốt mà chưa có Booking. Cột **Báo giá** (trước là Báo giá mới nhất) và bộ lọc Kết quả báo giá theo **phiên bản của Booking** khi yêu cầu có Booking Hiệu lực, còn lại theo phiên bản mới nhất (R03). (Q-RS18) Yêu cầu Đã có Booking hiện thời gian đi, số khách, báo giá của Booking, không theo thông tin yêu cầu đã sửa ở chế độ điều chỉnh mà chưa Chuyển sang Điều hành (R15 mới). (Q-RS24) Chuyển phụ trách hàng loạt có Hoàn tác 10 giây trên banner kết quả (CGD U2.02, U2.06); Hoàn tác gỡ thông báo đã tạo (RSD CH02 R05). Sửa 1.1, 1.3, 1.5, 2.2–2.4, 2.6, 2.7, L1.1, L1.3, L4.1, L4.2, R01, R02, R03, R08, R09, R13, R14, 5.1; thêm E4.7, R15, AC48–AC51; viết lại AC46.
+- **Bổ sung 13/11/2026 (người dùng trả lời Q-RS17).** Hủy Booking thì phiên bản của Booking giữ Chốt (RSD KD06 R20), không chuyển Không chốt: sửa 2.4 (kết quả của phiên bản), R03 (kết quả, bộ lọc Chốt). Chuyển một yêu cầu qua hộp thoại ở KD06 có Hoàn tác (RSD KD06 L7.3, R23); KD05 chỉ chuyển qua thanh hàng loạt, đã có Hoàn tác (R08).
 - **Thay đổi ở v1.5 (12/11/2026).** Cập nhật theo quyết định phase coding (`docs/QUYET-DINH-PHASE-CODING.md`). Q1: quyền theo vai trò ở QT02, bỏ “chỉ người phụ trách được…” và phạm vi Booking; mục 1.4 viết lại thành quyền mặc định theo vai trò; Kinh doanh chuyển được mọi yêu cầu Đang xử lý (R08); “Của tôi” thành chip bật sẵn, tắt được (2.1, 2.3); mã Booking bấm được theo quyền xem KD08 (1.2, 2.2, E3.5, R01, R11); sửa L1.1, L1.2, L1.3, L4.1, L4.2, L6.3, E1.3, E1.6, E2.2, E3.1, E4.3, E4.6, R08, 5.2, AC01, AC05, AC08, AC18, AC20, AC21, AC23, AC27, AC30, AC32, AC46, AC47. Q2: thông báo in-app (R08, 5.3). Q7: mã yêu cầu (R10). C2: cấu hình không có màn ở tệp cấu hình (R11).
 - **Thay đổi ở v1.4 (12/11/2026).** Đồng bộ sau rà soát mâu thuẫn lần ba, không đổi nghiệp vụ, không đổi hình. (1) R03: Chuyển sang Điều hành ghi Chốt cho phiên bản điều chỉnh mới nhất của chính Booking, không phải phiên bản số lớn nhất của yêu cầu (RSD KD08 R09). (2) Mục 2.2 (cột Phụ trách), R08: “ngừng hoạt động” là tài khoản bị khóa hoặc không còn vai trò Kinh doanh (`BOI-CANH-DU-AN.md`, RSD QT01 R03, R08). (3) Mục 2.2: cột Trạng thái · Booking ẩn ở chip Đang xử lý vì mọi dòng không có Booking Hiệu lực (yêu cầu Mở lại có thể có Booking đã hủy). Cập nhật phiên bản các RSD nguồn ở đầu tài liệu.
 - **Thay đổi ở v1.3 (12/11/2026).** Đồng bộ sau rà soát mâu thuẫn giữa các RSD (quyết định của người dùng 12/11/2026):
@@ -18,7 +20,7 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 - **Thay đổi ở v1.1 (quyết định 11/11/2026).** Thêm hai dạng xem bên cạnh Bảng: **Kanban** ba cột theo đúng ba trạng thái của nguồn, và **Lịch** theo thời gian đi (mục 2.6, luồng 3.6, R12–R14, AC33–AC44, W16–W19). Kanban không kéo thả: đổi trạng thái vẫn làm ở KD06. Ảnh W01–W15 có thêm bộ chuyển dạng xem ở cuối hàng chip; nội dung khác không đổi.
 - **Cách đọc.** Mục 3 mô tả luồng. Mỗi bước ghi mã W, chỗ bấm, thao tác của người dùng và phản hồi của hệ thống; hình wireframe nằm ngay dưới bước. Mục 4 ghi quy tắc (mã R) mà các bước dẫn tới.
 - **Dữ liệu trên hình.** Tên, mã và số liệu chỉ dùng để minh họa. Hôm nay trên hình là 11/11/2026. Người dùng minh họa: Nguyễn Hoàng Nam, Lê Thu Hà, Phạm Thanh Tùng, Vũ Đức Minh (Kinh doanh), Trần Quốc Bảo (Kinh doanh, đã ngừng hoạt động), Đỗ Quang Huy (Quản trị hệ thống). Dữ liệu của Müller Reisen GmbH khớp RSD KD03-KD04.
-- **Hình chưa cập nhật (mọi hình):** thanh bên còn mục Chăm sóc khách hàng (bỏ theo C3); “Của tôi” còn là giá trị của ô Phụ trách ở thanh lọc, nay là chip bật sẵn đầu hàng chip (Q1, mục 2.1). Khi hình khác chuẩn component K1–K6, chuẩn K1–K6 thắng.
+- **Hình chưa cập nhật (mọi hình):** thanh bên còn mục Chăm sóc khách hàng (bỏ theo C3); “Của tôi” còn là giá trị của ô Phụ trách ở thanh lọc, nay là chip bật sẵn đầu hàng chip (Q1, mục 2.1). Cột “Báo giá mới nhất” nay là “Báo giá” theo R03 và banner chuyển phụ trách chưa có Hoàn tác (W12, W14) (quyết định rà soát 13/11/2026; wireframe chưa vẽ lại). Khi hình khác chuẩn component K1–K6, chuẩn K1–K6 thắng.
 
 ## Mục lục
 
@@ -35,9 +37,9 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 
 ### 1.1. Mục tiêu
 
-KD05 là điểm vào hằng ngày của người Kinh doanh với các yêu cầu Tour: thấy mình đang có những yêu cầu nào, yêu cầu nào sắp đến ngày đi, báo giá mới nhất của từng yêu cầu đang ở kết quả nào, rồi mở đúng chỗ để xử lý. Mục tiêu thiết kế:
+KD05 là điểm vào hằng ngày của người Kinh doanh với các yêu cầu Tour: thấy mình đang có những yêu cầu nào, yêu cầu nào sắp đến ngày đi, báo giá của từng yêu cầu đang ở kết quả nào (báo giá mới nhất, hoặc phiên bản của Booking khi đã có Booking), rồi mở đúng chỗ để xử lý. Mục tiêu thiết kế:
 
-- **Biết ngay việc cần làm.** Màn mặc định là yêu cầu Đang xử lý của tôi, sắp theo thời gian đi gần nhất. Mỗi dòng có báo giá mới nhất kèm kết quả và giá bán, nên không phải mở từng yêu cầu để biết tình hình.
+- **Biết ngay việc cần làm.** Màn mặc định là yêu cầu Đang xử lý của tôi, sắp theo thời gian đi gần nhất. Mỗi dòng có báo giá kèm kết quả và giá bán (R03), nên không phải mở từng yêu cầu để biết tình hình.
 - **Mở thẳng đúng bước.** Bấm dòng mở hồ sơ yêu cầu (KD06) ở tab ứng với tiến độ: chưa có hành trình thì Thông tin yêu cầu, chưa có báo giá thì Hành trình, đã có báo giá thì Báo giá (R07).
 - **Tìm theo khách, không theo mã.** Ô tìm nhận tên khách, mã khách, tên và email người liên hệ, mã yêu cầu, mã Booking.
 - **Xem chung, có người phụ trách.** Mọi người Kinh doanh thấy mọi yêu cầu để tránh hai người cùng báo giá cho một khách; mỗi yêu cầu có một người phụ trách, chip Của tôi bật sẵn để mỗi người thấy việc của mình. Quyền sửa theo vai trò, không theo người phụ trách (Q1). Khi bàn giao, chuyển nhiều yêu cầu một lần.
@@ -60,7 +62,7 @@ KD05 là điểm vào hằng ngày của người Kinh doanh với các yêu c�
 
 - KD05 **sở hữu**: cách hiển thị, tìm, lọc danh sách; thao tác chuyển người phụ trách yêu cầu (hàng loạt); tệp Excel xuất ra.
 - KD05 **không sở hữu** và chỉ đọc: yêu cầu Tour, hành trình, phiên bản báo giá và kết quả, lý do hủy (KD06); khách hàng, người liên hệ (KD04); Booking (KD08). Cập nhật, hủy và lập báo giá (SYS02.08–SYS02.11) làm ở KD06; KD05 chỉ mở đúng chỗ.
-- **Không thêm trạng thái hay giai đoạn** (quyết định 11/11/2026). Danh sách dùng ba nhóm của nguồn và kết quả báo giá mới nhất (R02, R03). Không có nhắc theo dõi, không có chỉ báo quá hạn.
+- **Không thêm trạng thái hay giai đoạn** (quyết định 11/11/2026). Danh sách dùng ba nhóm của nguồn và kết quả của báo giá hiển thị (R02, R03). Không có nhắc theo dõi, không có chỉ báo quá hạn.
 - **Hủy yêu cầu không làm ở KD05**, kể cả hàng loạt: hủy cần lý do riêng cho từng yêu cầu và điều kiện không có Booking Hiệu lực do KD06 kiểm tra. Mở lại yêu cầu Đã hủy cũng chỉ làm ở KD06 (RSD KD06 R22).
 - KD05 không gửi gì cho khách hay NCC. Tệp Excel tải về máy người dùng (R09).
 
@@ -85,7 +87,7 @@ Quyền là cặp (màn, thao tác), gán cho vai trò ở QT02; bảng dưới 
 | Mã nguồn | Nội dung | Luồng |
 |---|---|---|
 | TN02.01 · SYS02.01 · KD05 | Hiển thị danh sách yêu cầu Tour kèm chức năng tạo yêu cầu; tìm kiếm, lọc | L1.1, L1.2, L1.3 |
-| KD05 · bộ lọc | Lọc theo khách, thời gian đi, người phụ trách, trạng thái, kết quả báo giá mới nhất | L1.2, L1.3, R02–R06 |
+| KD05 · bộ lọc | Lọc theo khách, thời gian đi, người phụ trách, trạng thái, kết quả báo giá (phiên bản của Booking khi có Booking Hiệu lực, Q-RS17) | L1.2, L1.3, R02–R06 |
 | SYS02.02 | Chọn tạo yêu cầu mới hay xử lý yêu cầu hiện có | L2.1, L3.1 |
 | SYS02.02 → SYS02.03 · KD05 | Tạo yêu cầu mở KD06 trống | L2.1 |
 | TN02.01 · SYS02.07 | Chọn yêu cầu hiện có để cập nhật, hủy hoặc lập báo giá | L3.1, R07 |
@@ -95,6 +97,7 @@ Quyền là cặp (màn, thao tác), gán cho vai trò ở QT02; bảng dưới 
 | Quyết định 11/11/2026 (quyền thay theo Q1) | Xem chung; đúng trạng thái nguồn; chuyển phụ trách hàng loạt; xuất Excel | R01, L4.1, L4.2, L5.1, R08, R09 |
 | Quyết định 11/11/2026 · dạng xem | Bảng, Kanban theo ba trạng thái (không kéo thả), Lịch theo thời gian đi | 2.6, L6.1–L6.3, R12–R14 |
 | Quyết định 12/11/2026 · rà soát giữa các RSD | Hủy Booking thì yêu cầu Đã hủy, đặt lại bằng Mở lại yêu cầu; người phụ trách yêu cầu theo Booking; Quản trị mở lại yêu cầu Đã hủy kèm đổi người phụ trách | 2.4, R02, R08, R13 |
+| Quyết định rà soát 13/11/2026 (Q-RS17, Q-RS18, Q-RS24) | Ghi Chốt là tạo Booking; báo giá theo phiên bản của Booking; số của Booking cho yêu cầu Đã có Booking; Hoàn tác chuyển phụ trách | 2.2, R03, R08, R15 |
 
 ---
 
@@ -121,9 +124,9 @@ Quyền là cặp (màn, thao tác), gán cho vai trò ở QT02; bảng dưới 
 | Ô chọn | Chọn dòng để chuyển phụ trách | Dòng người dùng được chuyển (R08) |
 | Yêu cầu | Mã yêu cầu (đậm, màu liên kết); dòng dưới là ngày tạo | Luôn hiện |
 | Khách hàng | Tên khách và nhãn Cá nhân hoặc Doanh nghiệp; dòng dưới là người liên hệ của yêu cầu (doanh nghiệp) và quốc gia | Luôn hiện |
-| Thời gian đi | Ngày đi – ngày về; dòng dưới là số ngày đêm. Yêu cầu chưa chốt ngày ghi “Tháng mm/yyyy” và “chưa chốt ngày” | Luôn hiện |
-| Số khách | Số khách của yêu cầu | Luôn hiện |
-| Báo giá mới nhất | Nhãn “vN · kết quả”; dòng dưới là giá bán và loại tiền, ngày lưu phiên bản. Chưa có phiên bản: “— Chưa có báo giá” (R03) | Luôn hiện |
+| Thời gian đi | Ngày đi – ngày về; dòng dưới là số ngày đêm. Yêu cầu chưa chốt ngày ghi “Tháng mm/yyyy” và “chưa chốt ngày”. Yêu cầu Đã có Booking: thời gian của Booking (R15) | Luôn hiện |
+| Số khách | Số khách của yêu cầu; yêu cầu Đã có Booking: số khách của Booking (R15) | Luôn hiện |
+| Báo giá | Nhãn “vN · kết quả” của báo giá hiển thị: phiên bản hiện hành của Booking khi yêu cầu có Booking Hiệu lực, còn lại phiên bản mới nhất; dòng dưới là giá bán và loại tiền, ngày lưu phiên bản. Chưa có phiên bản: “— Chưa có báo giá” (R03) | Luôn hiện |
 | Phụ trách | Người phụ trách yêu cầu; người ngừng hoạt động (tài khoản bị khóa hoặc không còn vai trò Kinh doanh) ghi thêm “(ngừng hoạt động)” | Khi chip Của tôi tắt |
 | Trạng thái · Booking | Nhãn trạng thái (R02). Đã hủy: lý do hủy ở dòng dưới; hủy do Booking bị hủy thì lý do là “Booking đã hủy” kèm mã Booking. Đã có Booking: mã Booking Hiệu lực (bấm mở KD08); người không có quyền xem KD08 thấy mã dạng chữ (R01) | Ở chip Đã có Booking, Đã hủy, Tất cả |
 | Cập nhật | Ngày thay đổi gần nhất của yêu cầu hoặc phiên bản báo giá | Luôn hiện |
@@ -137,7 +140,7 @@ Quyền là cặp (màn, thao tác), gán cho vai trò ở QT02; bảng dưới 
 |---|---|---|
 | Tìm kiếm | Mã yêu cầu, tên và mã khách, tên và email người liên hệ, mã Booking (R04) | Trống |
 | Thời gian đi | Tất cả; Đã qua; Tháng này; Tháng sau; 3 tháng tới; khoảng ngày khởi hành tùy chọn (R05) | Tất cả |
-| Kết quả báo giá | Tất cả; Chưa có báo giá; Chưa có kết quả; Chốt; Cần điều chỉnh; Không chốt (R03) | Tất cả |
+| Kết quả báo giá | Tất cả; Chưa có báo giá; Chưa có kết quả; Chốt; Cần điều chỉnh; Không chốt; theo báo giá hiển thị (R03) | Tất cả |
 | Phụ trách | Tất cả; từng người dùng Kinh doanh, kể cả người đã ngừng hoạt động | Tất cả |
 | Chip Của tôi | Bật (người phụ trách là người dùng) hoặc tắt (Q1) | Bật; Quản trị: tắt |
 | Chip trạng thái | Đang xử lý, Đã có Booking, Đã hủy, Tất cả (R02) | Đang xử lý |
@@ -152,13 +155,13 @@ Yêu cầu Tour không có trạng thái người dùng chọn ở KD05. Danh s�
 | Nhóm | Cách có | Thao tác làm đổi nhóm | Ở đâu |
 |---|---|---|---|
 | Đang xử lý | Có khi lưu yêu cầu lần đầu ở KD06, hoặc khi yêu cầu Đã hủy được Mở lại kèm lý do | Sửa, lập báo giá, ghi kết quả không đổi nhóm. Mở lại yêu cầu (theo quyền ở KD06, có thể chọn người phụ trách mới) đưa Đã hủy về Đang xử lý | KD06 |
-| Đã có Booking | Tính từ dữ liệu: có Booking Hiệu lực tạo từ phiên bản của yêu cầu | Tạo Booking ở KD08 từ phiên bản Chốt (bấm Tạo Booking ở KD06.3 mở KD08) | KD08 |
+| Đã có Booking | Tính từ dữ liệu: có Booking Hiệu lực tạo từ phiên bản của yêu cầu | Ghi Chốt cho một phiên bản ở KD06.3: Booking được tạo ngay (RSD KD06 L6.2, R19; Q-RS17) | KD06, KD08 |
 | Đã hủy | Người dùng hủy ở KD06 kèm lý do, hoặc hệ thống tự chuyển khi Booking Hiệu lực của yêu cầu bị hủy (lý do “Booking đã hủy”) | Hủy yêu cầu ở KD06 (khi không có Booking Hiệu lực); Hủy Booking ở KD08 | KD06, KD08 |
 
 | Đối tượng con | Giá trị | Cách có giá trị |
 |---|---|---|
-| Phiên bản báo giá mới nhất | v1, v2… | Phiên bản có số lớn nhất của yêu cầu (R03) |
-| Kết quả của phiên bản | Chốt, Cần điều chỉnh, Không chốt, Chưa có kết quả | Người dùng ghi ở KD06.3; hệ thống ghi Chốt khi Kinh doanh bấm Chuyển sang Điều hành ở KD08 (RSD KD08 R09); chưa ghi thì Chưa có kết quả |
+| Phiên bản báo giá hiển thị | v1, v2… | Phiên bản hiện hành của Booking khi có Booking Hiệu lực; còn lại phiên bản có số lớn nhất của yêu cầu (R03) |
+| Kết quả của phiên bản | Chốt, Cần điều chỉnh, Không chốt, Chưa có kết quả | Người dùng ghi ở KD06.3 (ghi Chốt là tạo Booking); hệ thống ghi Chốt khi Kinh doanh bấm Chuyển sang Điều hành ở KD08 (RSD KD08 R09); hủy Booking không đổi kết quả, phiên bản của Booking giữ Chốt (RSD KD06 R20); chưa ghi thì Chưa có kết quả |
 | Booking (chỉ đọc) | Hiệu lực, Đã hủy | Theo KD08. Chỉ Booking Hiệu lực làm yêu cầu ở nhóm Đã có Booking; hủy Booking thì yêu cầu tự chuyển Đã hủy (R02) |
 
 ### 2.5. Màu nhãn
@@ -178,7 +181,7 @@ Yêu cầu Tour không có trạng thái người dùng chọn ở KD05. Danh s�
 | Dạng | Dùng khi | Cách trình bày | Khác với Bảng |
 |---|---|---|---|
 | Bảng (mặc định) | Rà danh sách, sắp theo cột, chuyển phụ trách, xem lý do hủy | Mục 2.2 | — |
-| Kanban (W16) | Thấy số yêu cầu ở từng trạng thái và các yêu cầu đang xử lý trên một màn | Ba cột cố định Đang xử lý · Đã có Booking · Đã hủy (R02), mỗi cột có số đếm. Thẻ ghi mã yêu cầu, số khách, khách hàng, thời gian đi, báo giá mới nhất kèm kết quả và giá bán; thẻ Đã có Booking thêm mã Booking, thẻ Đã hủy thêm lý do; dòng Phụ trách hiện khi chip Của tôi tắt | Không có chip trạng thái (cột thay chip); không có ô chọn và thanh hàng loạt; không kéo thả (R13) |
+| Kanban (W16) | Thấy số yêu cầu ở từng trạng thái và các yêu cầu đang xử lý trên một màn | Ba cột cố định Đang xử lý · Đã có Booking · Đã hủy (R02), mỗi cột có số đếm. Thẻ ghi mã yêu cầu, số khách, khách hàng, thời gian đi, báo giá kèm kết quả và giá bán (R03, R15); thẻ Đã có Booking thêm mã Booking, thẻ Đã hủy thêm lý do; dòng Phụ trách hiện khi chip Của tôi tắt | Không có chip trạng thái (cột thay chip); không có ô chọn và thanh hàng loạt; không kéo thả (R13) |
 | Lịch (W17, W18) | Thấy yêu cầu theo ngày đi, tháng nào nhiều đoàn | Lịch tháng (mặc định) hoặc tuần, tuần bắt đầu Thứ 2. Mỗi yêu cầu là một thanh từ ngày đi đến ngày về, màu theo trạng thái (mục 2.5); Đã hủy gạch ngang. Khay bên phải liệt kê yêu cầu chưa chốt ngày có tháng dự kiến là tháng đang xem | Giữ hàng chip và mọi bộ lọc; không có ô chọn và thanh hàng loạt (R14) |
 
 - Bộ lọc, ô tìm, Phụ trách, chip Của tôi và quyền (R01) dùng chung cho cả ba dạng; đổi dạng không mất bộ lọc.
@@ -193,7 +196,7 @@ Yêu cầu Tour không có trạng thái người dùng chọn ở KD05. Danh s�
 - **Giữ ngữ cảnh.** Sau khi mở KD06 rồi quay lại, sau khi chuyển phụ trách: giữ bộ lọc, chip, trang, vị trí cuộn; dòng ra khỏi bộ lọc giữ tại chỗ, mờ, kèm liên kết xem lại (R07).
 - **Thông báo ngắn** ở góc dưới phải; banner kết quả hàng loạt ở trên chip, đóng được.
 - **Một dữ liệu, ba cách nhìn.** Dạng xem chỉ đổi cách trình bày; bộ lọc, quyền và đích khi bấm giống nhau. Không có thao tác ghi ở Kanban, Lịch.
-- **Tải.** Tải theo trang 20 dòng. Số trên chip tính ở máy chủ trong cùng lần tải. Báo giá mới nhất và Booking lấy kèm trong cùng truy vấn, không tải riêng từng dòng.
+- **Tải.** Tải theo trang 20 dòng. Số trên chip tính ở máy chủ trong cùng lần tải. Báo giá hiển thị và Booking lấy kèm trong cùng truy vấn, không tải riêng từng dòng.
 - **Tải theo dạng xem.** Bảng tải theo trang 20 dòng. Kanban tải 20 thẻ đầu của mỗi cột, ba cột song song; cuộn tới cuối cột thì tải tiếp 20 thẻ. Lịch tải mọi yêu cầu có thời gian đi giao với các ngày đang hiện trên lưới (kể cả ngày của tháng trước, tháng sau) và yêu cầu chưa chốt ngày có tháng dự kiến là tháng đang xem. Số trên chip và số đếm cột tính ở máy chủ như R06.
 - **Đồng thời.** Danh sách là ảnh chụp lúc tải. Thao tác ghi duy nhất là chuyển phụ trách, kiểm tra lại người phụ trách và trạng thái của từng yêu cầu ngay khi ghi (R08).
 - **Ngày giờ.** Hiển thị dd/mm/yyyy, múi giờ Asia/Ho_Chi_Minh. “Hôm nay”, “Tháng này”, “3 tháng tới” tính theo ngày ở múi giờ này.
@@ -210,7 +213,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **L1.1 Xem yêu cầu của tôi.** *Điều kiện:* Kinh doanh.
 
-1. **W01 · Menu Kinh doanh → Yêu cầu Tour.** Kinh doanh mở Yêu cầu Tour từ menu. Danh sách ở chip Của tôi bật, chip Đang xử lý, 20 dòng mỗi trang, sắp theo thời gian đi gần nhất. Mỗi dòng cho biết khách và người liên hệ, thời gian đi, số khách, báo giá mới nhất kèm kết quả và giá bán, ngày cập nhật. Người dùng thấy ngay yêu cầu nào sắp đi mà báo giá còn Cần điều chỉnh (dòng đầu, Oceania Pilgrim Tours, đi 25/11).
+1. **W01 · Menu Kinh doanh → Yêu cầu Tour.** Kinh doanh mở Yêu cầu Tour từ menu. Danh sách ở chip Của tôi bật, chip Đang xử lý, 20 dòng mỗi trang, sắp theo thời gian đi gần nhất. Mỗi dòng cho biết khách và người liên hệ, thời gian đi, số khách, báo giá kèm kết quả và giá bán (R03), ngày cập nhật. Người dùng thấy ngay yêu cầu nào sắp đi mà báo giá còn Cần điều chỉnh (dòng đầu, Oceania Pilgrim Tours, đi 25/11).
 
    ![W01 · Yêu cầu Tour đang xử lý của tôi](wireframes/W01.png)
 
@@ -236,7 +239,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
    ![W03 · Chọn thời gian đi](wireframes/W03.png)
 
-2. **W04 · Khoảng nhanh 3 tháng tới, ô chọn Kết quả báo giá ở thanh lọc.** Người dùng chọn 3 tháng tới (áp dụng ngay), rồi chọn Kết quả báo giá là Chưa có kết quả; hệ thống lọc theo phiên bản báo giá mới nhất (R03). Danh sách còn hai yêu cầu khởi hành trước 10/02/2027 mà khách chưa phản hồi báo giá; số trên chip tính theo bộ lọc.
+2. **W04 · Khoảng nhanh 3 tháng tới, ô chọn Kết quả báo giá ở thanh lọc.** Người dùng chọn 3 tháng tới (áp dụng ngay), rồi chọn Kết quả báo giá là Chưa có kết quả; hệ thống lọc theo báo giá hiển thị: phiên bản mới nhất, hoặc phiên bản của Booking khi đã có Booking (R03). Danh sách còn hai yêu cầu khởi hành trước 10/02/2027 mà khách chưa phản hồi báo giá; số trên chip tính theo bộ lọc.
 
    ![W04 · Lọc theo thời gian đi và kết quả báo giá](wireframes/W04.png)
 
@@ -318,7 +321,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
    ![W11 · Chọn yêu cầu để chuyển phụ trách](wireframes/W11.png)
 
-2. **W12 · Ô chọn người nhận, nút Chuyển phụ trách trên thanh hàng loạt.** Người dùng chọn Lê Thu Hà rồi bấm Chuyển phụ trách. Hệ thống chuyển từng yêu cầu theo R08. Banner nêu số yêu cầu đã chuyển, người nhận và những gì không đổi; các dòng đã chuyển mờ tại chỗ, ghi người nhận và nhãn Vừa chuyển; số trên chip giảm theo. Người nhận nhận một thông báo gộp.
+2. **W12 · Ô chọn người nhận, nút Chuyển phụ trách trên thanh hàng loạt.** Người dùng chọn Lê Thu Hà rồi bấm Chuyển phụ trách. Hệ thống chuyển từng yêu cầu theo R08. Banner nêu số yêu cầu đã chuyển, người nhận và những gì không đổi, kèm nút **Hoàn tác** trong 10 giây (CGD U2.02, U2.08; quyết định rà soát 13/11/2026, Q-RS24); các dòng đã chuyển mờ tại chỗ, ghi người nhận và nhãn Vừa chuyển; số trên chip giảm theo. Người nhận nhận một thông báo gộp. Bấm Hoàn tác thì các yêu cầu về người phụ trách cũ, thông báo vừa tạo bị gỡ (E4.7, R08).
 
    ![W12 · Sau khi chuyển phụ trách](wireframes/W12.png)
 
@@ -332,7 +335,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
    > Hình chưa cập nhật: tiêu đề còn dòng “Quản trị · chỉ xem và chuyển người phụ trách”; nay chỉ ẩn nút không có quyền (U5).
 
-2. **W14 · Nút Chuyển phụ trách trên thanh hàng loạt.** Quản trị chọn Vũ Đức Minh rồi bấm Chuyển phụ trách. Banner nêu đã chuyển 10, bỏ qua 1; dòng bỏ qua ghi lý do (vừa có Booking lúc 10:02 nên không còn Đang xử lý); dòng đã chuyển mờ tại chỗ đến khi tải lại. Người nhận nhận một thông báo gộp.
+2. **W14 · Nút Chuyển phụ trách trên thanh hàng loạt.** Quản trị chọn Vũ Đức Minh rồi bấm Chuyển phụ trách. Banner nêu đã chuyển 10, bỏ qua 1, kèm Hoàn tác trong 10 giây (Q-RS24); dòng bỏ qua ghi lý do (vừa có Booking lúc 10:02 nên không còn Đang xử lý); dòng đã chuyển mờ tại chỗ đến khi tải lại. Người nhận nhận một thông báo gộp.
 
    ![W14 · Kết quả chuyển hàng loạt có dòng bỏ qua](wireframes/W14.png)
 
@@ -345,6 +348,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 - **E4.3 Người phụ trách đổi ở phiên khác, hoặc mất quyền giữa chừng.** Dòng vừa được người khác chuyển đi ở phiên khác: dòng bị bỏ qua với lý do “Người phụ trách đã đổi thành … lúc …”. Vai trò của người dùng vừa bị bỏ quyền Chuyển người phụ trách ở QT02: không dòng nào được chuyển, banner nêu lý do.
 - **E4.4 Lỗi giữa chừng hoặc mất kết nối.** Mỗi yêu cầu là một giao dịch riêng. Banner nêu số đã chuyển; các dòng chưa chuyển vẫn được chọn, nút Chuyển phụ trách bấm lại được. Nút khóa khi đang chuyển; bấm lặp không chuyển hai lần (R08).
 - **E4.5 Bỏ chọn hoặc đổi bộ lọc khi đang chọn.** Bỏ chọn, đổi chip, đổi bộ lọc hoặc sang trang khác thì xóa lựa chọn, không hỏi lại (chưa có gì được ghi).
+- **E4.7 Hoàn tác chuyển phụ trách** (quyết định rà soát 13/11/2026, Q-RS24; CGD U2.06). Trong 10 giây sau khi chuyển, bấm Hoàn tác trên banner: trong một giao dịch, mỗi yêu cầu vừa chuyển về người phụ trách trước đó, trừ yêu cầu đã bị đổi tiếp (chuyển tiếp, hủy, ghi Chốt tạo Booking) sau lần chuyển; thông báo của lần chuyển bị gỡ khỏi bảng thông báo của người nhận và người cũ, hoặc dựng lại chỉ với các yêu cầu không hoàn tác được (RSD CH02 R05). Banner ghi số đã hoàn tác và số không hoàn tác được kèm lý do; lịch sử yêu cầu và QT03 có thêm một mục Hoàn tác. Hết 10 giây, rời màn hoặc đóng banner thì không còn Hoàn tác.
 - **E4.6 Dòng không chọn được.** Dòng Đã có Booking, Đã hủy không có ô chọn (R08); người không có quyền Chuyển người phụ trách không thấy ô chọn nào (U5). Ô chọn đầu bảng chỉ chọn các dòng có ô chọn trong trang.
 
 ### 3.5. Xuất Excel (quyết định 11/11/2026)
@@ -420,7 +424,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 ### R01. Quyền (quyết định 11/11/2026; Q1, Q25, U5)
 
 - Quyền theo màn và thao tác, cấu hình ở QT02; giá trị mặc định ở mục 1.4. Không có phạm vi bản ghi: ai có quyền xem KD05 thì xem được mọi yêu cầu Tour và mở được KD06 của mọi yêu cầu.
-- Mỗi yêu cầu có đúng một người phụ trách là người dùng Kinh doanh; khi tạo là người tạo. Người phụ trách chỉ là thông tin (chip Của tôi, thông báo, Việc của tôi); sửa, lập báo giá, ghi kết quả, tạo Booking, hủy, mở lại ở KD06 theo quyền của KD06 (RSD KD06 1.4), không theo người phụ trách.
+- Mỗi yêu cầu có đúng một người phụ trách là người dùng Kinh doanh; khi tạo là người tạo. Người phụ trách chỉ là thông tin (chip Của tôi, thông báo, Việc của tôi); sửa, lập báo giá, ghi kết quả (ghi Chốt là tạo Booking), hủy, mở lại ở KD06 theo quyền của KD06 (RSD KD06 1.4), không theo người phụ trách.
 - Theo mặc định Quản trị hệ thống xem mọi yêu cầu, chuyển người phụ trách, xuất Excel; không tạo, không sửa nội dung.
 - Mã Booking trên KD05 bấm được khi người dùng có quyền xem KD08; không có thì hiện dạng chữ.
 - Theo mặc định Điều hành, Kế toán không có quyền vào KD05.
@@ -435,15 +439,17 @@ Tính theo thứ tự, dừng ở điều kiện đầu tiên đúng:
 
 - Không có nhóm hay giai đoạn khác. Kết quả của phiên bản báo giá không làm đổi nhóm; yêu cầu có báo giá Không chốt vẫn Đang xử lý tới khi bị hủy ở KD06.
 - Cùng quy tắc với R08 của RSD KD03-KD04 (tab Yêu cầu & Booking của hồ sơ khách) và R02 của RSD KD06, để số yêu cầu đang xử lý của một khách khớp giữa KD03, KD04, KD05 và KD06.
-- **Hủy Booking** (quyết định 12/11/2026): yêu cầu tự chuyển Đã hủy, không còn ở nhóm Đã có Booking. Khách muốn đặt lại thì người có quyền Mở lại yêu cầu ở KD06 mở lại kèm lý do, có thể chọn người phụ trách mới; yêu cầu về Đang xử lý, rồi báo giá và tạo Booking mới ở KD08 (RSD KD06 R22, KD08 R10). Mã Booking đã hủy vẫn hiện ở cột Trạng thái · Booking của yêu cầu Đã hủy (mục 2.2).
+- **Hủy Booking** (quyết định 12/11/2026): yêu cầu tự chuyển Đã hủy, không còn ở nhóm Đã có Booking. Khách muốn đặt lại thì người có quyền Mở lại yêu cầu ở KD06 mở lại kèm lý do, có thể chọn người phụ trách mới; yêu cầu về Đang xử lý, rồi báo giá và ghi Chốt ở KD06.3 để tạo Booking mới (RSD KD06 R19, R22, KD08 R10). Mã Booking đã hủy vẫn hiện ở cột Trạng thái · Booking của yêu cầu Đã hủy (mục 2.2).
 
-### R03. Báo giá mới nhất và kết quả
+### R03. Báo giá hiển thị và kết quả (quyết định rà soát 13/11/2026, Q-RS17)
 
-- **Phiên bản mới nhất** là phiên bản có số lớn nhất của yêu cầu, không phụ thuộc kết quả.
-- **Kết quả** là giá trị người dùng ghi cho phiên bản đó ở KD06.3: Chốt, Cần điều chỉnh, Không chốt (người dùng chọn ngày 11/11/2026); hệ thống tự ghi Chốt cho phiên bản điều chỉnh mới nhất của chính Booking (không phải phiên bản số lớn nhất của yêu cầu) khi Kinh doanh bấm Chuyển sang Điều hành ở KD08 (RSD KD08 R09). Chưa ghi thì **Chưa có kết quả**. Danh sách giá trị do KD06 sở hữu; khi KD06 đổi danh sách, bộ lọc và nhãn của KD05 đọc theo.
-- **Giá bán** là tổng giá bán của phiên bản, hiển thị theo loại tiền báo giá của phiên bản, không quy đổi.
-- **Bộ lọc Kết quả báo giá**: Chưa có báo giá (yêu cầu không có phiên bản nào); Chưa có kết quả; Chốt; Cần điều chỉnh; Không chốt. Lọc theo phiên bản mới nhất, không theo phiên bản cũ.
-- **Khi KD06 đổi dữ liệu.** Lưu phiên bản báo giá hoặc ghi kết quả ở KD06.3 cập nhật báo giá mới nhất và ngày cập nhật của yêu cầu; cột Báo giá mới nhất và Cập nhật trên KD05 đổi ở lần tải lại kế tiếp (E3.4).
+- **Báo giá hiển thị** của một yêu cầu, dùng cho cột Báo giá, thẻ Kanban, nhãn thanh Lịch, bộ lọc Kết quả báo giá và tệp Excel:
+  - yêu cầu có Booking Hiệu lực: **phiên bản hiện hành của Booking** (luôn Chốt; sau Chuyển sang Điều hành là phiên bản điều chỉnh vừa chuyển), kể cả khi yêu cầu đã có phiên bản số lớn hơn (phiên bản điều chỉnh chưa chuyển, hoặc phiên bản cũ hơn được ghi Chốt, RSD KD06 E6.7);
+  - còn lại: **phiên bản mới nhất**, là phiên bản có số lớn nhất của yêu cầu, không phụ thuộc kết quả.
+- **Kết quả** là giá trị của phiên bản đó: Chốt, Cần điều chỉnh, Không chốt do người dùng ghi ở KD06.3 (người dùng chọn ngày 11/11/2026); ghi Chốt là tạo Booking ngay (RSD KD06 R19), nên phiên bản Chốt luôn là phiên bản của một Booking (Hiệu lực hoặc đã hủy); hệ thống ghi Chốt khi Chuyển sang Điều hành (RSD KD08 R09); hủy Booking không đổi kết quả, phiên bản của Booking giữ Chốt (RSD KD06 R20; người dùng trả lời 13/11/2026). Yêu cầu Đang xử lý chỉ mang Chốt khi đã mở lại sau khi Booking bị hủy và phiên bản mới nhất vẫn là phiên bản của Booking đã hủy. Chưa ghi thì **Chưa có kết quả**. Danh sách giá trị do KD06 sở hữu; khi KD06 đổi danh sách, bộ lọc và nhãn của KD05 đọc theo.
+- **Giá bán** là tổng giá bán của phiên bản hiển thị (với Booking Hiệu lực là giá trị Booking), theo loại tiền báo giá của phiên bản, không quy đổi.
+- **Bộ lọc Kết quả báo giá**: Chưa có báo giá (yêu cầu không có phiên bản nào); Chưa có kết quả; Chốt; Cần điều chỉnh; Không chốt. Lọc theo báo giá hiển thị, không theo phiên bản khác. Chốt vì thế gồm các yêu cầu Đã có Booking và các yêu cầu có Booking đã hủy mà phiên bản mới nhất là phiên bản của Booking đó.
+- **Khi KD06, KD08 đổi dữ liệu.** Lưu phiên bản báo giá, ghi kết quả ở KD06.3, Chuyển sang Điều hành hay hủy Booking ở KD08 cập nhật báo giá hiển thị và ngày cập nhật của yêu cầu; cột Báo giá và Cập nhật trên KD05 đổi ở lần tải lại kế tiếp (E3.4). Lưu phiên bản điều chỉnh chưa chuyển không đổi báo giá hiển thị của yêu cầu Đã có Booking.
 
 ### R04. Tìm kiếm
 
@@ -483,6 +489,7 @@ Tính theo thứ tự, dừng ở điều kiện đầu tiên đúng:
 - **Không đổi.** Người phụ trách khách hàng (KD04), Booking (KD08), hồ sơ Tour (DH08); người lưu các phiên bản báo giá đã có.
 - **Thông báo (in-app, Q2).** Thông báo ghi trong cùng giao dịch với lần chuyển (Q5). Người nhận nhận một thông báo gộp liệt kê mã các yêu cầu, ví dụ “Bạn được giao 3 yêu cầu Tour từ Nguyễn Hoàng Nam: YC-…, YC-…, YC-…”; bấm một mã mở KD06 của yêu cầu đó ở tab đích theo R07, thống nhất với thông báo giao yêu cầu của RSD KD06 (1.2). Khi người chuyển không phải người phụ trách cũ, người phụ trách cũ cũng nhận thông báo nếu tài khoản còn hoạt động. Nhãn Mới giao hiện trên dòng tới hết ngày.
 - **Lịch sử.** Ghi lịch sử yêu cầu (hiện ở KD06) và nhật ký QT03: người cũ, người mới, người thực hiện, thời điểm, cách chuyển.
+- **Hoàn tác** (quyết định rà soát 13/11/2026, Q-RS24; CGD U2.02, U2.06, U2.08). Banner kết quả có Hoàn tác trong 10 giây, một nút cho cả lô. Hoàn tác là một lần ghi mới, kiểm tra quyền và phiên bản từng yêu cầu: yêu cầu chưa bị đổi sau lần chuyển thì về người phụ trách trước đó; yêu cầu đã bị đổi tiếp (chuyển tiếp ở phiên khác, hủy, đã có Booking) thì bỏ qua, banner ghi số không hoàn tác được. Thông báo của lần chuyển (người nhận, người cũ) bị gỡ trong cùng giao dịch, hoặc dựng lại chỉ gồm các yêu cầu không hoàn tác được (RSD CH02 R05). Hoàn tác không tạo thông báo mới. Lịch sử yêu cầu và QT03 ghi thêm mục Hoàn tác (E4.7).
 - **Không tự chuyển.** KD05 không tự chuyển người phụ trách, không tự hủy và không gửi nhắc theo dõi (quyết định 11/11/2026). Người phụ trách ngừng hoạt động (tài khoản bị khóa ở QT01 hoặc không còn vai trò Kinh doanh) thì yêu cầu không đổi gì; tên hiện kèm “(ngừng hoạt động)” cho tới khi có người chuyển ở L4.2.
 
 ### R09. Xuất Excel (quyết định 11/11/2026)
@@ -490,7 +497,7 @@ Tính theo thứ tự, dừng ở điều kiện đầu tiên đúng:
 - **Phạm vi.** Mọi yêu cầu khớp tìm kiếm, bộ lọc và chip đang chọn, mọi trang; theo cách sắp xếp đang dùng. Không xuất theo dòng đã chọn; khi đang chọn dòng, nút ẩn. Ở Lịch: như Bảng, không giới hạn theo tháng đang xem. Ở Kanban: các yêu cầu ba cột đang tính, gồm khoảng cập nhật của từng cột; sắp theo cột rồi theo thứ tự trong cột.
 - **Giới hạn.** Tối đa 5.000 dòng mỗi lần. Hơn thì nút khóa kèm lý do (E5.2).
 - **Tệp.** `.xlsx`, tên `YeuCauTour_YYYYMMDD_HHmm.xlsx`, một trang tính. Dòng đầu ghi bộ lọc đã dùng, người xuất, thời điểm; dòng hai là tiêu đề cột.
-- **Cột.** Mã yêu cầu; Ngày tạo; Mã khách hàng; Khách hàng; Loại khách; Quốc gia; Người liên hệ; Ngày đi; Ngày về (trống nếu chưa chốt ngày); Tháng dự kiến; Số ngày đêm; Số khách; Hạng phòng; Ngôn ngữ phục vụ; Báo giá mới nhất (phiên bản); Ngày lưu báo giá; Giá bán; Loại tiền; Kết quả báo giá; Trạng thái; Mã Booking; Lý do hủy; Người phụ trách; Ngày cập nhật. Ngày dạng dd/mm/yyyy, giá bán là số.
+- **Cột.** Mã yêu cầu; Ngày tạo; Mã khách hàng; Khách hàng; Loại khách; Quốc gia; Người liên hệ; Ngày đi; Ngày về (trống nếu chưa chốt ngày); Tháng dự kiến; Số ngày đêm; Số khách; Hạng phòng; Ngôn ngữ phục vụ; Báo giá (phiên bản hiển thị, R03); Ngày lưu báo giá; Giá bán; Loại tiền; Kết quả báo giá; Trạng thái; Mã Booking; Lý do hủy; Người phụ trách; Ngày cập nhật. Ngày dạng dd/mm/yyyy, giá bán là số.
 - **Không có** email, điện thoại, ngày sinh của khách và người liên hệ.
 - **Nhật ký.** Mỗi lần xuất ghi QT03: người xuất, thời điểm, bộ lọc, số dòng, tên tệp. Hệ thống không lưu tệp sau khi tải.
 
@@ -521,7 +528,7 @@ Tính theo thứ tự, dừng ở điều kiện đầu tiên đúng:
 ### R13. Kanban
 
 - **Cột.** Ba cột cố định theo R02: Đang xử lý, Đã có Booking, Đã hủy. Không thêm, bớt, ẩn hay đổi thứ tự cột; không có giai đoạn khác (quyết định 11/11/2026).
-- **Không kéo thả** (quyết định 11/11/2026). Thẻ không kéo được. Trạng thái đổi bằng thao tác ở KD06 (hủy yêu cầu, Mở lại yêu cầu) và KD08 (tạo Booking, Hủy Booking → Đã hủy) theo R02.
+- **Không kéo thả** (quyết định 11/11/2026). Thẻ không kéo được. Trạng thái đổi bằng thao tác ở KD06 (hủy yêu cầu, Mở lại yêu cầu, ghi Chốt tạo Booking) và KD08 (Hủy Booking → Đã hủy) theo R02.
 - **Số đếm cột** bằng số trên chip tương ứng ở Bảng với cùng bộ lọc, không phụ thuộc khoảng cập nhật.
 - **Khoảng cập nhật.** Cột Đã có Booking và Đã hủy chỉ tải yêu cầu có ngày cập nhật trong khoảng đang chọn ở đầu cột: 30 ngày, 90 ngày (mặc định), 12 tháng, Tất cả. Đầu cột ghi “số thẻ trong khoảng / số đếm cột”. Cột Đang xử lý không có khoảng này. Khoảng được nhớ theo người dùng (5.1).
 - **Thứ tự thẻ.** Đang xử lý: như chip Đang xử lý ở Bảng (R06). Hai cột còn lại: ngày cập nhật giảm dần. Không đổi thứ tự bằng tay.
@@ -533,10 +540,16 @@ Tính theo thứ tự, dừng ở điều kiện đầu tiên đúng:
 - **Ngày dùng.** Thời gian đi của yêu cầu: thanh bắt đầu ở ngày đi, kết thúc ở ngày về. Yêu cầu chưa chốt ngày không vẽ trên lưới, nằm ở khay Chưa chốt ngày của tháng dự kiến.
 - **Lưới.** Tháng (mặc định) hoặc Tuần; tuần bắt đầu Thứ 2; cuối tuần chữ xám; ngày của tháng trước, tháng sau mờ nhưng vẫn vẽ thanh. Lựa chọn Tháng hay Tuần được nhớ theo người dùng.
 - **Màu.** Theo trạng thái ở mục 2.5: Đang xử lý xanh dương, Đã có Booking xanh lá, Đã hủy xám gạch ngang. Chú giải ở đầu lịch.
-- **Nhãn thanh.** Mã yêu cầu · khách hàng · số khách, cắt bớt khi thanh ngắn; di chuột hiện đủ khách, thời gian đi, báo giá mới nhất, người phụ trách.
+- **Nhãn thanh.** Mã yêu cầu · khách hàng · số khách, cắt bớt khi thanh ngắn; di chuột hiện đủ khách, thời gian đi, báo giá (R03), người phụ trách. Yêu cầu Đã có Booking vẽ theo thời gian của Booking (R15).
 - **Xếp thanh.** Trong mỗi tuần, thanh xếp theo ngày đi rồi theo độ dài (dài trước). Tháng: tối đa 3 hàng thanh mỗi tuần; ngày còn yêu cầu chưa hiện có “+n”, bấm mở bảng nhỏ liệt kê mọi yêu cầu đi trong ngày đó. Tuần: hiện đủ.
 - **Tháng mở đầu.** Tháng hiện tại; nếu đang lọc Thời gian đi thì tháng đầu của khoảng lọc. Quay lại từ KD06 thì giữ tháng đang xem.
 - **Ghi chú cạnh chip** thay dòng “Hiển thị 1–20 / n” bằng “n yêu cầu đi trong tháng · m chưa chốt ngày”.
+
+### R15. Số của Booking cho yêu cầu Đã có Booking (quyết định rà soát 13/11/2026, Q-RS18)
+
+- Yêu cầu có Booking Hiệu lực: thời gian đi (ngày đi, ngày về, số ngày đêm), số khách và báo giá (R03) trên dòng, thẻ Kanban, thanh Lịch, tệp Excel lấy từ **Booking** (phiên bản hiện hành của Booking), không từ thông tin yêu cầu. Bộ lọc Thời gian đi, sắp xếp theo Thời gian đi, Số khách dùng cùng số đó.
+- Lý do: ở chế độ điều chỉnh Kinh doanh sửa được thông tin yêu cầu (thời gian, số khách) và lưu phiên bản điều chỉnh, nhưng Booking chỉ đổi khi Chuyển sang Điều hành (RSD KD06 R27, KD08 R09). Trước lúc đó KD05 hiện số đang có hiệu lực của Booking, khớp KD07, KD08.
+- Yêu cầu Đang xử lý hoặc Đã hủy: số của yêu cầu như trước.
 
 ---
 
@@ -547,10 +560,10 @@ Tính theo thứ tự, dừng ở điều kiện đầu tiên đúng:
 | Đối tượng | Khóa | Dữ liệu KD05 dùng | Nguồn hoặc tác động |
 |---|---|---|---|
 | Yêu cầu Tour | Mã yêu cầu (R10) | Ngày tạo, khách, người liên hệ, thời gian đi hoặc tháng dự kiến, số ngày đêm, số khách, người phụ trách, trạng thái hủy, lý do hủy, ngày cập nhật, phiên bản | KD06 sở hữu; KD05 đọc; KD05 chỉ ghi người phụ trách (R08) |
-| Phiên bản báo giá | Mã yêu cầu + số phiên bản | Số phiên bản, ngày lưu, giá bán, loại tiền, kết quả | KD06.3; KD05 chỉ đọc phiên bản mới nhất |
-| Booking | Mã Booking | Mã, trạng thái, người phụ trách | KD08; KD05 chỉ đọc |
+| Phiên bản báo giá | Mã yêu cầu + số phiên bản | Số phiên bản, ngày lưu, giá bán, loại tiền, kết quả | KD06.3; KD05 chỉ đọc phiên bản hiển thị (R03) |
+| Booking | Mã Booking | Mã, trạng thái, người phụ trách, phiên bản hiện hành, thời gian, số khách (R15) | KD08; KD05 chỉ đọc |
 | Khách hàng, người liên hệ | Mã khách hàng | Tên, loại, quốc gia, tên và email người liên hệ (chỉ dùng để tìm) | KD04; KD05 chỉ đọc |
-| Lịch sử chuyển phụ trách | Mã yêu cầu + thời điểm | Người cũ, người mới, người thực hiện, cách chuyển (một hay hàng loạt) | KD05 ghi; KD06 hiện trong lịch sử yêu cầu; QT03 |
+| Lịch sử chuyển phụ trách | Mã yêu cầu + thời điểm | Người cũ, người mới, người thực hiện, cách chuyển (một hay hàng loạt), lần Hoàn tác (Q-RS24) | KD05 ghi; KD06 hiện trong lịch sử yêu cầu; QT03 |
 | Nhật ký xuất Excel | Mã lần xuất | Người xuất, thời điểm, bộ lọc, số dòng, tên tệp | KD05 ghi; QT03 |
 | Thiết lập dạng xem | Người dùng + màn | Dạng xem dùng lần cuối, Tháng hay Tuần ở Lịch, khoảng cập nhật của từng cột Kanban | KD05 ghi khi người dùng đổi; không ghi nhật ký QT03 |
 
@@ -581,7 +594,7 @@ KD05 không gửi email hay tài liệu cho khách hoặc NCC. Thông báo chuy�
 |---|---|---|
 | AC01 | Kinh doanh mở Yêu cầu Tour lần đầu trong phiên | Chip Của tôi bật, chip Đang xử lý, sắp theo thời gian đi gần nhất, yêu cầu chưa chốt ngày ở cuối; không có cột Phụ trách và Trạng thái · Booking (W01) |
 | AC02 | Có 12 yêu cầu Đang xử lý, 23 Đã có Booking, 7 Đã hủy của người dùng | Chip ghi 12, 23, 7, 42; tổng ba chip bằng Tất cả (W01) |
-| AC03 | Yêu cầu có phiên bản v1 (Cần điều chỉnh) và v2 chưa ghi kết quả | Cột Báo giá mới nhất ghi “v2 · Chưa có kết quả” kèm giá bán và ngày lưu của v2 (R03) |
+| AC03 | Yêu cầu có phiên bản v1 (Cần điều chỉnh) và v2 chưa ghi kết quả | Cột Báo giá ghi “v2 · Chưa có kết quả” kèm giá bán và ngày lưu của v2 (R03) |
 | AC04 | Yêu cầu chưa có phiên bản báo giá | Cột ghi “— Chưa có báo giá”; khớp bộ lọc Kết quả báo giá Chưa có báo giá |
 | AC05 | Gõ “muller” (không dấu), tắt chip Của tôi, chip Tất cả | Hiện 6 yêu cầu của Müller Reisen GmbH, phần khớp được tô; chip 1 / 4 / 1 / 6; cột Phụ trách và Trạng thái · Booking hiện (W02) |
 | AC06 | Gõ email của người liên hệ Anna Schneider | Các yêu cầu của Müller Reisen GmbH hiện ra; email không hiện trên dòng (R04, 1.4) |
@@ -624,5 +637,9 @@ KD05 không gửi email hay tài liệu cho khách hoặc NCC. Thông báo chuy�
 | AC43 | Mở KD06 từ một thẻ, hủy yêu cầu, quay lại | Vẫn ở Kanban; thẻ mờ tại chỗ ở cột Đang xử lý kèm nhãn Đã hủy; số đếm Đang xử lý giảm 1, Đã hủy tăng 1 (E6.7) |
 | AC44 | Bấm Xuất Excel ở Lịch đang xem tháng 12/2026, chip Đang xử lý | Tệp gồm mọi yêu cầu Đang xử lý khớp bộ lọc, không chỉ yêu cầu đi trong tháng 12/2026 (E5.6) |
 | AC45 | Booking Hiệu lực BK-2610-0137 của YC-2610-0008 bị hủy ở KD08, rồi tải lại KD05 | YC-2610-0008 ở chip Đã hủy, lý do “Booking đã hủy” kèm BK-2610-0137; chip Đã có Booking giảm 1, Đã hủy tăng 1; ở Kanban thẻ sang cột Đã hủy; ở Lịch thanh xám gạch ngang (R02) |
-| AC46 | Kinh doanh Mở lại YC-2610-0008 ở KD06 kèm lý do | Yêu cầu về chip Đang xử lý; tạo được Booking mới ở KD08 từ phiên bản Chốt mới (R02) |
+| AC46 | Kinh doanh Mở lại YC-2610-0008 ở KD06 kèm lý do | Yêu cầu về chip Đang xử lý; ghi Chốt cho một phiên bản ở KD06.3 tạo được Booking mới (R02; RSD KD06 R19) |
 | AC47 | Người có quyền Chuyển người phụ trách chọn dòng ở chip Đã có Booking hoặc Đã hủy | Dòng không có ô chọn; yêu cầu Đã có Booking đổi người phụ trách theo Booking ở KD08; yêu cầu Đã hủy đổi người phụ trách khi Mở lại ở KD06 (R08) |
+| AC48 | YC-2610-0008 có BK-2610-0137 theo v3 (Chốt, 38.420 EUR) và v4 lưu ở chế độ điều chỉnh, Chưa có kết quả, chưa Chuyển sang Điều hành | Cột Báo giá ghi “v3 · Chốt” kèm 38.420 EUR, không phải v4; lọc Kết quả báo giá Chốt có YC-2610-0008, lọc Chưa có kết quả không có. Sau khi Chuyển sang Điều hành: “v4 · Chốt” kèm 42.680 EUR (R03; Q-RS17) |
+| AC49 | Như AC48, ở chế độ điều chỉnh yêu cầu đã sửa thành 20 khách, ngày đi 19/11/2026; Booking theo v3 18 khách, 18/11 – 25/11/2026 | Dòng YC-2610-0008 ghi 18 khách, 18/11/2026 – 25/11/2026; lọc Thời gian đi từ 19/11/2026 không có yêu cầu này; sau khi Chuyển sang Điều hành ghi 20 khách, 19/11/2026 – 26/11/2026 (R15; Q-RS18) |
+| AC50 | Sau AC22, Nam bấm Hoàn tác trên banner trong 10 giây | 3 yêu cầu về người phụ trách cũ; chip Đang xử lý về 12; thông báo gộp của Lê Thu Hà bị gỡ; lịch sử mỗi yêu cầu và QT03 có thêm mục Hoàn tác (E4.7, R08; Q-RS24) |
+| AC51 | Chuyển 3 yêu cầu cho Lê Thu Hà; trong 10 giây Lê Thu Hà chuyển tiếp 1 yêu cầu cho Phạm Thanh Tùng ở phiên khác; Nam bấm Hoàn tác | 2 yêu cầu về Nam; banner ghi 1 yêu cầu không hoàn tác được vì đã đổi tiếp; thông báo gộp của Lê Thu Hà còn, chỉ liệt kê yêu cầu không hoàn tác được (E4.7; RSD CH02 R05; CGD U2.06) |

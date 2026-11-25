@@ -5,9 +5,10 @@
 Dữ liệu minh họa, khớp các bảng trong VI-DU-TINH-GIA-v1.0.md (cùng thư mục).
 Quy tắc cài theo RSD KD06 R04, R13, R14, R15; RSD KD01-KD02 R05, R07; RSD DH03 R07,
 R09, R14, R15, R23; RSD KD08 R05; BOI-CANH-DU-AN (Tiền Q9, Trẻ em Q12, Phòng Q13', Q14).
+Giường phụ là giường cho trẻ em, không đổi số phòng, tiền chia đều cho trẻ em (người dùng chốt 18/11/2026).
 
 Chạy (Python 3 thuần, không cần thư viện ngoài):
-    python3 -I docs/rsd/BO-TINH-GIA/tinh_vi_du.py            # kết quả ví dụ A, B, C (Markdown)
+    python3 -I docs/rsd/BO-TINH-GIA/tinh_vi_du.py            # kết quả ví dụ A, B, C, D, E (Markdown)
     python3 -I docs/rsd/BO-TINH-GIA/tinh_vi_du.py --du-lieu  # bảng dữ liệu (Markdown)
 """
 import sys
@@ -92,8 +93,7 @@ class HopDong:
     tien: str
     mua: list
     cuoi_tuan: tuple = (4, 5)          # đêm Thứ Sáu, Thứ Bảy
-    nhom_tuoi: list = field(default_factory=list)
-    mien_phi: tuple = None             # (số trẻ miễn phí, nhóm tuổi)
+    nhom_tuoi: list = field(default_factory=list)   # trẻ dưới nhóm thấp nhất miễn phí (DH03 R09, Q-RS06)
     ghi_chu: str = ''
 
 
@@ -117,10 +117,9 @@ class DongGia:
     hd: str
     tien: str
     gia: dict                          # {(mùa, loại ngày): đơn giá}; loại ngày 'NT', 'CT' hoặc ''
-    khach: tuple = (1, 99)
+    khach: tuple = (1, 99)             # căn cứ khách, phòng: số người lớn; đoàn, xe, đơn vị: tổng khách (Q-RS27)
     hang_phong: str = ''
-    thu_tu: int = 1
-    tre_em: dict = field(default_factory=dict)   # {nhóm: ('%', x) | ('tien', x)}
+    tre_em: dict = field(default_factory=dict)   # {nhóm: đơn giá trẻ em} (Q-RS05: không còn kiểu %)
     phong_don: tuple = None            # ('tron_goi', {khóa: giá}) | ('phu_thu', x) | ('phu_thu_%', x)
 
 
@@ -218,14 +217,14 @@ HOP_DONG = [
     HopDong('HTC-2027', 'HTC', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027')),
     HopDong('SST-2027', 'SST', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027')),
     HopDong('HNP-2027', 'HNP', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11),
-    HopDong('HCH-2027', 'HCH', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11),
+    HopDong('HCH-2027', 'HCH', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'),
+            nhom_tuoi=[NhomTuoi('2–5', 2, 6, ''), NhomTuoi('6–11', 6, 12, '')], ghi_chu='Trẻ dưới 2 tuổi miễn phí (dưới nhóm thấp nhất)'),
     HopDong('MSG-2027', 'MSG', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11),
     HopDong('SGX-2027', 'SGX', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11),
     HopDong('VMQ-2027', 'VMQ', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11),
-    HopDong('BTH-2027', 'BTH', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11,
-            mien_phi=(1, '6–11'), ghi_chu='Miễn phí 1 trẻ nhóm 6–11 mỗi đoàn'),
-    HopDong('TRH-2027', 'TRH', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11,
-            mien_phi=(2, '6–11'), ghi_chu='Miễn phí 2 trẻ nhóm 6–11 mỗi thuyền'),
+    HopDong('BTH-2027', 'BTH', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11),
+    HopDong('TRH-2027', 'TRH', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'),
+            nhom_tuoi=[NhomTuoi('12–15', 12, 16, '')], ghi_chu='Trẻ dưới 12 tuổi miễn phí (dưới nhóm thấp nhất)'),
     HopDong('BMS-2027', 'BMS', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11),
     HopDong('HCC-2027', 'HCC', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11),
     HopDong('MKD-2027', 'MKD', d('01/01/2027'), d('31/12/2027'), 'VND', mua_ca_ky('01/01/2027', '31/12/2027'), nhom_tuoi=VE_6_11),
@@ -335,28 +334,28 @@ def ck(x):
 DONG_GIA = [
     # ---------- 2027 (A)
     DongGia('TLO-DLX', 'TLO-2027', 'VND', ks('5.200.000', '4.300.000'), (1, 99), 'Deluxe',
-            tre_em={'0–5': ('tien', V('0')), '6–11': ('tien', V('0'))},
+            tre_em={'0–5': V('0'), '6–11': V('0')},
             phong_don=('tron_goi', ks('3.900.000', '3.300.000'))),
     DongGia('TLO-GP', 'TLO-2027', 'VND', ks('950.000', '800.000')),
     DongGia('BHY-CAB', 'BHY-2027', 'USD', ck('720'), (1, 99), 'Deluxe',
-            tre_em={'0–5': ('tien', D('0')), '6–11': ('%', D('50'))},
+            tre_em={'0–5': D('0'), '6–11': D('180')},
             phong_don=('tron_goi', ck('860'))),
     DongGia('HAR-DGV', 'HAR-2027', 'VND', ks('3.000.000', '2.300.000', '3.400.000', '2.600.000'), (1, 99), 'Deluxe',
-            tre_em={'0–5': ('tien', V('0')), '6–11': ('tien', V('400.000'))},
+            tre_em={'0–5': V('0'), '6–11': V('400.000')},
             phong_don=('phu_thu', V('300.000'))),
     DongGia('HAR-GP', 'HAR-2027', 'VND', ks('750.000', '600.000', '750.000', '600.000')),
     DongGia('SSG-RV', 'SSG-2027', 'VND', ks('3.500.000', '2.900.000', '3.900.000', '3.200.000'), (1, 99), 'Superior',
-            tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('25'))},
+            tre_em={'0–5': V('0'), '6–11': V('462.500')},
             phong_don=('phu_thu_%', D('10'))),
-    DongGia('SSG-RV', 'SSG-2027', 'VND', ks('4.200.000', '3.500.000', '4.700.000', '3.900.000'), (1, 99), 'Deluxe', thu_tu=2,
-            tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('25'))},
+    DongGia('SSG-RV', 'SSG-2027', 'VND', ks('4.200.000', '3.500.000', '4.700.000', '3.900.000'), (1, 99), 'Deluxe',
+            tre_em={'0–5': V('0'), '6–11': V('556.250')},
             phong_don=('phu_thu_%', D('10'))),
     DongGia('VNA-HUI', 'VNA-2027', 'VND', ck('1.850.000'), (10, 40),
-            tre_em={'0–1': ('%', D('10')), '2–5': ('tien', V('1.390.000')), '6–11': ('tien', V('1.390.000'))}),
+            tre_em={'0–1': V('185.000'), '2–5': V('1.390.000'), '6–11': V('1.390.000')}),
     DongGia('VNA-SGN', 'VNA-2027', 'USD', ck(D('78')), (10, 40),
-            tre_em={'0–1': ('%', D('10')), '2–5': ('%', D('75')), '6–11': ('%', D('75'))}),
+            tre_em={'0–1': D('7.80'), '2–5': D('58.50'), '6–11': D('58.50')}),
     DongGia('DVG-DE', 'DVG-2027', 'VND', ck('1.300.000'), (1, 15)),
-    DongGia('DVG-DE', 'DVG-2027', 'VND', ck('1.500.000'), (16, 30), thu_tu=2),
+    DongGia('DVG-DE', 'DVG-2027', 'VND', ck('1.500.000'), (16, 30)),
     DongGia('HLT-NB29', 'HLT-2027', 'VND', ck('2.800.000'), (16, 29)),
     DongGia('HLT-CT29', 'HLT-2027', 'VND', ck('3.600.000'), (16, 29)),
     DongGia('HLT-HL29', 'HLT-2027', 'VND', ck('5.400.000'), (16, 29)),
@@ -369,28 +368,28 @@ DONG_GIA = [
     DongGia('SST-CT29', 'SST-2027', 'VND', ck('3.000.000'), (16, 29)),
     DongGia('SST-MT29', 'SST-2027', 'VND', ck('4.000.000'), (16, 29)),
     DongGia('SST-CC29', 'SST-2027', 'VND', ck('3.200.000'), (16, 29)),
-    DongGia('HNP-TOI', 'HNP-2027', 'VND', ck('600.000'), (10, 40), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('70'))}),
-    DongGia('HNP-TRUA', 'HNP-2027', 'VND', ck('480.000'), (10, 40), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('70'))}),
-    DongGia('HCH-TOI', 'HCH-2027', 'VND', ck('850.000'), (10, 40), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('60'))}),
-    DongGia('HCH-TRUA', 'HCH-2027', 'VND', ck('450.000'), (10, 40), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('60'))}),
-    DongGia('MSG-VN', 'MSG-2027', 'VND', ck('460.000'), (10, 19), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('50'))}),
-    DongGia('MSG-VN', 'MSG-2027', 'VND', ck('430.000'), (20, 24), thu_tu=2, tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('50'))}),
-    DongGia('MSG-VN', 'MSG-2027', 'VND', ck('400.000'), (25, 29), thu_tu=3, tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('50'))}),
-    DongGia('SGX-TOI', 'SGX-2027', 'VND', ck('600.000'), (10, 40), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('60'))}),
-    DongGia('SGX-TRUA', 'SGX-2027', 'VND', ck('450.000'), (10, 40), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('60'))}),
-    DongGia('SGX-CT', 'SGX-2027', 'VND', ck('1.100.000'), (10, 40), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('60'))}),
-    DongGia('VMQ-VE', 'VMQ-2027', 'VND', ck('70.000'), (1, 99), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('30'))}),
-    DongGia('BTH-DN', 'BTH-2027', 'VND', ck('200.000'), (1, 99), tre_em={'0–5': ('tien', V('0')), '6–11': ('tien', V('40.000'))}),
+    DongGia('HNP-TOI', 'HNP-2027', 'VND', ck('600.000'), (10, 40), tre_em={'0–5': V('0'), '6–11': V('420.000')}),
+    DongGia('HNP-TRUA', 'HNP-2027', 'VND', ck('480.000'), (10, 40), tre_em={'0–5': V('0'), '6–11': V('336.000')}),
+    DongGia('HCH-TOI', 'HCH-2027', 'VND', ck('850.000'), (10, 40), tre_em={'2–5': V('0'), '6–11': V('510.000')}),
+    DongGia('HCH-TRUA', 'HCH-2027', 'VND', ck('450.000'), (10, 40), tre_em={'2–5': V('0'), '6–11': V('270.000')}),
+    DongGia('MSG-VN', 'MSG-2027', 'VND', ck('460.000'), (10, 19), tre_em={'0–5': V('0'), '6–11': V('230.000')}),
+    DongGia('MSG-VN', 'MSG-2027', 'VND', ck('430.000'), (20, 24), tre_em={'0–5': V('0'), '6–11': V('215.000')}),
+    DongGia('MSG-VN', 'MSG-2027', 'VND', ck('400.000'), (25, 29), tre_em={'0–5': V('0'), '6–11': V('200.000')}),
+    DongGia('SGX-TOI', 'SGX-2027', 'VND', ck('600.000'), (10, 40), tre_em={'0–5': V('0'), '6–11': V('360.000')}),
+    DongGia('SGX-TRUA', 'SGX-2027', 'VND', ck('450.000'), (10, 40), tre_em={'0–5': V('0'), '6–11': V('270.000')}),
+    DongGia('SGX-CT', 'SGX-2027', 'VND', ck('1.100.000'), (10, 40), tre_em={'0–5': V('0'), '6–11': V('660.000')}),
+    DongGia('VMQ-VE', 'VMQ-2027', 'VND', ck('70.000'), (1, 99), tre_em={'0–5': V('0'), '6–11': V('21.000')}),
+    DongGia('BTH-DN', 'BTH-2027', 'VND', ck('200.000'), (1, 99), tre_em={'0–5': V('0'), '6–11': V('20.000')}),
     DongGia('TRH-TR', 'TRH-2027', 'VND', ck('1.800.000'), (16, 30)),
-    DongGia('BMS-VE', 'BMS-2027', 'VND', ck('150.000'), (1, 99), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('50'))}),
-    DongGia('HCC-LOP', 'HCC-2027', 'VND', ck('950.000'), (10, 30), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('60'))}),
-    DongGia('MKD-TH', 'MKD-2027', 'VND', ck('980.000'), (10, 30), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('60'))}),
-    DongGia('CCT-VE', 'CCT-2027', 'VND', ck('125.000'), (1, 99), tre_em={'0–5': ('tien', V('0')), '6–11': ('%', D('40'))}),
+    DongGia('BMS-VE', 'BMS-2027', 'VND', ck('150.000'), (1, 99), tre_em={'0–5': V('0'), '6–11': V('75.000')}),
+    DongGia('HCC-LOP', 'HCC-2027', 'VND', ck('950.000'), (10, 30), tre_em={'0–5': V('0'), '6–11': V('570.000')}),
+    DongGia('MKD-TH', 'MKD-2027', 'VND', ck('980.000'), (10, 30), tre_em={'0–5': V('0'), '6–11': V('588.000')}),
+    DongGia('CCT-VE', 'CCT-2027', 'VND', ck('125.000'), (1, 99), tre_em={'0–5': V('0'), '6–11': V('50.000')}),
 
     DongGia('BVI-BH', 'BVI-2027', 'VND', ck('280.000'), (1, 99)),
     # MTH-2026 có dòng giá 2026 nhưng không có hợp đồng 2027 → 19, 20/03/2027 thiếu hợp đồng
     DongGia('MTH-DLX', 'MTH-2026', 'VND', {(CD, ''): V('1.350.000'), (TD, ''): V('1.150.000'), (GS, ''): V('1.600.000')}, (1, 99), 'Deluxe',
-            tre_em={'0–5': ('tien', V('0')), '6–11': ('tien', V('0'))}, phong_don=None),
+            tre_em={'0–5': V('0'), '6–11': V('0')}, phong_don=None),
     # ---------- 2026 (B)
     DongGia('HBH-DLX', 'HBH-2026', 'VND', {(CD, ''): V('2.200.000'), (TD, ''): V('1.800.000'), (GS, ''): V('2.600.000')}, (1, 99), 'Deluxe',
             phong_don=('phu_thu', V('600.000'))),
@@ -415,7 +414,7 @@ DONG_GIA = [
     DongGia('LTH-STD', 'LTH-C', 'VND', {('Cao điểm', 'NT'): V('2.000.000'), ('Cao điểm', 'CT'): V('2.300.000'),
                                        ('Thấp điểm', 'NT'): V('1.700.000'), ('Thấp điểm', 'CT'): V('1.900.000'),
                                        ('Tết', ''): V('2.600.000')}, (1, 99), 'Tiêu chuẩn',
-            tre_em={'0–5': ('tien', V('0')), '6–12': ('%', D('50'))}),
+            tre_em={'0–5': V('0'), '6–12': V('500.000')}),
     DongGia('LTH-GP', 'LTH-C', 'VND', {('Cao điểm', 'NT'): V('600.000'), ('Cao điểm', 'CT'): V('650.000'),
                                       ('Thấp điểm', 'NT'): V('500.000'), ('Thấp điểm', 'CT'): V('500.000'),
                                       ('Tết', ''): V('800.000')}),
@@ -478,6 +477,22 @@ VI_DU_A = {
     'ngan_sach_den': D('2100'),
     'hanh_trinh': VI_DU_A_HANH_TRINH,
     'booking': {'ma': 'BK-2611-0158', 'ngay_tao': d('11/11/2026')},
+    'ghi_chu_tre': 'Hai trẻ dưới nhóm tuổi thấp nhất (12–15) của hợp đồng TRH-2027 nên được miễn phí; '
+                   'Thuyền rồng chia cho 23 người lớn (DH03 R09).',
+}
+
+# Ví dụ D (Q-RS06, Q-RS27): một ngày ở Huế trên dữ liệu 2027 của ví dụ A; 14 người lớn, 2 trẻ 1 và 13 tuổi.
+# Dòng căn cứ đoàn, xe chọn theo 16 khách (Xe 29 chỗ 16–29, Thuyền rồng 16–30, HDV 16–30); đếm 14 người lớn
+# thì xe và thuyền không có mức giá, HDV lấy 1–15. Trẻ 1 tuổi dưới nhóm thấp nhất của HCH-2027, TRH-2027 (miễn phí);
+# trẻ 13 tuổi trên nhóm cao nhất của BTH-2027, HCH-2027 (giá người lớn).
+VI_DU_D = {
+    'ten': 'Ví dụ D · nhóm tuổi và số khách theo căn cứ · 20/03/2027',
+    'khoi_hanh': d('20/03/2027'),
+    'nguoi_lon': 14, 'tuoi_tre': [1, 13], 'hang_phong': '', 'phong_don': 0, 'giuong_phu': 0,
+    'tien': 'VND', 'loai_tour': 'Inbound đoàn',
+    'markup_hang_muc': {'Hướng dẫn viên': D('20')},
+    'hanh_trinh': [('Huế – lăng tẩm, sông Hương', [('HTC-CT29', 'co_dinh', 1, {}), ('BTH-DN', 'khach', 0, {}),
+                                                   ('TRH-TR', 'co_dinh', 1, {}), ('HCH-TRUA', 'khach', 0, {}), HDV])],
 }
 
 # Tour mẫu TM-008 (8 ngày, 21 dịch vụ). Ngày 8 có Xe 45 chỗ của Hải Vân Transport đã Ngừng dùng.
@@ -494,7 +509,7 @@ TM_008 = [
 ]
 
 VI_DU_C = [
-    {'ten': 'AC93 · 5 người lớn, 1 giường phụ', 'khoi_hanh': d('15/03/2027'), 'nguoi_lon': 5, 'tuoi_tre': [],
+    {'ten': 'AC93 · 4 người lớn, 1 trẻ 8 tuổi, 1 giường phụ', 'khoi_hanh': d('15/03/2027'), 'nguoi_lon': 4, 'tuoi_tre': [8],
      'hang_phong': 'Tiêu chuẩn', 'phong_don': 0, 'giuong_phu': 1, 'tien': 'VND', 'loai_tour': 'Inbound đoàn',
      'markup_hang_muc': {'Lưu trú': D('10')},
      'hanh_trinh': [('Hà Nội', [('LTH-STD', 'phong', 0, {'di_kem': [('LTH-GP', 'giuong_phu', 0)]})])]},
@@ -534,29 +549,35 @@ def nhom_cua(hd, tuoi):
 
 
 def tre_mien_phi(hd, tuoi_tre):
-    """Chỉ số các trẻ được miễn phí theo hợp đồng; trẻ nhỏ nhất miễn trước (Q12)."""
-    if hd is None or not hd.mien_phi:
+    """Chỉ số các trẻ dưới nhóm tuổi thấp nhất của hợp đồng: miễn phí (DH03 R09, Q-RS06).
+    Không còn trường số trẻ miễn phí (Q-RS07). Hợp đồng không có nhóm tuổi: không trẻ nào miễn."""
+    if hd is None or not hd.nhom_tuoi:
         return set()
-    so_tre, ma = hd.mien_phi
-    ung = [i for i, a in enumerate(tuoi_tre) if (nhom_cua(hd, a) or NhomTuoi('', 0, 0, '')).ma == ma]
-    ung.sort(key=lambda i: tuoi_tre[i])
-    return set(ung[:so_tre])
+    thap_nhat = min(n.tu for n in hd.nhom_tuoi)
+    return {i for i, a in enumerate(tuoi_tre) if a < thap_nhat}
 
 
 def khoang_txt(ds):
     return ', '.join(f'{g.khach[0]}–{g.khach[1]}' for g in ds)
 
 
-def chon_dong_gia(dv, hd, so_nl, hang_phong):
-    """DH03 R14, KD06 R13: căn cứ trùng căn cứ mặc định, khoảng số khách chứa số người lớn,
-    theo hạng phòng của điều kiện; cùng hạng phòng lấy Thứ tự nhỏ nhất; chưa có hạng phòng
-    thì hạng có giá thấp nhất."""
+def so_khach_chon(dv, nl, tong):
+    """Số khách để chọn dòng giá (Q-RS27): căn cứ khách, phòng đếm người lớn;
+    căn cứ đoàn, xe, đơn vị đếm tổng khách, gồm trẻ em."""
+    return nl if dv.can_cu in ('khach', 'phong') else tong
+
+
+def chon_dong_gia(dv, hd, so_khach, hang_phong):
+    """DH03 R14, KD06 R13: căn cứ trùng căn cứ mặc định, khoảng số khách chứa số khách
+    (so_khach_chon), theo hạng phòng của điều kiện; chưa có hạng phòng thì hạng có giá thấp
+    nhất. Dòng cùng hạng phòng và căn cứ không được chồng lấn khoảng số khách (chặn khi lưu),
+    nên mỗi hạng phòng khớp tối đa một dòng; không có trường Thứ tự (Q-RS03)."""
     ds = [g for g in DONG_GIA if g.dv == dv.ma and g.hd == hd.ma]
     if not ds:
         return None, f'Hợp đồng {hd.ma} chưa có dòng giá', ''
-    khop = [g for g in ds if g.khach[0] <= so_nl <= g.khach[1]]
+    khop = [g for g in ds if g.khach[0] <= so_khach <= g.khach[1]]
     if not khop:
-        return None, f'Không có mức giá cho {so_nl} khách (bảng giá {khoang_txt(ds)} khách)', ''
+        return None, f'Không có mức giá cho {so_khach} khách (bảng giá {khoang_txt(ds)} khách)', ''
     hangs = sorted({g.hang_phong for g in khop if g.hang_phong})
     canh_bao = ''
     if hangs:
@@ -570,7 +591,8 @@ def chon_dong_gia(dv, hd, so_nl, hang_phong):
             khop = [g for g in khop if g.hang_phong == hang]
             if len(hangs) > 1:
                 canh_bao = 'Chưa chọn hạng phòng · tính theo hạng giá thấp nhất'
-    return min(khop, key=lambda g: g.thu_tu), '', canh_bao
+    assert len(khop) == 1, f'Dòng giá chồng lấn: {dv.ma} {hd.ma}'
+    return khop[0], '', canh_bao
 
 
 @dataclass
@@ -600,11 +622,11 @@ class GiaNgay:
         return '; '.join(parts)
 
 
-def gia_ngay(dv, ngay, so_nl, hang_phong):
+def gia_ngay(dv, ngay, nl, tong, hang_phong):
     hd = hop_dong_ap_dung(dv.ncc, ngay)
     if hd is None:
         return None, f'Không có hợp đồng cho {ng(ngay)}'
-    g, loi, cb = chon_dong_gia(dv, hd, so_nl, hang_phong)
+    g, loi, cb = chon_dong_gia(dv, hd, so_khach_chon(dv, nl, tong), hang_phong)
     if g is None:
         return None, loi
     ml = mua_loai_ngay(hd, ngay)
@@ -666,12 +688,15 @@ class Khoan:
 def tinh_kd06(vd):
     """Bộ tính giá ở KD06.3 (R04, R13, R14, R15). Trả về dict kết quả."""
     nl, tuoi, gp = vd['nguoi_lon'], vd['tuoi_tre'], vd['giuong_phu']
+    tong = nl + len(tuoi)                      # tổng khách, gồm trẻ em (Q-RS27)
     q = vd['tien']
-    # R04 · phòng
-    le = nl - vd['phong_don'] - gp
+    # R04 · phòng. Giường phụ là giường cho trẻ em, không đổi số phòng (người dùng chốt 18/11/2026):
+    # người lớn chỉ ở phòng đôi hoặc phòng đơn; giường phụ không quá số trẻ em.
+    assert 0 <= gp <= len(tuoi), 'Giường phụ không quá số trẻ em'
+    le = nl - vd['phong_don']
     pd = vd['phong_don'] + (1 if le % 2 else 0)
     tu_xep = pd - vd['phong_don']
-    doi = -(-(nl - pd - gp) // 2)
+    doi = -(-(nl - pd) // 2)
     nl_doi = nl - pd
     so_phong = pd + doi
     markup_chung = MARKUP_LOAI_TOUR[vd['loai_tour']]
@@ -687,7 +712,7 @@ def tinh_kd06(vd):
         ngay = vd['khoi_hanh'] + timedelta(days=n - 1)
         for ma_dv, cach, sl_cd, opt in dong_ds:
             dv = DV[ma_dv]
-            gn, loi = gia_ngay(dv, ngay, nl, vd['hang_phong'])
+            gn, loi = gia_ngay(dv, ngay, nl, tong, vd['hang_phong'])
             nt = opt.get('nhap_tay')
             if gn is None and not nt:
                 thieu.append((n, ngay, dv, loi))
@@ -710,10 +735,14 @@ def tinh_kd06(vd):
                     if sl == 0:
                         continue
                     # đi kèm: giá theo hợp đồng áp dụng của dịch vụ chính, mùa và loại ngày của ngày dùng (R13)
-                    g_dk = [g for g in DONG_GIA if g.dv == dk.ma and g.hd == hd.ma and g.khach[0] <= nl <= g.khach[1]]
+                    sk = so_khach_chon(dk, nl, tong)
+                    g_dk = [g for g in DONG_GIA if g.dv == dk.ma and g.hd == hd.ma and g.khach[0] <= sk <= g.khach[1]]
                     dg_dk = g_dk[0].gia[gn.ml]
+                    # Giường phụ cho trẻ em: chia đều cho mọi trẻ em của điều kiện, cộng thêm vào giá
+                    # trẻ em theo chính sách trẻ em (người dùng chốt 18/11/2026)
+                    tp_dk = [(('TE', i), 1, dg_dk * sl / len(tuoi)) for i in range(len(tuoi))]
                     them(Khoan(n, ngay, dk, f'{hd.ma} · {gn.mua_txt()}', f'đi kèm {dv.ten}', f'{sl} giường × {tien(dg_dk, g_dk[0].tien)}',
-                               g_dk[0].tien, dg_dk * sl, [('DOI', nl_doi, dg_dk * sl / nl_doi)], ref, di_kem=True))
+                               g_dk[0].tien, dg_dk * sl, tp_dk, ref, di_kem=True))
                 if gp and not opt.get('di_kem'):
                     thieu.append((n, ngay, dv, f'Giường phụ · chưa thêm vào {dv.ten}, {ng(ngay)}'))
                 if pd:
@@ -730,19 +759,19 @@ def tinh_kd06(vd):
                     for i, a in enumerate(tuoi):
                         if gn:
                             nh = nhom_cua(hd, a)
-                            assert nh is not None, 'Ví dụ không có trẻ ngoài nhóm tuổi ở dịch vụ phòng'
-                            sp = gn.g.tre_em.get(nh.ma)
                             if i in free:
-                                p, m = D(0), 'miễn phí theo HĐ'
-                            elif sp is None:
-                                thieu.append((n, ngay, dv, f'Thiếu giá trẻ em nhóm {nh.ma}'))
-                                p, m = D(0), 'thiếu'
-                            elif sp[0] == '%':
-                                p = lam_tron(sp[1] / 100 * gn.gia_mua / 2, t)
-                                m = f'{so(sp[1])} % × {so(gn.gia_mua)} ÷ 2'
+                                p, m = D(0), 'dưới nhóm tuổi thấp nhất · miễn phí'
+                            elif nh is None:
+                                # Trẻ trên nhóm cao nhất ở dòng theo phòng: khoản thiếu, nhập tay (KD06 R13, R15; người dùng trả lời 13/11/2026).
+                                thieu.append((n, ngay, dv, f'Trẻ {a} tuổi trên nhóm tuổi của hợp đồng'))
+                                p, m = D(0), 'trên nhóm tuổi · thiếu'
                             else:
-                                p, m = sp[1], 'giá cố định'
-                            m = f'nhóm {nh.ma} {nh.dieu_kien}: {m}'
+                                sp = gn.g.tre_em.get(nh.ma)
+                                if sp is None:
+                                    thieu.append((n, ngay, dv, f'Thiếu giá trẻ em nhóm {nh.ma}'))
+                                    p, m = D(0), f'nhóm {nh.ma}: thiếu'
+                                else:
+                                    p, m = sp, f'nhóm {nh.ma} {nh.dieu_kien}'.strip()
                         else:
                             p, m = nt['tre_em'][0], 'nhập tay'
                         tp.append((('TE', i), 1, p))
@@ -757,18 +786,17 @@ def tinh_kd06(vd):
                 for i, a in enumerate(tuoi):
                     nh = nhom_cua(hd, a)
                     if i in free:
-                        p, m = D(0), 'miễn phí theo HĐ'
+                        p, m = D(0), 'dưới nhóm tuổi thấp nhất · miễn phí'
                     elif nh is None:
-                        p, m = gn.gia, 'ngoài nhóm tuổi · như NL'
+                        # trên nhóm cao nhất, hoặc hợp đồng không có chính sách trẻ em: tính như người lớn (DH03 R09)
+                        p, m = gn.gia, ('không có chính sách trẻ em · như NL' if not hd.nhom_tuoi else 'trên nhóm tuổi cao nhất · như NL')
                     else:
                         sp = gn.g.tre_em.get(nh.ma)
                         if sp is None:
                             thieu.append((n, ngay, dv, f'Thiếu giá trẻ em nhóm {nh.ma}'))
                             p, m = D(0), 'thiếu'
-                        elif sp[0] == '%':
-                            p, m = lam_tron(gn.gia_mua * sp[1] / 100, t), f'{so(sp[1])} %'
                         else:
-                            p, m = sp[1], 'cố định'
+                            p, m = sp, f'nhóm {nh.ma}'
                     tp.append((('TE', i), 1, p))
                     parts.append(f'TE {a} t × {tien(p, t)} ({m})')
                 tt = sum(x[1] * x[2] for x in tp)
@@ -782,7 +810,7 @@ def tinh_kd06(vd):
                                                          for i in range(len(tuoi))]
                 g_txt = f'{sl_cd} {dv.don_vi.split("/")[0]} × {tien(gn.gia, t)}'
                 if free:
-                    ghi = (ghi + '; ' if ghi else '') + f'chia cho {so_tinh_phi} khách tính phí (trẻ {", ".join(str(tuoi[i]) for i in sorted(free))} t miễn phí theo HĐ)'
+                    ghi = (ghi + '; ' if ghi else '') + f'chia cho {so_tinh_phi} khách tính phí (trẻ {", ".join(str(tuoi[i]) for i in sorted(free))} t dưới nhóm tuổi thấp nhất · miễn phí)'
                 them(Khoan(n, ngay, dv, hd_txt, '', g_txt, t, tt, tp, (n, dv.ma), ghi_chu=ghi))
 
     # R14 · quy đổi, Markup, giá bán trước làm tròn của từng khoản
@@ -826,6 +854,8 @@ def tinh_kd06(vd):
                 i = dt[1]
                 te_gv[i] += share
                 te_gb[i] += share * hs
+    # Phụ thu phòng đơn = giá phòng đơn − khoản phòng đôi cùng đêm ÷ số người lớn ở phòng đôi;
+    # khoản giường phụ thuộc trẻ em nên không trừ (người dùng chốt 18/11/2026).
     for ref, (c_doi, b_doi, c_don, b_don) in phong.items():
         if c_don is not None:
             gv['PTPD'] += c_don - c_doi
@@ -874,7 +904,7 @@ def tinh_kd02(tm, khoi_hanh, N, xoa_ngay=None):
             if not dv.dang_dung:
                 dong_kq.append((dv, cach, sl_cd, None, 'Không tính · dịch vụ ngừng dùng', None, None))
                 continue
-            gn, loi = gia_ngay(dv, ngay, N, None)
+            gn, loi = gia_ngay(dv, ngay, N, N, None)    # KD02 không có trẻ em: tổng khách = số khách
             if cach == 'khach':
                 sl, sl_txt = N, f'Theo số khách · {N}'
             elif cach == 'phong':
@@ -920,10 +950,13 @@ def in_kd06(kq, chi_tiet=True):
     ph = kq['phong']
     tuoi = vd['tuoi_tre']
     p(f"- Điều kiện: {vd['nguoi_lon']} người lớn" + (f", {len(tuoi)} trẻ em ({', '.join(map(str, tuoi))} tuổi)" if tuoi else '')
-      + f"; hạng phòng {vd['hang_phong']}; phòng đơn nhập {vd['phong_don']}; giường phụ {vd['giuong_phu']}; "
+      + f"; hạng phòng {vd['hang_phong'] or '—'}; phòng đơn nhập {vd['phong_don']}; giường phụ {vd['giuong_phu']}; "
       f"khởi hành {ng(vd['khoi_hanh'])}; báo giá {q}.")
-    p(f"- Phòng (R04): {ph['phong_don']} phòng đơn" + (f" ({ph['tu_xep']} tự xếp cho người lớn lẻ)" if ph['tu_xep'] else '')
-      + f", {ph['doi']} phòng đôi, {ph['so_phong']} phòng; {ph['giuong_phu']} giường phụ; {ph['nl_doi']} người lớn ở phòng đôi.")
+    if any(c == 'phong' for _, ds_ in vd['hanh_trinh'] for _, c, _, _ in ds_):
+        p(f"- Phòng (R04): {ph['phong_don']} phòng đơn" + (f" ({ph['tu_xep']} tự xếp cho người lớn lẻ)" if ph['tu_xep'] else '')
+          + f", {ph['doi']} phòng đôi, {ph['so_phong']} phòng; {ph['giuong_phu']} giường phụ; {ph['nl_doi']} người lớn ở phòng đôi.")
+    else:
+        p('- Hành trình không có dịch vụ lưu trú.')
     if q != 'VND':
         p(f"- Tỷ giá có hiệu lực (bảng tỷ giá ngày {ng(NGAY_TY_GIA)}): EUR {so(TY_GIA['EUR'])} ₫, USD {so(TY_GIA['USD'])} ₫.")
     mk = ', '.join(f'{h} {so(v)} %' for h, v in kq['markup'].items())
@@ -992,11 +1025,13 @@ def in_kd06(kq, chi_tiet=True):
         p(f'| {nhan} | {so(c, le)} | {so(b, le)} | **{so(g, 0)}** | {sl} | {so(g * sl, 0)} |')
     p(f'| **Tổng giá bán** | | | | | **{so(kq["tong_gb"], 0)}** |')
     p()
-    if len(kq['chi_tiet_te']) > 1:
+    gop = [x for x in kq['doi_tuong'] if x[0].startswith('Trẻ em') and x[1] > 1]
+    if gop:
         p('- Trẻ em cùng nhóm tuổi ở mọi hợp đồng gộp một dòng giá bán (R13); giá của dòng là bình quân các trẻ trong dòng: '
           + '; '.join(f'trẻ {a} tuổi giá vốn {so(c, le)}, giá bán trước làm tròn {so(b, le)} (nếu tính riêng: {so(lam_tron_len_boi(b, BOI_SO[q]), 0)})'
-                      for a, c, b in kq['chi_tiet_te'])
-          + '. Trẻ 8 tuổi được miễn vé Đại Nội Huế theo suất miễn phí của hợp đồng BTH-2027 (trẻ nhỏ nhất miễn trước).')
+                      for a, c, b in kq['chi_tiet_te']) + '.')
+    if vd.get('ghi_chu_tre'):
+        p(f"- {vd['ghi_chu_tre']}")
 
 
     tb = kq['tong_gb']
@@ -1019,22 +1054,66 @@ def in_kd06(kq, chi_tiet=True):
           f"thấp hơn {tien(ns - bq, q)} ({pct((ns - bq) / ns * 100)}) → trong ngân sách.")
 
 
+def lich_mac_dinh(ngay_tao, khoi_hanh, gtri, q):
+    """Lịch thanh toán điền sẵn theo RSD KD08 R05 (gồm quyết định rà soát 13/11/2026, Q-RS19).
+
+    Trả về danh sách (đợt, mẫu, hạn, số tiền). Xét theo thứ tự:
+    1. khởi hành ≤ ngày tạo + 14 ngày: một đợt 100 % hạn ngày tạo + 3 ngày, không muộn hơn ngày khởi hành;
+    2. hạn Đợt 2 (khởi hành − 30 ngày, không trước ngày tạo) ≤ hạn Đợt 1 (ngày tạo + 14 ngày):
+       gộp một đợt 100 % hạn ngày tạo + 14 ngày (Q-RS19);
+    3. còn lại: Đợt 1 30 % hạn ngày tạo + 14 ngày; Đợt 2 phần còn lại hạn khởi hành − 30 ngày.
+    """
+    han1 = ngay_tao + timedelta(days=14)
+    han2 = max(khoi_hanh - timedelta(days=30), ngay_tao)
+    if khoi_hanh <= ngay_tao + timedelta(days=14):
+        return [('Đợt 1', '100 % · ngày tạo + 3 ngày (khởi hành trong 14 ngày)', min(ngay_tao + timedelta(days=3), khoi_hanh), gtri)]
+    if han2 <= han1:
+        return [('Đợt 1', '100 % · ngày tạo + 14 ngày (hạn Đợt 2 không sau hạn Đợt 1, Q-RS19)', han1, gtri)]
+    d1 = lam_tron(gtri * D('0.30'), q)
+    return [('Đợt 1', '30 % · ngày tạo + 14 ngày', han1, d1),
+            ('Đợt 2', '70 % (phần còn lại) · khởi hành − 30 ngày', han2, gtri - d1)]
+
+
+def in_bang_lich(lich, q):
+    p('| Đợt | Mẫu | Hạn | Số tiền |')
+    p('|---|---|---|---:|')
+    for dot, mau, han, st in lich:
+        p(f'| {dot} | {mau} | {ng(han)} | {tien(st, q)} |')
+    p(f'| Tổng | | | {tien(sum(x[3] for x in lich), q)} · Khớp giá trị |')
+
+
 def in_lich_thanh_toan(kq):
     vd = kq['vd']
     q = vd['tien']
     gtri = kq['tong_gb']
     bk = vd['booking']
-    d1 = lam_tron(gtri * D('0.30'), q)
-    d2 = gtri - d1
-    han1 = bk['ngay_tao'] + timedelta(days=14)
-    han2 = vd['khoi_hanh'] - timedelta(days=30)
     p(f"**Lịch thanh toán điền sẵn ở KD08 (R05)** · Booking {bk['ma']} tạo {ng(bk['ngay_tao'])}, khởi hành {ng(vd['khoi_hanh'])}, giá trị {tien(gtri, q)}")
     p()
-    p('| Đợt | Mẫu | Hạn | Số tiền |')
-    p('|---|---|---|---:|')
-    p(f'| Đợt 1 | 30 % · ngày tạo + 14 ngày | {ng(han1)} | {tien(d1, q)} |')
-    p(f'| Đợt 2 | 70 % (phần còn lại) · khởi hành − 30 ngày | {ng(han2)} | {tien(d2, q)} |')
-    p(f'| Tổng | | | {tien(d1 + d2, q)} · Khớp giá trị |')
+    in_bang_lich(lich_mac_dinh(bk['ngay_tao'], vd['khoi_hanh'], gtri, q), q)
+
+
+# Ví dụ E (KD08 R05, AC45, AC46; quyết định rà soát 13/11/2026, Q-RS19): cùng ngày tạo 11/11/2026, giá trị 10.000 EUR.
+VI_DU_E = [
+    ('E1 · khởi hành 10/12/2026, cách 29 ngày (KD08 AC45)', d('10/12/2026')),
+    ('E2 · khởi hành 25/12/2026, cách 44 ngày: hạn Đợt 2 trùng hạn Đợt 1 (KD08 AC46)', d('25/12/2026')),
+    ('E3 · khởi hành 26/12/2026, cách 45 ngày: hai đợt (KD08 AC46)', d('26/12/2026')),
+    ('E4 · khởi hành 20/11/2026, cách 9 ngày: khởi hành trong 14 ngày', d('20/11/2026')),
+]
+VI_DU_E_NGAY_TAO = d('11/11/2026')
+VI_DU_E_GIA_TRI = D('10000')
+
+
+def in_vi_du_e():
+    p('### Ví dụ E · lịch thanh toán khi khởi hành gần (KD08 R05, Q-RS19)')
+    p()
+    p(f'Booking tạo {ng(VI_DU_E_NGAY_TAO)}, giá trị {tien(VI_DU_E_GIA_TRI, "EUR")}. Hạn Đợt 1 = ngày tạo + 14 ngày = '
+      f'{ng(VI_DU_E_NGAY_TAO + timedelta(days=14))}; hạn Đợt 2 = khởi hành − 30 ngày, không trước ngày tạo.')
+    p()
+    for ten, kh in VI_DU_E:
+        p(f'#### {ten}')
+        p()
+        in_bang_lich(lich_mac_dinh(VI_DU_E_NGAY_TAO, kh, VI_DU_E_GIA_TRI, 'EUR'), 'EUR')
+        p()
 
 
 def in_kd02(tieu_de, tm, khoi_hanh, N, xoa_ngay=None):
@@ -1086,6 +1165,13 @@ def in_ket_qua():
         p()
         in_kd06(tinh_kd06(vd))
         p()
+    p('### Ví dụ D · nhóm tuổi và số khách theo căn cứ (KD06 AC101, AC102)')
+    p()
+    p('Một ngày 20/03/2027 (Thứ Bảy) ở Huế, dữ liệu 2027 của ví dụ A, báo giá VND, tính giá ngày 11/11/2026.')
+    p()
+    in_kd06(tinh_kd06(VI_DU_D))
+    p()
+    in_vi_du_e()
 
 
 # ---------------------------------------------------------------------------
@@ -1101,25 +1187,26 @@ def gia_txt(g):
 def in_du_lieu():
     p('### NCC và hợp đồng')
     p()
-    p('| Hợp đồng | NCC | Kỳ hiệu lực | Loại tiền | Mùa (khoảng ngày; tách cuối tuần) | Chính sách trẻ em (nhóm: từ ≤ tuổi < đến dưới; điều kiện) | Số trẻ miễn phí | Ghi chú |')
-    p('|---|---|---|---|---|---|---|---|')
+    p('| Hợp đồng | NCC | Kỳ hiệu lực | Loại tiền | Mùa (khoảng ngày; tách cuối tuần) | Chính sách trẻ em (nhóm: từ ≤ tuổi < đến dưới; điều kiện) | Ghi chú |')
+    p('|---|---|---|---|---|---|---|')
     for h in HOP_DONG:
         mua = '; '.join(f"{m.ten} " + ', '.join(f'{a:%d/%m}–{b:%d/%m}' for a, b in m.khoang)
                         + (' (tách: cuối tuần đêm T6, T7)' if m.tach_cuoi_tuan else '') for m in h.mua)
         nt = '; '.join(f'{n.ma} ({n.tu} ≤ tuổi < {n.den_duoi}){" " + n.dieu_kien if n.dieu_kien else ""}' for n in h.nhom_tuoi) or 'Không có'
-        mp = f'{h.mien_phi[0]} trẻ nhóm {h.mien_phi[1]}, nhỏ nhất trước' if h.mien_phi else '—'
-        p(f'| {h.ma} | {NCC[h.ncc]} | {ng(h.tu)} – {ng(h.den)} | {h.tien} | {mua} | {nt} | {mp} | {h.ghi_chu} |')
+        p(f'| {h.ma} | {NCC[h.ncc]} | {ng(h.tu)} – {ng(h.den)} | {h.tien} | {mua} | {nt} | {h.ghi_chu} |')
     p()
     p('### Dịch vụ và dòng giá')
     p()
-    p('Khoảng số khách là số người lớn (DH03 R14). Giá trẻ em dạng % tính trên giá mỗi người lớn của cùng dòng (phòng: giá mùa ÷ 2). '
+    p('Khoảng số khách: dòng căn cứ khách, phòng đếm người lớn; dòng căn cứ đoàn, xe, đơn vị đếm tổng khách gồm trẻ em (DH03 R14, Q-RS27). '
+      'Giá trẻ em là đơn giá riêng của từng nhóm tuổi, không có kiểu % (Q-RS05); trẻ dưới nhóm tuổi thấp nhất miễn phí, trên nhóm cao nhất tính như người lớn (DH03 R09, Q-RS06). '
+      'Dòng căn cứ đoàn, xe, đơn vị không có giá trẻ em: ô bị khóa, giá của dòng không phân biệt người lớn, trẻ em (Q-RS02, người dùng trả lời 13/11/2026). '
       'Căn cứ của mọi dòng giá trùng căn cứ mặc định theo đơn vị tính (dòng chính).')
     p()
-    p('| Dịch vụ · NCC | Loại → hạng mục | Đơn vị · căn cứ | Hợp đồng | Hạng phòng | Khách | Thứ tự | Tiền | Giá theo mùa · loại ngày | Giá trẻ em | Phòng đơn |')
-    p('|---|---|---|---|---|---|---|---|---|---|---|')
+    p('| Dịch vụ · NCC | Loại → hạng mục | Đơn vị · căn cứ | Hợp đồng | Hạng phòng | Khách | Tiền | Giá theo mùa · loại ngày | Giá trẻ em | Phòng đơn |')
+    p('|---|---|---|---|---|---|---|---|---|---|')
     for g in DONG_GIA:
         dv = DV[g.dv]
-        te = '; '.join(f"{k}: {so(v[1]) + ' %' if v[0] == '%' else so(v[1])}" for k, v in g.tre_em.items()) or '—'
+        te = '; '.join(f"{k}: {so(v, 0 if g.tien == 'VND' else 2) if v != v.to_integral_value() else so(v)}" for k, v in g.tre_em.items()) or '—'
         if g.phong_don is None:
             pdn = '—' if dv.can_cu != 'phong' else 'Không áp dụng'
         elif g.phong_don[0] == 'tron_goi':
@@ -1131,11 +1218,11 @@ def in_du_lieu():
         ten = dv.ten + (f' (đi kèm {DV[dv.di_kem_cua].ten}' + (', Giường phụ' if dv.giuong_phu else '') + ')' if dv.di_kem_cua else '')
         if not dv.dang_dung:
             ten += ' · Ngừng dùng'
-        p(f'| {ten} · {NCC[dv.ncc]} | {dv.loai} → {LOAI_HANG_MUC[dv.loai]} | {dv.don_vi}{" (theo đêm)" if dv.theo_dem else ""} · {CAN_CU_TXT[dv.can_cu]} | {g.hd} | {g.hang_phong or "—"} | {g.khach[0]}–{g.khach[1]} | {g.thu_tu} | {g.tien} | {gia_txt(g)} | {te} | {pdn} |')
+        p(f'| {ten} · {NCC[dv.ncc]} | {dv.loai} → {LOAI_HANG_MUC[dv.loai]} | {dv.don_vi}{" (theo đêm)" if dv.theo_dem else ""} · {CAN_CU_TXT[dv.can_cu]} | {g.hd} | {g.hang_phong or "—"} | {g.khach[0]}–{g.khach[1]} | {g.tien} | {gia_txt(g)} | {te} | {pdn} |')
     dv_ko_gia = [x for x in DICH_VU if not any(g.dv == x.ma for g in DONG_GIA)]
     for dv in dv_ko_gia:
         ten = dv.ten + (f' (đi kèm {DV[dv.di_kem_cua].ten}, Giường phụ)' if dv.di_kem_cua else '') + (' · Ngừng dùng' if not dv.dang_dung else '')
-        p(f'| {ten} · {NCC[dv.ncc]} | {dv.loai} → {LOAI_HANG_MUC[dv.loai]} | {dv.don_vi} · {CAN_CU_TXT[dv.can_cu]} | — | — | — | — | — | Không cần cho ví dụ | — | — |')
+        p(f'| {ten} · {NCC[dv.ncc]} | {dv.loai} → {LOAI_HANG_MUC[dv.loai]} | {dv.don_vi} · {CAN_CU_TXT[dv.can_cu]} | — | — | — | — | Không cần cho ví dụ | — | — |')
     p()
     p('### Phụ thu lễ, sự kiện (DH03 R15)')
     p()
@@ -1154,7 +1241,8 @@ def in_du_lieu():
     p()
     for ten, ht, kh in [('Hành trình ví dụ A (YC-2611-0019 v3)', VI_DU_A_HANH_TRINH, VI_DU_A['khoi_hanh']),
                         ('Lịch trình ví dụ B (Tour mẫu TM-008)', TM_008, None),
-                        ('Hành trình ví dụ C (AC93, AC94)', VI_DU_C[0]['hanh_trinh'], VI_DU_C[0]['khoi_hanh'])]:
+                        ('Hành trình ví dụ C (AC93, AC94)', VI_DU_C[0]['hanh_trinh'], VI_DU_C[0]['khoi_hanh']),
+                        ('Hành trình ví dụ D (AC101, AC102)', VI_DU_D['hanh_trinh'], VI_DU_D['khoi_hanh'])]:
         p(f'### {ten}')
         p()
         p('| Ngày | Tiêu đề | Dịch vụ (cách tính số lượng) |')

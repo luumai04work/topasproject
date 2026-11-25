@@ -126,3 +126,31 @@ Tệp mới `RSD-DH06-Danh-muc-nhan-su-v1.4.md` (đổi tên bằng `git mv`). N
 
 **Kiểm tra.** `check-rsd.py`: 16 ảnh, 16 mã W, không lỗi.
 
+
+## Quyết định rà soát 13/11/2026
+
+- **Quyết định rà soát 13/11/2026 (Q-RS13).** Người phụ trách hồ sơ và nhóm Điều hành nhận thông báo theo tài khoản liên kết có vai trò hệ thống Điều hành (VT-002), không theo vai trò tự tạo thuộc phòng Điều hành. Sửa R03 (dòng người phụ trách, dòng người nhận thông báo, thêm đoạn định nghĩa nhóm Điều hành), R10, kết quả L2.1, E3.9, E4.8, E4.9, AC33; thêm AC39.
+- **Quyết định rà soát 13/11/2026 (Q-RS23).** Bỏ mọi logic dựa trên tên nhóm công việc: R03 không còn điều kiện “thuộc nhóm Điều hành”; nhóm công việc Điều hành không còn là giá trị hệ thống (R02); ngôn ngữ phục vụ bắt buộc khi nhân sự có nhóm công việc nhận vai trò phục vụ HDV chính hoặc HDV điểm (thay “nhóm Hướng dẫn viên”; câu lỗi giữ nguyên); bỏ màu cam ở cột Tài khoản và banner vàng ở bảng trượt; 1.2 chỉ lọc sẵn nhóm công việc cho phục vụ Tour; R06 dòng Bỏ nhóm công việc chỉ liệt kê phân công phục vụ Tour. Sửa 1.2, 2.1, L2.1, L3.1, E3.4, R02, R06, R10, 5.2, AC11, AC12; thêm AC40. Wireframe chưa vẽ lại: W01, W08 còn màu cam và banner; W05 còn câu cũ.
+- **Quyết định rà soát 13/11/2026 (Q-RS14).** Người thực hiện công việc checklist không gồm nhân sự có tài khoản liên kết chỉ có vai trò thuộc phòng HDV (tài khoản đó không mở được DH08). Sửa R03 (dòng người thực hiện), R10, E3.9, AC38; thêm AC41.
+- **Quyết định rà soát 13/11/2026 (Q-RS01).** Vai trò phục vụ là HDV chính, HDV điểm, Trưởng đoàn; bỏ “HDV suốt tuyến”. Sửa R02, AC36.
+
+## Cách hiểu đã chọn khi làm phân công và tắt Nhận phân công (ticket 65, 17/11/2026)
+
+- **Phục vụ Tour (R04).** Phân công DH08.5 chưa bỏ của hồ sơ chưa đóng, kết thúc từ bây giờ trở đi; “k Tour” đếm số hồ sơ, “từ dd/mm” là ngày bắt đầu sớm nhất trong số đó.
+- **Cần giao lại (R05, W13).** Hiện khi Nhận phân công Ngừng dùng mà còn hồ sơ, công việc hoặc phân công phục vụ theo R04: `reassignNeeded: { tourFiles, tasks, tours }`; chữ trên dòng “Cần giao lại n hồ sơ · m việc” (thêm “· k Tour” khi có).
+- **TB-DH06-01, 02 (R05).** TB-DH06-01 gửi nhóm Điều hành (đọc sau khi tắt nên không có người bị tắt) khi người đó còn phụ trách hồ sơ chưa đóng. TB-DH06-02 gửi người phụ trách (tài khoản Đang hoạt động) của từng hồ sơ KHÁC có công việc chưa xong hoặc phân công phục vụ từ hôm nay của người bị tắt, một thông báo cho mỗi người phụ trách gộp các hồ sơ đó; hồ sơ do chính người bị tắt phụ trách đã nằm trong TB-DH06-01 nên không có TB-DH06-02. Người thao tác và người bị tắt không nhận. Hoàn tác gỡ cả hai loại (kể cả đã đọc). Hoàn tác một lần bật (tức là tắt lại) cũng tạo thông báo như một lần tắt.
+- **Hộp thoại W12 (L4.2, E4.4, E4.7–E4.9).** Mở khi bấm tắt và R04 có việc; không có việc thì lưu ngay. Nút hủy là “Quay lại” (CGD K6.06). Không đọc được việc: dòng báo, Thử lại và “Vẫn tắt”. E4.8 thêm câu khi người dùng tắt chính mình; E4.9 cảnh báo đỏ khi người bị tắt là người cuối cùng của nhóm Điều hành.
+- **Bỏ nhóm công việc (R06, W09).** Chỉ cảnh báo các phân công phục vụ (hồ sơ chưa đóng, kết thúc từ bây giờ) có vai trò mà nhóm cũ nhận và các nhóm còn lại không nhận; sửa khác (điện thoại, ghi chú…) không bao giờ cảnh báo. Gửi lại với `confirmAssignmentImpact: true` thì lưu, phân công giữ nguyên. QT05 R07 dùng cùng cách khi bỏ vai trò phục vụ của một nhóm: chỉ tính người không còn nhóm nào khác nhận vai trò đó.
+- **Xóa (R08, W15a).** Khóa khi đã liên kết tài khoản hoặc từng là người phụ trách, người thực hiện công việc, người được phân công phục vụ (cả hồ sơ đã đóng, phân công đã bỏ); lý do “Đã phân công ở n hồ sơ Tour. Hãy tắt Nhận phân công.” với n là số hồ sơ khác nhau đã dùng người đó (chỉ liên kết tài khoản: lý do cũ “Đã liên kết tài khoản…”).
+
+## Cách hiểu đã chọn khi làm E2.5 (ticket 94, 19/11/2026)
+
+- **E2.5 và CGD K4.09 cùng đúng.** K4.09 (“Còn thay đổi chưa lưu”, ba nút Ở lại, Hủy thay đổi, Lưu, đếm n thay đổi) là mẫu cho form của bản ghi **đã có**. E2.5 là bảng trượt **tạo mới** chưa lưu lần nào: hộp thoại riêng “Bỏ thông tin đang nhập?” chỉ có hai nút Ở lại (con trỏ mặc định; Esc, bấm nền hộp thoại) và Bỏ, không có nội dung khác, không có Lưu. Bảng trượt sửa nhân sự (L3.1) vẫn theo K4.09.
+- **“Đã nhập”** là có ít nhất một trường khác giá trị mặc định của form (L2.1 bước 1: Loại Nội bộ, Khu vực Toàn quốc, Nhận phân công bật, các ô trống). Chưa nhập gì thì ✕, Esc, Hủy đóng ngay.
+- **Mọi lối rời bảng trượt Thêm nhân sự làm mất dữ liệu đều hỏi cùng câu E2.5** (K4.09 đòi mọi lối rời phải hỏi): ✕, Esc, nút Hủy, bấm một dòng hay liên kết nhân sự của danh sách phía sau (K5.04: danh sách vẫn bấm được, không có nền che), liên kết Mở nhân sự này của lỗi trùng điện thoại, mục menu trái, Đăng xuất. Bỏ thì đi tiếp (mở người được bấm thay cho bảng trượt Thêm); Ở lại thì giữ nguyên dữ liệu. Đóng thẻ, tải lại trang: hộp thoại rời trang của trình duyệt (K4.09 dòng cuối). Bảng trượt không có nền che (K5.04) nên “bấm nền” là bấm vào danh sách phía sau, đã nêu ở trên.
+- **Lọc, tìm, đổi trang danh sách phía sau không phải rời đi**: bảng trượt Thêm vẫn mở với dữ liệu đang nhập, không hỏi.
+- Cùng câu ở QT01 E2.6 (bảng trượt Tạo tài khoản) làm cùng cách; xem `docs/rsd/QT01/GHI-CHU-LAM-VIEC.md`.
+
+**19/11/2026 · ticket 92 (cách hiểu đã chọn).**
+- **Nhớ bộ lọc (1.2, CGD U3.02).** “Mở DH06 với bộ lọc lần trước trong phiên” làm theo U3.02: chip, Nhóm công việc, Loại, Ngôn ngữ, sắp xếp nhớ trên máy chủ theo tài khoản, còn sau khi đăng xuất; ô tìm và trang không nhớ. Chip luôn ghi trên URL (`?status=active`), nên `/staff` không tham số là mở từ menu.
+- **Người vừa thêm (CGD K1.19).** Dòng người vừa thêm ở bảng trượt tô xanh nhạt 5 giây đúng chỗ theo tên; nằm ở trang khác thì thông báo “Đã thêm <tên> (<mã>)” kèm liên kết “Mở <mã>” mở bảng trượt của người đó.

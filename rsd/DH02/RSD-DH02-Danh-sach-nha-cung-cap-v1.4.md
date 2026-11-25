@@ -69,7 +69,7 @@ Quyền là cặp (màn hoặc phần của màn, thao tác), gán cho vai trò 
 | Nhập NCC từ Excel | Có | Không | Không | Không |
 
 - **Không có phạm vi bản ghi.** Người có quyền thì thao tác được trên mọi NCC.
-- **Người nhận nhắc hợp đồng** (không phải quyền): nhân sự thuộc nhóm Điều hành, Nhận phân công Đang dùng, có tài khoản liên kết đang hoạt động và có vai trò Điều hành (RSD DH06 R03).
+- **Người nhận nhắc hợp đồng** (không phải quyền): nhóm Điều hành: nhân sự Nội bộ, Nhận phân công Đang dùng, có tài khoản liên kết đang hoạt động và có vai trò hệ thống Điều hành, không xét nhóm công việc (RSD DH06 R03; quyết định rà soát 13/11/2026, Q-RS13, Q-RS23).
 - **Ẩn và chỉ đọc (U5).** Người không có quyền Bật, tắt NCC (mặc định Kế toán, Quản trị) không thấy ô chọn dòng và công tắc; cột Đang dùng hiện chữ Đang dùng hoặc Ngừng dùng (W16). Không có quyền Tạo NCC, Nhập NCC từ Excel thì không thấy hai nút này.
 - **Kiểm tra lúc ghi.** Máy chủ kiểm tra quyền và phiên bản dòng khi bật, tắt và khi nhập Excel.
 - **Dữ liệu cá nhân.** Danh sách chỉ hiện tên đầu mối và email công việc của NCC. Số tài khoản ngân hàng không hiện trên DH02; cột Thanh toán chỉ cho biết đủ hay thiếu.
@@ -337,7 +337,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 - **E3.3.** Ngày kết thúc hợp đồng bị sửa sau khi đã nhắc: mốc nhắc của hợp đồng được tính lại; hợp đồng vào ngưỡng lần nữa thì nhắc lại.
 - **E3.4.** Quản trị đổi ngưỡng: áp dụng từ lần tính 08:00 kế tiếp. Hợp đồng đã ở trong ngưỡng mới mà chưa được nhắc thì được nhắc trong lần đó.
 - **E3.5.** Nhiều NCC vào ngưỡng cùng ngày: mỗi NCC một thông báo; trên 5 NCC thì gộp một thông báo “n nhà cung cấp có hợp đồng sắp hết hạn”, bấm mở DH02 ở chip Cần xử lý.
-- **E3.6.** Không có người nhận theo RSD DH06 R03 (nhân sự nhóm Điều hành, Nhận phân công Đang dùng, tài khoản liên kết đang hoạt động và có vai trò Điều hành): không gửi; nhật ký hệ thống ghi lại. DH02 vẫn hiện đúng chỉ báo.
+- **E3.6.** Không có người nhận theo RSD DH06 R03 (nhóm Điều hành: nhân sự Nội bộ, Nhận phân công Đang dùng, tài khoản liên kết đang hoạt động và có vai trò hệ thống Điều hành): không gửi; nhật ký hệ thống ghi lại. DH02 vẫn hiện đúng chỉ báo.
 - **E3.7.** Thông báo mở NCC mà người dùng vừa bị thu hồi quyền: DH03 hiện màn không có quyền, không lộ dữ liệu.
 
 ### 3.4. Nhập NCC từ Excel (quyết định 11/11/2026)

@@ -8,6 +8,7 @@
 - **Bổ sung 12/11/2026 (sau rà chéo với CH01, CH02, CH03, QT01, QT02).** K0.05, mục 1: tên màn QT02 “Vai trò và phân quyền”. K0.06: ngoại lệ không có thanh trên. K0.08, K0.11, K4.09: phiên hết hạn khi còn thay đổi chưa lưu theo RSD CH01 R10. K0.10: nhịp cập nhật số chưa đọc. U1.03, U1.05: cột quyền ghi mã quyền QT02; nhóm Khách hàng tìm thêm theo email, điện thoại (người dùng chốt 12/11/2026). U2.06: ngoại lệ Hoàn tác tất cả hoặc không của QT02. U3.06: liên kết hệ thống tạo ghi tường minh mọi bộ lọc. U4.01: thẻ số 0 theo RSD CH03 R04. U5.05: thu hồi quyền giữa phiên theo RSD QT01 R02, QT02 R07. K6.06: ngoại lệ nút Tải lại trang. Viết lại CGD-AC48, AC54, AC82, AC83, AC131, AC146; thêm CGD-AC147–AC150.
 - **Bổ sung 12/11/2026 (vai trò HDV).** Theo người dùng chốt 12/11/2026 (BOI-CANH Nền tảng và “Vai trò HDV”): màn của phòng HDV (HD01 Tour của tôi) thiết kế cho điện thoại. Thêm nhóm quy tắc **K7 · Màn điện thoại** (mục 14, đặt sau mục 13 để không đánh lại số mục) áp cho HD01 và cho CH01 khi mở trên điện thoại. Sửa mục 1 (phạm vi, mã màn), K0 (mở đầu: K0 cho màn máy tính; K0.01 ngoại lệ K7; K0.05 mục Tour của tôi; K0.06, K0.07 trang mặc định theo phòng; K0.09 nút về trang mặc định), U4.01, mục 13 (thêm dòng 24), Phụ lục A (A.12, CGD-AC151–AC163), Phụ lục B.
 - **Bổ sung 12/11/2026 (sau rà soát HD01).** K0.11: ngoại lệ đăng xuất khi HD01 còn bản chưa gửi trên máy (RSD HD01 E5.5, R08; RSD CH01 R11, E8.6). K7.06: danh sách RSD ghi tải một lần (RSD HD01 R02) thì không có Xem thêm. K7.11: ngoại lệ bản chưa gửi và Gửi lại của RSD HD01 R08. Viết lại CGD-AC156 (danh sách tải một lần của HD01) và CGD-AC161 (HD01 không có thao tác Hoàn tác, U2.03). Không đổi số quy tắc, số AC.
+- **Bổ sung 13/11/2026 (quyết định rà soát Q-RS09, `docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`).** K0.04: thêm ngoại lệ dán từ Excel vào lưới nhập (nhận dạng kiểu số); thêm CGD-AC164.
 
 ## Mục lục
 
@@ -83,6 +84,7 @@ K0 là khung của màn nội bộ trên máy tính. Màn điện thoại (K7.01
 - Tỷ giá hiện tối đa 6 chữ số thập phân, bỏ số 0 thừa (27.480 ₫; 168,25 ₫). Tỷ lệ % tối đa 2 chữ số thập phân.
 - Không cộng lẫn loại tiền ở bất kỳ dòng tổng nào; tổng tách theo từng loại tiền. Số quy đổi tham khảo ghi “≈” và chữ xám (RSD KT01 R04).
 - Ô nhập tiền, số nhận dấu phẩy là thập phân; dấu chấm người dùng gõ được bỏ qua; khi rời ô thì định dạng lại theo quy tắc trên.
+- **Ngoại lệ: dán từ Excel vào lưới nhập** (quyết định rà soát 13/11/2026, Q-RS09; ví dụ lưới bảng giá DH05.2, RSD DH03 R16). Ô dán không theo dòng trên mà được nhận dạng kiểu số, vì Excel có thể dùng dấu phẩy ngăn cách nghìn: (1) chỉ có chữ số (có thể kèm dấu trừ, khoảng trắng, ký hiệu tiền ở đầu hoặc cuối) thì lấy nguyên; (2) có cả dấu chấm và dấu phẩy thì dấu đứng sau cùng là dấu thập phân, dấu kia là ngăn cách nghìn (“1.650,50” và “1,650.50” đều là 1.650,50); (3) chỉ có một loại dấu: xuất hiện nhiều lần, hoặc một lần mà sau nó đúng ba chữ số, thì là ngăn cách nghìn (“1.650.000”, “1,650,000”, “1,650” là 1.650.000 và 1.650); còn lại là dấu thập phân (“72,5”, “72.5” là 72,5). Số chữ số thập phân nhiều hơn số lẻ thập phân của loại tiền (hoặc của trường số) thì ô lỗi tại chỗ, không làm tròn. Ngoại lệ chỉ cho thao tác dán dữ liệu dạng bảng; gõ tay vẫn theo dòng trên.
 
 **K0.05 · Menu trái.**
 - Nhóm theo module, theo thứ tự: Việc của tôi (một mục, luôn có, trừ tài khoản chỉ có vai trò thuộc phòng HDV, RSD CH03 R10); Tour của tôi (một mục, HD01, khi có `HD01.xem`; mở bố cục K7); Kinh doanh; Điều hành; Kế toán; Báo cáo; Quản trị. Mỗi mục là một màn:
@@ -739,6 +741,7 @@ Mỗi AC là một scenario chạy qua trình duyệt, mã scenario là mã AC. 
 | CGD-AC10 | K0.03 | Máy trình duyệt đặt múi giờ UTC; một thao tác được ghi lúc 23:30 ngày 11/11/2026 giờ Việt Nam (16:30 UTC); mở QT03 | Mục nhật ký hiện “11/11/2026 23:30”, không phải 16:30; bộ lọc thời gian “Hôm nay” mở lúc 23:45 cùng tối gồm mục này |
 | CGD-AC11 | K0.04 | Hiển thị giá trị 210000000 VND, 15000 EUR, 2100,5 EUR, −1250 USD, tỷ giá 27480 | 210.000.000 ₫; 15.000 EUR; 2.100,50 EUR; −1.250 USD; 27.480 ₫ |
 | CGD-AC12 | K0.04 | Một trang có số tiền ở EUR và USD với dòng tổng | Dòng tổng ghi riêng từng loại tiền, không có tổng cộng lẫn |
+| CGD-AC164 | K0.04 (ngoại lệ dán) | Dán từ Excel vào lưới DH05.2: dòng VND bốn ô “1.650.000”, “1,650,000”, “1650000”, “1.650.000,5”; dòng USD ba ô “1,650.50”, “1.650,50”, “72,5”; rồi gõ tay “1,5” vào ô USD | VND: ba ô đầu nhận 1.650.000 ₫, ô thứ tư lỗi tại ô (VND không có số lẻ). USD: 1.650,50; 1.650,50; 72,50. Gõ tay “1,5”: 1,50 USD (dấu phẩy là thập phân) |
 | CGD-AC13 | K0.10 | Mở KD06 của YC-2611-0031; mở KD05 | Tiêu đề tab “YC-2611-0031 · Yêu cầu Tour · TOPAS”; “Yêu cầu Tour · TOPAS” |
 | CGD-AC14 | K0.11 | Đăng xuất khi không có thay đổi chưa lưu | Về trang Đăng nhập ngay, không hộp thoại |
 | CGD-AC15 | K0.01 | Mở KD05 bộ dữ liệu lớn ở 1280 × 800, mật độ Gọn | Thấy thanh trên, tiêu đề, thanh công cụ, hàng chip, tiêu đề cột và ít nhất 10 dòng mà không cuộn |
@@ -946,7 +949,7 @@ Mỗi AC là một scenario chạy qua trình duyệt, mã scenario là mã AC. 
 | CGD-AC162 | K7.13, K0.07 | Ở 390 × 844 mở CH01.1, chạm ô Email; đăng nhập bằng tài khoản chỉ có HDV; đăng xuất, đăng nhập bằng tài khoản Kế toán | Thẻ đăng nhập rộng hết màn trừ 16 px; bàn phím email, không tự viết hoa; HDV vào Tour của tôi; Kế toán vào Việc của tôi ở bố cục máy tính |
 | CGD-AC163 | K0.09 | Tài khoản chỉ có HDV mở URL của DH07; mở URL HD01 của một Tour Code không được phân công | Lần 1: “Bạn không có quyền xem trang này”, nút Về Tour của tôi. Lần 2: “Không tìm thấy <Tour Code>”, nút Về Tour của tôi; không có dữ liệu hồ sơ |
 
-**Tổng:** 163 AC: K0 16, U1 15, U2 12, U3 8, U4–U5 7, K1 34, K2 11, K3 11, K4 17, K5 13, K6 6, K7 13. CGD-AC147–AC150 thêm ngày 12/11/2026, đặt trong bảng của nhóm quy tắc tương ứng; CGD-AC151–AC163 thêm khi bổ sung vai trò HDV, ở A.12.
+**Tổng:** 164 AC: K0 17, U1 15, U2 12, U3 8, U4–U5 7, K1 34, K2 11, K3 11, K4 17, K5 13, K6 6, K7 13. CGD-AC147–AC150 thêm ngày 12/11/2026, đặt trong bảng của nhóm quy tắc tương ứng; CGD-AC151–AC163 thêm khi bổ sung vai trò HDV, ở A.12. CGD-AC164 thêm ngày 13/11/2026 (Q-RS09), ở A.1.
 
 ---
 
@@ -1001,6 +1004,7 @@ Mỗi AC là một scenario chạy qua trình duyệt, mã scenario là mã AC. 
 | K6 | Mọi công tắc “Đang dùng / Ngừng dùng” | K6.05 | AC145 |
 | K6 | Thống nhất chữ trên nút | K6.06, K6.07 | AC146 |
 | BOI-CANH | Nền tảng và định dạng (1280 × 800, tiếng Việt, ngày, múi giờ, tiền) | K0.01–K0.04 | AC10–AC12, AC15 |
+| Q-RS09 (quyết định rà soát 13/11/2026) | Dán từ Excel nhận dạng kiểu số, ngoại lệ của K0.04 | K0.04 | AC164 |
 | Nhiệm vụ | Khung ứng dụng (menu, thanh trên, trang mặc định, đường dẫn sâu) | K0.05–K0.11 | AC01–AC09, AC13, AC14 |
 | Q24; RSD CH01 R10 | Phiên hết hạn khi còn thay đổi chưa lưu không làm mất dữ liệu | K0.08, K0.11, K4.09 | AC150 |
 | Người dùng chốt 12/11/2026 (Vai trò HDV; BOI-CANH Nền tảng) | Màn của phòng HDV thiết kế cho điện thoại; trang mặc định của phòng HDV là Tour của tôi | K7.01–K7.13, K0.05, K0.07, K0.09 | AC151–AC163 |

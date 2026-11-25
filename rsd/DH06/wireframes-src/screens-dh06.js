@@ -6,7 +6,7 @@ const CSS = `.tag{display:inline-flex;align-items:center;gap:4px;background:#eef
 .tag.lg{background:#f1f5f9;color:#334155}
 .tag.off{background:#f3f4f6;color:#9ca3af;text-decoration:line-through}
 .seg{display:inline-flex;border:1px solid #d1d5db;border-radius:6px;overflow:hidden}.seg span{padding:5px 12px;font-size:12.5px;border-right:1px solid #d1d5db}.seg span:last-child{border-right:none}.seg span.on{background:#1e40af;color:#fff}
-.input.tags{height:auto;min-height:30px;flex-wrap:wrap;white-space:normal;padding:3px 8px}
+.input.tags{display:flex;align-items:center;border:1px solid #d1d5db;border-radius:6px;background:#fff;height:auto;min-height:30px;flex-wrap:wrap;white-space:normal;padding:3px 8px}
 .load{font-size:12px;line-height:17px}
 .dhd{display:flex;align-items:center;gap:8px}
 .fl{display:flex;align-items:center;gap:8px;font-size:12.5px}

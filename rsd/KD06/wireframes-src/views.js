@@ -44,6 +44,8 @@ const VCSS = `
 .ev.green{background:#dcfce7;color:#14532d;border-left-color:#16a34a}
 .ev.gray{background:#f3f4f6;color:#6b7280;border-left-color:#9ca3af;text-decoration:line-through}
 .ev.gray2{background:#f3f4f6;color:#374151;border-left-color:#9ca3af}
+.ev.slate{background:#f1f5f9;color:#334155;border-left-color:#64748b}
+.dot.slate{background:#64748b}
 .ev.violet{background:#ede9fe;color:#4c1d95;border-left-color:#7c3aed}
 .ev.amber{background:#fef3c7;color:#78350f;border-left-color:#f59e0b}
 .ev.red{background:#fee2e2;color:#7f1d1d;border-left-color:#dc2626}

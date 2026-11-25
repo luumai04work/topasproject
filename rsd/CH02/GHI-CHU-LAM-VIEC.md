@@ -148,3 +148,35 @@ Ghi tóm tắt ở dòng “Thay đổi ở v1.0 (bổ sung 12/11/2026 · sau r�
 - **Kiểm tra:** `check-rsd.py` cho RSD CH02: mã thoát 0, 0 ảnh, không lỗi.
 
 **Kiểm tra.** `check-rsd.py`: 0 ảnh (wireframe chưa dựng; cảnh báo thiếu ảnh bỏ qua theo giao việc), không lỗi.
+
+## Quyết định rà soát 13/11/2026 (phần điều hành)
+
+- **Quyết định rà soát 13/11/2026 (Q-RS13, Q-RS23).** Nhóm Điều hành (R01, bảng cách nhận) là nhân sự Nội bộ, Nhận phân công Đang dùng, có tài khoản liên kết Đang hoạt động và có vai trò hệ thống Điều hành; bỏ điều kiện nhóm công việc Điều hành và không tính vai trò tự tạo thuộc phòng Điều hành. Ngừng hoạt động của Điều hành phụ trách hồ sơ theo vai trò hệ thống Điều hành. Câu hỏi còn mở ở mục rà soát trước (“DH06 R03, DH07 R08, R09, DH02 1.4, QT01 vẫn ghi có vai trò Điều hành; CH02 theo vai trò thuộc phòng”) đã trả lời: theo vai trò hệ thống; các RSD đó sửa cùng lượt. Sửa R01.
+- **Quyết định rà soát 13/11/2026 (Q-RS01).** Vai trò phục vụ HDV chính thay “HDV suốt tuyến” ở AC67 (câu chữ TB-DH08-11 theo vai trò phục vụ đã chọn).
+- **Quyết định rà soát 13/11/2026 (Q-RS28).** TB-DH07-04: sự kiện giao ở DH08 là nút Giao ở header (ô trong Thông tin điều hành chỉ đọc); Mở lại Tour chỉ giao người mới khi người mở lại có quyền giao. Sửa Phụ lục A dòng TB-DH07-04.
+- **Quyết định rà soát 13/11/2026 (Q-RS15).** AC63 viết lại: HDV ghi chi phí phát sinh khi hồ sơ Đang diễn ra (25/11), Điều hành Kết thúc Tour rồi HDV sửa khoản đó và ghi chi phí thực tế; kết quả “· 3 lần” không đổi (RSD HD01 L4.1, E4.10).
+
+## Quyết định rà soát 13/11/2026 (phần kinh doanh, kế toán)
+
+- **Quyết định rà soát 13/11/2026 (Q-RS17).** Booking tạo khi ghi Chốt ở KD06.3 (RSD KD06 R19), không còn nút Lưu Booking ở KD08: L2.1 (ví dụ), AC18–AC20, Phụ lục A dòng TB-DH07-01 viết lại theo thao tác ghi Chốt. Không đổi loại thông báo, người nhận.
+- **Quyết định rà soát 13/11/2026 (Q-RS24).** Hoàn tác gỡ cả thông báo và trạng thái Đã xử lý mà thao tác gốc đã gắn (áp cả giao người phụ trách ở DH07: Hoàn tác giao làm TB-DH07-01, TB-DH07-03 trở lại cần xử lý, nhắc 08:00 chạy tiếp). R05 thêm các thao tác có Hoàn tác: chuyển phụ trách hàng loạt ở KD03, KD05, giao người phụ trách ở DH07; R06 thêm ngoại lệ Hoàn tác; 2.2 thêm dòng chuyển Đã xử lý → như trước; 5.1 thông báo lưu ID thao tác đã gắn Đã xử lý; L2.2 viết lại; thêm AC70–AC72.
+- **Bổ sung 13/11/2026 (người dùng trả lời Q-RS24).** R05 thêm chuyển phụ trách một bản ghi qua hộp thoại (KD04, KD06, KD08) và giao bằng nút Giao ở DH08; thêm AC73 (TB-KD08-07, TB-KD08-08).
+
+## Cách hiểu đã chọn khi làm thông báo lịch thanh toán (ticket 51, rà soát 17/11/2026)
+
+- **TB-KD08-02 và TB-KD08-03 làm mới cùng một dòng (R04 “cùng mã loại”, AC27, AC28, Phụ lục A).** Phụ lục A định nghĩa TB-KD08-03 là “Như trên” của TB-KD08-02 và gửi “thay cho TB-KD08-02 trong lần lưu đó”: hai mã là hai nội dung của cùng một sự kiện “Lưu lịch thanh toán” của một Booking, khác nhau chỉ ở tổng khớp hay lệch. AC27 cần đúng một dòng TB-KD08-03 “· 3 lần” sau hai lần lưu khớp và một lần lưu lệch, nên lần lưu sau làm mới dòng Chưa đọc của Booking dù dòng đó mang mã nào, và dòng mang mã, nội dung của lần lưu mới nhất. R04 vẫn đúng: với R04, “cùng mã loại” của sự kiện này là cặp TB-KD08-02/03 (một mã sự kiện, hai nội dung theo Phụ lục A); mọi loại khác vẫn chỉ làm mới đúng mã của mình. Dòng đã đọc không bao giờ bị làm mới (AC28): Lan đọc lần lưu thứ nhất (TB-KD08-02), Nam lưu hai lần nữa, lần ba lệch, thì Lan có dòng TB-KD08-02 Đã đọc và một dòng TB-KD08-03 Chưa đọc “· 2 lần” mang lần lưu thứ ba (scenario `kd08/payment-schedule` CH02-AC28, trường hợp “Như AC27”).
+- **Chữ của TB-KD08-02 (“đã <lập, sửa>”).** “lập” chỉ cho lần lưu đầu; mọi lần lưu sau là “sửa”, kèm các đợt đổi khi có, còn lần lưu chỉ đổi điều khoản chung hoặc lý do lệch thì không có phần đợt đổi.
+
+## Cách hiểu đã chọn khi làm TB-DH08-13 (ticket 78, 18/11/2026)
+
+- **Người nhận (R01).** Tài khoản Đang hoạt động liên kết với nhân sự có ít nhất một phân công còn hiệu lực ở DH08.5 của hồ sơ lúc áp dụng (mọi vai trò phục vụ, mọi vai trò tài khoản), bỏ người áp dụng; hai phân công vẫn một thông báo (R03); nhân sự không có tài khoản thì không ai nhận thay (E2.1). Gửi trong giao dịch Áp dụng (DH08 L1.5).
+- **Nội dung “<các ngày có thay đổi dd/mm…>”.** Các ngày (không trùng, tăng dần) của những dòng trong bảng so sánh mà lần áp dụng thực hiện (`params.dates`), viết dd/mm, cách nhau dấu phẩy.
+- **Một dòng mỗi hồ sơ (R04).** Bản ghi chính là hồ sơ Tour: lần áp dụng sau mà thông báo trước chưa đọc thì làm mới dòng đó.
+- **Đích (R07).** Quyết định lúc tạo theo quyền `HD01.xem` của người nhận, như TB-DH08-11: có thì HD01 tab Chương trình (`/my-tours/<Tour Code>?tab=program`, kiểm lại phạm vi khi bấm, E1.14), không có thì DH08.1 của hồ sơ (`/tour-files/<Tour Code>?tab=overview`).
+
+**18/11/2026 · ticket 89 (cách hiểu đã chọn, E1.1 và AC08).**
+- **E1.1 bản ghi đích đã xóa.** Trong 37 loại thông báo, chỉ đích là hồ sơ khách hàng (KD04, TB-KD04-01, TB-KD04-02) trỏ tới bản ghi xóa được; các đích khác (yêu cầu, Booking, hồ sơ Tour, NCC, danh sách) không bị xóa. Bấm thông báo (hoặc một mã khách trong thông báo gộp) mà khách đã xóa: thông báo Đã đọc, API trả 404 `{ code: 'NOT_FOUND', goneRecord: { type: 'CUSTOMER', code } }` (chỉ mã đã có trong thông báo), dưới dòng ghi “Khách hàng <mã> không còn tồn tại.”. Quyền xem màn đích kiểm trước (E1.2 thắng E1.1). Đích ghi mã bản ghi nó mở (`target.record`) để kiểm bản ghi còn tồn tại, không suy từ đường dẫn. Mỗi mã khách của TB-KD04-01/02 mở hồ sơ của khách đó (W04).
+- **AC08 “DH07 ở Kanban, chip Của tôi bật”.** Ở Kanban hàng chip ẩn, kể cả chip Của tôi (RSD DH07 2.3, W15); Của tôi vẫn áp dụng và nằm trên URL (`mine=true`). “Chip Của tôi bật” đọc là trạng thái Của tôi đang bật, không phải chip hiện trên màn.
+- **Đích TB-DH07-01, TB-DH07-03 (R07):** `/tour-files?view=table&mine=false&chip=OPEN&owner=NONE&q=&departure=ALL&settlement=ALL&pending=ALL`, cùng cách viết với thẻ VT-DH-01 của CH03.
+
+**18/11/2026 · ticket 89, sửa sau review (thứ tự kiểm của R07).** Mở thông báo kiểm theo đúng thứ tự R07: 1. quyền xem màn đích (thiếu: E1.2, 403 kèm mã quyền Xem); 2. bản ghi còn trong phạm vi người bấm (E1.14) và còn tồn tại (E1.1), cả hai trả 404. Người không còn quyền Xem màn đích luôn nhận lý do thiếu quyền, kể cả khi bản ghi đã ra khỏi phạm vi của họ (ví dụ HDV mất phân công và mất HD01.xem). Đích TB-DH07-01, TB-DH07-03 dựng bằng cùng hàm với thẻ VT-DH-01 (thứ tự tham số: `view, mine, chip, owner, departure, settlement, pending, q`).

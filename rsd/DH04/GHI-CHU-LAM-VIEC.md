@@ -135,3 +135,29 @@ Sửa tại chỗ `RSD-DH04-Tra-cuu-dich-vu-va-bang-gia-v1.4.md`, dòng “Thay 
 **Hình chưa cập nhật:** W05 (khối Dịch vụ đi kèm).
 
 **Kiểm tra.** `check-rsd.py`: 15 ảnh, 15 mã W, không lỗi.
+
+## Quyết định rà soát 13/11/2026
+
+- **Quyết định rà soát 13/11/2026 (Q-RS03).** Bỏ trường Thứ tự của dòng giá; trong cùng hạng phòng tối đa một dòng chính khớp vì DH03 chặn chồng lấn. Sửa đầu tài liệu, R04 (bullet Dòng giá chính), E2.10, 5.1.
+- **Quyết định rà soát 13/11/2026 (Q-RS27).** Ô Số khách là một số; dòng căn cứ khách, phòng hiểu là người lớn, dòng căn cứ đoàn, đơn vị dịch vụ hiểu là tổng khách gồm trẻ em. DH04 không nhập trẻ em nên không đổi kết quả; không thêm AC (không quan sát được khác biệt ở DH04, khác biệt kiểm ở RSD KD06 AC101). Sửa R04, 5.2.
+- **Quyết định rà soát 13/11/2026 (Q-RS04).** Phụ thu Thay thế cùng căn cứ với dòng giá (chặn ở DH03), nên so mức trực tiếp. Sửa R06.
+- **Quyết định rà soát 13/11/2026 (Q-RS02, Q-RS05).** Bảng trượt hiện giá trẻ em là đơn giá; ô trống ở dòng căn cứ đoàn, đơn vị dịch vụ không phải thiếu giá. Sửa R04.
+- **Quyết định rà soát 13/11/2026 · người dùng trả lời (Q-RS02).** Ô trẻ em ở dòng căn cứ đoàn, đơn vị dịch vụ bị khóa ở DH03, nên bảng trượt luôn hiện ô trống, không thiếu giá. Sửa đầu tài liệu, R04.
+
+## Cách hiểu đã chọn khi làm ticket 22 (16/11/2026)
+
+Theo quy tắc “tài liệu chưa rõ hoặc vênh nhau” (người dùng chốt 16/11/2026), các điểm dưới được chọn để mọi câu của RSD cùng đúng:
+
+1. **Hợp đồng mở mặc định của bảng trượt khi đã tính giá (L3.1).** Là hợp đồng chứa ngày (đêm) đầu tiên của khoảng đã nhập; không có thì là hợp đồng để xem giá (R02). Chưa tính giá thì là hợp đồng để xem giá.
+2. **Hợp đồng chọn trong bảng trượt chỉ phủ một phần khoảng ngày (L3.3, AC16).** Ô Giá áp dụng vẫn là giá của danh sách (mỗi ngày theo hợp đồng chứa ngày đó, R02), chỉ tô xanh các ô của hợp đồng đang chọn. Câu “Hợp đồng này không áp dụng cho …” chỉ hiện khi hợp đồng đang chọn không chứa ngày nào trong khoảng; khi đó không tô ô nào và khối Dịch vụ đi kèm không có Giá áp dụng.
+3. **Về Tra cứu dịch vụ (L4.2, R09).** Mở lại đúng đường dẫn DH04 lúc bấm Sửa trong hồ sơ NCC (ngày, số khách, tìm kiếm, bộ lọc, chip, công tắc, sắp xếp, trang, bảng trượt đang mở), giống nút quay lại của trình duyệt; vị trí cuộn trả lại một lần. Ngữ cảnh giữ trong phiên trình duyệt.
+4. **Cỡ bảng trượt.** 1100 px theo CGD K5.03 (DH05 cùng cỡ ở DH03 và DH04), thay 760 px của mục 2.6.
+5. **Giá trẻ em ở dòng căn cứ đoàn, đơn vị dịch vụ (R04, Q-RS02).** Bảng trượt vẫn hiện dòng nhóm tuổi nhưng ô để trống (không “—”, không thiếu giá); dòng căn cứ khách, phòng chưa có giá trẻ em hiện “—”.
+6. **Phụ thu phòng đơn kèm công thức (R04, R06, Q14).** Mỗi dòng giá của dịch vụ lưu trú có một dòng “Phòng đơn” trong bảng phụ thu: Không áp dụng → “Đã gồm trong giá phòng”; Trọn gói → giá theo từng mùa và “Giá phòng đơn = giá phòng đơn trọn gói”; Phụ thu thêm → mức, căn cứ và “Giá phòng đơn = giá phòng + phụ thu phòng đơn”. *(Sửa 16/11/2026, rà soát code 22-29-36: cách hiểu cũ “phần vượt nửa giá phòng đôi không hiện” trái chữ R06, Q14 “chỉ để hiển thị, không dùng để tính”.)* Với Trọn gói và Phụ thu thêm, dòng Phòng đơn hiện thêm “Phần vượt nửa giá phòng đôi (chỉ để hiển thị)” theo từng mùa, loại ngày của dòng giá: giá phòng đơn của mùa trừ nửa giá phòng đôi của mùa đó (làm tròn half-up theo loại tiền), ví dụ phòng 1.600.000 ₫, phụ thu phòng đơn 500.000 ₫ → 1.300.000 ₫. Số này không vào Giá áp dụng hay tổng nào. Không áp dụng (giá đã theo phòng) thì không có dòng này.
+7. **Kiểm tra dữ liệu cũ (E3.1).** Bảng trượt so phiên bản của dịch vụ, hợp đồng đang chọn, bảng giá của dịch vụ trong hợp đồng đó và của từng dịch vụ đi kèm; banner nêu người lưu gần nhất trong các phần đã đổi. Đổi hợp đồng, chuyển dịch vụ là một lần đọc mới nên không cần banner.
+8. **Giá áp dụng của đi kèm khi lọc hạng phòng (R12).** R12 chọn “dòng giá chính của đi kèm theo số khách đã nhập”, không nhắc hạng phòng; dòng giá của đi kèm (Giường phụ) không có hạng phòng. Nên bộ lọc Hạng phòng của danh sách chỉ thu hẹp dòng giá của dịch vụ chính; giá áp dụng của đi kèm vẫn tính trên mọi dòng giá chính của đi kèm.
+9. **Dịch vụ hoặc NCC vừa Ngừng dùng khi bảng trượt mở (E3.2).** Bảng trượt so cả phần Đang dùng của NCC (phiên bản và thời điểm đổi của NCC). Khi lần kiểm thấy dịch vụ hoặc NCC đã chuyển Ngừng dùng so với lúc đọc, banner E3.1 ghi thêm “Dịch vụ đã ngừng dùng từ dd/mm/yyyy” (ngày nghiệp vụ của lần lưu chuyển Ngừng dùng); câu dùng cho cả dịch vụ và NCC như RSD viết.
+10. **Quay về khi dịch vụ ra khỏi bộ lọc (E4.4).** Khi về DH04 bằng “Về Tra cứu dịch vụ” mà đường dẫn có bảng trượt đang mở, danh sách trả thêm dịch vụ đó còn nằm trong kết quả lọc (mọi trang) hay không. Không còn thì bảng trượt không mở lại, đường dẫn bỏ dịch vụ, thông báo ngắn “Dịch vụ … không còn khớp bộ lọc” kèm nút Xem dịch vụ mở bảng trượt của dịch vụ đó. Còn khớp thì mở lại như cũ.
+
+**19/11/2026 · ticket 92 (cách hiểu đã chọn).**
+11. **Nhớ bộ lọc (1.2, CGD U3.02).** “Mở DH04 với bộ lọc, ngày sử dụng và số khách lần trước trong phiên” làm theo U3.02: ngày sử dụng, số khách, chip loại dịch vụ, Địa điểm, Hạng phòng, Loại tiền, công tắc Gồm cả ngừng dùng, hết hạn và sắp xếp nhớ trên máy chủ theo tài khoản, còn sau khi đăng xuất; ô tìm, trang và bảng trượt không nhớ. Sắp xếp luôn ghi trên URL (`?sort=SUPPLIER`), nên `/services` không tham số là mở từ menu. Ngày đã nhớ dù đã qua vẫn áp như người dùng nhập (thanh Tính giá cho nhập ngày bất kỳ).

@@ -6,11 +6,13 @@ Phần mềm cho doanh nghiệp lữ hành chuyên Tour Inbound và Tour Customi
 - **Nguồn nghiệp vụ.** `docs/flows/danh-sach-man-hinh-level1.md` (dòng QT02), `docs/rsd/BOI-CANH-DU-AN.md` (Tổ chức và vai trò; Phân quyền; thuật ngữ Vai trò, Quyền, Người phụ trách, Ngừng hoạt động, Thao tác nhạy cảm; Mặc định áp sau khi sửa RSD), `docs/adr/0001-phan-quyen-chi-theo-man-va-thao-tac.md`, `docs/adr/0007-hdv-chi-thay-tour-duoc-phan-cong.md`, BOI-CANH “Vai trò HDV” (bổ sung 12/11/2026), RSD HD01 (Tour của tôi, viết song song), `docs/QUYET-DINH-PHASE-CODING.md` (Q1, Q3, Q5, Q7, Q8, Q25, C1, U2, U3, U5, U6, K4–K6), RSD QT01 v1.3 (1.4, R02, R03, R06, R08), RSD QT03 v1.2 (R01–R04, R09, R13, R15) và mục 1.4 (QT05: 1.5) của 18 RSD: DH01 v1.5, DH02 v1.4, DH03 v1.5, DH04 v1.4, DH06 v1.4, DH07 v1.8, DH08 v2.9, KD01-KD02 v1.3, KD03-KD04 v1.5, KD05 v1.5, KD06 v1.6, KD07 v1.4, KD08 v1.6, KT01 v1.6, QT01 v1.3, QT03 v1.2, QT04 v1.4, QT05 v1.3, QT07-QT12 v1.3.
 - **Thay đổi ở v1.0 (12/11/2026).** Bản đầu tiên. Gộp quyền mặc định ở mục 1.4 của 18 RSD thành danh mục 125 mã quyền (Phụ lục A) và ma trận mặc định cho bốn vai trò (Phụ lục B). Danh sách màn ghi QT02 ngoài Level 1, ba vai trò mặc định và một nút Lưu; tài liệu này theo BOI-CANH: bốn vai trò, mỗi ô quyền lưu ngay, có Hoàn tác (U2).
 - **Sửa sau rà chéo 12/11/2026 (giữ số phiên bản 1.0).** Vai trò tự tạo khai **thuộc phòng** Kinh doanh, Điều hành hoặc Kế toán và nhận mọi hành vi gắn với phòng đó; đổi phòng chỉ khi vai trò chưa gán (người dùng chốt 12/11/2026; 1.1, 1.3, 1.5, 2.1, 2.3, 2.4, 2.5, L3.1, L3.2, E3.1, E3.4, E3.11, E3.12, R03, R09, R13, R14, R15, 5.1, 5.2, AC24, AC29, AC30; thêm AC54–AC56). Hoàn tác 10 giây, tối đa 3 thông báo ngắn theo CGD U2.06, U2.07 (2.5, L2.3, R06, AC15; thêm AC57). Nút “+ Thêm vai trò”, hộp thoại xóa có “Quay lại” (CGD K6.06). Trang không có quyền theo CGD K0.09 (E1.2, L7.2). Mất quyền giữa phiên: nút Tải lại trang (L7.1, R07, AC13). Phụ lục A: `DH07.giao-phu-trach` dùng ở DH08.1; `DH08.sua-tong-quan` không gồm Điều hành phụ trách; `DH08.bat-dau-ket-thuc` gồm Kết thúc hồ sơ. Viết lại AC04, AC22, AC48, AC50, AC51 cho kiểm chứng được.
+- **Quyết định rà soát 13/11/2026 (Q-RS17; `docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`).** Ghi Chốt ở KD06.3 là tạo Booking ngay (RSD KD06 R19, KD08 L1.1), không còn nút Tạo Booking riêng: bỏ mã `KD08.tao-booking`; tạo Booking theo `KD06.ghi-ket-qua` (Gồm thêm “ghi Chốt là tạo Booking”). Phụ lục A còn 127 mã, 131 dòng (120 bật tắt được); Phụ lục B: Kinh doanh 58 quyền, module Kinh doanh 31 mã. Sửa dữ liệu minh họa ở đầu tài liệu, R02 (ví dụ dạng mã, danh sách mã dùng chung), W01, W04, W08, L2.x, AC01, AC03, AC04, AC11, AC24, AC50, Phụ lục A, B.
 - **Thay đổi ở v1.0 (bổ sung 12/11/2026).** Thêm vai trò đăng nhập HDV cho người dẫn đoàn (người dùng chốt 12/11/2026; BOI-CANH “Vai trò HDV”; ADR 0007). Năm vai trò hệ thống: VT-001 Kinh doanh, VT-002 Điều hành, VT-003 Kế toán, VT-004 Quản trị hệ thống (Admin), VT-005 HDV; vai trò tự tạo đánh số từ VT-006 (ví dụ của tài liệu đổi VT-005 → VT-006, VT-006 → VT-007). Vai trò tự tạo khai thuộc phòng Kinh doanh, Điều hành, Kế toán hoặc HDV. Thêm phạm vi bản ghi của phòng HDV, máy chủ lọc theo phân công (R16, L7.3). Vai trò thuộc phòng HDV chỉ có quyền HD01, mọi mã khác cố định Không (R04). Phụ lục A thêm module HDV với 3 mã `HD01.xem`, `HD01.ghi-nhat-ky`, `HD01.ghi-chi-phi` (128 mã, 132 dòng); Phụ lục B thêm cột HDV. Sửa 1.1–1.5, 2.1, 2.3, 2.5, L1.1, L3.1, E1.2, E3.12, R01–R04, R09, R11, R13, R14, 5.1, 5.2, Phụ lục A, B; AC01, AC03, AC04, AC07, AC25, AC50, AC54; thêm L7.3, E2.11, E3.13, E7.8, E7.9, R16, AC58–AC66.
 - **Thay đổi ở v1.0 (bổ sung 12/11/2026 · HDV chốt thêm).** Đối chiếu với BOI-CANH “Vai trò HDV”, mặc định theo Q3 sau đoạn “Người dùng chốt thêm (12/11/2026, sau khi viết RSD HD01)”: “Vai trò thuộc phòng HDV chỉ được cấp mã quyền HD01 và các màn chung (CH01–CH03); QT02 không cho bật quyền màn khác”. R04 đã khóa đúng như vậy từ bản bổ sung vai trò HDV; lượt này chỉ thêm câu dẫn nguồn BOI-CANH vào R04 và 1.5, không đổi ma trận, số mã, số quyền. Phụ lục A sửa phần Gồm của `HD01.xem` (Hiện số hộ chiếu ghi QT03, điện thoại, PDF chương trình; RSD HD01 R11–R13) và của `DH08.nhat-ky-su-co`, `DH08.chi-phi-phat-sinh`, `DH08.chi-phi-thuc-te` (gồm sửa, xóa mục Do HDV ghi; RSD DH08 R20); không thêm mã.
+- **Thay đổi ở v1.0 (bổ sung 13/11/2026 · quyết định rà soát).** Theo `docs/rsd/QUYET-DINH-RA-SOAT-2026-11-13.md`. (1) Q-RS13: R13 thêm ngoại lệ phòng Điều hành: Điều hành phụ trách hồ sơ Tour, Ngừng hoạt động của người đó và nhóm Điều hành nhận thông báo theo vai trò hệ thống Điều hành, không theo phòng; các hành vi khác của phòng Điều hành vẫn theo phòng (1.1, R13; thêm AC67). (2) Q-RS23: bỏ câu gợi ý vai trò theo nhóm công việc ở R13. (3) Q-RS28: Phụ lục A sửa phần Gồm của `DH07.giao-phu-trach` (nút Giao ở header DH08; chọn người phụ trách mới khi Mở lại Tour) và `DH08.mo-lai-tour` (chọn người mới cần thêm `DH07.giao-phu-trach`); thêm AC68. Không đổi mã, số mã, ma trận mặc định. (4) Q-RS16: giữ `DH08.khach-doan` chỉ Kinh doanh (câu hỏi V2 đóng, xem GHI-CHU).
 - **Cách đọc.** Mục 3 mô tả luồng. Mỗi bước ghi mã W, chỗ bấm, thao tác của người dùng và phản hồi của hệ thống. Mục 4 ghi quy tắc (mã R) mà các bước dẫn tới. Phụ lục A là danh mục mã quyền; Phụ lục B là ma trận mặc định.
 - **Wireframe chưa dựng; mã W giữ chỗ.** Đợt đặc tả sau phase coding dùng chuẩn component K1–K6 thay cho hình; mỗi bước vẫn có mã W để dựng sau. Khi dựng: khung HTML desktop 1280 × 800 px, dùng chung `lib.js` với RSD DH08.
-- **Dữ liệu minh họa.** Ngày giờ hiện tại 12/11/2026 09:30, múi giờ Asia/Ho_Chi_Minh. Người thao tác là Đỗ Quang Huy (Quản trị hệ thống). Vai trò: VT-001 Kinh doanh (6 tài khoản: 5 Đang hoạt động, Trần Quốc Bảo Bị khóa), VT-002 Điều hành (4), VT-003 Kế toán (2), VT-004 Quản trị hệ thống (2: Đỗ Quang Huy, Nguyễn Hoàng Nam), VT-005 HDV (2: Ngô Thị Mai NS-015, Hồ Quang Vinh NS-014, đều là Cộng tác viên ở DH06). Vũ Đức Minh có cả Kinh doanh và Điều hành. Ngô Thị Mai được phân công HDV điểm ở TP-2611-0042; Hồ Quang Vinh chưa được phân công Tour nào. Số quyền đang có theo Phụ lục B: Kinh doanh 59, Điều hành 62, Kế toán 38, HDV 3, Quản trị hệ thống 76 trên 128 mã. Số tài khoản là số minh họa của tài liệu này.
+- **Dữ liệu minh họa.** Ngày giờ hiện tại 12/11/2026 09:30, múi giờ Asia/Ho_Chi_Minh. Người thao tác là Đỗ Quang Huy (Quản trị hệ thống). Vai trò: VT-001 Kinh doanh (6 tài khoản: 5 Đang hoạt động, Trần Quốc Bảo Bị khóa), VT-002 Điều hành (4), VT-003 Kế toán (2), VT-004 Quản trị hệ thống (2: Đỗ Quang Huy, Nguyễn Hoàng Nam), VT-005 HDV (2: Ngô Thị Mai NS-015, Hồ Quang Vinh NS-014, đều là Cộng tác viên ở DH06). Vũ Đức Minh có cả Kinh doanh và Điều hành. Ngô Thị Mai được phân công HDV điểm ở TP-2611-0042; Hồ Quang Vinh chưa được phân công Tour nào. Số quyền đang có theo Phụ lục B: Kinh doanh 58, Điều hành 62, Kế toán 38, HDV 3, Quản trị hệ thống 76 trên 127 mã. Số tài khoản là số minh họa của tài liệu này.
 
 ## Mục lục
 
@@ -34,7 +36,7 @@ QT02 là nơi duy nhất khai **vai trò** và **quyền** của từng vai trò
 - **Thấy ngay một vai trò được làm gì.** Ma trận xếp theo module → màn hoặc phần → thao tác, ghi bằng tên nghiệp vụ, có số đếm ở từng cấp; tìm theo tên hoặc mã.
 - **Đổi một quyền bằng một lần bấm.** Ô quyền lưu ngay, có Hoàn tác; không có nút Lưu chung, không hộp thoại hỏi lại (U2).
 - **Tạo vai trò mới không phải tích lại từ đầu.** Sao chép quyền từ vai trò có sẵn rồi chỉ sửa phần khác.
-- **Vai trò tự tạo làm việc như phòng của nó.** Khi tạo, chọn phòng Kinh doanh, Điều hành, Kế toán hoặc HDV; vai trò nhận mọi hành vi gắn với phòng đó (người phụ trách, Của tôi, thông báo theo nhóm, Việc của tôi; với phòng HDV là trang Tour của tôi và phạm vi theo phân công) như vai trò hệ thống cùng tên; quyền vẫn chỉnh riêng theo ma trận (R13).
+- **Vai trò tự tạo làm việc như phòng của nó.** Khi tạo, chọn phòng Kinh doanh, Điều hành, Kế toán hoặc HDV; vai trò nhận mọi hành vi gắn với phòng đó (người phụ trách, Của tôi, thông báo theo nhóm, Việc của tôi; với phòng HDV là trang Tour của tôi và phạm vi theo phân công) như vai trò hệ thống cùng tên, trừ Điều hành phụ trách hồ sơ Tour và nhóm Điều hành nhận thông báo, chỉ theo vai trò hệ thống Điều hành (quyết định rà soát 13/11/2026, Q-RS13); quyền vẫn chỉnh riêng theo ma trận (R13).
 - **Người dẫn đoàn chỉ thấy Tour mình được phân công.** Phòng HDV chỉ có quyền Tour của tôi (HD01); máy chủ lọc mọi truy vấn của HD01 theo phân công phục vụ (R04, R16; ADR 0007).
 - **Biết chỗ đã lệch mặc định.** Vai trò hệ thống đánh dấu từng ô khác mặc định; khôi phục bằng một lần bấm.
 - **Không ai tự nâng quyền, không mất Quản trị.** Quyền QT01, QT02 gắn cố định với Quản trị hệ thống; vai trò Quản trị hệ thống không xóa, không ngừng dùng.
@@ -183,7 +185,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 **L1.1 Xem danh sách vai trò và ma trận của một vai trò.** *Điều kiện:* Quản trị hệ thống.
 
-1. **W01 · Menu Quản trị → Vai trò và phân quyền.** Màn mở với vai trò Kinh doanh được chọn (lần đầu), tab Quyền, chip Tất cả, mọi module thu gọn. Cột trái có năm vai trò hệ thống với số tài khoản Đang hoạt động (Kinh doanh 5, Điều hành 4, Kế toán 2, HDV 2, Quản trị hệ thống 2). Phần đầu ghi “Kinh doanh · VT-001 · Vai trò hệ thống”, mô tả, dòng phụ “6 tài khoản · 59 quyền đang có · Khác mặc định: 0”. Ma trận hiện bảy module, mỗi module một dòng kèm số: Kinh doanh 31/32, Điều hành 5/37, Kế toán 3/9, HDV 0/3, Quản trị 8/35, Báo cáo 12/12, Chung (Mọi tài khoản).
+1. **W01 · Menu Quản trị → Vai trò và phân quyền.** Màn mở với vai trò Kinh doanh được chọn (lần đầu), tab Quyền, chip Tất cả, mọi module thu gọn. Cột trái có năm vai trò hệ thống với số tài khoản Đang hoạt động (Kinh doanh 5, Điều hành 4, Kế toán 2, HDV 2, Quản trị hệ thống 2). Phần đầu ghi “Kinh doanh · VT-001 · Vai trò hệ thống”, mô tả, dòng phụ “6 tài khoản · 58 quyền đang có · Khác mặc định: 0”. Ma trận hiện bảy module, mỗi module một dòng kèm số: Kinh doanh 30/31, Điều hành 5/37, Kế toán 3/9, HDV 0/3, Quản trị 8/35, Báo cáo 12/12, Chung (Mọi tài khoản).
 2. **W01 · Bấm module Kinh doanh, rồi bấm màn KD06 · Hồ sơ yêu cầu Tour.** Module mở ra các màn theo thứ tự mã, mỗi màn có ô tích cấp màn và số (KD06 9/9, tích). Màn KD06 mở ra chín dòng mã quyền; ví dụ dòng “Tính giá, lưu phiên bản báo giá” có dòng phụ “KD06.3 · `KD06.tinh-gia`” và ô đã tích. Dòng “Chuyển người phụ trách yêu cầu” có nhãn “Dùng ở: KD05, KD06”.
 3. **W02 · Ô tìm và chip.** Quản trị gõ “thanh toan”. Từ 2 ký tự, sau 300 ms (K1), ma trận chỉ còn các dòng có tên hiển thị hoặc mã quyền khớp (khớp tên màn thì hiện mọi dòng của màn), không phân biệt hoa thường và dấu; module và màn chứa dòng khớp tự mở: `DH03.xem-thanh-toan-ncc` (nhãn Phần nhạy cảm, Dùng ở: KT01), `DH03.sua-thong-tin-nhan-thanh-toan`, `DH03.sua-dieu-khoan-thanh-toan`, `KD08.sua-thanh-toan`, `QT05.sua-phuong-thuc-thanh-toan`. Bấm chip Đang có thì chỉ còn dòng đã tích (`KD08.sua-thanh-toan`); số trên chip tính theo ô tìm.
 4. **W03 · Bấm Quản trị hệ thống ở cột trái.** Ô tìm và chip giữ nguyên; ma trận nạp vai trò mới. Các dòng `QT01.*`, `QT02.*` có ô khóa đã tích, lý do “Gắn cố định với Quản trị hệ thống”; mọi dòng loại Xem và Phần nhạy cảm có ô khóa đã tích, lý do “Quản trị xem được mọi màn (Q25)” (R04). Các ô còn lại bật, tắt được như vai trò khác. Phần đầu không có công tắc và không có mục Xóa vai trò.
@@ -205,7 +207,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 **L2.1 Bật hoặc tắt một quyền.** *Điều kiện:* Quản trị hệ thống; ô không cố định. Ví dụ: doanh nghiệp không muốn Kinh doanh tự xóa khách hàng.
 
 1. **W01 · Ô tích của dòng `KD04.xoa` · Xóa khách hàng chưa dùng, vai trò Kinh doanh.** Quản trị bỏ tích. Hệ thống ghi ngay giá trị Không cho ô này (R06), không hộp thoại. Ô hiện vòng quay trong lúc lưu.
-2. **W04 · Sau khi lưu.** Ô trống; dòng có chấm Khác mặc định và dòng phụ “Mặc định: Có”. Số cập nhật ở màn KD04 (5/6, ô cấp màn gạch ngang), module Kinh doanh (30/32), phần đầu (“58 quyền đang có · Khác mặc định: 1”) và chip Khác mặc định (1). Thông báo ngắn: “Đã tắt Xóa khách hàng chưa dùng cho Kinh doanh · 5 tài khoản đang hoạt động nhận thay đổi từ thao tác tiếp theo” kèm nút Hoàn tác. Hệ thống ghi một mục QT03 (R14).
+2. **W04 · Sau khi lưu.** Ô trống; dòng có chấm Khác mặc định và dòng phụ “Mặc định: Có”. Số cập nhật ở màn KD04 (5/6, ô cấp màn gạch ngang), module Kinh doanh (29/31), phần đầu (“57 quyền đang có · Khác mặc định: 1”) và chip Khác mặc định (1). Thông báo ngắn: “Đã tắt Xóa khách hàng chưa dùng cho Kinh doanh · 5 tài khoản đang hoạt động nhận thay đổi từ thao tác tiếp theo” kèm nút Hoàn tác. Hệ thống ghi một mục QT03 (R14).
 
 *Kết quả:* từ yêu cầu kế tiếp, máy chủ từ chối xóa khách với tài khoản không có `KD04.xoa` từ vai trò nào khác; nút Xóa ẩn ở lần tải trang tiếp theo (L7.1). Tài khoản có thêm một vai trò khác có `KD04.xoa` vẫn xóa được (R01). Bật lại một quyền làm cùng cách, bấm vào ô trống.
 
@@ -243,11 +245,11 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 1. **W07 · Nút + Thêm vai trò ở tiêu đề màn → hộp thoại.** Hộp thoại có ba trường:
    - **Tên** (bắt buộc).
    - **Thuộc phòng** (bắt buộc): Kinh doanh, Điều hành, Kế toán hoặc HDV. Điền sẵn theo vai trò ở ô Sao chép quyền từ (nhãn Gợi ý): Kinh doanh, Điều hành, Kế toán, HDV hoặc vai trò tự tạo thì lấy phòng của vai trò đó; Quản trị hệ thống hoặc Không sao chép thì để trống. Đổi ô Sao chép quyền từ chỉ điền lại phòng khi người dùng chưa tự chọn. Dưới ô ghi “Vai trò nhận các hành vi của phòng: người phụ trách, Của tôi, thông báo, Việc của tôi; quyền theo ma trận”. Chọn HDV thì dòng chữ đổi thành “Phòng HDV: chỉ có quyền Tour của tôi, chỉ thấy Tour được phân công (ADR 0007)”.
-   - **Sao chép quyền từ** (điền sẵn vai trò đang chọn ở cột trái, nhãn Mặc định; chọn được mọi vai trò khác hoặc “Không sao chép · chưa có quyền nào”). Dưới ô ghi số quyền sẽ chép (“59 quyền”), và với Quản trị hệ thống ghi thêm “trừ quyền QT01, QT02”; khi Thuộc phòng là HDV chỉ đếm và chỉ chép ba quyền `HD01.*` (ví dụ “0 quyền · phòng HDV chỉ nhận quyền Tour của tôi”, R09).
+   - **Sao chép quyền từ** (điền sẵn vai trò đang chọn ở cột trái, nhãn Mặc định; chọn được mọi vai trò khác hoặc “Không sao chép · chưa có quyền nào”). Dưới ô ghi số quyền sẽ chép (“58 quyền”), và với Quản trị hệ thống ghi thêm “trừ quyền QT01, QT02”; khi Thuộc phòng là HDV chỉ đếm và chỉ chép ba quyền `HD01.*` (ví dụ “0 quyền · phòng HDV chỉ nhận quyền Tour của tôi”, R09).
 
    Mô tả nhập sau ở phần đầu (L3.2). Nút Thêm vai trò khóa khi Tên trống hoặc chưa chọn phòng. Quản trị nhập “Trưởng nhóm Kinh doanh”, giữ Sao chép quyền từ Kinh doanh; Thuộc phòng điền sẵn Kinh doanh.
-2. **W08 · Nút Thêm vai trò.** Hệ thống kiểm tra theo R03, tạo VT-006 Đang dùng, thuộc phòng Kinh doanh, chép ma trận theo R09, ghi QT03. Hộp thoại đóng; cột trái có dòng mới (0 tài khoản) và đang chọn nó; tab Quyền mở với ma trận đã chép. Thông báo ngắn “Đã thêm vai trò Trưởng nhóm Kinh doanh (phòng Kinh doanh) · sao chép 59 quyền từ Kinh doanh”.
-3. **W01 · Ô tích của dòng `KD03.chuyen-phu-trach-hang-loat`.** Quản trị tích như L2.1. Phần đầu ghi “Trưởng nhóm Kinh doanh · VT-006 · Thuộc phòng Kinh doanh”, dòng phụ “0 tài khoản · 60 quyền đang có” (vai trò tự tạo không có Khác mặc định).
+2. **W08 · Nút Thêm vai trò.** Hệ thống kiểm tra theo R03, tạo VT-006 Đang dùng, thuộc phòng Kinh doanh, chép ma trận theo R09, ghi QT03. Hộp thoại đóng; cột trái có dòng mới (0 tài khoản) và đang chọn nó; tab Quyền mở với ma trận đã chép. Thông báo ngắn “Đã thêm vai trò Trưởng nhóm Kinh doanh (phòng Kinh doanh) · sao chép 58 quyền từ Kinh doanh”.
+3. **W01 · Ô tích của dòng `KD03.chuyen-phu-trach-hang-loat`.** Quản trị tích như L2.1. Phần đầu ghi “Trưởng nhóm Kinh doanh · VT-006 · Thuộc phòng Kinh doanh”, dòng phụ “0 tài khoản · 59 quyền đang có” (vai trò tự tạo không có Khác mặc định).
 4. **W13 · Tab Tài khoản.** Tab rỗng với liên kết “Gán vai trò ở QT01” (E4.1). Quản trị gán vai trò cho tài khoản ở QT01 (RSD QT01 L3.1).
 
 *Kết quả:* vai trò mới có quyền của Kinh doanh và chuyển khách hàng loạt; tài khoản được gán ở QT01 nhận quyền từ thao tác tiếp theo. Quyền của vai trò mới không liên kết với Kinh doanh: sửa ma trận Kinh doanh về sau không đổi vai trò mới (R09). Vai trò mới thuộc phòng Kinh doanh nên tài khoản có nó nhận các hành vi của phòng Kinh doanh (R13): ví dụ tài khoản chỉ có VT-006 được chọn làm người phụ trách khách hàng và có chip Của tôi bật sẵn ở KD03.
@@ -308,7 +310,7 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 **L5.1 Khôi phục ma trận mặc định của vai trò hệ thống.** *Điều kiện:* Quản trị hệ thống; vai trò hệ thống có ít nhất một ô khác mặc định. Ví dụ: Kinh doanh đang khác mặc định ở hai ô: `KD04.xoa` đã tắt (L2.1), `KD05.xuat-excel` đã tắt.
 
 1. **W02 · Chip Khác mặc định (2).** Ma trận chỉ còn hai dòng, mỗi dòng ghi “Mặc định: Có”. Quản trị xem để biết điều sẽ đổi.
-2. **W14 · Menu ⋯ → Khôi phục quyền mặc định.** Hệ thống đặt ngay mọi ô không cố định của vai trò về giá trị ở Phụ lục B (R11), không hộp thoại (U2). Chip Khác mặc định về 0, hai dòng mờ tại chỗ; phần đầu “59 quyền đang có · Khác mặc định: 0”; mục menu khóa với “Đang đúng mặc định”. Thông báo ngắn “Đã khôi phục quyền mặc định của Kinh doanh: bật 2, tắt 0 · 5 tài khoản đang hoạt động nhận thay đổi từ thao tác tiếp theo” kèm Hoàn tác. QT03 ghi một mục dạng lô.
+2. **W14 · Menu ⋯ → Khôi phục quyền mặc định.** Hệ thống đặt ngay mọi ô không cố định của vai trò về giá trị ở Phụ lục B (R11), không hộp thoại (U2). Chip Khác mặc định về 0, hai dòng mờ tại chỗ; phần đầu “58 quyền đang có · Khác mặc định: 0”; mục menu khóa với “Đang đúng mặc định”. Thông báo ngắn “Đã khôi phục quyền mặc định của Kinh doanh: bật 2, tắt 0 · 5 tài khoản đang hoạt động nhận thay đổi từ thao tác tiếp theo” kèm Hoàn tác. QT03 ghi một mục dạng lô.
 
 *Kết quả:* ma trận Kinh doanh đúng Phụ lục B. Hoàn tác (L2.3) trả lại hai ô đã tắt.
 
@@ -381,13 +383,13 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 ### R02. Danh mục mã quyền
 
-- **Dạng mã** `<MÀN>.<thao-tác>`. `<MÀN>` là mã màn sở hữu dữ liệu mà thao tác đọc hoặc ghi (ví dụ `KD08.tao-booking` dù nút ở KD06.3; `DH03.xem-thanh-toan-ncc` dù cũng hiện ở KT01.2). `<thao-tác>` là chữ thường không dấu, nối bằng gạch ngang.
+- **Dạng mã** `<MÀN>.<thao-tác>`. `<MÀN>` là mã màn sở hữu dữ liệu mà thao tác đọc hoặc ghi (ví dụ `DH03.xem-thanh-toan-ncc` dù cũng hiện ở KT01.2). `<thao-tác>` là chữ thường không dấu, nối bằng gạch ngang.
 - **Mã ổn định.** Không đổi khi đổi tên hiển thị hay phần Gồm. Mã đã bỏ không dùng lại cho nghĩa khác. Mã dùng chung ở `packages/shared` cho cả giao diện và máy chủ.
 - **Danh mục đi cùng phiên bản phần mềm**, không sửa trên giao diện. Khi RSD một màn thêm, bỏ hay tách thao tác, sửa Phụ lục A, B của RSD này trước khi code (BOI-CANH, thứ tự nguồn sự thật).
 - **Cách lập danh mục từ RSD nguồn.** Mỗi dòng của bảng quyền mục 1.4 (QT05: 1.5) là một mã, trừ:
   - dòng “theo quyền của màn khác”: không thành mã, theo R01 (quyền suy ra);
   - dòng nêu điều không phải quyền (người nhận thông báo, mặc định chip Của tôi, mốc mặc định của Lịch, dạng xem): không thành mã, theo R13;
-  - cùng một thao tác có ở nhiều RSD: một mã dùng chung, nhãn “Dùng ở”, nguồn ghi đủ các RSD (`DH03.tao-ncc`, `DH02.bat-tat-ncc`, `DH03.xem-thanh-toan-ncc`, `DH03.dich-vu-bang-gia`, `DH07.giao-phu-trach`, `KD04.tao-khach`, `KD06.tao-yeu-cau`, `KD06.chuyen-phu-trach`, `KD08.tao-booking`, `KT01.ghi-cong-no-phat-sinh`);
+  - cùng một thao tác có ở nhiều RSD: một mã dùng chung, nhãn “Dùng ở”, nguồn ghi đủ các RSD (`DH03.tao-ncc`, `DH02.bat-tat-ncc`, `DH03.xem-thanh-toan-ncc`, `DH03.dich-vu-bang-gia`, `DH07.giao-phu-trach`, `KD04.tao-khach`, `KD06.tao-yeu-cau`, `KD06.chuyen-phu-trach`, `KT01.ghi-cong-no-phat-sinh`);
   - RSD tự khai danh sách thao tác: theo danh sách đó (DH01: hai thao tác; QT04: hai thao tác; QT05: Sửa theo từng nhóm và hai thao tác theo trường);
   - dòng gộp nhiều thao tác mà vai trò được cấp khác nhau (DH08): tách theo nhóm thao tác ghi trong dòng; quyền xem mọi tab DH08 là một mã `DH08.xem`.
 - **Loại mã:** Xem; Phần nhạy cảm; Thao tác; Cố định (QT01, QT02); Mọi tài khoản và Không cần quyền (CH01–CH03, không phải ô của ma trận). Tên hiển thị và phần Gồm ở Phụ lục A là chữ hiện trên ma trận.
@@ -461,14 +463,15 @@ Mỗi luồng có mã L, ngoại lệ có mã E. Mỗi bước ghi theo dạng *
 
 - Mỗi vai trò thuộc nhiều nhất một phòng (R03): VT-001 Kinh doanh thuộc phòng Kinh doanh, VT-002 Điều hành thuộc phòng Điều hành, VT-003 Kế toán thuộc phòng Kế toán, VT-004 Quản trị hệ thống không thuộc phòng nào, VT-005 HDV thuộc phòng HDV; vai trò tự tạo thuộc phòng đã khai.
 - Các hành vi sau theo **phòng của vai trò**, không theo ma trận quyền, và không bật tắt ở QT02. Tài khoản có ít nhất một vai trò thuộc phòng X (kể cả vai trò Ngừng dùng, R10) nhận hành vi của phòng X đúng như tài khoản có vai trò hệ thống X:
-  - được chọn làm người phụ trách, và khi nào người phụ trách là Ngừng hoạt động: phòng Kinh doanh với khách hàng, yêu cầu Tour, Booking; phòng Điều hành với hồ sơ Tour qua nhân sự liên kết (RSD QT01 R03, R05, R08; DH06 R03);
+  - được chọn làm người phụ trách, và khi nào người phụ trách là Ngừng hoạt động: phòng Kinh doanh với khách hàng, yêu cầu Tour, Booking (RSD QT01 R03, R05, R08); hồ sơ Tour theo ngoại lệ phòng Điều hành ở dưới;
   - chip Của tôi bật sẵn: phòng Kinh doanh ở KD03, KD05, KD07, KT01.1; phòng Điều hành ở DH07 (BOI-CANH, Của tôi; CGD K2.06);
-  - người nhận thông báo theo nhóm (ví dụ phòng Kế toán khi lịch thanh toán Booking đổi, RSD KD08; nhóm Điều hành theo RSD DH06 R03);
+  - người nhận thông báo theo nhóm (ví dụ phòng Kế toán khi lịch thanh toán Booking đổi, RSD KD08); nhóm Điều hành theo ngoại lệ ở dưới;
   - thẻ của Việc của tôi (U4, RSD CH03); mốc mặc định của Lịch theo vai trò (RSD KD07 1.4);
   - riêng phòng HDV: không được chọn làm người phụ trách bản ghi nào, không có chip Của tôi bật sẵn, không có nhóm thẻ Việc của tôi; trang mặc định sau đăng nhập là Tour của tôi khi tài khoản chỉ có vai trò thuộc phòng HDV (RSD CH01 R18, CH03 1.4); nhận thông báo phân công phục vụ qua nhân sự liên kết (RSD CH02); phạm vi theo phân công ở HD01 (R16); Cộng tác viên chỉ liên kết được với tài khoản chỉ có vai trò thuộc phòng HDV (RSD QT01 R05).
-- Gợi ý vai trò theo nhóm công việc khi tạo tài khoản ở QT01 (RSD QT01 R05) chỉ tích vai trò hệ thống, không theo phòng.
+- **Ngoại lệ phòng Điều hành (quyết định rà soát 13/11/2026, Q-RS13).** Ba hành vi sau theo **vai trò hệ thống Điều hành (VT-002)**, không theo phòng: được chọn làm Điều hành phụ trách hồ sơ Tour (qua nhân sự liên kết), khi nào Điều hành phụ trách hồ sơ Tour là Ngừng hoạt động, và thuộc nhóm Điều hành nhận thông báo (RSD DH06 R03; QT01 R03, R05, R08). Vai trò tự tạo thuộc phòng Điều hành không cho ba hành vi này; vẫn cho các hành vi khác của phòng Điều hành (chip Của tôi bật sẵn ở DH07, nhóm thẻ Điều hành ở Việc của tôi, mốc mặc định của Lịch).
+- QT01 không gợi ý vai trò theo nhóm công việc khi tạo tài khoản (quyết định rà soát 13/11/2026, Q-RS23); chỉ Cộng tác viên được tích sẵn HDV (RSD QT01 R05).
 - Phòng không thêm, không bớt quyền nào, trừ phòng HDV chỉ có quyền HD01 (R04): quyền của vai trò tự tạo vẫn chỉnh riêng theo ma trận. Ví dụ vai trò thuộc phòng Kinh doanh không có `KD03.xem` thì người có nó vẫn được chọn làm người phụ trách khách nhưng không mở được KD03; vai trò thuộc phòng Kế toán có `KD03.xem` thì mở được KD03 nhưng chip Của tôi tắt sẵn và không được chọn làm người phụ trách khách.
-- Tắt quyền ở QT02 không đổi người phụ trách của bản ghi nào và không làm tài khoản thành Ngừng hoạt động, vì Ngừng hoạt động tính theo phòng của vai trò (RSD QT01 R03). Đổi phòng chỉ được khi vai trò chưa gán (R03), xóa vai trò chỉ được khi chưa gán (R10). Vì vậy không bản ghi nào mất người phụ trách hay đổi trạng thái Ngừng hoạt động vì một thao tác ở QT02, và QT02 không có cảnh báo như RSD QT01 R08.
+- Tắt quyền ở QT02 không đổi người phụ trách của bản ghi nào và không làm tài khoản thành Ngừng hoạt động, vì Ngừng hoạt động tính theo phòng của vai trò, hoặc theo vai trò hệ thống Điều hành với hồ sơ Tour (RSD QT01 R03). Đổi phòng chỉ được khi vai trò chưa gán (R03), xóa vai trò chỉ được khi chưa gán (R10). Vì vậy không bản ghi nào mất người phụ trách hay đổi trạng thái Ngừng hoạt động vì một thao tác ở QT02, và QT02 không có cảnh báo như RSD QT01 R08.
 
 ### R14. Nhật ký QT03
 
@@ -560,17 +563,17 @@ Mã AC là mã test. Dữ liệu theo mục đầu tài liệu; ma trận ban đ
 
 | Mã | Điều kiện và thao tác | Kết quả kiểm chứng được |
 |---|---|---|
-| AC01 | Quản trị mở QT02 lần đầu | Vai trò Kinh doanh, tab Quyền, chip Tất cả; cột trái có năm vai trò hệ thống theo thứ tự Kinh doanh, Điều hành, Kế toán, HDV, Quản trị hệ thống, số tài khoản 5, 4, 2, 2, 2; phần đầu “6 tài khoản · 59 quyền đang có · Khác mặc định: 0” (W01) |
+| AC01 | Quản trị mở QT02 lần đầu | Vai trò Kinh doanh, tab Quyền, chip Tất cả; cột trái có năm vai trò hệ thống theo thứ tự Kinh doanh, Điều hành, Kế toán, HDV, Quản trị hệ thống, số tài khoản 5, 4, 2, 2, 2; phần đầu “6 tài khoản · 58 quyền đang có · Khác mặc định: 0” (W01) |
 | AC02 | Tài khoản Kinh doanh (và Điều hành, Kế toán) mở QT02 bằng đường dẫn | Không có mục menu; trang không có quyền; máy chủ không trả dữ liệu vai trò (E1.2) |
-| AC03 | Dữ liệu khởi tạo | Mỗi cặp (mã quyền, vai trò hệ thống) ở Phụ lục B có đúng giá trị; số quyền đang có: Kinh doanh 59, Điều hành 62, Kế toán 38, HDV 3, Quản trị hệ thống 76 |
-| AC04 | (a) So tự động danh mục mã quyền ở `packages/shared` với Phụ lục A. (b) Tài khoản thử chỉ có một vai trò tự tạo “Không sao chép” (0 quyền), gửi thẳng 6 yêu cầu ghi đại diện: tạo khách (`KD04.tao-khach`), tính giá (`KD06.tinh-gia`), hủy Booking (`KD08.huy-booking`), giao người phụ trách hồ sơ (`DH07.giao-phu-trach`), ghi giao dịch (`KT01.ghi-giao-dich`), sửa tham số chung (`QT05.sua-tham-so-chung`) | (a) Đúng 128 mã, không thừa, không thiếu; mỗi mã có loại và quyền cần đúng Phụ lục A; 4 dòng Chung không là ô ma trận. (b) Cả 6 yêu cầu bị từ chối vì quyền; không có dữ liệu nào đổi; không có mục QT03 (R08) |
+| AC03 | Dữ liệu khởi tạo | Mỗi cặp (mã quyền, vai trò hệ thống) ở Phụ lục B có đúng giá trị; số quyền đang có: Kinh doanh 58, Điều hành 62, Kế toán 38, HDV 3, Quản trị hệ thống 76 |
+| AC04 | (a) So tự động danh mục mã quyền ở `packages/shared` với Phụ lục A. (b) Tài khoản thử chỉ có một vai trò tự tạo “Không sao chép” (0 quyền), gửi thẳng 6 yêu cầu ghi đại diện: tạo khách (`KD04.tao-khach`), tính giá (`KD06.tinh-gia`), hủy Booking (`KD08.huy-booking`), giao người phụ trách hồ sơ (`DH07.giao-phu-trach`), ghi giao dịch (`KT01.ghi-giao-dich`), sửa tham số chung (`QT05.sua-tham-so-chung`) | (a) Đúng 127 mã, không thừa, không thiếu; mỗi mã có loại và quyền cần đúng Phụ lục A; 4 dòng Chung không là ô ma trận. (b) Cả 6 yêu cầu bị từ chối vì quyền; không có dữ liệu nào đổi; không có mục QT03 (R08) |
 | AC05 | Gõ “thanh toan” ở ô tìm | Còn 5 dòng: `DH03.xem-thanh-toan-ncc`, `DH03.sua-thong-tin-nhan-thanh-toan`, `DH03.sua-dieu-khoan-thanh-toan`, `KD08.sua-thanh-toan`, `QT05.sua-phuong-thuc-thanh-toan`; các module chứa dòng khớp tự mở (W02) |
 | AC06 | Gõ “k” | Chưa lọc; gợi ý “Nhập ít nhất 2 ký tự” (E1.3) |
 | AC07 | Chọn Quản trị hệ thống | 7 ô `QT01.*`, `QT02.*` và 32 ô loại Xem, Phần nhạy cảm (gồm `HD01.xem`) khóa đã tích kèm lý do; không có công tắc, không có Xóa vai trò (W03) |
 | AC08 | Chọn Kinh doanh, xem dòng QT01, QT02 | Ô khóa trống, lý do “Chỉ Quản trị hệ thống” |
 | AC09 | Gửi thẳng yêu cầu bật `QT02.quan-ly` cho Kinh doanh, hoặc tắt `DH03.xem-thanh-toan-ncc` cho Quản trị hệ thống | Máy chủ từ chối “Quyền này gắn cố định, không đổi được”; ma trận không đổi; không có mục QT03 (E2.1) |
 | AC10 | Nhóm Chung | CH01 Đăng nhập “Không cần quyền”; CH01 Đổi mật khẩu, CH02, CH03 “Mọi tài khoản”; không có ô tích |
-| AC11 | Bỏ tích `KD04.xoa` của Kinh doanh | Không hộp thoại; ô trống; chấm Khác mặc định “Mặc định: Có”; KD04 5/6 (gạch ngang), module Kinh doanh 30/32, phần đầu 58, chip Khác mặc định 1; thông báo có Hoàn tác (W04) |
+| AC11 | Bỏ tích `KD04.xoa` của Kinh doanh | Không hộp thoại; ô trống; chấm Khác mặc định “Mặc định: Có”; KD04 5/6 (gạch ngang), module Kinh doanh 29/31, phần đầu 57, chip Khác mặc định 1; thông báo có Hoàn tác (W04) |
 | AC12 | Sau AC11 | QT03 có một mục: đối tượng Vai trò VT-001, màn QT02, cờ Thao tác nhạy cảm, trường “Quyền · KD04.xoa · Xóa khách hàng chưa dùng: Có → Không” (R14) |
 | AC13 | Sau AC11, Lê Thu Hà đang mở KD04 (trang tải trước AC11) bấm Xóa khách hàng | Bị từ chối, thông báo “Quyền của bạn vừa thay đổi” kèm nút Tải lại trang; khách không bị xóa; không có mục QT03; bấm Tải lại trang thì không còn nút Xóa; không phải đăng nhập lại (W18, L7.1) |
 | AC14 | Sau AC11, Vũ Đức Minh (Kinh doanh, Điều hành) | Nếu Điều hành không có `KD04.xoa` thì Minh không xóa được; bật `KD04.xoa` cho Điều hành thì Minh xóa được, Lê Thu Hà vẫn không (R01) |
@@ -583,7 +586,7 @@ Mã AC là mã test. Dữ liệu theo mục đầu tài liệu; ma trận ban đ
 | AC21 | Bấm ô cấp màn KT01 của Điều hành (Một phần 3/9) | Ba quyền Xem KT01 thành Không; ô cấp màn trống 0/9; một mục QT03 dạng lô 3 dòng; Hoàn tác trả lại cả ba (L2.2) |
 | AC22 | (a) Điều hành ở KT01 0/9 (đã tắt ba quyền Xem như AC21, không Hoàn tác; chip Khác mặc định 3), bấm ô cấp màn KT01. (b) Chọn Quản trị hệ thống, bấm ô cấp màn KT01 (4 ô Xem, Phần nhạy cảm cố định Có; 5 ô thao tác Không) | (a) Ô cấp màn tích 9/9; 9 mã KT01 đều Có; một mục QT03 dạng lô 9 dòng; chip Khác mặc định của Điều hành 6 (6 mã thao tác KT01 mặc định Không). (b) 5 ô thao tác thành Có; 4 ô cố định vẫn Có và khóa; mục QT03 dạng lô 5 dòng, không có dòng của ô cố định (R04, R06) |
 | AC23 | Tắt `DH03.xem-thanh-toan-ncc` của Kế toán | Dòng `DH03.sua-thong-tin-nhan-thanh-toan` và `DH03.sua-dieu-khoan-thanh-toan` hiện Chưa có tác dụng; thông báo ghi “2 quyền phụ thuộc chưa có tác dụng”; Nguyễn Thị Hằng không thấy phần thanh toán ở DH03, KT01.2; API sửa thông tin nhận thanh toán bị từ chối; API đọc NCC không trả số tài khoản (R05, R08) |
-| AC24 | Thêm “Trưởng nhóm Kinh doanh” sao chép từ Kinh doanh | Thuộc phòng điền sẵn Kinh doanh; VT-006, Đang dùng, thuộc phòng Kinh doanh, 0 tài khoản, 59 quyền giống hệt Kinh doanh; thông báo “sao chép 59 quyền”; mục QT03 Tạo vai trò ghi tên, phòng, vai trò nguồn, 59 (L3.1) |
+| AC24 | Thêm “Trưởng nhóm Kinh doanh” sao chép từ Kinh doanh | Thuộc phòng điền sẵn Kinh doanh; VT-006, Đang dùng, thuộc phòng Kinh doanh, 0 tài khoản, 58 quyền giống hệt Kinh doanh; thông báo “sao chép 58 quyền”; mục QT03 Tạo vai trò ghi tên, phòng, vai trò nguồn, 58 (L3.1) |
 | AC25 | Tạo vai trò thuộc phòng Kinh doanh, sao chép từ Quản trị hệ thống | QT01, QT02 là Không và khóa; 32 mã Xem, Phần nhạy cảm là Có và bật tắt được; các ô khác giống Quản trị hệ thống (R09) |
 | AC26 | Tạo vai trò với tên “ kinh   doanh ” hoặc tên trống | Không tạo; lỗi “Đã có vai trò Kinh doanh”; với tên trống, nút Thêm vai trò khóa (E3.1) |
 | AC27 | Bấm Thêm vai trò hai lần liên tiếp | Một vai trò được tạo (E3.3) |
@@ -609,7 +612,7 @@ Mã AC là mã test. Dữ liệu theo mục đầu tài liệu; ma trận ban đ
 | AC47 | Tắt quyền `KD06.chuyen-phu-trach` của Kinh doanh | Người phụ trách của mọi yêu cầu không đổi; không ai hiện “(ngừng hoạt động)” vì thay đổi này; không có cảnh báo (R13) |
 | AC48 | (a) Chọn Quản trị hệ thống trên giao diện. (b) Gửi thẳng 5 yêu cầu: xóa VT-004; ngừng dùng VT-004; đổi tên VT-004; đặt phòng cho VT-004; tắt `QT02.quan-ly` của VT-004 | (a) Không có công tắc, không có mục Xóa vai trò, tên và phòng là chữ; 7 ô `QT01.*`, `QT02.*` khóa đã tích. (b) Cả 5 bị từ chối; tên, trạng thái, phòng, ma trận của VT-004 không đổi; không có mục QT03; Đỗ Quang Huy vẫn mở và sửa được QT02 (R03, R04, R12) |
 | AC49 | Quản trị tắt `QT05.sua-tham-so-chung` của Quản trị hệ thống | Lưu được; Quản trị lưu tham số chung ở QT05 bị từ chối từ yêu cầu kế tiếp; QT02 vẫn dùng được (E2.9) |
-| AC50 | Có VT-006 tự tạo. Chạy nâng cấp với dữ liệu khởi tạo thử thêm mã `KD05.thu-nghiem` (loại Thao tác, cần `KD05.xem`; Phụ lục B thử: Kinh doanh Có, Điều hành, Kế toán, HDV, Quản trị hệ thống Không) | VT-001 có `KD05.thu-nghiem` Có, phần đầu 60 quyền; VT-002, VT-003, VT-004, VT-006 Không; VT-005 HDV Không và khóa (R04); chip Khác mặc định của năm vai trò hệ thống không đổi; không có mục QT03; nhật ký kỹ thuật ghi “thêm 1 mã” (R11) |
+| AC50 | Có VT-006 tự tạo. Chạy nâng cấp với dữ liệu khởi tạo thử thêm mã `KD05.thu-nghiem` (loại Thao tác, cần `KD05.xem`; Phụ lục B thử: Kinh doanh Có, Điều hành, Kế toán, HDV, Quản trị hệ thống Không) | VT-001 có `KD05.thu-nghiem` Có, phần đầu 59 quyền; VT-002, VT-003, VT-004, VT-006 Không; VT-005 HDV Không và khóa (R04); chip Khác mặc định của năm vai trò hệ thống không đổi; không có mục QT03; nhật ký kỹ thuật ghi “thêm 1 mã” (R11) |
 | AC51 | Kinh doanh đúng mặc định (`KD05.xuat-excel` Có). Chạy nâng cấp với dữ liệu khởi tạo thử đổi mặc định `KD05.xuat-excel` của Kinh doanh thành Không; rồi bấm Khôi phục quyền mặc định | Sau nâng cấp: ô vẫn Có; chip Khác mặc định của Kinh doanh 1, dòng phụ “Mặc định: Không”; không có mục QT03. Sau Khôi phục: ô Không, Khác mặc định 0, có mục QT03 dạng lô 1 dòng (R11) |
 | AC52 | Mọi thao tác ở QT02 | Không có email, tin nhắn, thông báo nào được tạo (mục 5.3) |
 | AC53 | Tìm nhanh Ctrl+K của Kế toán gõ “TM-” | Không có kết quả Tour mẫu vì Kế toán không có `KD01.xem` (R01) |
@@ -626,12 +629,14 @@ Mã AC là mã test. Dữ liệu theo mục đầu tài liệu; ma trận ban đ
 | AC64 | NS-015 còn phân công ở TP-2611-0042; hồ sơ Đã kết thúc; Điều hành Đóng Tour, Mai tải lại HD01; sau đó Điều hành Mở lại Tour, Mai tải lại HD01 | Sau khi đóng: HD01 không có TP-2611-0042. Sau khi mở lại: HD01 hiện lại TP-2611-0042 (E7.8, R16) |
 | AC65 | Tài khoản thử có Điều hành và HDV, liên kết một nhân sự Nội bộ được phân công ở đúng một hồ sơ; mở DH07 rồi HD01 | DH07 hiện mọi hồ sơ như tài khoản Điều hành; HD01 chỉ hiện hồ sơ được phân công (E7.9, R16) |
 | AC66 | Đỗ Quang Huy (Quản trị hệ thống, không liên kết nhân sự) mở HD01, rồi mở DH08 của TP-2611-0042 | HD01 mở được và không có Tour nào; DH08 của TP-2611-0042 xem được mọi tab (R16; Q25) |
+| AC67 | Thêm VT-008 “Điều hành ca đêm” thuộc phòng Điều hành, sao chép từ Điều hành; gán cho tài khoản thử W chỉ có VT-008, liên kết nhân sự Nội bộ Nhận phân công Đang dùng; một Booking mới tạo hồ sơ Tour; W mở DH07 lần đầu và Việc của tôi | W có quyền như Điều hành (giao được người phụ trách). W không có trong danh sách chọn Điều hành phụ trách ở DH07, DH08; W không nhận thông báo hồ sơ mới của nhóm Điều hành. Chip Của tôi của W ở DH07 bật sẵn; Việc của tôi của W có nhóm thẻ Điều hành (R13, ngoại lệ phòng Điều hành; RSD DH06 R03; Q-RS13) |
+| AC68 | Tài khoản thử X có `DH08.mo-lai-tour`, không có `DH07.giao-phu-trach`; hồ sơ Đã đóng; X mở lại không chọn người; lần khác X gửi thẳng yêu cầu mở lại kèm người phụ trách mới; Quản trị bật `DH07.giao-phu-trach` cho vai trò của X, X mở lại hồ sơ khác kèm người mới | Hộp thoại của X không có ô Điều hành phụ trách mới; mở lại được, hồ sơ giữ người cũ. Yêu cầu kèm người mới bị từ chối vì quyền `DH07.giao-phu-trach`, hồ sơ không đổi, không có mục QT03. Sau khi bật quyền: hộp thoại có ô, mở lại kèm người mới được (Phụ lục A; RSD DH08 R16; Q-RS28) |
 
 ---
 
 ## Phụ lục A · Danh mục mã quyền
 
-Danh mục đi cùng phiên bản phần mềm (R02). 132 dòng: 128 mã quyền là ô của ma trận (121 bật tắt được, 7 cố định với Quản trị hệ thống; với vai trò thuộc phòng HDV, mọi mã ngoài `HD01.*` cố định Không, R04) và 4 dòng Chung (CH01–CH03) không là ô của ma trận. Cột:
+Danh mục đi cùng phiên bản phần mềm (R02). 131 dòng: 127 mã quyền là ô của ma trận (120 bật tắt được, 7 cố định với Quản trị hệ thống; với vai trò thuộc phòng HDV, mọi mã ngoài `HD01.*` cố định Không, R04) và 4 dòng Chung (CH01–CH03) không là ô của ma trận. Cột:
 
 - **Màn hoặc phần:** nơi thao tác hiện trên giao diện; mã dùng ở nhiều màn ghi đủ (nhãn “Dùng ở” trên ma trận).
 - **Loại:** Xem, Phần nhạy cảm, Thao tác, Cố định, Mọi tài khoản, Không cần quyền (R02). Mã loại Xem và Phần nhạy cảm cố định Có với Quản trị hệ thống (R04).
@@ -659,14 +664,13 @@ Danh mục đi cùng phiên bản phần mềm (R02). 132 dòng: 128 mã quyền
 | `KD06.tao-yeu-cau` | Kinh doanh | KD04, KD05, KD06 | Tạo yêu cầu Tour | Người tạo là người phụ trách | Thao tác | Xem của màn nơi bấm | KD03-KD04 1.4; KD05 1.4; KD06 1.4 |
 | `KD06.sua` | Kinh doanh | KD06.1, KD06.2 | Sửa yêu cầu và hành trình | Thông tin, hành trình, nội dung tiếng Anh, tạo hành trình và dịch nháp bằng AI | Thao tác | `KD06.xem` | KD06 1.4 |
 | `KD06.tinh-gia` | Kinh doanh | KD06.3 | Tính giá, lưu phiên bản báo giá | — | Thao tác | `KD06.xem` | KD06 1.4 |
-| `KD06.ghi-ket-qua` | Kinh doanh | KD06.3 | Ghi kết quả báo giá | Chốt, Cần điều chỉnh, Không chốt | Thao tác | `KD06.xem` | KD06 1.4 |
+| `KD06.ghi-ket-qua` | Kinh doanh | KD06.3 | Ghi kết quả báo giá | Chốt (ghi Chốt là tạo Booking, gồm cả tạo hồ sơ Tour), Cần điều chỉnh, Không chốt | Thao tác | `KD06.xem` | KD06 1.4, R19; KD08 1.4 |
 | `KD06.publish-link` | Kinh doanh | KD06.3 | Publish, gia hạn, thu hồi link proposal | — | Thao tác | `KD06.xem` | KD06 1.4 |
 | `KD06.huy-yeu-cau` | Kinh doanh | KD06 | Hủy yêu cầu Tour | — | Thao tác | `KD06.xem` | KD06 1.4 |
 | `KD06.mo-lai-yeu-cau` | Kinh doanh | KD06 | Mở lại yêu cầu Tour | Kèm lý do, có thể chọn người phụ trách mới | Thao tác | `KD06.xem` | KD06 1.4 |
 | `KD06.chuyen-phu-trach` | Kinh doanh | KD05, KD06 | Chuyển người phụ trách yêu cầu | Một hoặc hàng loạt ở KD05; một yêu cầu ở KD06 | Thao tác | Xem của màn nơi bấm | KD05 1.4; KD06 1.4 |
 | `KD07.xem` | Kinh doanh | KD07 | Xem danh sách Booking | Bảng, Lịch; mở KD08 theo KD08.xem | Xem | — | KD07 1.4 |
 | `KD08.xem` | Kinh doanh | KD08.1, KD08.2 | Xem hồ sơ Booking | — | Xem | — | KD08 1.4 |
-| `KD08.tao-booking` | Kinh doanh | KD06.3 | Tạo Booking | Nút ở KD06.3, từ phiên bản Chốt | Thao tác | `KD06.xem` | KD06 1.4; KD08 1.4 |
 | `KD08.xem-lich-su` | Kinh doanh | KD08 | Xem lịch sử thay đổi Booking | — | Xem | `KD08.xem` | KD08 1.4 |
 | `KD08.sua-thanh-toan` | Kinh doanh | KD08.2 | Sửa điều khoản và lịch thanh toán | — | Thao tác | `KD08.xem` | KD08 1.4 |
 | `KD08.dieu-chinh-chuong-trinh` | Kinh doanh | KD08 | Điều chỉnh chương trình, Chuyển sang Điều hành | Nút mở KD06 ở chế độ điều chỉnh; nút Chuyển sang Điều hành. Sửa và tính giá trong chế độ điều chỉnh theo KD06.sua, KD06.tinh-gia | Thao tác | `KD08.xem` | KD08 1.4 |
@@ -692,7 +696,7 @@ Danh mục đi cùng phiên bản phần mềm (R02). 132 dòng: 128 mã quyền
 | `DH06.bat-tat-nhan-phan-cong` | Điều hành | DH06 | Bật, tắt Nhận phân công | — | Thao tác | `DH06.xem` | DH06 1.4 |
 | `DH06.xoa` | Điều hành | DH06 | Xóa nhân sự chưa từng được phân công | — | Thao tác | `DH06.xem` | DH06 1.4 |
 | `DH07.xem` | Điều hành | DH07 | Xem danh sách hồ sơ Tour | Bảng, Kanban, Lịch; mở DH08 theo DH08.xem | Xem | — | DH07 1.4 |
-| `DH07.giao-phu-trach` | Điều hành | DH07, DH08.1 | Giao người phụ trách hồ sơ Tour | Tại chỗ, hàng loạt, trên thẻ Kanban ở DH07; ô Điều hành phụ trách trong Thông tin điều hành ở DH08.1; hồ sơ chưa đóng | Thao tác | Xem của màn nơi bấm | DH07 1.4; DH08 2.2, 5.2 |
+| `DH07.giao-phu-trach` | Điều hành | DH07, DH08.1 | Giao người phụ trách hồ sơ Tour | Tại chỗ, hàng loạt, trên thẻ Kanban ở DH07; nút Giao ở header DH08 (ô Điều hành phụ trách trong Thông tin điều hành chỉ đọc); chọn Điều hành phụ trách mới khi Mở lại Tour (cùng `DH08.mo-lai-tour`); hồ sơ chưa đóng (Q-RS28) | Thao tác | Xem của màn nơi bấm | DH07 1.4; DH08 2.2, 5.2 |
 | `DH08.xem` | Điều hành | DH08 | Xem hồ sơ Tour | Mọi tab DH08.1–DH08.8; số hộ chiếu đã che | Xem | — | DH08 1.4 |
 | `DH08.sua-tong-quan` | Điều hành | DH08.1 | Sửa thông tin điều hành | Các trường của Thông tin điều hành (ngôn ngữ phục vụ…), trừ Điều hành phụ trách (theo `DH07.giao-phu-trach`) | Thao tác | `DH08.xem` | DH08 1.4, 5.2 |
 | `DH08.bat-dau-ket-thuc` | Điều hành | DH08 | Bắt đầu, kết thúc Tour | Bắt đầu Tour, Kết thúc Tour; Kết thúc hồ sơ khi Booking đã hủy (RSD DH08 R14) | Thao tác | `DH08.xem` | DH08 1.4, R14 |
@@ -707,7 +711,7 @@ Danh mục đi cùng phiên bản phần mềm (R02). 132 dòng: 128 mã quyền
 | `DH08.chi-phi-phat-sinh` | Điều hành | DH08.7 | Sửa chi phí phát sinh | Thêm, sửa khoản chưa ghi công nợ; xóa khoản Do HDV ghi chưa ghi công nợ (RSD DH08 L7.3, R20) | Thao tác | `DH08.xem` | DH08 1.4 |
 | `DH08.chi-phi-thuc-te` | Điều hành | DH08.8 | Nhập chi phí thực tế | Đến khi đóng Tour; gồm sửa, Bỏ số HDV của dòng Do HDV ghi (RSD DH08 L8.1, R20) | Thao tác | `DH08.xem` | DH08 1.4 |
 | `DH08.dong-tour` | Điều hành | DH08 | Đóng Tour | — | Thao tác | `DH08.xem` | DH08 1.4 |
-| `DH08.mo-lai-tour` | Điều hành | DH08 | Mở lại Tour | Kèm lý do, có thể chọn Điều hành phụ trách mới | Thao tác | `DH08.xem` | DH08 1.4, R16 |
+| `DH08.mo-lai-tour` | Điều hành | DH08 | Mở lại Tour | Kèm lý do; chọn Điều hành phụ trách mới chỉ khi có thêm `DH07.giao-phu-trach`, không thì hồ sơ giữ người cũ (Q-RS28) | Thao tác | `DH08.xem` | DH08 1.4, R16 |
 | `DH08.quyet-toan` | Điều hành | DH08.8 | Quyết toán | Đối chiếu, điều chỉnh, lưu quyết toán | Thao tác | `DH08.xem` | DH08 1.4 |
 | `KT01.xem-phai-thu` | Kế toán | KT01.1 | Xem phải thu khách hàng | — | Xem | — | KT01 1.4 |
 | `KT01.xem-phai-tra` | Kế toán | KT01.2 | Xem phải trả NCC | Không gồm thông tin thanh toán NCC | Xem | — | KT01 1.4 |
@@ -785,13 +789,13 @@ Giá trị khởi tạo của năm vai trò hệ thống và đích của Khôi 
 
 | Module | Số mã | Kinh doanh | Điều hành | Kế toán | HDV | Quản trị hệ thống |
 |---|---|---|---|---|---|---|
-| Kinh doanh (KD01–KD08) | 32 | 31 | 3 | 3 | 0 | 15 |
+| Kinh doanh (KD01–KD08) | 31 | 30 | 3 | 3 | 0 | 15 |
 | Điều hành (DH01–DH08) | 37 | 5 | 34 | 9 | 0 | 10 |
 | Kế toán (KT01) | 9 | 3 | 3 | 9 | 0 | 4 |
 | HDV (HD01) | 3 | 0 | 0 | 0 | 3 | 1 |
 | Quản trị (QT01–QT05) | 35 | 8 | 10 | 5 | 0 | 34 |
 | Báo cáo (QT07–QT12) | 12 | 12 | 12 | 12 | 0 | 12 |
-| **Tổng** | **128** | **59** | **62** | **38** | **3** | **76** |
+| **Tổng** | **127** | **58** | **62** | **38** | **3** | **76** |
 
 **Ma trận đầy đủ**
 
@@ -823,7 +827,6 @@ Giá trị khởi tạo của năm vai trò hệ thống và đích của Khôi 
 | `KD06.chuyen-phu-trach` | Chuyển người phụ trách yêu cầu | Có | Không | Không | Không (cố định) | Có |
 | `KD07.xem` | Xem danh sách Booking | Có | Không | Có | Không (cố định) | Có (cố định, Q25) |
 | `KD08.xem` | Xem hồ sơ Booking | Có | Có | Có | Không (cố định) | Có (cố định, Q25) |
-| `KD08.tao-booking` | Tạo Booking | Có | Không | Không | Không (cố định) | Không |
 | `KD08.xem-lich-su` | Xem lịch sử thay đổi Booking | Có | Có | Có | Không (cố định) | Có (cố định, Q25) |
 | `KD08.sua-thanh-toan` | Sửa điều khoản và lịch thanh toán | Có | Không | Không | Không (cố định) | Không |
 | `KD08.dieu-chinh-chuong-trinh` | Điều chỉnh chương trình, Chuyển sang Điều hành | Có | Không | Không | Không (cố định) | Không |
